@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PINPAL's Homepage</title>
+    <link rel="icon" href="assets/favicon.ico" class="next-head" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/global-navbar/navbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/shortcuts/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="assets/shortcuts/disableIcons.css" id="disableIconsStylesheet" disabled>
+    <link rel="stylesheet" type="text/css" href="assets/shortcuts/editMode.css" id="editModeStylesheet" disabled>
+    <link rel="stylesheet" type="text/css" href="assets/shortcuts/popup.css" id="popupStylesheet" disabled>
+    <link rel="stylesheet" type="text/css" href="assets/shortcuts/lightMode.css" id="lightModeStylesheet" disabled>
+</head>
+<body>
+    <div class="popupWrapper">
+            <div class="popupWindow" id="addShortcut">
+                <div class="popupCloseButton" onClick="displayPopup(false,'')"></div>
+                <h1 style="font-size: 26pt;">Add Shortcut Link</h1>
+                <h2>Enter the Title of the Shortcut</h2>
+                <p>This is the name that will be displayed.</p>
+                <input type="text" class="popupTextField" style="width: 100%;" id="linkTitleHolder" placeholder="Link Title">
+                <h2>Enter the URL of the Shortcut</h2>
+                <p>This is the URL the link will go to.</p>
+                <input type="text" class="popupTextField" style="width: 100%;" id="linkURLHolder" placeholder="Link URL">
+                <h2>Enter the URL of the Icon</h2>
+                <p>This will make your shortcut pretty.</p>
+                <input type="text" class="popupTextField" style="width: 100%;" id="linkIconHolder" placeholder="Icon URL (Optional)">
+                <div class="errorMessageContainer"></div>
+                <button class="button" onclick="applyAddShortcut()">Apply Changes</button>
+            </div>
+            <div class="popupWindow" id="addCategory">
+                    <div class="popupCloseButton" onClick="displayPopup(false,'')"></div>
+                <h1 style="font-size: 26pt;">Add Category</h1>
+                <h2>Enter the Title of the Category:</h2>
+                <p>This is the large name above that will be displayed.</p>
+                <input type="text" class="popupTextField" style="width: 100%;" id="categoryName" placeholder="Category Name">
+                <div class="errorMessageContainer"></div>
+                <button class="button" onclick="applyAddCategory()">Apply Changes</button>
+            </div>
+            <div class="popupWindow" id="categoryDeleteConfirmation">
+                <div class="popupCloseButton" onClick="displayPopup(false,'')"></div>
+                <h1 style="font-size: 26pt;">Delete Category</h1>
+                <h2 id="deleteDialogue"></h2>
+                <p>This action cannot be undone!</p>
+                <button class="button" id="categoryDeleteConfirmationButton">Confirm Delete</button>
+            </div>
+            <div class="popupWindow" id="exportConfig">
+                <div class="popupCloseButton" onClick="displayPopup(false,'')"></div>
+                <h1 style="font-size: 26pt;">Export Config</h1>
+                <h2 id="deleteDialogue">Backup Your Layout</h2>
+                <p>You can backup your layout to a file so that you can import it later if your browser cookies are deleted.</p>
+                <button class="button" onclick="downloadConfig()">Download Config</button>
+            </div>
+            <div class="popupWindow" id="importConfig">
+                <div class="popupCloseButton" onClick="displayPopup(false,'')"></div>
+                <h1 style="font-size: 26pt;">Import Config</h1>
+                <h2 id="deleteDialogue">Load Your Backup</h2>
+                <p>You can load your backup that you created to restore a previous layout.</p>
+                <button class="button" onclick="importConfig()">Upload Config</button>
+            </div>
+            <div class="popupWindow" id="rowDeleteConfirmation">
+                <div class="popupCloseButton" onClick="displayPopup(false,'')"></div>
+                <h1 style="font-size: 26pt;">Delete Link</h1>
+                <h2 id="deleteDialogueRow"></h2>
+                <p>This action cannot be undone!</p>
+                <button class="button" id="rowDeleteConfirmationButton">Confirm Delete</button>
+            </div>
+            <div class="popupWindow" id="customize"> <!--   style="max-width: 1230px;"  -->
+                <div class="popupCloseButton" onClick="displayPopup(false,'')"></div>
+                <h1 style="font-size: 26pt;">Customize</h1>
+                <!-- <div class="dualColumn" style="padding-right:15px;">
+                    <div class="prefsRow">
+                        <h2>Background Color</h2>
+                        <p>The background color of the page. Accepts Hex value</p>
+                        <input type="text" class="popupTextField" style="width: 100%;" id="customizeBackgroundColor" placeholder="#00000">
+                    </div><div class="prefsRow">
+                        <h2>Box Color</h2>
+                        <p>The color of the link boxes. Accepts Hex value</p>
+                        <input type="text" class="popupTextField" style="width: 100%;" id="customizeBoxColor" placeholder="#00000">
+                    </div><div class="prefsRow">
+                        <h2>Link Title Color</h2>
+                        <p>The color of the title of links in the boxes. Accepts Hex value</p>
+                        <input type="text" class="popupTextField" style="width: 100%;" id="customizeLinkColor" placeholder="#00000">
+                    </div><div class="prefsRow">
+                        <h2>Link URL Color</h2>
+                        <p>The color of the link URL in the boxes. Accepts Hex value</p>
+                        <input type="text" class="popupTextField" style="width: 100%;" id="customizeURLColor" placeholder="#00000">
+                    </div><div class="prefsRow" style="border:none">
+                       <h2>Category Title Color:</h2>
+                        <p>The color of the large titles above categories. Accepts Hex value</p>
+                        <input type="text" class="popupTextField" style="width: 100%;" id="customizeSubtitleColor" placeholder="#00000"> 
+                    </div>
+                </div><div class="dualColumn" style="padding-left:15px;">   
+                    <div class="prefsRow">
+                        <h2>Navbar Colour:</h2>
+                        <p>The background color of the navbar. Accepts Hex value</p>
+                        <input type="text" class="popupTextField" style="width: 100%;" id="navbarBackgroundColor" placeholder="#00000"> 
+                    </div>--><div class="prefsRow" style="margin-top: 30px">
+                        <h2>Enable Branding</h2>
+                        <p>Show PINPAL logo and social links on the Navbar</p>
+                        <div class="toggleSwitch enabledToggle" id="disableBranding" onclick="toggle(this)">
+                            <div class="toggleSwitchKnob"></div>
+                        </div>
+                    </div><div class="prefsRow">
+                        <h2>Enable Icons</h2>
+                        <p>Show the icons on the side of the links</p>
+                        <div class="toggleSwitch enabledToggle" id="disableIcons" onclick="toggle(this)">
+                            <div class="toggleSwitchKnob"></div>
+                        </div>
+                    </div><div class="prefsRow" style="border:none">
+                        <h2>Enable Dark Mode</h2>
+                        <p>Use a dark night time theme on the site</p>
+                        <div class="toggleSwitch enabledToggle" id="disableDarkMode" onclick="toggle(this)">
+                            <div class="toggleSwitchKnob"></div>
+                        </div>
+                    </div>
+                    <div class="errorMessageContainer"></div>
+                    <button class="button" onclick='applyCustomizationChanges()'>Apply Changes</button>
+                </div>
+            <!--</div>    for dual column     --> 
+            <div class="popupWindow" id="tutorial">
+                <h1 style="font-size: 26pt;">Welcome</h1>
+                <h2>Looks like you're new here!</h2>
+                <p>I've detected you don't have a config for the site, this means you are either new around here or your browser cookies were deleted.
+                </br></br>I recommend that you load the example config and customise from there to get a feel for the site, but you can always start fresh if your feeling advanced.</p>
+                <button class="button" onclick="importExampleConfig()">Load Example Config</button>
+                <h2>What! I'm not new!</h2>
+                <p>If you have used this site before and have lost your browser cookie, have no fear! You can load your backup using the button below.</p>
+                <button class="button" onclick="importConfig()">Load Backed Up Config</button>
+            </div>
+            <div class="popupWindow" id="resolutionTooSmall">
+                <h1 style="font-size: 26pt;">Whoops!</h1>
+                <h2>Resolution too small</h2>
+                <p>Sorry the site is not supported in your resolution! Please resize the window or get a larger display.</p>
+            </div>
+            <div class="popupWindow" id="cancelEditMode">
+                <div class="popupCloseButton" onClick="displayPopup(false,'')"></div>
+                <h1 style="font-size: 26pt;">Cancel Edit</h1>
+                <h2>Are you sure you wish to discard changes?</h2>
+                <p>This action cannot be undone.</p>
+                <button class="button" onclick="confirmCancelEditMode()">Discard Changes</button>
+            </div>
+            <div class="popupWindow" id="about">
+                <div class="popupCloseButton" onClick="displayPopup(false,'')"></div>
+                <h1 style="font-size: 26pt;">About</h1>
+                <h2>Version</h2>
+                <p style="line-height:26pt">Latest Version: 1.4.1</p>
+                <h2>What's New</h2>
+                <p><b>Changes Since 1.0:</b></p>
+                <ul>
+                    <li>Row Padding Reduced</li>
+                    <li>Cleanup Console Logs</li>
+                    <li>Improved URL Preview Shortening</li>
+                    <li>Hidden "Coming Soon" Customization Options</li>
+                    <li>Added "Enable Branding" to Customization Options</li>
+                    <li>Added "Enable Dark Mode" to Customization Options</li>
+                    <li>Optimisation, Bug Fixes and Validation</li>
+                    <li>Added "Enable Icons" to Customization Options</li>
+                </ul>
+                <p style="line-height:26pt"><b>New Features 1.4.1:</b></p>
+                    <li>Made the site actually work for new users</li>
+                <ul>
+                    
+                </ul>
+                <h2>Creator</h2>
+                <p style="margin-bottom: 30px;">This website was created by PINPAL. Found a bug or got a suggestion, 
+                    feel free to contact me using any of the links below:</p>
+                <a href="https://discordapp.com/channels/@me" style="display:inline-block;min-width: 230px">
+                    <img class="twitter" src="https://pinpal.github.io/assets/social-icons/Discord.png" style="float:left;padding: 10px;margin-top: -15px">
+                      <p>Discord<br><span style="color: rgba(255,255,255,.5)">PINPAL#2591</span></p>
+                </a>
+                <a href="https://twitter.com/TPinpal" style="display:inline-block;min-width: 230px">
+                <img class="twitter" src="https://pinpal.github.io/assets/social-icons/Twitter.png" style="float:left;padding: 10px;margin-top: -15px">
+                    <p>Twitter<br><span style="color: rgba(255,255,255,.5)">@TPINPAL</span></p>
+                </a>
+                <a href="https://github.com/PINPAL/" style="display:inline-block;min-width: 230px">
+                <img class="twitter" src="https://pinpal.github.io/assets/social-icons/Reddit.png" style="float:left;padding: 10px;margin-top: -15px">
+                    <p>Reddit<br><span style="color: rgba(255,255,255,.5)">THE_PINPAL614</span></p>
+                </a>
+                <a href="https://www.reddit.com/user/THE_PINPAL614" style="display:inline-block;min-width: 230px">
+                <img class="twitter" src="https://pinpal.github.io/assets/social-icons/Github.png" style="float:left;padding: 10px;margin-top: -15px">
+                    <p>Github<br><span style="color: rgba(255,255,255,.5)">PINPAL</span></p>
+                </a>
+                <button class="button" onclick="displayPopup(false,'')">Ok</button>
+            </div>
+        </div>
+
+    <div class="mainContent">
+        <div id="navbarContainer">
+                <div id="navbar">
+                    <div class="normalNavbarContent">
+                        <a href="https://pinpal.github.io/"><img class="logo" src="assets/pinpal.png"></a>
+                        <a href="https://pinpal.github.io/"><span id="title">PINPAL</span></a>
+                
+                        <div class="navIconContainer">
+        
+                            <form method="get" action="https://www.google.com/search" style="display:inline-block">
+                                <input type="text" name="q" placeholder="Search" class="navbarSearch">
+                                <button type="submit" style="padding:0;margin:0;background:none;border:none;">
+                                    <div class="navButton" style="background: linear-gradient(to right, #15a55d , #14d179)">
+                                        <img src="assets/page-icons/search.png" class="navButtonIcon" align="left">Search
+                                    </div>
+                                </button>
+                            </form>
+                
+                            <a href="https://twitter.com/TPINPAL" class="brandingSocial">
+                                <div class="navButton" style="background: linear-gradient(to right, #55ACEF , #0A76E7)">
+                                <img src="assets/page-icons/twitter.png" class="navButtonIcon" align="left">Twitter
+                            </div></a>
+                        
+                            <a href="https://github.com/PINPAL" class="brandingSocial">
+                                <div class="navButton" style="background: linear-gradient(to right, #AA4DB4 , #8A3699)">
+                                <img src="assets/page-icons/github.png" class="navButtonIcon" align="left">Github
+                            </div></a>
+                
+                            <a href="https://discordapp.com/invite/jb" class="brandingSocial">
+                                <div class="navButton" style="background: linear-gradient(to right, #83A1DA , #6380B4)">
+                                <img src="assets/page-icons/discord.png" class="navButtonIcon" align="left">Discord
+                            </div></a>
+                
+                            <a href="https://www.reddit.com/user/THE_PINPAL614" class="brandingSocial">
+                                <div class="navButton" style="background: linear-gradient(to right, #FF4C02 , #ED0A21)">
+                                <img src="assets/page-icons/reddit.png" class="navButtonIcon" align="left">Reddit
+                            </div></a>
+
+                            <div class="navbarSeperator">.</div>
+
+                            <div class="navButton" style="background: linear-gradient(to right, #687891 , #545454)" onclick="editMode(true)">
+                                <img src="assets/page-icons/settings.png" class="navButtonIcon" align="left">Edit Page
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navEditMenu">
+                        <div class="editModeNavButton" onClick="displayPopup(true,'importConfig')"">Import Config</div>
+                        <div class="navbarSeperator">.</div>
+                        <div class="editModeNavButton" onClick="displayPopup(true,'exportConfig')">Export Config</div>
+                        <div class="navbarSeperator">.</div>
+                        <div class="editModeNavButton" onClick="displayPopup(true,'customize')">Customize</div>
+                        <div class="navbarSeperator">.</div>
+                        <div class="editModeNavButton" onClick="displayPopup(true,'about')">About</div>
+
+                        <div class="navIconContainer" style="top: 0">
+                            <div class="navButton" style="background: linear-gradient(to right, #42b763,  #4f9161)" onclick="editMode(false)">
+                                <img src="assets/shortcuts/tick.png" class="navButtonIcon" align="left">Save Changes
+                            </div>
+                            <div class="navButton" style="background: linear-gradient(to right, #b53d3d , #9e3434)" onclick="displayPopup(true,'cancelEditMode')">
+                                <img src="assets/shortcuts/closeIcon.png" class="navButtonIcon" align="left">Cancel
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        
+        <div class="wrapper">
+            <div class="largeErrorMessageContainer"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+        </div>
+    </div>
+
+</body>
+<head>
+    <script src="assets/shortcuts/javascript.js"></script>
+    <script src="assets/global-navbar/navbar.js"></script>
+</head>
+</html>

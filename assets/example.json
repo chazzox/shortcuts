@@ -1,0 +1,35 @@
+{
+	"name": "chaz",
+	"darkMode": true,
+	"config": [
+		[
+			{
+				"boxName": "ohhhh yeart",
+				"type": "links",
+				"linkArr": [
+					{ "name": "ah yeas", "url": "www.chazzox.github.io" },
+					{
+						"name": "lmaoGoogle",
+						"url": "www.google.com"
+					},
+					{ "name": "hmmmm", "url": "www.bruhg.com" }
+				]
+			},
+
+			{
+				"boxName": "please dont click oh god oh shit oh fuck",
+				"type": "links",
+				"linkArr": [{ "name": "very much not google", "url": "www.batheinmymilk.com" }]
+			}
+		],
+
+		[
+			{ "boxName": "still google", "type": "links", "linkArr": [{ "name": "lmaoGoogle", "url": "www.google.com" }] },
+			{
+				"boxName": "ohhhh yeart",
+				"type": "widget",
+				"fucking widget shit mate": "yeah cunt oh year mate this a fucking widget init mate"
+			}
+		]
+	]
+}
