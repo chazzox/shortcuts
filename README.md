@@ -7,7 +7,7 @@ Available at: https://chazzox.github.io/shortcuts-beta/
 
 
 ### To-Do List
-* Make default text cursor position on page load be in google searchbox
+- Refactor everything
 - Reformat as React web app with json cookie storage
 
 ### In the future
