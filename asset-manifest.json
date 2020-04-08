@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/shortcuts-beta/static/css/main.8eeb5a48.chunk.css",
-    "main.js": "/shortcuts-beta/static/js/main.75b6df7e.chunk.js",
-    "main.js.map": "/shortcuts-beta/static/js/main.75b6df7e.chunk.js.map",
+    "main.js": "/shortcuts-beta/static/js/main.99594704.chunk.js",
+    "main.js.map": "/shortcuts-beta/static/js/main.99594704.chunk.js.map",
     "runtime-main.js": "/shortcuts-beta/static/js/runtime-main.77096d07.js",
     "runtime-main.js.map": "/shortcuts-beta/static/js/runtime-main.77096d07.js.map",
     "static/js/2.64ef06e8.chunk.js": "/shortcuts-beta/static/js/2.64ef06e8.chunk.js",
     "static/js/2.64ef06e8.chunk.js.map": "/shortcuts-beta/static/js/2.64ef06e8.chunk.js.map",
     "index.html": "/shortcuts-beta/index.html",
-    "precache-manifest.89c17ec73ff8fb03fc0d60ab240af992.js": "/shortcuts-beta/precache-manifest.89c17ec73ff8fb03fc0d60ab240af992.js",
+    "precache-manifest.c852c7ff4cf22639b5ed34340267ae13.js": "/shortcuts-beta/precache-manifest.c852c7ff4cf22639b5ed34340267ae13.js",
     "service-worker.js": "/shortcuts-beta/service-worker.js",
     "static/css/main.8eeb5a48.chunk.css.map": "/shortcuts-beta/static/css/main.8eeb5a48.chunk.css.map",
     "static/js/2.64ef06e8.chunk.js.LICENSE.txt": "/shortcuts-beta/static/js/2.64ef06e8.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.77096d07.js",
     "static/js/2.64ef06e8.chunk.js",
     "static/css/main.8eeb5a48.chunk.css",
-    "static/js/main.75b6df7e.chunk.js"
+    "static/js/main.99594704.chunk.js"
   ]
 }
