@@ -7,8 +7,8 @@ export const example = {
 						boxName: 'Social',
 						type: 'links',
 						linkArr: [
-							{ name: 'Reddit', url: 'https://www.google.com' },
-							{ name: 'Steam', url: 'https://www.steam.com' },
+							{ name: 'Reddit', url: 'https://www.reddit.com' },
+							{ name: 'Steam', url: 'https://store.steampowered.com/' },
 							{ name: 'Instagram', url: 'https://www.Instagram.com' },
 							{ name: 'Inbox', url: 'https://www.mail.google.com' },
 							{ name: 'Discord', url: 'https://www.discord.com' },

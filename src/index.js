@@ -10,35 +10,45 @@ import { example } from './example';
 class Main extends PureComponent {
 	constructor(props) {
 		super(props);
-		this.state = { userJSON: this.props.userJSON, config: this.props.userJSON.config, columns: 'lol' };
+		this.state = { userJSON: this.props.userJSON, config: this.props.userJSON.config, columns: 'lol', editMode: false };
 	}
-	renderColumns() {
+	renderColumns(editState) {
 		return this.state.config.map((column, index) => {
-			return <Column key={index} index={index} column={column} />;
+			return <Column key={index} column={column} editMode={editState} />;
 		});
 	}
-	componentDidMount() {
-		if (this.state.userJSON !== undefined) {
-			this.setState({ columns: this.renderColumns() });
-		}
-	}
 	render() {
 		return (
-			<React.StrictMode>
-				<div className='App'>
-					<CustomHeader />
-					<div className='wrapper'>{this.state.columns}</div>
+			<div className='App'>
+				<div className='nav'>
+					{this.state.editMode ? (
+						<div className='editNav'>
+							<h1 className='navTitle'>SHORTCUTS - Edit Time</h1>
+							<button
+								className='confirmButton editButton' 
+								onClick={() => {
+									this.setState({ editMode: !this.state.editMode });
+								}}>
+								save changes
+							</button>
+						</div>
+					) : (
+						<div className='normalNav'>
+							<h1 className='navTitle'>SHORTCUTS</h1>
+							<div className='navIconContainer'>
+								<h1 className='yeah'>made for gamers, by gamers</h1>
+								<button
+									className='editButton'
+									onClick={() => {
+										this.setState({ editMode: !this.state.editMode });
+									}}>
+									edit
+								</button>
+							</div>
+						</div>
+					)}
 				</div>
-			</React.StrictMode>
-		);
-	}
-}
-class CustomHeader extends Component {
-	render() {
-		return (
-			<div className='App-header'>
-				<h1>SHORTCUTS</h1>
-				<h1 className='yeah'>made for gamers, by gamers</h1>
+				<div className='wrapper'>{this.renderColumns(this.state.editMode)}</div>
 			</div>
 		);
 	}
@@ -46,32 +56,32 @@ class CustomHeader extends Component {
 
 class Column extends Component {
 	constructor(props) {
-		console.log(props);
 		super(props);
-		this.state = { column: this.props.column, boxArr: '' };
-		// this.links = this.renderLinkList()
+		this.state = { column: this.props.column, boxArr: '', editMode: this.props.editMode };
 	}
 	renderBox() {
 		return this.state.column.map((box, index) => {
-			return <Box key={index} box={box} />;
+			return <Box key={index} box={box} editMode={this.state.editMode} />;
 		});
 	}
-	componentDidMount() {
-		this.setState({ boxArr: this.renderBox() });
+	componentWillReceiveProps(nextProps) {
+		this.setState({ editMode: nextProps.editMode });
 	}
 	render() {
 		// return <div><h1>yeah</h1></div>;
-		return <div className='column'>{this.state.boxArr}</div>;
+		return <div className='column'>{this.renderBox()}</div>;
 	}
 }
 
 class Box extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { box: this.props.box, content: '' };
+		this.state = { box: this.props.box, content: '', editMode: this.props.editMode };
+	}
+	componentWillReceiveProps(nextProps) {
+		this.setState({ editMode: nextProps.editMode });
 	}
 	componentDidMount() {
-		console.log(this.state.box);
 		if (this.state.box.type === 'links') {
 			this.setState({ content: this.renderLinks() });
 		} else if (this.state.box.type === 'widget') {
@@ -86,15 +96,19 @@ class Box extends Component {
 			}
 		}
 	}
+
 	renderLinks() {
 		return this.state.box.linkArr.map((link, index) => {
-			return <Link key={index} link={link} />;
+			return <Link key={index} link={link} editMode={this.state.editMode} />;
 		});
 	}
 	render() {
 		return (
 			<div>
-				<h1 className='boxName'>{this.state.box.boxName}</h1>
+				<h1 className='boxName'>
+					{this.state.box.boxName}
+					{this.state.editMode ? ' - edit mode' : null}
+				</h1>
 				<div className='box'>{this.state.content}</div>
 			</div>
 		);
@@ -122,10 +136,12 @@ class Link extends Component {
 	}
 	render() {
 		return (
-			<div className='link'>
-				<h1 className='linkName'>{this.state.name}</h1>
-				{/* <h2 className='linkURL'>{this.cleanupURL(this.state.url)}</h2> */}
-			</div>
+			<a href={this.state.url} style={{ textDecoration: 'none' }}>
+				<div className='link'>
+					<h1 className='linkName'>{this.state.name}</h1>
+					{/* <h2 className='linkURL'>{this.cleanupURL(this.state.url)}</h2> */}
+				</div>
+			</a>
 		);
 	}
 }

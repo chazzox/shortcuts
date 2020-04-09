@@ -11,36 +11,85 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	background-color: #282c34;
 }
-.App-header {
+.nav {
 	background: black;
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
 	align-items: center;
 	font-size: calc(10px + 2vmin);
-
 	width: calc(90% - 20px);
 	margin-top: 20px;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 20px;
 	border-radius: 15px;
-	h1 {
-		font-size: 26px;
-		margin: 0;
+}
+.navTitle {
+	margin: 0 !important;
+	vertical-align: middle;
+	display: inline-block;
+	font-size: 26px;
+}
+.normalNav {
+	position: relative;
+	top: 0;
+	right: 0;
+}
+.navIconContainer {
+	padding-top: 5px;
+	position: absolute;
+	right: 0 !important;
+	top: -20px;
+	padding-right: 10px;
+	text-align: center;
+}
+.yeah {
+	color: white;
+	display: inline-block;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.editButton {
+	margin: 10px;
+	background: linear-gradient(to right, #55b49d, #2b7dca);
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	border-radius: 25px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 25px;
+	padding-right: 25px;
+	color: white;
+	font-size: 18px;
+	border: none;
+	font-weight: normal;
+	text-transform: capitalize;
+	outline: none;
+	&:hover {
+		filter: hue-rotate(90deg);
 	}
 }
-.wrapper {
-	display: flex;
-	justify-content: space-around;
+
+.confirmButton {
+	position: absolute;
+	right: 5% !important;
+	top: 35px;
 }
 
 .column {
-	margin: 20px;
-	width: 100%;
+	width: 25%;
+	float: left;
 }
-
+@media screen and (max-width: 1000px) {
+	.column {
+		width: 50%;
+	}
+}
+@media screen and (max-width: 600px) {
+	.column {
+		width: 100%;
+	}
+}
 .box {
 	background: #2f3439;
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
@@ -51,6 +100,7 @@ body {
 	border-style: solid;
 	border-color: rgba(255, 255, 255, 0.05);
 	border-width: 2px;
+	margin: 10px;
 }
 
 .boxName {
@@ -62,4 +112,3 @@ body {
 .linkName {
 	font-size: 16px;
 }
-
