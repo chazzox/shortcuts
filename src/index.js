@@ -25,7 +25,7 @@ class Main extends PureComponent {
 						<div className='editNav'>
 							<h1 className='navTitle'>SHORTCUTS - Edit Time</h1>
 							<button
-								className='confirmButton editButton' 
+								className='confirmButton editButton'
 								onClick={() => {
 									this.setState({ editMode: !this.state.editMode });
 								}}>
@@ -81,22 +81,18 @@ class Box extends Component {
 	componentWillReceiveProps(nextProps) {
 		this.setState({ editMode: nextProps.editMode });
 	}
-	componentDidMount() {
+	renderBox() {
 		if (this.state.box.type === 'links') {
-			this.setState({ content: this.renderLinks() });
+			return this.renderLinks();
 		} else if (this.state.box.type === 'widget') {
 			switch (this.state.box.widgetType) {
 				case 'weather':
-					this.setState({ content: <WeatherWidget /> });
-					break;
-
+					return <WeatherWidget />;
 				default:
-					this.setState({ content: <WeatherWidget /> });
-					break;
+					return <WeatherWidget />;
 			}
 		}
 	}
-
 	renderLinks() {
 		return this.state.box.linkArr.map((link, index) => {
 			return <Link key={index} link={link} editMode={this.state.editMode} />;
@@ -109,7 +105,7 @@ class Box extends Component {
 					{this.state.box.boxName}
 					{this.state.editMode ? ' - edit mode' : null}
 				</h1>
-				<div className='box'>{this.state.content}</div>
+				<div className='box'>{this.renderBox()}</div>
 			</div>
 		);
 	}
@@ -128,7 +124,10 @@ class WeatherWidget extends Component {
 class Link extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { name: this.props.link.name, url: this.props.link.url };
+		this.state = { name: this.props.link.name, url: this.props.link.url, editMode: this.props.editMode };
+	}
+	componentWillReceiveProps(nextProps) {
+		this.setState({ editMode: nextProps.editMode });
 	}
 	cleanupURL(url) {
 		url = url.replace(/(.*?:\/\/)|(www\.)/g, '').replace(/\/.*/, '');
@@ -136,7 +135,9 @@ class Link extends Component {
 	}
 	render() {
 		return (
-			<a href={this.state.url} style={{ textDecoration: 'none' }}>
+			// disables annoying 'compiling with warning' error
+			// eslint-disable-next-line
+			<a href={this.state.editMode ? '#' : this.state.url} style={{ textDecoration: 'none' }}>
 				<div className='link'>
 					<h1 className='linkName'>{this.state.name}</h1>
 					{/* <h2 className='linkURL'>{this.cleanupURL(this.state.url)}</h2> */}
