@@ -1,153 +1,87 @@
-// React Modules
-import React, { PureComponent, Component } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-/// ofline caching service
-import * as serviceWorker from './serviceWorker';
-/// our modules
-import './index.scss';
-import { example } from './example';
+import '@atlaskit/css-reset';
+import { DragDropContext } from 'react-beautiful-dnd';
+import example from './example';
+import Section from './section';
 
-class Main extends PureComponent {
-	constructor(props) {
-		super(props);
-		this.state = { userJSON: this.props.userJSON, config: this.props.userJSON.config, columns: 'lol', editMode: false };
-	}
-	renderColumns(editState) {
-		return this.state.config.map((column, index) => {
-			return <Column key={index} column={column} editMode={editState} />;
-		});
-	}
-	render() {
-		return (
-			<div className='App'>
-				<div className='nav'>
-					{this.state.editMode ? (
-						<div className='editNav'>
-							<h1 className='navTitle'>SHORTCUTS - Edit Time</h1>
-							<button
-								className='confirmButton editButton'
-								onClick={() => {
-									this.setState({ editMode: !this.state.editMode });
-								}}>
-								save changes
-							</button>
-						</div>
-					) : (
-						<div className='normalNav'>
-							<h1 className='navTitle'>SHORTCUTS</h1>
-							<div className='navIconContainer'>
-								<h1 className='yeah'>made for gamers, by gamers</h1>
-								<button
-									className='editButton'
-									onClick={() => {
-										this.setState({ editMode: !this.state.editMode });
-									}}>
-									edit
-								</button>
-							</div>
-						</div>
-					)}
-				</div>
-				<div className='wrapper'>{this.renderColumns(this.state.editMode)}</div>
-			</div>
-		);
-	}
+class App extends Component {
+    state = example.config;
+    // updates
+    onDragEnd = (result) => {
+        const { destination, source, draggableId } = result;
+        // if the destination is null i.e, outisde of a drop zone, return to start of drag
+        if (!destination) {
+            return;
+        }
+        // if the destination is the same as the the start of the drag
+        if (
+            destination.droppableId === source.droppableId &&
+            destination.index === source.index
+        ) {
+            return;
+        }
+
+        // rewriting the newState to show the new order
+        const startSection = this.state.sections[source.droppableId];
+        const finishSection = this.state.sections[destination.droppableId];
+
+        // if the drag is isoloated within one column
+        if (startSection === finishSection) {
+            const newBoxOrder = Array.from(startSection.boxOrder);
+            newBoxOrder.splice(source.index, 1);
+            newBoxOrder.splice(destination.index, 0, draggableId);
+
+            // overwriting the new column array in the section order
+            const newState = {
+                ...this.state,
+                sections: {
+                    ...this.state.sections,
+                    [startSection.id]: {
+                        ...startSection,
+                        boxOrder: newBoxOrder
+                    }
+                }
+            };
+            this.setState(newState);
+            return;
+        }
+        const startBoxOrder = Array.from(startSection.boxOrder);
+        startBoxOrder.splice(source.index, 1);
+        const newStartSection = { ...startSection, boxOrder: startBoxOrder };
+        const finishBoxOrder = Array.from(finishSection.boxOrder);
+        finishBoxOrder.splice(destination.index, 0, draggableId);
+        const newFinishSection = { ...finishSection, boxOrder: finishBoxOrder };
+        const newState = {
+            ...this.state,
+            sections: {
+                ...this.state.sections,
+                [newStartSection.id]: newStartSection,
+                [newFinishSection.id]: newFinishSection
+            }
+        };
+        this.setState(newState);
+        return;
+    };
+    render() {
+        return (
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                {this.state.sectionOrder.map((sectionId) => {
+                    const section = this.state.sections[sectionId];
+                    const boxesForSection = section.boxOrder.map(
+                        (boxId) => this.state.boxes[boxId]
+                    );
+                    return (
+                        <Section
+                            key={section.id}
+                            section={section}
+                            boxesForSection={boxesForSection}
+                        />
+                    );
+                })}
+            </DragDropContext>
+        );
+    }
 }
 
-class Column extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { column: this.props.column, boxArr: '', editMode: this.props.editMode };
-	}
-	renderBox() {
-		return this.state.column.map((box, index) => {
-			return <Box key={index} box={box} editMode={this.state.editMode} />;
-		});
-	}
-	componentWillReceiveProps(nextProps) {
-		this.setState({ editMode: nextProps.editMode });
-	}
-	render() {
-		// return <div><h1>yeah</h1></div>;
-		return <div className='column'>{this.renderBox()}</div>;
-	}
-}
-
-class Box extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { box: this.props.box, content: '', editMode: this.props.editMode };
-	}
-	componentWillReceiveProps(nextProps) {
-		this.setState({ editMode: nextProps.editMode });
-	}
-	renderBox() {
-		if (this.state.box.type === 'links') {
-			return this.renderLinks();
-		} else if (this.state.box.type === 'widget') {
-			switch (this.state.box.widgetType) {
-				case 'weather':
-					return <WeatherWidget />;
-				default:
-					return <WeatherWidget />;
-			}
-		}
-	}
-	renderLinks() {
-		return this.state.box.linkArr.map((link, index) => {
-			return <Link key={index} link={link} editMode={this.state.editMode} />;
-		});
-	}
-	render() {
-		return (
-			<div>
-				<h1 className='boxName'>
-					{this.state.box.boxName}
-					{this.state.editMode ? ' - edit mode' : null}
-				</h1>
-				<div className='box'>{this.renderBox()}</div>
-			</div>
-		);
-	}
-}
-
-class WeatherWidget extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { type: this.props.type, links: '' };
-	}
-	render() {
-		return <h1 className='linkName'>weather, init mate</h1>;
-	}
-}
-
-class Link extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { name: this.props.link.name, url: this.props.link.url, editMode: this.props.editMode };
-	}
-	componentWillReceiveProps(nextProps) {
-		this.setState({ editMode: nextProps.editMode });
-	}
-	cleanupURL(url) {
-		url = url.replace(/(.*?:\/\/)|(www\.)/g, '').replace(/\/.*/, '');
-		return url;
-	}
-	render() {
-		return (
-			// disables annoying 'compiling with warning' error
-			// eslint-disable-next-line
-			<a href={this.state.editMode ? '#' : this.state.url} style={{ textDecoration: 'none' }}>
-				<div className='link'>
-					<h1 className='linkName'>{this.state.name}</h1>
-					{/* <h2 className='linkURL'>{this.cleanupURL(this.state.url)}</h2> */}
-				</div>
-			</a>
-		);
-	}
-}
-
-// attaching our react system to the div of id='root' in ~/public/index.html
-ReactDOM.render(<Main userJSON={example} />, document.getElementById('root'));
-// optimises render workflow (caching to device)
-serviceWorker.register();
+ReactDOM.render(<App />, document.getElementById('root'));
