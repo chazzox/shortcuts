@@ -1,87 +1,41 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '@atlaskit/css-reset';
-import { DragDropContext } from 'react-beautiful-dnd';
-import example from './example';
-import Section from './section';
 
+import './style.scss';
+
+import Shortcuts from './components/shortcuts';
 class App extends Component {
-    state = example.config;
-    // updates
-    onDragEnd = (result) => {
-        const { destination, source, draggableId } = result;
-        // if the destination is null i.e, outisde of a drop zone, return to start of drag
-        if (!destination) {
-            return;
-        }
-        // if the destination is the same as the the start of the drag
-        if (
-            destination.droppableId === source.droppableId &&
-            destination.index === source.index
-        ) {
-            return;
-        }
-
-        // rewriting the newState to show the new order
-        const startSection = this.state.sections[source.droppableId];
-        const finishSection = this.state.sections[destination.droppableId];
-
-        // if the drag is isoloated within one column
-        if (startSection === finishSection) {
-            const newBoxOrder = Array.from(startSection.boxOrder);
-            newBoxOrder.splice(source.index, 1);
-            newBoxOrder.splice(destination.index, 0, draggableId);
-
-            // overwriting the new column array in the section order
-            const newState = {
-                ...this.state,
-                sections: {
-                    ...this.state.sections,
-                    [startSection.id]: {
-                        ...startSection,
-                        boxOrder: newBoxOrder
-                    }
-                }
-            };
-            this.setState(newState);
-            return;
-        }
-        const startBoxOrder = Array.from(startSection.boxOrder);
-        startBoxOrder.splice(source.index, 1);
-        const newStartSection = { ...startSection, boxOrder: startBoxOrder };
-        const finishBoxOrder = Array.from(finishSection.boxOrder);
-        finishBoxOrder.splice(destination.index, 0, draggableId);
-        const newFinishSection = { ...finishSection, boxOrder: finishBoxOrder };
-        const newState = {
-            ...this.state,
-            sections: {
-                ...this.state.sections,
-                [newStartSection.id]: newStartSection,
-                [newFinishSection.id]: newFinishSection
-            }
-        };
-        this.setState(newState);
-        return;
-    };
+    constructor(props) {
+        super(props);
+        this.state = { editMode: false };
+    }
     render() {
         return (
-            <DragDropContext onDragEnd={this.onDragEnd}>
-                {this.state.sectionOrder.map((sectionId) => {
-                    const section = this.state.sections[sectionId];
-                    const boxesForSection = section.boxOrder.map(
-                        (boxId) => this.state.boxes[boxId]
-                    );
-                    return (
-                        <Section
-                            key={section.id}
-                            section={section}
-                            boxesForSection={boxesForSection}
-                        />
-                    );
-                })}
-            </DragDropContext>
+            <div>
+                <div className="nav">
+                    <div className="normalNav">
+                        <h1 className="navTitle">
+                            SHORTCUTS {this.state.editMode ? ' - editmode' : ''}
+                        </h1>
+                        <div className="navIconContainer">
+                            <h1 className="yeah">made for gamers, by gamers</h1>
+                            <button
+                                className="editButton"
+                                onClick={() => {
+                                    this.setState({ editMode: !this.state.editMode });
+                                }}
+                            >
+                                edit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div >
+                    <Shortcuts editMode={this.state.editMode} />
+                </div>
+            </div>
         );
     }
 }
-
 ReactDOM.render(<App />, document.getElementById('root'));
