@@ -21,6 +21,12 @@ const SectionContainer = styled.div`
     padding-bottom: 30px;
 `;
 
+const Add = styled.div`
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+`;
+
 export default class Section extends Component {
     render() {
         return (
@@ -32,15 +38,24 @@ export default class Section extends Component {
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                     >
-                        {this.props.boxesForSection.map((box, index) => (
-                            <Box
-                                editMode={this.props.editMode}
-                                key={box.id}
-                                box={box}
-                                index={index}
-                            />
-                        ))}
+                        {this.props.boxesForSection.map((box, index) => {
+                            // is the box a link type
+                            const isLink = box.type === 'links';
+                            const linksForBox = isLink
+                                ? box.linkOrder.map((linkId) => this.props.links[linkId])
+                                : null;
+                            return (
+                                <Box
+                                    editMode={this.props.editMode}
+                                    key={box.id}
+                                    box={box}
+                                    index={index}
+                                    linksForBox={linksForBox}
+                                />
+                            );
+                        })}
                         {provided.placeholder}
+                        {this.props.editMode ? <Add>add</Add> : null}
                     </SectionContainer>
                 )}
             </Droppable>

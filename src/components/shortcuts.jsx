@@ -74,9 +74,11 @@ export default class Shortcuts extends Component {
                     const boxesForSection = section.boxOrder.map(
                         (boxId) => this.state.boxes[boxId]
                     );
+
                     return (
                         <Section
                             editMode={this.props.editMode}
+                            links={this.state.links}
                             key={section.id}
                             section={section}
                             boxesForSection={boxesForSection}

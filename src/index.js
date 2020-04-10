@@ -31,7 +31,7 @@ class App extends Component {
                         </div>
                     </div>
                 </div>
-                <div >
+                <div>
                     <Shortcuts editMode={this.state.editMode} />
                 </div>
             </div>
