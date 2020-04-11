@@ -210,7 +210,7 @@ const example = {
                 id: 'box-8',
                 name: 'CS:GO',
                 type: 'links',
-                linkOrder: ['link-29', 'link-30', 'link-31']
+                linkOrder: ['link-30', 'link-31']
             },
             'box-9': {
                 id: 'box-9',

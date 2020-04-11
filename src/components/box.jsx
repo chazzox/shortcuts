@@ -5,31 +5,36 @@ import Link from './link';
 import './box.scss';
 
 export default class Box extends Component {
-    state = this.props.box;
     renderBox(boxType) {
         if (boxType === 'links') {
             return this.renderLinks();
+        } else if (boxType === 'widget') {
+            return this.renderWidget(this.props.box.widgetType);
         }
     }
     renderWidget(widgetType) {
         switch (widgetType) {
-            case 'widget':
+            case 'weather':
                 return <Weather />;
-
             default:
-                break;
+                return <Weather />;
         }
     }
     renderLinks() {
         return this.props.linksForBox.map((link, index) => (
-            <Link key={link.id} index={index} link={link} />
+            <Link
+                key={link.id}
+                index={index}
+                link={link}
+                editMode={this.props.editMode}
+            />
         ));
     }
     render() {
         return (
             <Draggable
                 isDragDisabled={!this.props.editMode}
-                draggableId={this.state.id}
+                draggableId={this.props.box.id}
                 index={this.props.index}
             >
                 {(provided) => (
@@ -38,15 +43,19 @@ export default class Box extends Component {
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
                     >
-                        <div className="boxName">{this.state.name}</div>
+                        <div className="boxName">{this.props.box.name}</div>
                         <div className="boxContainer">
-                            <Droppable droppableId={this.props.box.id}>
+                            <Droppable
+                                droppableId={this.props.box.id}
+                                type={this.props.box.type}
+                            >
                                 {(provided) => (
                                     <div
                                         {...provided.droppableProps}
                                         ref={provided.innerRef}
                                     >
                                         {this.renderBox(this.props.box.type)}
+                                        {provided.placeholder}
                                     </div>
                                 )}
                             </Droppable>

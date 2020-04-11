@@ -30,7 +30,7 @@ const Add = styled.div`
 export default class Section extends Component {
     render() {
         return (
-            <Droppable droppableId={this.props.section.id}>
+            <Droppable droppableId={this.props.section.id} type="BOX">
                 {(provided) => (
                     <SectionContainer
                         editMode={this.props.editMode}

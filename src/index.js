@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '@atlaskit/css-reset';
 
+import Shortcuts from './components/shortcuts';
 import './style.scss';
 
-import Shortcuts from './components/shortcuts';
 class App extends Component {
     constructor(props) {
         super(props);
@@ -26,7 +26,7 @@ class App extends Component {
                                     this.setState({ editMode: !this.state.editMode });
                                 }}
                             >
-                                edit
+                                {this.state.editMode ? 'save' : 'edit'}
                             </button>
                         </div>
                     </div>
