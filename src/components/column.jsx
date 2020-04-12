@@ -3,42 +3,29 @@ import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
 import Box from './box';
+import './column.scss';
 
-const SectionContainer = styled.div`
+const ColumnContainer = styled.div`
     ${(props) =>
         props.editMode
             ? `border-style: dashed;border-width: 2px; border-color: white; border-radius: 15px; margin:10px; width: calc(25% - 24px);`
             : `width: calc(25% - 4px);`}
     ${(props) => (props.boxNumber === 0 ? 'height:114px;' : '')}
-    float: left;
-
-    @media screen and (max-width: 1000px) {
-        width: 50%;
-    }
-    @media screen and (max-width: 600px) {
-        width: 100%;
-    }
-    padding-bottom: 30px;
 `;
 
-const Add = styled.div`
-    margin: 0 auto;
-    width: 100%;
-    text-align: center;
-`;
-
-export default class Section extends Component {
+export default class Column extends Component {
     render() {
         return (
-            <Droppable droppableId={this.props.section.id} type="BOX">
+            <Droppable droppableId={this.props.column.id} type="BOX">
                 {(provided) => (
-                    <SectionContainer
+                    <ColumnContainer
                         editMode={this.props.editMode}
-                        boxNumber={this.props.boxesForSection.length}
+                        boxNumber={this.props.boxesForColumn.length}
                         {...provided.droppableProps}
                         ref={provided.innerRef}
+                        className="cont"
                     >
-                        {this.props.boxesForSection.map((box, index) => {
+                        {this.props.boxesForColumn.map((box, index) => {
                             // is the box a link type
                             const isLink = box.type === 'links';
                             const linksForBox = isLink
@@ -55,10 +42,16 @@ export default class Section extends Component {
                             );
                         })}
                         {provided.placeholder}
-                        {this.props.editMode ? <Add>add</Add> : null}
-                    </SectionContainer>
+                        {this.props.editMode ? <Add /> : null}
+                    </ColumnContainer>
                 )}
             </Droppable>
         );
+    }
+}
+
+class Add extends Component {
+    render() {
+        return <div className="name">yeah</div>;
     }
 }

@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import example from '../example';
-import Section from './section';
+import Column from './column';
 
 export default class Shortcuts extends Component {
+    // extracting the config into the component state. any part of the example
+    // json is now available using
     state = example.config;
+
     // updates state after the drag is finished
+    // sorry you have to read this
     onDragEnd = (result) => {
         const { destination, source, draggableId, type } = result;
-        // if the destination is null i.e, outisde of a drop zone, return to start of drag
+        // if the destination is null i.e, outside of a drop zone, return to start of drag
         if (!destination) {
             return;
         }
@@ -21,96 +25,68 @@ export default class Shortcuts extends Component {
             return;
         }
 
-        // rewriting the newState to show the new order
-        if (type === 'BOX') {
-            const startSection = this.state.sections[source.droppableId];
-            const finishSection = this.state.sections[destination.droppableId];
+        // this is where it starts to get interesting
+        // we use the next two constants as a way to decide which parts of the json we are writing to
+        // this is done in an effort of code optimization as i realized that the function was a copy paste in
+        //  two if statements if i didn't do this
+        const jsonObjectListPointer = type === 'links' ? 'boxes' : 'columns';
+        const jsonOrderPointer = type === 'links' ? 'linkOrder' : 'boxOrder';
 
-            // if the drag is isoloated within one section
-            if (startSection === finishSection) {
-                const newBoxOrder = Array.from(startSection.boxOrder);
-                newBoxOrder.splice(source.index, 1);
-                newBoxOrder.splice(destination.index, 0, draggableId);
-
-                // overwriting the new section array in the section order
-                const newState = {
-                    ...this.state,
-                    sections: {
-                        ...this.state.sections,
-                        [startSection.id]: {
-                            ...startSection,
-                            boxOrder: newBoxOrder
-                        }
-                    }
-                };
-                this.setState(newState);
-                return;
-            }
-            const startBoxOrder = Array.from(startSection.boxOrder);
-            startBoxOrder.splice(source.index, 1);
-            const newStartSection = {
-                ...startSection,
-                boxOrder: startBoxOrder
-            };
-            const finishBoxOrder = Array.from(finishSection.boxOrder);
-            finishBoxOrder.splice(destination.index, 0, draggableId);
-            const newFinishSection = {
-                ...finishSection,
-                boxOrder: finishBoxOrder
-            };
-            const newState = {
+        // the objects you are dragging from and into
+        const startParentObject = this.state[jsonObjectListPointer][source.droppableId];
+        const finishParentObject = this.state[jsonObjectListPointer][
+            destination.droppableId
+        ];
+        // if the drag and dropping is only in the vertical plane
+        if (startParentObject === finishParentObject) {
+            // order of current draggables
+            const newChildObjectOrder = Array.from(startParentObject[jsonOrderPointer]);
+            // removes the dragged object from its first position in the array
+            newChildObjectOrder.splice(source.index, 1);
+            // inserts the object into the place where it was dragged to
+            newChildObjectOrder.splice(destination.index, 0, draggableId);
+            // overwrites the current state to show the changes post drag
+            this.setState({
                 ...this.state,
-                sections: {
-                    ...this.state.sections,
-                    [newStartSection.id]: newStartSection,
-                    [newFinishSection.id]: newFinishSection
-                }
-            };
-            this.setState(newState);
-            return;
-        } else if (type === 'links') {
-            const startBox = this.state.boxes[source.droppableId];
-            const finishBox = this.state.boxes[destination.droppableId];
-
-            // if the drag is isoloated within one column
-            if (startBox === finishBox) {
-                const newLinkOrder = Array.from(startBox.linkOrder);
-                newLinkOrder.splice(source.index, 1);
-                newLinkOrder.splice(destination.index, 0, draggableId);
-
-                // overwriting the new column array in the section order
-                const newState = {
-                    ...this.state,
-                    boxes: {
-                        ...this.state.boxes,
-                        [startBox.id]: {
-                            ...startBox,
-                            linkOrder: newLinkOrder
-                        }
+                [jsonObjectListPointer]: {
+                    ...this.state[jsonObjectListPointer],
+                    [startParentObject.id]: {
+                        ...startParentObject,
+                        [jsonOrderPointer]: newChildObjectOrder
                     }
-                };
-                this.setState(newState);
-                return;
-            }
-            const startLinkOrder = Array.from(startBox.linkOrder);
-            startLinkOrder.splice(source.index, 1);
-            const newStartBox = { ...startBox, linkOrder: startLinkOrder };
-            const finishLinkOrder = Array.from(finishBox.linkOrder);
-            finishLinkOrder.splice(destination.index, 0, draggableId);
-            const newFinishBox = { ...finishBox, linkOrder: finishLinkOrder };
-            const newState = {
-                ...this.state,
-                boxes: {
-                    ...this.state.boxes,
-                    [newStartBox.id]: newStartBox,
-                    [newFinishBox.id]: newFinishBox
                 }
-            };
-            console.log(newState === this.state);
-            this.setState(newState);
+            });
             return;
         }
+
+        // if you understand that, well done, now were doing horizontal and vertical plane drag n' dropping, gl
+        // this creates an array from objectOrder (listOrder, boxOrder)
+        const startParentObjectOrder = Array.from(startParentObject[jsonOrderPointer]);
+        // since we know the draggable has moved from the original container, we do not need to replace it
+        startParentObjectOrder.splice(source.index, 1);
+        
+        const finishParentObjectOrder = Array.from(finishParentObject[jsonOrderPointer]);
+        // inserts the object into the destinations objectOrder array
+        finishParentObjectOrder.splice(destination.index, 0, draggableId);
+
+        // overwriting the old state to include the changes post drag
+        this.setState({
+            ...this.state,
+            [jsonObjectListPointer]: {
+                ...this.state[jsonObjectListPointer],
+                [startParentObject.id]: {
+                    ...startParentObject,
+                    [jsonOrderPointer]: startParentObjectOrder
+                },
+                [finishParentObject.id]: {
+                    ...finishParentObject,
+                    [jsonOrderPointer]: finishParentObjectOrder
+                }
+            }
+        });
+        return;
     };
+
     render() {
         return (
             <DragDropContext
@@ -118,19 +94,19 @@ export default class Shortcuts extends Component {
                 onDragEnd={this.onDragEnd}
                 onDragStart={this.onDragStart}
             >
-                {this.state.sectionOrder.map((sectionId) => {
-                    const section = this.state.sections[sectionId];
-                    const boxesForSection = section.boxOrder.map(
+                {this.state.columnOrder.map((columnId) => {
+                    const column = this.state.columns[columnId];
+                    const boxesForColumn = column.boxOrder.map(
                         (boxId) => this.state.boxes[boxId]
                     );
 
                     return (
-                        <Section
+                        <Column
                             editMode={this.props.editMode}
                             links={this.state.links}
-                            key={section.id}
-                            section={section}
-                            boxesForSection={boxesForSection}
+                            key={column.id}
+                            column={column}
+                            boxesForColumn={boxesForColumn}
                         />
                     );
                 })}

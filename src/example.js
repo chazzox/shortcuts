@@ -219,25 +219,25 @@ const example = {
                 widgetType: 'weather'
             }
         },
-        sections: {
-            'section-1': {
-                id: 'section-1',
+        columns: {
+            'column-1': {
+                id: 'column-1',
                 boxOrder: ['box-1', 'box-2']
             },
-            'section-2': {
-                id: 'section-2',
+            'column-2': {
+                id: 'column-2',
                 boxOrder: ['box-3', 'box-4', 'box-5']
             },
-            'section-3': {
-                id: 'section-3',
+            'column-3': {
+                id: 'column-3',
                 boxOrder: ['box-6', 'box-7']
             },
-            'section-4': {
-                id: 'section-4',
+            'column-4': {
+                id: 'column-4',
                 boxOrder: ['box-8', 'box-9']
             }
         },
-        sectionOrder: ['section-1', 'section-2', 'section-3', 'section-4']
+        columnOrder: ['column-1', 'column-2', 'column-3', 'column-4']
     }
 };
 export default example;

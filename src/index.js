@@ -14,21 +14,22 @@ class App extends Component {
         return (
             <div>
                 <div className="nav">
-                    <div className="normalNav">
-                        <h1 className="navTitle">
-                            SHORTCUTS {this.state.editMode ? ' - editmode' : ''}
-                        </h1>
-                        <div className="navIconContainer">
-                            <h1 className="yeah">made for gamers, by gamers</h1>
-                            <button
-                                className="editButton"
-                                onClick={() => {
-                                    this.setState({ editMode: !this.state.editMode });
-                                }}
-                            >
-                                {this.state.editMode ? 'save' : 'edit'}
-                            </button>
-                        </div>
+                    <h1 className="navTitle">
+                        SHORTCUTS {this.state.editMode ? ' - editmode' : ''}
+                    </h1>
+                    <div className="navIconContainer">
+                        <h1 className="yeah">made for gamers, by gamers</h1>
+                        <button
+                            className="editButton"
+                            onClick={() => {
+                                // editMode toggle, use this props to do conditional styling/rendering
+                                // in any main component, the value: this.props.editMode will be availble for use, 
+                                // in shortcuts please use this.state.editMode
+                                this.setState({ editMode: !this.state.editMode });
+                            }}
+                        >
+                            {this.state.editMode ? 'save' : 'edit'}
+                        </button>
                     </div>
                 </div>
                 <div>
