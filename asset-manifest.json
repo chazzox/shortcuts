@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/shortcuts-beta/static/css/main.6da0f3e2.chunk.css",
-    "main.js": "/shortcuts-beta/static/js/main.2fad196e.chunk.js",
-    "main.js.map": "/shortcuts-beta/static/js/main.2fad196e.chunk.js.map",
+    "main.css": "/shortcuts-beta/static/css/main.a2bf46aa.chunk.css",
+    "main.js": "/shortcuts-beta/static/js/main.d2da8b24.chunk.js",
+    "main.js.map": "/shortcuts-beta/static/js/main.d2da8b24.chunk.js.map",
     "runtime-main.js": "/shortcuts-beta/static/js/runtime-main.e261f6b7.js",
     "runtime-main.js.map": "/shortcuts-beta/static/js/runtime-main.e261f6b7.js.map",
     "static/css/2.2bd37e2f.chunk.css": "/shortcuts-beta/static/css/2.2bd37e2f.chunk.css",
-    "static/js/2.ce8d34fe.chunk.js": "/shortcuts-beta/static/js/2.ce8d34fe.chunk.js",
-    "static/js/2.ce8d34fe.chunk.js.map": "/shortcuts-beta/static/js/2.ce8d34fe.chunk.js.map",
+    "static/js/2.c6029be7.chunk.js": "/shortcuts-beta/static/js/2.c6029be7.chunk.js",
+    "static/js/2.c6029be7.chunk.js.map": "/shortcuts-beta/static/js/2.c6029be7.chunk.js.map",
     "index.html": "/shortcuts-beta/index.html",
-    "precache-manifest.cf60fd7dcd980f4e72ccca7f3ae8f6ed.js": "/shortcuts-beta/precache-manifest.cf60fd7dcd980f4e72ccca7f3ae8f6ed.js",
+    "precache-manifest.211f226ab44bba3cdf7749b56bb19cb4.js": "/shortcuts-beta/precache-manifest.211f226ab44bba3cdf7749b56bb19cb4.js",
     "service-worker.js": "/shortcuts-beta/service-worker.js",
     "static/css/2.2bd37e2f.chunk.css.map": "/shortcuts-beta/static/css/2.2bd37e2f.chunk.css.map",
-    "static/css/main.6da0f3e2.chunk.css.map": "/shortcuts-beta/static/css/main.6da0f3e2.chunk.css.map",
-    "static/js/2.ce8d34fe.chunk.js.LICENSE.txt": "/shortcuts-beta/static/js/2.ce8d34fe.chunk.js.LICENSE.txt"
+    "static/css/main.a2bf46aa.chunk.css.map": "/shortcuts-beta/static/css/main.a2bf46aa.chunk.css.map",
+    "static/js/2.c6029be7.chunk.js.LICENSE.txt": "/shortcuts-beta/static/js/2.c6029be7.chunk.js.LICENSE.txt",
+    "static/media/box.scss": "/shortcuts-beta/static/media/addIcon.69d4d895.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e261f6b7.js",
     "static/css/2.2bd37e2f.chunk.css",
-    "static/js/2.ce8d34fe.chunk.js",
-    "static/css/main.6da0f3e2.chunk.css",
-    "static/js/main.2fad196e.chunk.js"
+    "static/js/2.c6029be7.chunk.js",
+    "static/css/main.a2bf46aa.chunk.css",
+    "static/js/main.d2da8b24.chunk.js"
   ]
 }
