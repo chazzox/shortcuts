@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
 
+import AddNew from '../globalImport';
 import Link from './link';
 import './box.scss';
 
@@ -31,9 +33,10 @@ export default class Box extends Component {
         ));
     }
     render() {
+        const isLink = this.props.box.type === 'links';
         return (
             <Draggable
-                isDragDisabled={!this.props.editMode}
+                // isDragDisabled={!this.props.editMode}
                 draggableId={this.props.box.id}
                 index={this.props.index}
             >
@@ -42,6 +45,7 @@ export default class Box extends Component {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
+                        style={{ 'marginBottom': '30px', 'marginTop': '10px' }}
                     >
                         <div className="boxName">{this.props.box.name}</div>
                         <div className="boxContainer">
@@ -55,6 +59,12 @@ export default class Box extends Component {
                                         ref={provided.innerRef}
                                     >
                                         {this.renderBox(this.props.box.type)}
+                                        {isLink ? (
+                                            <AddNew
+                                                maxWidth={'100'}
+                                                editMode={this.props.editMode}
+                                            />
+                                        ) : null}
                                         {provided.placeholder}
                                     </div>
                                 )}

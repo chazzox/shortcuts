@@ -23,7 +23,7 @@ class App extends Component {
                             className="editButton"
                             onClick={() => {
                                 // editMode toggle, use this props to do conditional styling/rendering
-                                // in any main component, the value: this.props.editMode will be availble for use, 
+                                // in any main component, the value: this.props.editMode will be available for use, 
                                 // in shortcuts please use this.state.editMode
                                 this.setState({ editMode: !this.state.editMode });
                             }}

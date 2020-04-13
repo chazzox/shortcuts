@@ -1,8 +1,13 @@
 * {
-    color: white !important;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    color: white;
 }
 body {
-    background-color: #292C30;
+    background-color: #292c30;
     margin: 0;
 }
 
@@ -11,57 +16,58 @@ html {
 }
 
 .nav {
-	background: black;
-	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
-	align-items: center;
-	font-size: calc(10px + 2vmin);
-	width: calc(90% - 20px);
-	margin: 20px auto;
-	padding: 20px;
-	border-radius: 15px;
-	position: relative;
-	top: 0;
-	right: 0;
+    background: black;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    width: calc(90% - 20px);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    top: 0;
+    right: 0;
 }
 .navTitle {
-	margin: 0 !important;
-	vertical-align: middle;
-	display: inline-block;
-	font-size: 26px;
+    color: white;
+    margin: 0 !important;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 26px;
 }
 .navIconContainer {
-	padding-top: 5px;
-	position: absolute;
-	right: 0 !important;
-	top: 20px;
-	padding-right: 10px;
-	text-align: center;
+    padding-top: 5px;
+    position: absolute;
+    right: 0 !important;
+    top: 20px;
+    padding-right: 10px;
+    text-align: center;
 }
 
 .yeah {
-	color: white;
-	display: inline-block;
-	font-size: 26px;
-	font-weight: bold;
+    color: white;
+    display: inline-block;
+    font-size: 26px;
+    font-weight: bold;
 }
 
 .editButton {
-	margin: 10px;
-	background: linear-gradient(to right, #55b49d, #2b7dca);
-	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-	text-align: center;
-	border-radius: 25px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 25px;
-	padding-right: 25px;
-	color: white;
-	font-size: 18px;
-	border: none;
-	font-weight: normal;
-	text-transform: capitalize;
-	outline: none;
-	&:hover {
-		filter: hue-rotate(90deg);
-	}
+    margin: 10px;
+    background: linear-gradient(to right, #55b49d, #2b7dca);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: white;
+    font-size: 18px;
+    border: none;
+    font-weight: normal;
+    text-transform: capitalize;
+    outline: none;
+    &:hover {
+        filter: hue-rotate(90deg);
+    }
 }

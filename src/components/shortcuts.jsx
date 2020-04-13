@@ -64,7 +64,7 @@ export default class Shortcuts extends Component {
         const startParentObjectOrder = Array.from(startParentObject[jsonOrderPointer]);
         // since we know the draggable has moved from the original container, we do not need to replace it
         startParentObjectOrder.splice(source.index, 1);
-        
+
         const finishParentObjectOrder = Array.from(finishParentObject[jsonOrderPointer]);
         // inserts the object into the destinations objectOrder array
         finishParentObjectOrder.splice(destination.index, 0, draggableId);
@@ -90,7 +90,12 @@ export default class Shortcuts extends Component {
     render() {
         return (
             <DragDropContext
-                style={{ border: '2px solid white' }}
+                style={{
+                    border: '2px solid white',
+                    'max-width': '1500px',
+                    'margin-left': 'auto',
+                    'margin-right': 'auto'
+                }}
                 onDragEnd={this.onDragEnd}
                 onDragStart={this.onDragStart}
             >

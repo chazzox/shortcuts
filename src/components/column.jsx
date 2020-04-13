@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
+import AddNew from '../globalImport';
 import Box from './box';
 import './column.scss';
 
@@ -42,16 +43,12 @@ export default class Column extends Component {
                             );
                         })}
                         {provided.placeholder}
-                        {this.props.editMode ? <Add /> : null}
+                        {this.props.editMode ? (
+                            <AddNew maxWidth={'50'} editMode={this.props.editMode} />
+                        ) : null}
                     </ColumnContainer>
                 )}
             </Droppable>
         );
-    }
-}
-
-class Add extends Component {
-    render() {
-        return <div className="name">yeah</div>;
     }
 }
