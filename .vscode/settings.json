@@ -6,6 +6,9 @@
         "atlaskit",
         "browserslist",
         "chaz",
-        "predeploy"
+        "editmode",
+        "predeploy",
+        "reactjs",
+        "unmount"
     ]
 }

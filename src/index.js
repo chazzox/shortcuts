@@ -12,7 +12,7 @@ class App extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="containerOfAll">
                 <div className="nav">
                     <h1 className="navTitle">
                         SHORTCUTS {this.state.editMode ? ' - editmode' : ''}

@@ -39,12 +39,17 @@ export default class Link extends Component {
                 index={this.props.index}
             >
                 {(provided) => (
-                    <a href={this.props.link.url}>
+                    <a
+                        className="linkLink"
+                        // compiler complains if we have href=null, the next comment removes the complaint
+                        // eslint-disable-next-line
+                        href={this.props.editMode ? null : this.props.link.url}
+                    >
                         <LinkContainer
                             editMode={this.props.editMode}
                             icon={this.props.link.linkIconUrl}
                             className="linkContainer"
-                            // this props tells our drag and drop library what we're actually
+                            // this props tells our drag and drop library what we're actually dragging around
                             {...provided.draggableProps}
                             // drag handle props is the component we use to actually drag the ling, you could
                             // add a handle by placing the

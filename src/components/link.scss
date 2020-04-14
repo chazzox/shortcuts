@@ -38,20 +38,8 @@
     -webkit-transition: all 0.3s ease;
 }
 
-::-webkit-scrollbar {
-    width: 8px;
-    background-color: rgba(0, 0, 0, 0);
-}
-::-webkit-scrollbar:hover {
-    background-color: rgba(255, 255, 255, 0.09);
-}
-::-webkit-scrollbar-thumb:vertical {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 100px;
-    -webkit-border-radius: 100px;
-}
-::-webkit-scrollbar-thumb:vertical:active {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 100px;
-    -webkit-border-radius: 100px;
+.linkLink {
+    &:hover {
+        text-decoration: none;
+    }
 }

@@ -6,7 +6,8 @@
     -o-user-select: none;
     color: white;
 }
-body {
+body,
+html {
     background-color: #292c30;
     margin: 0;
 }
@@ -14,7 +15,10 @@ body {
 html {
     scroll-behavior: smooth;
 }
-
+.MODAL_OPEN_CLASS {
+    filter: blur(2px);
+    -webkit-filter: blur(12px);
+}
 .nav {
     background: black;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
@@ -70,4 +74,60 @@ html {
     &:hover {
         filter: hue-rotate(90deg);
     }
+}
+
+.addObject {
+    text-align: center;
+    margin: 20px auto;
+    cursor: pointer;
+    width: 100%;
+    max-width: 50px;
+    min-height: 50px;
+    background-color: rgba(255, 255, 255, 0.25);
+    background-size: 25px;
+    background-image: url('./assets/addIcon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 0;
+    border-radius: 25px;
+    border: none;
+    margin-bottom: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    &:hover {
+        background-size: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: black;
+        font-size: 13pt;
+        max-width: 100%;
+    }
+}
+
+.modal {
+    display: flex;
+    justify-content: center;;
+    align-items: center;
+    padding: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar:hover {
+    background-color: rgba(255, 255, 255, 0.09);
+}
+::-webkit-scrollbar-thumb:vertical {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
 }
