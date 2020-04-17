@@ -1,25 +1,25 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
-
-export const counterSlice = createSlice({
-    name: 'counter',
+import { configureStore, createSlice } from '@reduxjs/toolkit';
+import example from '../example';
+export const userSlice = createSlice({
+    name: 'editMode',
     initialState: {
-        value: 0
+        value: false,
+        config: example.config
     },
     reducers: {
-        increment: (state) => {
-            state.value += 1;
+        toggle: (state) => {
+            state.value = !state.value;
         },
-        decrement: (state) => {
-            state.value -= 1;
+        update: (state, action) => {
+            state.config = action.payload;
         }
     }
 });
 
-export const { increment, decrement } = counterSlice.actions;
+export const { toggle, update } = userSlice.actions;
 
 export default configureStore({
     reducer: {
-        counter: counterSlice.reducer
+        userSlice: userSlice.reducer
     }
 });

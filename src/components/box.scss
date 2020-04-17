@@ -1,0 +1,19 @@
+.boxContainer,
+.modal {
+    width: 75%;
+    background: #2f3439;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    padding: 10px;
+    margin: 0 auto;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.05);
+    border-width: 2px;
+}
+
+.boxName {
+    font-size: 150%;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 15px;
+}
