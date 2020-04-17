@@ -1,121 +1,50 @@
 import React, { Component } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { connect } from 'react-redux';
+import { decrement, increment } from '../redux/store';
 
-import example from '../example';
-import Column from './column';
-
-export default class Shortcuts extends Component {
-    // extracting the config into the component state. any part of the example
-    // json is now available using
-    state = example.config;
-
-    // updates state after the drag is finished
-    // sorry you have to read this
-    onDragEnd = (result) => {
-        const { destination, source, draggableId, type } = result;
-        // if the destination is null i.e, outside of a drop zone, return to start of drag
-        if (!destination) {
-            return;
-        }
-        // if the destination is the same as the the start of the drag
-        if (
-            destination.droppableId === source.droppableId &&
-            destination.index === source.index
-        ) {
-            return;
-        }
-
-        // this is where it starts to get interesting
-        // we use the next two constants as a way to decide which parts of the json we are writing to
-        // this is done in an effort of code optimization as i realized that the function was a copy paste in
-        //  two if statements if i didn't do this
-        const jsonObjectListPointer = type === 'links' ? 'boxes' : 'columns';
-        const jsonOrderPointer = type === 'links' ? 'linkOrder' : 'boxOrder';
-
-        // the objects you are dragging from and into
-        const startParentObject = this.state[jsonObjectListPointer][source.droppableId];
-        const finishParentObject = this.state[jsonObjectListPointer][
-            destination.droppableId
-        ];
-        // if the drag and dropping is only in the vertical plane
-        if (startParentObject === finishParentObject) {
-            // order of current draggables
-            const newChildObjectOrder = Array.from(startParentObject[jsonOrderPointer]);
-            // removes the dragged object from its first position in the array
-            newChildObjectOrder.splice(source.index, 1);
-            // inserts the object into the place where it was dragged to
-            newChildObjectOrder.splice(destination.index, 0, draggableId);
-            // overwrites the current state to show the changes post drag
-            this.setState({
-                ...this.state,
-                [jsonObjectListPointer]: {
-                    ...this.state[jsonObjectListPointer],
-                    [startParentObject.id]: {
-                        ...startParentObject,
-                        [jsonOrderPointer]: newChildObjectOrder
-                    }
-                }
-            });
-            return;
-        }
-
-        // if you understand that, well done, now were doing horizontal and vertical plane drag n' dropping, gl
-        // this creates an array from objectOrder (listOrder, boxOrder)
-        const startParentObjectOrder = Array.from(startParentObject[jsonOrderPointer]);
-        // since we know the draggable has moved from the original container, we do not need to replace it
-        startParentObjectOrder.splice(source.index, 1);
-
-        const finishParentObjectOrder = Array.from(finishParentObject[jsonOrderPointer]);
-        // inserts the object into the destinations objectOrder array
-        finishParentObjectOrder.splice(destination.index, 0, draggableId);
-
-        // overwriting the old state to include the changes post drag
-        this.setState({
-            ...this.state,
-            [jsonObjectListPointer]: {
-                ...this.state[jsonObjectListPointer],
-                [startParentObject.id]: {
-                    ...startParentObject,
-                    [jsonOrderPointer]: startParentObjectOrder
-                },
-                [finishParentObject.id]: {
-                    ...finishParentObject,
-                    [jsonOrderPointer]: finishParentObjectOrder
-                }
-            }
-        });
-        return;
-    };
-
+class ShortCuts extends Component {
     render() {
         return (
-            <DragDropContext
-                style={{
-                    border: '2px solid white',
-                    'max-width': '1500px',
-                    'margin-left': 'auto',
-                    'margin-right': 'auto'
-                }}
-                onDragEnd={this.onDragEnd}
-                onDragStart={this.onDragStart}
-            >
-                {this.state.columnOrder.map((columnId) => {
-                    const column = this.state.columns[columnId];
-                    const boxesForColumn = column.boxOrder.map(
-                        (boxId) => this.state.boxes[boxId]
-                    );
-
-                    return (
-                        <Column
-                            editMode={this.props.editMode}
-                            links={this.state.links}
-                            key={column.id}
-                            column={column}
-                            boxesForColumn={boxesForColumn}
-                        />
-                    );
-                })}
-            </DragDropContext>
+            <div className="App">
+                <header className="App-header">
+                    <div>
+                        <div className={'row'}>
+                            <button
+                                className={'button'}
+                                aria-label="Increment value"
+                                onClick={() => this.props.increment()}
+                            >
+                                +
+                            </button>
+                            <span className={'value'}>{this.props.count}</span>
+                            <button
+                                className={'button'}
+                                aria-label="Decrement value"
+                                onClick={() => this.props.decrement()}
+                            >
+                                -
+                            </button>
+                        </div>
+                    </div>
+                    <p>the above buttons effect the state of the webapp</p>
+                    <p>come back later for implementation of redux into the system</p>
+                </header>
+            </div>
         );
     }
 }
+// comments needed
+const mapStateToProps = (state) => {
+    return {
+        count: state.counter.value
+    };
+};
+
+const mapDispatchToProps = () => {
+    return {
+        increment,
+        decrement
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps())(ShortCuts);

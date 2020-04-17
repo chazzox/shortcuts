@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import '@atlaskit/css-reset';
 
+import store from './redux/store'
 import Shortcuts from './components/shortcuts';
-import './style.scss';
+import './index.scss';
 
 class App extends Component {
     constructor(props) {
@@ -23,7 +25,7 @@ class App extends Component {
                             className="editButton"
                             onClick={() => {
                                 // editMode toggle, use this props to do conditional styling/rendering
-                                // in any main component, the value: this.props.editMode will be available for use, 
+                                // in any main component, the value: this.props.editMode will be available for use,
                                 // in shortcuts please use this.state.editMode
                                 this.setState({ editMode: !this.state.editMode });
                             }}
@@ -39,4 +41,9 @@ class App extends Component {
         );
     }
 }
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);
