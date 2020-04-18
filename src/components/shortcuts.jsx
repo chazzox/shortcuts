@@ -81,8 +81,8 @@ class ShortCuts extends Component {
         return;
     };
     render() {
-        console.log(this.props.config);
         return (
+            // drag drop context is the area that we can put draggables into, we use this to wrap any draggable item
             <DragDropContext
                 style={{
                     border: '2px solid white',
@@ -91,14 +91,12 @@ class ShortCuts extends Component {
                     'margin-right': 'auto'
                 }}
                 onDragEnd={this.onDragEnd}
-                onDragStart={this.onDragStart}
             >
                 {this.props.config.columnOrder.map((columnId) => {
                     const column = this.props.config.columns[columnId];
                     const boxesForColumn = column.boxOrder.map(
                         (boxId) => this.props.config.boxes[boxId]
                     );
-
                     return (
                         <Column
                             editMode={this.props.editMode}
@@ -107,7 +105,6 @@ class ShortCuts extends Component {
                             column={column}
                             boxesForColumn={boxesForColumn}
                         />
-                        // <div>kek</div>
                     );
                 })}
             </DragDropContext>

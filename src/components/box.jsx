@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-// import AddNew from '../globalImport';
+import AddNew from '../globalImports';
 import Link from './link';
 import './box.scss';
 
@@ -24,7 +24,6 @@ export default class Box extends Component {
     renderLinks() {
         return this.props.linksForBox.map((link, index) => (
             <Link key={link.id} index={index} link={link} editMode={this.props.editMode} />
-            // <div>yeah</div>
         ));
     }
     render() {
@@ -49,13 +48,12 @@ export default class Box extends Component {
                                 {(provided) => (
                                     <div {...provided.droppableProps} ref={provided.innerRef}>
                                         {this.renderBox(this.props.box.type)}
-                                        {isLink
-                                            ? // <AddNew
-                                              //     maxWidth={'100'}
-                                              //     editMode={this.props.editMode}
-                                              // />
-                                              null
-                                            : null}
+                                        {isLink ? (
+                                            <AddNew
+                                                maxWidth={'100'}
+                                                editMode={this.props.editMode}
+                                            />
+                                        ) : null}
                                         {provided.placeholder}
                                     </div>
                                 )}

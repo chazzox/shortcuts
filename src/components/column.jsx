@@ -9,8 +9,8 @@ import './column.scss';
 const ColumnContainer = styled.div`
     ${(props) =>
         props.editMode
-            ? `border-style: dashed;border-width: 2px; border-color: white; border-radius: 15px; margin:10px; width: calc(25% - 24px);`
-            : `width: calc(25% - 4px);`}
+            ? `border-color: rgba(255,255,255,1); `
+            : `border-color: rgba(255,255,255,0);`}
     ${(props) => (props.boxNumber === 0 ? 'height:114px;' : '')}
 `;
 

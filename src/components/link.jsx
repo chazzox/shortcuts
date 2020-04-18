@@ -23,7 +23,7 @@ const LinkContainer = styled.div`
             opacity: 1;
         }
     }`
-            : ``}
+            : `  transition: none;`}
 `;
 
 export default class Link extends Component {
@@ -43,7 +43,7 @@ export default class Link extends Component {
                         className="linkLink"
                         // compiler complains if we have href=null, the next comment removes the complaint
                         // eslint-disable-next-line
-                        href={this.props.editMode ? null : this.props.link.url}
+                        href={this.props.editMode ? '#' : this.props.link.url}
                     >
                         <LinkContainer
                             editMode={this.props.editMode}
@@ -51,7 +51,7 @@ export default class Link extends Component {
                             className="linkContainer"
                             // this props tells our drag and drop library what we're actually dragging around
                             {...provided.draggableProps}
-                            // drag handle props is the component we use to actually drag the ling, you could
+                            // drag handle props is the component we use to actually drag the link, you could
                             // add a handle by placing the
                             {...provided.dragHandleProps}
                             ref={provided.innerRef}

@@ -1,5 +1,8 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
+
 import example from '../example';
+
 export const userSlice = createSlice({
     name: 'editMode',
     initialState: {
@@ -8,6 +11,12 @@ export const userSlice = createSlice({
     },
     reducers: {
         toggle: (state) => {
+            if (state.value === true) {
+                Cookies.set('user', JSON.stringify({ ...state.userConf, config: state.config }), {
+                    expires: 999999,
+                    path: ''
+                });
+            }
             state.value = !state.value;
         },
         update: (state, action) => {
