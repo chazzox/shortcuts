@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/shortcuts-beta/static/css/main.8dba4b4b.chunk.css",
-    "main.js": "/shortcuts-beta/static/js/main.d96b8c0e.chunk.js",
-    "main.js.map": "/shortcuts-beta/static/js/main.d96b8c0e.chunk.js.map",
-    "runtime-main.js": "/shortcuts-beta/static/js/runtime-main.e261f6b7.js",
-    "runtime-main.js.map": "/shortcuts-beta/static/js/runtime-main.e261f6b7.js.map",
+    "main.css": "/shortcuts-beta/static/css/main.75ac691a.chunk.css",
+    "main.js": "/shortcuts-beta/static/js/main.e82142ab.chunk.js",
+    "main.js.map": "/shortcuts-beta/static/js/main.e82142ab.chunk.js.map",
+    "runtime-main.js": "/shortcuts-beta/static/js/runtime-main.407da86b.js",
+    "runtime-main.js.map": "/shortcuts-beta/static/js/runtime-main.407da86b.js.map",
     "static/css/2.2bd37e2f.chunk.css": "/shortcuts-beta/static/css/2.2bd37e2f.chunk.css",
-    "static/js/2.26e9eddc.chunk.js": "/shortcuts-beta/static/js/2.26e9eddc.chunk.js",
-    "static/js/2.26e9eddc.chunk.js.map": "/shortcuts-beta/static/js/2.26e9eddc.chunk.js.map",
+    "static/js/2.aa82ca0d.chunk.js": "/shortcuts-beta/static/js/2.aa82ca0d.chunk.js",
+    "static/js/2.aa82ca0d.chunk.js.map": "/shortcuts-beta/static/js/2.aa82ca0d.chunk.js.map",
     "index.html": "/shortcuts-beta/index.html",
-    "precache-manifest.addaa0a5c0eacc8becfd6f94af690ed6.js": "/shortcuts-beta/precache-manifest.addaa0a5c0eacc8becfd6f94af690ed6.js",
+    "precache-manifest.bdce634fc3eca23509f0524c88049e29.js": "/shortcuts-beta/precache-manifest.bdce634fc3eca23509f0524c88049e29.js",
     "service-worker.js": "/shortcuts-beta/service-worker.js",
     "static/css/2.2bd37e2f.chunk.css.map": "/shortcuts-beta/static/css/2.2bd37e2f.chunk.css.map",
-    "static/css/main.8dba4b4b.chunk.css.map": "/shortcuts-beta/static/css/main.8dba4b4b.chunk.css.map",
-    "static/js/2.26e9eddc.chunk.js.LICENSE.txt": "/shortcuts-beta/static/js/2.26e9eddc.chunk.js.LICENSE.txt",
+    "static/css/main.75ac691a.chunk.css.map": "/shortcuts-beta/static/css/main.75ac691a.chunk.css.map",
+    "static/js/2.aa82ca0d.chunk.js.LICENSE.txt": "/shortcuts-beta/static/js/2.aa82ca0d.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/shortcuts-beta/static/media/addIcon.69d4d895.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.e261f6b7.js",
+    "static/js/runtime-main.407da86b.js",
     "static/css/2.2bd37e2f.chunk.css",
-    "static/js/2.26e9eddc.chunk.js",
-    "static/css/main.8dba4b4b.chunk.css",
-    "static/js/main.d96b8c0e.chunk.js"
+    "static/js/2.aa82ca0d.chunk.js",
+    "static/css/main.75ac691a.chunk.css",
+    "static/js/main.e82142ab.chunk.js"
   ]
 }
