@@ -201,15 +201,7 @@ const example = {
                 id: 'box-1',
                 name: 'Social',
                 type: 'links',
-                linkOrder: [
-                    'link-1',
-                    'link-2',
-                    'link-3',
-                    'link-4',
-                    'link-5',
-                    'link-6',
-                    'link-7'
-                ]
+                linkOrder: ['link-1', 'link-2', 'link-3', 'link-4', 'link-5', 'link-6', 'link-7']
             },
             'box-2': {
                 id: 'box-2',
@@ -245,14 +237,7 @@ const example = {
                 id: 'box-7',
                 name: 'Shopping',
                 type: 'links',
-                linkOrder: [
-                    'link-24',
-                    'link-25',
-                    'link-26',
-                    'link-27',
-                    'link-28',
-                    'link-29'
-                ]
+                linkOrder: ['link-24', 'link-25', 'link-26', 'link-27', 'link-28', 'link-29']
             },
             'box-8': {
                 id: 'box-8',

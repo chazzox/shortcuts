@@ -33,11 +33,7 @@ export default class Link extends Component {
     }
     render() {
         return (
-            <Draggable
-                isDragDisabled={!this.props.editMode}
-                draggableId={this.props.link.id}
-                index={this.props.index}
-            >
+            <Draggable isDragDisabled={!this.props.editMode} draggableId={this.props.link.id} index={this.props.index}>
                 {(provided) => (
                     <a
                         className="linkLink"

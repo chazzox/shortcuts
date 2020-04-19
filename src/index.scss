@@ -12,9 +12,6 @@ html {
     margin: 0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
 .MODAL_OPEN_CLASS {
     filter: blur(2px);
     -webkit-filter: blur(12px);
@@ -75,9 +72,100 @@ html {
     }
 }
 
-// .modal {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     padding: 20px;
-// }
+.modal {
+    z-index: 10001;
+    max-width: 600px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.modalWrapper {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 1000;
+}
+
+.addButtonWrapper {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.addButton {
+    cursor: pointer;
+    width: 100%;
+    max-width: 50px;
+    min-height: 50px;
+    background-color: rgba(255, 255, 255, 0.25);
+    background-size: 25px;
+    background-image: url('./assets/addIcon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 0;
+    border-radius: 25px;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    &:hover {
+        background-size: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: black;
+        font-size: 13pt;
+        max-width: 100%;
+    }
+}
+
+.userInput {
+    background: rgba(200, 200, 255, 0.2);
+    text-align: left;
+    border-radius: 25px;
+    color: white;
+    font-size: 20px;
+    border: none;
+    margin-right: 5px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.05);
+    border-width: 2px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+    min-height: 40px;
+    max-height: 40px;
+    display: inline-block;
+    overflow: hidden;
+    outline: none;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar:hover {
+    background-color: rgba(255, 255, 255, 0.09);
+}
+::-webkit-scrollbar-thumb:vertical {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+}

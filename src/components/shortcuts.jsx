@@ -28,9 +28,7 @@ class ShortCuts extends Component {
 
         // the objects you are dragging from and into
         const startParentObject = this.props.config[jsonObjectListPointer][source.droppableId];
-        const finishParentObject = this.props.config[jsonObjectListPointer][
-            destination.droppableId
-        ];
+        const finishParentObject = this.props.config[jsonObjectListPointer][destination.droppableId];
         // if the drag and dropping is only in the vertical plane
         if (startParentObject === finishParentObject) {
             // order of current draggables
@@ -94,9 +92,7 @@ class ShortCuts extends Component {
             >
                 {this.props.config.columnOrder.map((columnId) => {
                     const column = this.props.config.columns[columnId];
-                    const boxesForColumn = column.boxOrder.map(
-                        (boxId) => this.props.config.boxes[boxId]
-                    );
+                    const boxesForColumn = column.boxOrder.map((boxId) => this.props.config.boxes[boxId]);
                     return (
                         <Column
                             editMode={this.props.editMode}

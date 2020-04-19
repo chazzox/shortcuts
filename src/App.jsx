@@ -9,9 +9,7 @@ class App extends Component {
         return (
             <div className="containerOfAll">
                 <div className="nav">
-                    <h1 className="navTitle">
-                        SHORTCUTS {this.props.editMode ? ' - editmode' : ''}
-                    </h1>
+                    <h1 className="navTitle">SHORTCUTS {this.props.editMode ? ' - editmode' : ''}</h1>
                     <div className="navIconContainer">
                         <h1 className="yeah">made for gamers, by gamers</h1>
                         <button
