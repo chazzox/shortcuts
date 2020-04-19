@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as lodash from 'lodash';
 
 import { update } from '../../redux/store';
 import Popup, { AddLink } from './popupWrapper';
@@ -10,6 +9,15 @@ class AddNewBox extends React.Component {
         super(props);
         this.state = { open: false, boxName: '' };
     }
+    ObjectLength(object) {
+        var length = 0;
+        for (var key in object) {
+            if (object.hasOwnProperty(key)) {
+                ++length;
+            }
+        }
+        return length;
+    }
     handleShow() {
         this.setState({ boxName: '', open: true });
     }
@@ -17,7 +25,7 @@ class AddNewBox extends React.Component {
         const targetColumn = this.props.config.columns[this.props.typeId];
         const targetColumnBoxOrder = Array.from(targetColumn.boxOrder);
 
-        const boxId = `link-${lodash.size(this.props.config.links)}`;
+        const boxId = `link-${this.ObjectLength(this.props.config.links)}`;
 
         let newColumnBoxOrder = targetColumnBoxOrder;
         newColumnBoxOrder.push(boxId);
