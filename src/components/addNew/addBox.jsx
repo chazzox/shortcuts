@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import * as lodash from 'lodash';
 
 import { update } from '../../redux/store';
 import Popup, { AddLink } from './popupWrapper';
@@ -7,21 +8,66 @@ import Popup, { AddLink } from './popupWrapper';
 class AddNewBox extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { open: false };
+        this.state = { open: false, boxName: '' };
     }
     handleShow() {
-        this.setState({ open: true });
+        this.setState({ boxName: '', open: true });
+    }
+    addBox() {
+        const targetColumn = this.props.config.columns[this.props.typeId];
+        const targetColumnBoxOrder = Array.from(targetColumn.boxOrder);
+
+        const boxId = `link-${lodash.size(this.props.config.links)}`;
+
+        let newColumnBoxOrder = targetColumnBoxOrder;
+        newColumnBoxOrder.push(boxId);
+
+        this.props.update({
+            ...this.props.config,
+            columns: {
+                ...this.props.config.columns,
+                [this.props.typeId]: { ...targetColumn, boxOrder: newColumnBoxOrder }
+            },
+            boxes: {
+                ...this.props.config.boxes,
+                [boxId]: {
+                    id: boxId,
+                    name: this.state.boxName,
+                    type: 'links',
+                    linkOrder: []
+                }
+            }
+        });
+        this.handleHide();
     }
     handleHide() {
-        this.setState({ open: false });
+        this.setState({ boxName: '', open: false });
+    }
+    handleChange(index, value) {
+        switch (index) {
+            case 0:
+                this.setState({ boxName: value });
+                break;
+            default:
+                console.log('how');
+                break;
+        }
     }
     render() {
         let modal = this.state.open ? (
             <Popup>
                 <div className="modal">
-                    <div>new</div>
+                    <input
+                        type="text"
+                        className="userInput"
+                        value={this.state.name}
+                        onChange={(event) => this.handleChange(0, event.target.value)}
+                    />
+                    <div className="editButton" onClick={() => this.addBox()}>
+                        Add Box
+                    </div>
                     <div className="editButton" onClick={() => this.handleHide()}>
-                        Hide modal
+                        Cancel
                     </div>
                 </div>
             </Popup>
@@ -44,7 +90,8 @@ class AddNewBox extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        editMode: state.userSlice.value
+        editMode: state.userSlice.value,
+        config: state.userSlice.config
     };
 };
 

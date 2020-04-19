@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 
-import AddNewBox from './addNew/addBox'
+import AddNewBox from './addNew/addBox';
 import Box from './box';
 import './column.scss';
 const ColumnWrapper = styled.div`
-    ${(props) =>
-        props.editMode
-            ? `border-color: rgba(255,255,255,1); `
-            : `border-color: rgba(255,255,255,0);`}
+    ${(props) => (props.editMode ? `border-color: rgba(255,255,255,1); ` : `border-color: rgba(255,255,255,0);`)}
 `;
 const ColumnContainer = styled.div`
     ${(props) => (props.boxNumber === 0 ? 'height:114px;' : '')}
@@ -29,6 +26,7 @@ export default class Column extends Component {
                         >
                             {this.props.boxesForColumn.map((box, index) => {
                                 // is the box a link type
+                                // console.log(box);
                                 const isLink = box.type === 'links';
                                 const linksForBox = isLink
                                     ? box.linkOrder.map((linkId) => this.props.links[linkId])

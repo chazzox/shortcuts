@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import * as lodash from 'lodash';
 
 import { update } from '../../redux/store';
 import Popup, { AddLink } from './popupWrapper';
@@ -9,6 +10,8 @@ class AddNewLink extends React.Component {
         super(props);
         this.state = { open: false, name: '', url: '', urlIcon: '' };
     }
+
+    // we use this function to update the component states when the user
     handleChange(index, value) {
         switch (index) {
             case 0:
@@ -20,14 +23,40 @@ class AddNewLink extends React.Component {
             case 2:
                 this.setState({ urlIcon: value });
                 break;
+            default:
+                console.log('how');
+                break;
         }
     }
     handleShow() {
         this.setState({ open: true });
     }
     handleHide() {
-        this.props.
-        this.setState({ open: false });
+        this.setState({ name: '', url: '', urlIcon: '', open: false });
+    }
+    addLink() {
+        const targetBox = this.props.config.boxes[this.props.typeId];
+        const targetBoxLinkOrder = Array.from(targetBox.linkOrder);
+
+        const linkName = `link-${lodash.size(this.props.config.links)}`;
+
+        let newBoxLinkOrder = targetBoxLinkOrder;
+        newBoxLinkOrder.push(linkName);
+
+        this.props.update({
+            ...this.props.config,
+            boxes: { ...this.props.config.boxes, [this.props.typeId]: { ...targetBox, linkOrder: newBoxLinkOrder } },
+            links: {
+                ...this.props.config.links,
+                [linkName]: {
+                    id: linkName,
+                    name: this.state.name,
+                    url: this.state.url,
+                    linkIconUrl: this.state.urlIcon
+                }
+            }
+        });
+        this.handleHide();
     }
     render() {
         let modal = this.state.open ? (
@@ -53,9 +82,11 @@ class AddNewLink extends React.Component {
                             onChange={(event) => this.handleChange(2, event.target.value)}
                         />
                     </div>
-
+                    <div className="editButton" onClick={() => this.addLink()}>
+                        Add New
+                    </div>
                     <div className="editButton" onClick={() => this.handleHide()}>
-                        Hide modal
+                        cancel
                     </div>
                 </div>
             </Popup>
@@ -78,7 +109,8 @@ class AddNewLink extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        editMode: state.userSlice.value
+        editMode: state.userSlice.value,
+        config: state.userSlice.config
     };
 };
 

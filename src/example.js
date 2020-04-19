@@ -3,6 +3,12 @@ const example = {
     'dark-mode': true,
     config: {
         links: {
+            'link-0': {
+                id: 'link-0',
+                name: 'Reddit',
+                url: 'https://www.reddit.com',
+                linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/reddit.png'
+            },
             'link-1': {
                 id: 'link-1',
                 name: 'Reddit',
@@ -237,7 +243,7 @@ const example = {
                 id: 'box-7',
                 name: 'Shopping',
                 type: 'links',
-                linkOrder: ['link-24', 'link-25', 'link-26', 'link-27', 'link-28', 'link-29']
+                linkOrder: ['link-24', 'link-0', 'link-25', 'link-26', 'link-27', 'link-28', 'link-29']
             },
             'box-8': {
                 id: 'box-8',

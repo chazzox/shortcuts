@@ -35,12 +35,9 @@ export default class Link extends Component {
         return (
             <Draggable isDragDisabled={!this.props.editMode} draggableId={this.props.link.id} index={this.props.index}>
                 {(provided) => (
-                    <a
-                        className="linkLink"
-                        // compiler complains if we have href=null, the next comment removes the complaint
-                        // eslint-disable-next-line
-                        href={this.props.editMode ? '#' : this.props.link.url}
-                    >
+                    // compiler complains if we have href=null, the next comment removes the complaint
+                    // eslint-disable-next-line
+                    <a className="linkLink" href={this.props.editMode ? '#' : this.props.link.url}>
                         <LinkContainer
                             editMode={this.props.editMode}
                             icon={this.props.link.linkIconUrl}
