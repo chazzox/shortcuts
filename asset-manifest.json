@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/shortcuts-beta/static/css/main.8dba4b4b.chunk.css",
-    "main.js": "/shortcuts-beta/static/js/main.f17a81d2.chunk.js",
-    "main.js.map": "/shortcuts-beta/static/js/main.f17a81d2.chunk.js.map",
+    "main.js": "/shortcuts-beta/static/js/main.d96b8c0e.chunk.js",
+    "main.js.map": "/shortcuts-beta/static/js/main.d96b8c0e.chunk.js.map",
     "runtime-main.js": "/shortcuts-beta/static/js/runtime-main.e261f6b7.js",
     "runtime-main.js.map": "/shortcuts-beta/static/js/runtime-main.e261f6b7.js.map",
     "static/css/2.2bd37e2f.chunk.css": "/shortcuts-beta/static/css/2.2bd37e2f.chunk.css",
     "static/js/2.26e9eddc.chunk.js": "/shortcuts-beta/static/js/2.26e9eddc.chunk.js",
     "static/js/2.26e9eddc.chunk.js.map": "/shortcuts-beta/static/js/2.26e9eddc.chunk.js.map",
     "index.html": "/shortcuts-beta/index.html",
-    "precache-manifest.42a1f3eea9e664035a5143378fdebcb6.js": "/shortcuts-beta/precache-manifest.42a1f3eea9e664035a5143378fdebcb6.js",
+    "precache-manifest.addaa0a5c0eacc8becfd6f94af690ed6.js": "/shortcuts-beta/precache-manifest.addaa0a5c0eacc8becfd6f94af690ed6.js",
     "service-worker.js": "/shortcuts-beta/service-worker.js",
     "static/css/2.2bd37e2f.chunk.css.map": "/shortcuts-beta/static/css/2.2bd37e2f.chunk.css.map",
     "static/css/main.8dba4b4b.chunk.css.map": "/shortcuts-beta/static/css/main.8dba4b4b.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.2bd37e2f.chunk.css",
     "static/js/2.26e9eddc.chunk.js",
     "static/css/main.8dba4b4b.chunk.css",
-    "static/js/main.f17a81d2.chunk.js"
+    "static/js/main.d96b8c0e.chunk.js"
   ]
 }
