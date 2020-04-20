@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
 * {
     user-select: none;
     -moz-user-select: none;
@@ -5,11 +6,16 @@
     -webkit-user-select: none;
     -o-user-select: none;
     color: white;
+    font-family: 'Manrope', sans-serif;
 }
 body,
 html {
+    color: white;
     background-color: #292c30;
     margin: 0;
+}
+a {
+    text-decoration: none;
 }
 
 .MODAL_OPEN_CLASS {
@@ -30,19 +36,17 @@ html {
     right: 0;
 }
 .navTitle {
-    color: white;
     margin: 0 !important;
     vertical-align: middle;
     display: inline-block;
     font-size: 26px;
 }
 .navIconContainer {
-    padding-top: 5px;
     position: absolute;
-    right: 0 !important;
-    top: 20px;
+    padding-top: 5px;
     padding-right: 10px;
-    text-align: center;
+    right: 0;
+    top: 0;
 }
 .yeah {
     color: white;
@@ -55,18 +59,13 @@ html {
     margin: 10px;
     background: linear-gradient(to right, #55b49d, #2b7dca);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
     border-radius: 25px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 5px 25px;
     color: white;
     font-size: 18px;
     border: none;
-    font-weight: normal;
-    text-transform: capitalize;
     outline: none;
+    text-transform: capitalize;
     &:hover {
         filter: hue-rotate(90deg);
     }

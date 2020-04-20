@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
-import AddNewBox from './addNew/addBox';
+import AddNewBox from './addAndEdit/addBox';
 import Box from './box';
 import './column.scss';
+
+// we also pass addition styles to these components through the sass file
+// however the styles in here are conditional, so require props
 const ColumnWrapper = styled.div`
     ${(props) => (props.editMode ? `border-color: rgba(255,255,255,1); ` : `border-color: rgba(255,255,255,0);`)}
 `;
@@ -17,6 +20,7 @@ export default class Column extends Component {
         return (
             <ColumnWrapper editMode={this.props.editMode} className="cont">
                 <Droppable droppableId={this.props.column.id} type="BOX">
+                    {/* the child of a droppable must be a function*/}
                     {(provided) => (
                         <ColumnContainer
                             editMode={this.props.editMode}
@@ -24,16 +28,17 @@ export default class Column extends Component {
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                         >
+                            {/* looping through each box and rendering it */}
                             {this.props.boxesForColumn.map((box, index) => {
-                                // is the box a link type
-                                // console.log(box);
-                                const isLink = box.type === 'links';
-                                const linksForBox = isLink
-                                    ? box.linkOrder.map((linkId) => this.props.links[linkId])
-                                    : null;
+                                // if the box is a widget, the map function will through an error
+                                const linksForBox =
+                                    box.type === 'links'
+                                        ? box.linkOrder.map((linkId) => this.props.links[linkId])
+                                        : null;
                                 return (
+                                    // passing the props to the box instance
                                     <Box
-                                        editMode={this.props.editMode}
+                                        columnContainerId={this.props.column.id}
                                         key={box.id}
                                         box={box}
                                         index={index}
@@ -41,18 +46,13 @@ export default class Column extends Component {
                                     />
                                 );
                             })}
+                            {/* needed for framework */}
                             {provided.placeholder}
                         </ColumnContainer>
                     )}
                 </Droppable>
-                {this.props.editMode ? (
-                    <AddNewBox
-                        style={{ paddingTop: '10px', paddingBottom: '10px' }}
-                        maxWidth="50"
-                        type="box"
-                        typeId={this.props.column.id}
-                    />
-                ) : null}
+                {/* conditionally rendering the add button (editMode dependant) */}
+                {this.props.editMode ? <AddNewBox maxWidth="50" typeId={this.props.column.id} /> : null}
             </ColumnWrapper>
         );
     }

@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { update } from '../../redux/store';
-import Popup, { AddLink } from './popupWrapper';
+import Popup, { AddObject } from './popupWrapper';
 
 class AddNewBox extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { open: false, boxName: '' };
+        this.state = { open: false, boxName: this.props.inspectMode ? this.props.boxName : '' };
     }
     ObjectLength(object) {
         var length = 0;
@@ -82,14 +82,14 @@ class AddNewBox extends React.Component {
         ) : null;
         return (
             <div className="addButtonWrapper">
-                <AddLink
+                <AddObject
                     onClick={() => this.handleShow()}
                     editMode={this.props.editMode}
                     className="addButton"
                     maxWidth={this.props.maxWidth}
                 >
                     Add New {this.props.type}
-                </AddLink>
+                </AddObject>
                 {modal}
             </div>
         );

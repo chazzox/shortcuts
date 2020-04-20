@@ -21,6 +21,7 @@ class App extends Component {
                                 this.props.toggle();
                             }}
                         >
+                            {/* this is a conditional statement to render save or edit inside the button */}
                             {this.props.editMode ? 'save' : 'edit'}
                         </button>
                     </div>
@@ -33,7 +34,7 @@ class App extends Component {
     }
 }
 
-// comments needed
+// connecting edit mode and config values to the form from the redux state (this how we get global variables)
 const mapStateToProps = (state) => {
     return {
         editMode: state.userSlice.value,
@@ -43,7 +44,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = () => {
     return {
+        // function to toggle the editMode state
         toggle,
+        // function to update the config state (links, boxes etc)
         update
     };
 };

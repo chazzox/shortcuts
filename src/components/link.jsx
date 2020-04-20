@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+
+import { update } from '../redux/store';
 import './link.scss';
+import DeleteObject from './deleteObject';
 
 // when in editMode, we don't want the link to appear while we move the links around
 // so we only allow the link container to have the hover css when edit mode isn't on
@@ -26,7 +29,7 @@ const LinkContainer = styled.div`
             : `  transition: none;`}
 `;
 
-export default class Link extends Component {
+class Link extends Component {
     cleanupURL(url) {
         url = url.replace(/(.*?:\/\/)|(www\.)/g, '').replace(/\/.*/, '');
         return url;
@@ -49,8 +52,14 @@ export default class Link extends Component {
                             {...provided.dragHandleProps}
                             ref={provided.innerRef}
                         >
+                            {/* link content */}
                             <div className="linkTitle">{this.props.link.name}</div>
                             <div className="linkUrl">{this.cleanupURL(this.props.link.url)}</div>
+                            <DeleteObject
+                                type="link"
+                                id={this.props.link.id}
+                                objectContainerId={this.props.boxContainerId}
+                            />
                             {provided.placeholder}
                         </LinkContainer>
                     </a>
@@ -59,3 +68,20 @@ export default class Link extends Component {
         );
     }
 }
+
+// linking global values
+const mapStateToProps = (state) => {
+    return {
+        editMode: state.userSlice.value,
+        config: state.userSlice.config
+    };
+};
+
+// linking update functions
+const mapDispatchToProps = () => {
+    return {
+        update
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps())(Link);

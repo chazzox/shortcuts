@@ -90,6 +90,7 @@ class ShortCuts extends Component {
                 }}
                 onDragEnd={this.onDragEnd}
             >
+                {/* mapping the column array to the column instances, this is where all of the rendering of the shortcuts content begins */}
                 {this.props.config.columnOrder.map((columnId) => {
                     const column = this.props.config.columns[columnId];
                     const boxesForColumn = column.boxOrder.map((boxId) => this.props.config.boxes[boxId]);
@@ -107,7 +108,8 @@ class ShortCuts extends Component {
         );
     }
 }
-// comments needed
+
+// linking global values
 const mapStateToProps = (state) => {
     return {
         editMode: state.userSlice.value,
@@ -115,6 +117,7 @@ const mapStateToProps = (state) => {
     };
 };
 
+// linking update functions
 const mapDispatchToProps = () => {
     return {
         toggle,

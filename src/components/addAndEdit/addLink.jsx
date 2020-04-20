@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { update } from '../../redux/store';
-import Popup, { AddLink } from './popupWrapper';
+import Popup, { AddObject } from './popupWrapper';
 
 class AddNewLink extends React.Component {
     constructor(props) {
@@ -46,18 +46,18 @@ class AddNewLink extends React.Component {
         const targetBox = this.props.config.boxes[this.props.typeId];
         const targetBoxLinkOrder = Array.from(targetBox.linkOrder);
 
-        const linkName = `link-${this.ObjectLength(this.props.config.links)}`;
+        const linkId = `link-${this.ObjectLength(this.props.config.links)}`;
 
         let newBoxLinkOrder = targetBoxLinkOrder;
-        newBoxLinkOrder.push(linkName);
+        newBoxLinkOrder.push(linkId);
 
         this.props.update({
             ...this.props.config,
             boxes: { ...this.props.config.boxes, [this.props.typeId]: { ...targetBox, linkOrder: newBoxLinkOrder } },
             links: {
                 ...this.props.config.links,
-                [linkName]: {
-                    id: linkName,
+                [linkId]: {
+                    id: linkId,
                     name: this.state.name,
                     url: this.state.url,
                     linkIconUrl: this.state.urlIcon
@@ -101,14 +101,14 @@ class AddNewLink extends React.Component {
         ) : null;
         return (
             <div className="addButtonWrapper">
-                <AddLink
+                <AddObject
                     onClick={() => this.handleShow()}
                     editMode={this.props.editMode}
                     className="addButton"
                     maxWidth={this.props.maxWidth}
                 >
                     Add New {this.props.type}
-                </AddLink>
+                </AddObject>
                 {modal}
             </div>
         );

@@ -12,6 +12,7 @@ export const userSlice = createSlice({
     reducers: {
         toggle: (state) => {
             if (state.value === true) {
+                // updating user cookies for site
                 Cookies.set('user', JSON.stringify({ ...state.userConf, config: state.config }), {
                     expires: 999999,
                     path: ''
