@@ -1,31 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { update } from '../../redux/store';
-import Popup, { AddObject } from './popupWrapper';
+import Popup from '../utils/popupWrapper';
+import randomKey from '../utils/randomKey';
+
+export const AddObject = styled.button`
+    padding-top: 10px;
+    padding-bottom: 10px;
+    ${(props) => (props.editMode ? 'display: inline;' : 'display:none;')}
+    &:hover {
+        ${(props) => `max-width:${props.maxWidth}%;`}
+    }
+`;
 
 class AddNewBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = { open: false, boxName: this.props.inspectMode ? this.props.boxName : '' };
     }
-    ObjectLength(object) {
-        var length = 0;
-        for (var key in object) {
-            if (object.hasOwnProperty(key)) {
-                ++length;
-            }
-        }
-        return length;
-    }
     handleShow() {
         this.setState({ boxName: '', open: true });
+    }
+    handleHide() {
+        this.setState({ boxName: '', open: false });
     }
     addBox() {
         const targetColumn = this.props.config.columns[this.props.typeId];
         const targetColumnBoxOrder = Array.from(targetColumn.boxOrder);
 
-        const boxId = `link-${this.ObjectLength(this.props.config.links)}`;
+        const boxId = `box-${randomKey()}`;
 
         let newColumnBoxOrder = targetColumnBoxOrder;
         newColumnBoxOrder.push(boxId);
@@ -48,9 +53,7 @@ class AddNewBox extends React.Component {
         });
         this.handleHide();
     }
-    handleHide() {
-        this.setState({ boxName: '', open: false });
-    }
+
     handleChange(index, value) {
         switch (index) {
             case 0:

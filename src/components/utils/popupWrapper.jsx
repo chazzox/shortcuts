@@ -1,15 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
-
-export const AddObject = styled.button`
-    padding-top: 10px;
-    padding-bottom: 10px;
-    ${(props) => (props.editMode ? 'display: inline;' : 'display:none;')}
-    &:hover {
-        ${(props) => `max-width:${props.maxWidth}%;`}
-    }
-`;
 
 export default class Popup extends React.Component {
     constructor(props) {

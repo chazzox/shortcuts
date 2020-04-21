@@ -5,7 +5,8 @@ import styled from 'styled-components';
 
 import { update } from '../redux/store';
 import './link.scss';
-import DeleteObject from './deleteObject';
+import DeleteObject from './utils/deleteObject';
+import EditLink from './addAndEdit/editLink';
 
 // when in editMode, we don't want the link to appear while we move the links around
 // so we only allow the link container to have the hover css when edit mode isn't on
@@ -55,11 +56,14 @@ class Link extends Component {
                             {/* link content */}
                             <div className="linkTitle">{this.props.link.name}</div>
                             <div className="linkUrl">{this.cleanupURL(this.props.link.url)}</div>
-                            <DeleteObject
-                                type="link"
-                                id={this.props.link.id}
-                                objectContainerId={this.props.boxContainerId}
-                            />
+                            <div>
+                                <DeleteObject
+                                    type="link"
+                                    id={this.props.link.id}
+                                    objectContainerId={this.props.boxContainerId}
+                                />
+                                <EditLink id={this.props.link.id} />
+                            </div>
                             {provided.placeholder}
                         </LinkContainer>
                     </a>

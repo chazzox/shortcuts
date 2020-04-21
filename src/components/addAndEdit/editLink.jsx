@@ -1,18 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { update } from '../../redux/store';
-import { AddObject } from './addBox';
 import Popup from '../utils/popupWrapper';
-import randomKey from '../utils/randomKey';
+import { update } from '../../redux/store';
 
-class AddNewLink extends React.Component {
+class EditLink extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { open: false, name: '', url: '', urlIcon: '' };
+        this.state = {
+            open: false,
+            name: this.props.config.links[this.props.id].name,
+            url: this.props.config.links[this.props.id].url,
+            urlIcon: this.props.config.links[this.props.id].linkIconUrl
+        };
     }
-
-    // we use this function to update the component states when the user
+    saveChanges() {
+        this.props.update({
+            ...this.props.config,
+            links: {
+                ...this.props.config.links,
+                [this.props.id]: {
+                    id: this.props.id,
+                    name: this.state.name,
+                    url: this.state.url,
+                    linkIconUrl: this.state.urlIcon
+                }
+            }
+        });
+        this.handleHide();
+    }
     handleChange(index, value) {
         switch (index) {
             case 0:
@@ -29,44 +45,11 @@ class AddNewLink extends React.Component {
                 break;
         }
     }
-    ObjectLength(object) {
-        var length = 0;
-        for (var key in object) {
-            if (object.hasOwnProperty(key)) {
-                ++length;
-            }
-        }
-        return length;
-    }
     handleShow() {
         this.setState({ open: true });
     }
     handleHide() {
-        this.setState({ name: '', url: '', urlIcon: '', open: false });
-    }
-    addLink() {
-        const targetBox = this.props.config.boxes[this.props.typeId];
-        const targetBoxLinkOrder = Array.from(targetBox.linkOrder);
-
-        const linkId = `link-${randomKey()}`;
-
-        let newBoxLinkOrder = targetBoxLinkOrder;
-        newBoxLinkOrder.push(linkId);
-
-        this.props.update({
-            ...this.props.config,
-            boxes: { ...this.props.config.boxes, [this.props.typeId]: { ...targetBox, linkOrder: newBoxLinkOrder } },
-            links: {
-                ...this.props.config.links,
-                [linkId]: {
-                    id: linkId,
-                    name: this.state.name,
-                    url: this.state.url,
-                    linkIconUrl: this.state.urlIcon
-                }
-            }
-        });
-        this.handleHide();
+        this.setState({ open: false });
     }
     render() {
         let modal = this.state.open ? (
@@ -92,28 +75,21 @@ class AddNewLink extends React.Component {
                             onChange={(event) => this.handleChange(2, event.target.value)}
                         />
                     </div>
-                    <div className="editButton" onClick={() => this.addLink()}>
-                        Add New
+                    <div className="editButton" onClick={() => this.saveChanges()}>
+                        Save Changes
                     </div>
                     <div className="editButton" onClick={() => this.handleHide()}>
-                        cancel
+                        Cancel
                     </div>
                 </div>
             </Popup>
         ) : null;
-        return (
-            <div className="addButtonWrapper">
-                <AddObject
-                    onClick={() => this.handleShow()}
-                    editMode={this.props.editMode}
-                    className="addButton"
-                    maxWidth={this.props.maxWidth}
-                >
-                    Add New {this.props.type}
-                </AddObject>
+        return this.props.editMode ? (
+            <div style={{ display: 'inline-block' }}>
+                <button className="editLinkButton" onClick={() => this.handleShow()}></button>
                 {modal}
             </div>
-        );
+        ) : null;
     }
 }
 
@@ -124,10 +100,11 @@ const mapStateToProps = (state) => {
     };
 };
 
+// linking update functions
 const mapDispatchToProps = () => {
     return {
         update
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(AddNewLink);
+export default connect(mapStateToProps, mapDispatchToProps())(EditLink);

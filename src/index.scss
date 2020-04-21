@@ -150,7 +150,35 @@ a {
     overflow: hidden;
     outline: none;
 }
-
+.editLinkButton {
+    cursor: pointer;
+    width: 100%;
+    max-width: 35px;
+    min-height: 35px;
+    background-color: rgba(255, 255, 255, 0.25);
+    background-size: 25px;
+    background-image: url('./assets/editIcon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 0;
+    border-radius: 25px;
+    border: none;
+    padding: 20px;
+    margin-bottom: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    &:hover {
+        background-size: 30px;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: black;
+        font-size: 13pt;
+        padding: 25px;
+    }
+}
 ::-webkit-scrollbar {
     width: 8px;
     background-color: rgba(0, 0, 0, 0);

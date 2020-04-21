@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
+import DeleteObject from './utils/deleteObject';
 import AddNewLink from './addAndEdit/addLink';
+import EditBox from './addAndEdit/editBox';
+
 import Link from './link';
 import './box.scss';
-import DeleteObject from './deleteObject';
 
 class Box extends Component {
     // a box can be one of two things, either a box of links, or a widget, as the two have very different render processes
@@ -49,11 +51,14 @@ class Box extends Component {
                             in this case we use the box title but this can be changed pretty easily */}
                         <div className="boxName" style={{ paddingTop: '10px' }} {...provided.dragHandleProps}>
                             {this.props.box.name}
-                            <DeleteObject
-                                type="box"
-                                id={this.props.box.id}
-                                objectContainerId={this.props.columnContainerId}
-                            />
+                            <div>
+                                <DeleteObject
+                                    type="box"
+                                    id={this.props.box.id}
+                                    objectContainerId={this.props.columnContainerId}
+                                />
+                                <EditBox id={this.props.box.id} />
+                            </div>
                         </div>
                         <div className="boxContainer">
                             {/* inside the box is the link container, this is a place where we drop the links into hence the droppable element */}
