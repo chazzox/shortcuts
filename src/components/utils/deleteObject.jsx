@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Popup from './popupWrapper';
 import { update } from '../../redux/store';
+import './utils.scss';
 
 class DeleteObject extends Component {
     constructor(props) {
@@ -61,7 +62,9 @@ class DeleteObject extends Component {
         ) : null;
         return this.props.editMode ? (
             <div style={{ display: 'inline-block' }}>
-                <button className="editButton" onClick={() => this.handleShow()}>delete</button>
+                <button className="editButton" onClick={() => this.handleShow()}>
+                    delete
+                </button>
                 {modal}
             </div>
         ) : null;

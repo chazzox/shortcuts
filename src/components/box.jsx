@@ -57,7 +57,7 @@ class Box extends Component {
                                     id={this.props.box.id}
                                     objectContainerId={this.props.columnContainerId}
                                 />
-                                <EditBox inspectMode={true} typeId={this.props.box.id} maxWidth="100" type="link" />
+                                <EditBox inspectMode={true} id={this.props.box.id} maxWidth="100" type="link" />
                             </div>
                         </div>
                         <div className="boxContainer">

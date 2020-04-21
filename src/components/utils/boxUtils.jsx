@@ -28,7 +28,7 @@ class AddNewBox extends React.Component {
     handleShow() {
         this.setState({
             open: true,
-            boxName: this.props.inspectMode ? this.props.config.boxes[this.props.typeId].name : ''
+            boxName: this.props.inspectMode ? this.props.config.boxes[this.props.id].name : ''
         });
     }
     handleHide() {
@@ -53,7 +53,7 @@ class AddNewBox extends React.Component {
         const boxId = `box-${randomKey()}`;
         let newColumnBoxOrder = targetColumnBoxOrder;
         newColumnBoxOrder.push(boxId);
-        //validation
+        // validation
         // check empty
         if (validation.isEmpty([this.state.boxName])) {
             this.setState({ error: 'lol noob enter a thing' });
@@ -65,9 +65,12 @@ class AddNewBox extends React.Component {
             return;
         }
         // check is unique
-        // boxName list copy
-        // delete current el
-        // send to func
+        const boxList = { ...this.props.config.boxes };
+        delete boxList[this.props.id];
+        if (!validation.isUnique(boxList, this.state.boxName)) {
+            this.setState({ error: 'duplicate thing u noobskin' });
+            return;
+        }
         this.props.update({
             ...this.props.config,
             columns: {
@@ -86,7 +89,6 @@ class AddNewBox extends React.Component {
         });
         this.handleHide();
     }
-
     handleChange(index, value) {
         switch (index) {
             case 0:
@@ -97,7 +99,6 @@ class AddNewBox extends React.Component {
                 break;
         }
     }
-
     render() {
         let modal = this.state.open ? (
             <Popup>
@@ -108,12 +109,12 @@ class AddNewBox extends React.Component {
                         value={this.state.boxName}
                         onChange={(event) => this.handleChange(0, event.target.value)}
                     />
-                    <div className="errorContainer">{this.state.error}</div>
+                    {this.state.error ? <div className="errorContainer">{this.state.error}</div> : null}
                     <div
                         className="editButton"
                         onClick={() => (this.props.inspectMode ? this.saveChanges() : this.addBox())}
                     >
-                        Add Box
+                        {this.props.inspectMode ? 'Update Box' : 'Add Box'}
                     </div>
                     <div className="editButton" onClick={() => this.handleHide()}>
                         Cancel

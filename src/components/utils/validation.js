@@ -10,11 +10,15 @@ const validation = {
         return isEmpty;
     },
     // checking that there are no duplicates within the list
-    isUnique: (arr, param) => {
-        arr.map((name) => {
-            if (name === param) return false;
+    isUnique: (obj, param) => {
+        const names = [];
+        let isUnique = true;
+        Object.values(obj).map((id) => names.push(id.name));
+        names.map((name) => {
+            console.log(name);
+            if (name === param) isUnique = false;
         });
-        return true;
+        return isUnique;
     },
     withinRange: (lowerRng, upperRng, param) => {
         // checking that the input is within the input
