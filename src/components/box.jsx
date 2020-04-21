@@ -3,8 +3,8 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
 import DeleteObject from './utils/deleteObject';
-import AddNewLink from './addAndEdit/addLink';
-import EditBox from './addAndEdit/editBox';
+import AddLink from './utils/linkUtils';
+import EditBox from './utils/boxUtils';
 
 import Link from './link';
 import './box.scss';
@@ -57,7 +57,7 @@ class Box extends Component {
                                     id={this.props.box.id}
                                     objectContainerId={this.props.columnContainerId}
                                 />
-                                <EditBox id={this.props.box.id} />
+                                <EditBox inspectMode={true} typeId={this.props.box.id} maxWidth="100" type="link" />
                             </div>
                         </div>
                         <div className="boxContainer">
@@ -73,8 +73,8 @@ class Box extends Component {
                                 )}
                             </Droppable>
                             {/* this only renders the add button when edit mode is activated */}
-                            {isLink && this.props.editMode ? (
-                                <AddNewLink typeId={this.props.box.id} maxWidth="100" type="link" />
+                            {isLink ? (
+                                <AddLink id={this.props.box.id} maxWidth="100" type="link" inspectMode={false} />
                             ) : null}
                         </div>
                     </div>

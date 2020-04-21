@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
-import AddNewBox from './addAndEdit/addBox';
+import AddBox from './utils/boxUtils';
 import Box from './box';
 import './column.scss';
 
@@ -51,8 +51,7 @@ export default class Column extends Component {
                         </ColumnContainer>
                     )}
                 </Droppable>
-                {/* conditionally rendering the add button (editMode dependant) */}
-                {this.props.editMode ? <AddNewBox maxWidth="50" typeId={this.props.column.id} /> : null}
+                <AddBox maxWidth="50" typeId={this.props.column.id} inspectMode={false} />
             </ColumnWrapper>
         );
     }

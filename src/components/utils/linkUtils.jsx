@@ -1,18 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Popup from '../utils/popupWrapper';
 import { update } from '../../redux/store';
+import { AddObject } from './boxUtils';
+import Popup from './popupWrapper';
+import randomKey from './randomKey';
 
 class EditLink extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             open: false,
-            name: this.props.config.links[this.props.id].name,
-            url: this.props.config.links[this.props.id].url,
-            urlIcon: this.props.config.links[this.props.id].linkIconUrl
+            name: this.props.inspectMode ? this.props.config.links[this.props.id].name : '',
+            url: this.props.inspectMode ? this.props.config.links[this.props.id].url : '',
+            urlIcon: this.props.inspectMode ? this.props.config.links[this.props.id].linkIconUrl : ''
         };
+    }
+    addLink() {
+        const targetBox = this.props.config.boxes[this.props.typeId];
+        const targetBoxLinkOrder = Array.from(targetBox.linkOrder);
+
+        const linkId = `link-${randomKey()}`;
+
+        let newBoxLinkOrder = targetBoxLinkOrder;
+        newBoxLinkOrder.push(linkId);
+
+        this.props.update({
+            ...this.props.config,
+            boxes: { ...this.props.config.boxes, [this.props.typeId]: { ...targetBox, linkOrder: newBoxLinkOrder } },
+            links: {
+                ...this.props.config.links,
+                [linkId]: {
+                    id: linkId,
+                    name: this.state.name,
+                    url: this.state.url,
+                    linkIconUrl: this.state.urlIcon
+                }
+            }
+        });
+        this.handleHide();
     }
     saveChanges() {
         this.props.update({
@@ -85,10 +111,24 @@ class EditLink extends React.Component {
             </Popup>
         ) : null;
         return this.props.editMode ? (
-            <div style={{ display: 'inline-block' }}>
-                <button className="editLinkButton" onClick={() => this.handleShow()}></button>
-                {modal}
-            </div>
+            this.props.inspectMode ? (
+                <div style={{ display: 'inline-block' }}>
+                    <button className="editLinkButton" onClick={() => this.handleShow()}></button>
+                    {modal}
+                </div>
+            ) : (
+                <div className="addButtonWrapper">
+                    <AddObject
+                        onClick={() => this.handleShow()}
+                        editMode={this.props.editMode}
+                        className="addButton"
+                        maxWidth={this.props.maxWidth}
+                    >
+                        Add New {this.props.type}
+                    </AddObject>
+                    {modal}
+                </div>
+            )
         ) : null;
     }
 }

@@ -13,7 +13,6 @@ class DeleteObject extends Component {
         this.setState({ open: true });
     }
     handleHide() {
-        console.log('hiding?');
         this.setState({ open: false });
     }
     deleteObject(type, objectId, containerId) {
