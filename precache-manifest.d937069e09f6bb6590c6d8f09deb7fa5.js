@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2416ecc17eac30f6f3fa96bbff156e27",
+    "revision": "f0c76e0481f6da7aefb7ecf25df82369",
     "url": "/shortcuts-beta/index.html"
   },
   {
-    "revision": "bbb1b9e5ffe45978ad13",
-    "url": "/shortcuts-beta/static/css/main.3af603e3.chunk.css"
+    "revision": "12d2ac2a1b7771e97155",
+    "url": "/shortcuts-beta/static/css/main.df269419.chunk.css"
   },
   {
     "revision": "f6b119014aa3e29069f7",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shortcuts-beta/static/js/2.b965ee0a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bbb1b9e5ffe45978ad13",
-    "url": "/shortcuts-beta/static/js/main.67f96fd1.chunk.js"
+    "revision": "12d2ac2a1b7771e97155",
+    "url": "/shortcuts-beta/static/js/main.4f474b2c.chunk.js"
   },
   {
     "revision": "20c878116c3f073542ba",
@@ -26,5 +26,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "69d4d8955cf2ee89c4b8c12fa6094dac",
     "url": "/shortcuts-beta/static/media/addIcon.69d4d895.png"
+  },
+  {
+    "revision": "0b02b61198f8e817d274547a957b88cb",
+    "url": "/shortcuts-beta/static/media/editIcon.0b02b611.png"
   }
 ]);
