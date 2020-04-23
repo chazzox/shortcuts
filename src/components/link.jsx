@@ -3,10 +3,9 @@ import { Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { update } from '../redux/store';
+import { updateConfig } from '../redux/store';
+import ObjectUtils from './utils/objectUtils';
 import './link.scss';
-import DeleteObject from './utils/deleteObject';
-import EditLink from './utils/linkUtils';
 
 // when in editMode, we don't want the link to appear while we move the links around
 // so we only allow the link container to have the hover css when edit mode isn't on
@@ -56,14 +55,12 @@ class Link extends Component {
                             {/* link content */}
                             <div className="linkTitle">{this.props.link.name}</div>
                             <div className="linkUrl">{this.cleanupURL(this.props.link.url)}</div>
-                            <div>
-                                <DeleteObject
-                                    type="link"
-                                    id={this.props.link.id}
-                                    objectContainerId={this.props.boxContainerId}
-                                />
-                                <EditLink id={this.props.link.id} inspectMode={true} />
-                            </div>
+                            <ObjectUtils
+                                id={this.props.link.id}
+                                editMode={this.props.editMode}
+                                type="link"
+                                containerId={this.props.boxContainerId}
+                            />
                             {provided.placeholder}
                         </LinkContainer>
                     </a>
@@ -84,7 +81,7 @@ const mapStateToProps = (state) => {
 // linking update functions
 const mapDispatchToProps = () => {
     return {
-        update
+        updateConfig
     };
 };
 

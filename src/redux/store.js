@@ -20,13 +20,50 @@ export const userSlice = createSlice({
             }
             state.value = !state.value;
         },
-        update: (state, action) => {
+        updateConfig: (state, action) => {
             state.config = action.payload;
+        },
+        updateObject: (state, action) => {
+            const objectPointer = action.payload.type === 'link' ? 'links' : 'boxes';
+            state.config = {
+                ...state.config,
+                [objectPointer]: {
+                    ...state.config[objectPointer],
+                    [action.payload.id]: { ...state.config.boxes[action.payload.id], ...action.payload.content }
+                }
+            };
+        },
+        deleteObject: (state, action) => {
+            console.log(action.payload);
+            const containerPointer = action.payload.type === 'link' ? 'boxes' : 'columns';
+            const arrayType = action.payload.type === 'link' ? 'links' : 'boxes';
+            const orderPointer = action.payload.type === 'link' ? 'linkOrder' : 'boxOrder';
+            const newLinks = { ...state.config.links };
+            if (action.payload.type === 'box' && state.config.boxes[action.payload.objectId].type === 'links') {
+                const linkOrder = Array.from(state.config.boxes[action.payload.objectId].linkOrder);
+                linkOrder.map((linkId) => delete newLinks[linkId]);
+            }
+            let newOrder = Array.from(state.config[containerPointer][action.payload.containerId][orderPointer]);
+            newOrder.splice(newOrder.indexOf(action.payload.objectId), 1);
+            var newObjectArray = { ...state.config[arrayType] };
+            delete newObjectArray[action.payload.objectId];
+            state.config = {
+                ...state.config,
+                links: { ...newLinks },
+                [arrayType]: newObjectArray,
+                [containerPointer]: {
+                    ...state.config[containerPointer],
+                    [action.payload.containerId]: {
+                        ...state.config[containerPointer][action.payload.containerId],
+                        [orderPointer]: newOrder
+                    }
+                }
+            };
         }
     }
 });
 
-export const { toggle, update } = userSlice.actions;
+export const { toggle, updateConfig, deleteObject, updateObject } = userSlice.actions;
 
 export default configureStore({
     reducer: {

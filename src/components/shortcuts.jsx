@@ -3,7 +3,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
 import Column from './column';
-import { toggle, update } from '../redux/store';
+import { toggle, updateConfig } from '../redux/store';
 
 class ShortCuts extends Component {
     // updates state after the drag is finished
@@ -38,7 +38,7 @@ class ShortCuts extends Component {
             // inserts the object into the place where it was dragged to
             newChildObjectOrder.splice(destination.index, 0, draggableId);
             // overwrites the current state to show the changes post drag
-            this.props.update({
+            this.props.updateConfig({
                 ...this.props.config,
                 [jsonObjectListPointer]: {
                     ...this.props.config[jsonObjectListPointer],
@@ -62,7 +62,7 @@ class ShortCuts extends Component {
         finishParentObjectOrder.splice(destination.index, 0, draggableId);
 
         // overwriting the old state to include the changes post drag
-        this.props.update({
+        this.props.updateConfig({
             ...this.props.config,
             [jsonObjectListPointer]: {
                 ...this.props.config[jsonObjectListPointer],
@@ -121,7 +121,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = () => {
     return {
         toggle,
-        update
+        updateConfig
     };
 };
 

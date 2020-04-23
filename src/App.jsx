@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Shortcuts from './components/shortcuts';
-import { toggle, update } from './redux/store';
+import { toggle } from './redux/store';
 
 class App extends Component {
     render() {
@@ -45,9 +45,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = () => {
     return {
         // function to toggle the editMode state
-        toggle,
-        // function to update the config state (links, boxes etc)
-        update
+        toggle
     };
 };
 

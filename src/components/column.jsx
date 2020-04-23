@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
-import AddBox from './utils/boxUtils';
+import AddNew from './utils/addNew';
 import Box from './box';
 import './column.scss';
 
@@ -51,7 +51,7 @@ export default class Column extends Component {
                         </ColumnContainer>
                     )}
                 </Droppable>
-                <AddBox maxWidth="50" typeId={this.props.column.id} inspectMode={false} />
+                <AddNew />
             </ColumnWrapper>
         );
     }

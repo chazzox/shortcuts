@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
-import DeleteObject from './utils/deleteObject';
-import AddLink from './utils/linkUtils';
-import EditBox from './utils/boxUtils';
+import ObjectUtils from './utils/objectUtils';
+import AddNew from './utils/addNew';
 
 import Link from './link';
 import './box.scss';
@@ -51,15 +50,14 @@ class Box extends Component {
                             in this case we use the box title but this can be changed pretty easily */}
                         <div className="boxName" style={{ paddingTop: '10px' }} {...provided.dragHandleProps}>
                             {this.props.box.name}
-                            <div>
-                                <DeleteObject
-                                    type="box"
-                                    id={this.props.box.id}
-                                    objectContainerId={this.props.columnContainerId}
-                                />
-                                <EditBox inspectMode={true} id={this.props.box.id} maxWidth="100" type="link" />
-                            </div>
+                            <ObjectUtils
+                                id={this.props.box.id}
+                                editMode={this.props.editMode}
+                                type="box"
+                                containerId={this.props.columnContainerId}
+                            />
                         </div>
+
                         <div className="boxContainer">
                             {/* inside the box is the link container, this is a place where we drop the links into hence the droppable element */}
                             <Droppable droppableId={this.props.box.id} type={this.props.box.type}>
@@ -73,9 +71,7 @@ class Box extends Component {
                                 )}
                             </Droppable>
                             {/* this only renders the add button when edit mode is activated */}
-                            {isLink ? (
-                                <AddLink id={this.props.box.id} maxWidth="100" type="link" inspectMode={false} />
-                            ) : null}
+                            {isLink ? <AddNew /> : null}
                         </div>
                     </div>
                 )}

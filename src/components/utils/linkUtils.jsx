@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { update } from '../../redux/store';
+import { updateConfig } from '../../redux/store';
 import { AddObject } from './boxUtils';
 import Popup from './popupWrapper';
 import randomKey from './randomKey';
@@ -143,7 +143,7 @@ const mapStateToProps = (state) => {
 // linking update functions
 const mapDispatchToProps = () => {
     return {
-        update
+       updateConfig
     };
 };
 

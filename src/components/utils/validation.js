@@ -4,6 +4,7 @@ const validation = {
     isEmpty: (param) => {
         let isEmpty = false;
         // iterating through list and checking none are empty
+        // eslint-disable-next-line
         param.map((item) => {
             if (item === '') isEmpty = true;
         });
@@ -13,7 +14,9 @@ const validation = {
     isUnique: (obj, param) => {
         const names = [];
         let isUnique = true;
+        // eslint-disable-next-line
         Object.values(obj).map((id) => names.push(id.name));
+        // eslint-disable-next-line
         names.map((name) => {
             console.log(name);
             if (name === param) isUnique = false;
