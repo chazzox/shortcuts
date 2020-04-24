@@ -51,7 +51,7 @@ export default class Column extends Component {
                         </ColumnContainer>
                     )}
                 </Droppable>
-                <AddNew />
+                <AddNew id={this.props.column.id} />
             </ColumnWrapper>
         );
     }

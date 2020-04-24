@@ -2,6 +2,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
 import example from '../example';
+import randomKey from '../components/utils/randomKey';
 
 export const userSlice = createSlice({
     name: 'editMode',
@@ -23,18 +24,49 @@ export const userSlice = createSlice({
         updateConfig: (state, action) => {
             state.config = action.payload;
         },
+        addObject: (state, action) => {
+            const parentPointer = action.payload.type === 'link' ? 'boxes' : 'columns';
+            const itemPointer = action.payload.type === 'link' ? 'links' : 'boxes';
+            const orderPointer = action.payload.type === 'link' ? 'linkOrder' : 'boxOrder';
+            try {
+                const targetParentComponent = state.config[parentPointer][action.payload.parentId];
+                const targetParentObjectOrder = Array.from(targetParentComponent[orderPointer]);
+                const itemId = `${action.payload.type}-${randomKey()}`;
+                const newParentItemOrder = targetParentObjectOrder;
+                newParentItemOrder.push(itemId);
+                state.config = {
+                    ...state.config,
+                    [parentPointer]: {
+                        ...state.config[parentPointer],
+                        [action.payload.parentId]: { ...targetParentComponent, [orderPointer]: newParentItemOrder }
+                    },
+                    [itemPointer]: {
+                        ...state.config[itemPointer],
+                        [itemId]: {
+                            id: itemId,
+                            ...action.payload.content
+                        }
+                    }
+                };
+            } catch (err) {
+                console.log(action.payload);
+                console.log(err);
+            }
+        },
         updateObject: (state, action) => {
             const objectPointer = action.payload.type === 'link' ? 'links' : 'boxes';
             state.config = {
                 ...state.config,
                 [objectPointer]: {
                     ...state.config[objectPointer],
-                    [action.payload.id]: { ...state.config.boxes[action.payload.id], ...action.payload.content }
+                    [action.payload.id]: {
+                        ...state.config[objectPointer][action.payload.id],
+                        ...action.payload.content
+                    }
                 }
             };
         },
         deleteObject: (state, action) => {
-            console.log(action.payload);
             const containerPointer = action.payload.type === 'link' ? 'boxes' : 'columns';
             const arrayType = action.payload.type === 'link' ? 'links' : 'boxes';
             const orderPointer = action.payload.type === 'link' ? 'linkOrder' : 'boxOrder';
@@ -63,7 +95,7 @@ export const userSlice = createSlice({
     }
 });
 
-export const { toggle, updateConfig, deleteObject, updateObject } = userSlice.actions;
+export const { toggle, updateConfig, deleteObject, updateObject, addObject } = userSlice.actions;
 
 export default configureStore({
     reducer: {

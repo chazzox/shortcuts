@@ -35,7 +35,7 @@ export default class ObjectUtils extends React.Component {
                     this.props.type === 'box' ? (
                         <BoxModal close={() => this.handleHideEdit()} id={this.props.id} />
                     ) : (
-                        <LinkModal />
+                        <LinkModal close={() => this.handleHideEdit()} id={this.props.id} />
                     )
                 ) : null}
                 {this.state.showDeleteModal ? (

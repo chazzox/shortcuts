@@ -7,7 +7,7 @@ import { updateObject } from '../../redux/store';
 class BoxModal extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { boxName: this.props.config.boxes[this.props.id].name, error: '' };
+        this.state = { boxName: this.props.addMode ? '' : this.props.config.boxes[this.props.id].name, error: '' };
         this.onChange = this.onChange.bind(this);
     }
     onChange(val) {

@@ -70,8 +70,8 @@ class Box extends Component {
                                     </div>
                                 )}
                             </Droppable>
-                            {/* this only renders the add button when edit mode is activated */}
-                            {isLink ? <AddNew /> : null}
+                            {/* this only renders the addNew button if the box contains link as opposed to a widget box */}
+                            {isLink ? <AddNew parentId={this.props.box.id} /> : null}
                         </div>
                     </div>
                 )}
