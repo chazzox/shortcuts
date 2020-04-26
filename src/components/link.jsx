@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import { updateConfig } from '../redux/store';
-import ObjectUtils from './utils/objectUtils';
-import './link.scss';
+import ObjectUtils from './objectUtils';
 
 // when in editMode, we don't want the link to appear while we move the links around
 // so we only allow the link container to have the hover css when edit mode isn't on
@@ -29,7 +28,7 @@ const LinkContainer = styled.div`
             : `  transition: none;`}
 `;
 
-class Link extends Component {
+class Link extends React.Component {
     cleanupURL(url) {
         url = url.replace(/(.*?:\/\/)|(www\.)/g, '').replace(/\/.*/, '');
         return url;
@@ -53,8 +52,10 @@ class Link extends Component {
                             ref={provided.innerRef}
                         >
                             {/* link content */}
-                            <div className="linkTitle">{this.props.link.name}</div>
-                            <div className="linkUrl">{this.cleanupURL(this.props.link.url)}</div>
+                            <div style={{ display: 'inline-block' }}>
+                                <div className="linkTitle">{this.props.link.name}</div>
+                                <div className="linkUrl">{this.cleanupURL(this.props.link.url)}</div>
+                            </div>
                             <ObjectUtils
                                 id={this.props.link.id}
                                 editMode={this.props.editMode}

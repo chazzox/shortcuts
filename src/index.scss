@@ -22,7 +22,7 @@ a {
     filter: blur(2px);
     -webkit-filter: blur(12px);
 }
-.nav {
+.navWrapper {
     background: black;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
     align-items: center;
@@ -48,15 +48,37 @@ a {
     right: 0;
     top: 0;
 }
-.yeah {
+
+.navSubTitle {
     color: white;
     display: inline-block;
     font-size: 26px;
     font-weight: bold;
 }
 
-.editButton {
+.name {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+.columnWrapper {
+    float: left;
+    border-style: dashed;
+    border-width: 2px;
+    border-radius: 15px;
     margin: 10px;
+    width: calc(25% - 24px);
+    @media screen and (max-width: 1000px) {
+        width: 50%;
+    }
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
+}
+
+.buttonGeneral {
+    margin: auto 10px;
     background: linear-gradient(to right, #55b49d, #2b7dca);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
@@ -69,6 +91,26 @@ a {
     &:hover {
         filter: hue-rotate(90deg);
     }
+}
+
+.boxContainer,
+.modal {
+    width: 85%;
+    background: #2f3439;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    padding: 10px;
+    margin: 0 auto;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.05);
+    border-width: 2px;
+}
+
+.boxName {
+    font-size: 150%;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .modal {
@@ -92,8 +134,7 @@ a {
     z-index: 1000;
 }
 
-.addButtonWrapper {
-    padding-top: 20px;
+.newObjectButtonContainer {
     text-align: center;
 }
 
@@ -160,11 +201,9 @@ a {
     background-image: url('./assets/editIcon.png');
     background-repeat: no-repeat;
     background-position: center;
-    font-size: 0;
     border-radius: 25px;
     border: none;
     padding: 20px;
-    margin-bottom: 10px;
     outline: none;
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
@@ -176,9 +215,71 @@ a {
         background-color: rgba(255, 255, 255, 0.9);
         color: black;
         font-size: 13pt;
-        padding: 25px;
+        padding: 24px;
     }
 }
+.errorContainer {
+    background-image: url('./assets/error.png');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position-y: 5px;
+    background-position-x: 25px;
+    margin: 10px auto;
+    width: 100%;
+    max-width: 100%;
+    background-color: #b53d3d;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 25px;
+}
+
+.linkContainer {
+    position: relative;
+    background-size: 42px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 78px;
+    padding-right: 20px;
+    min-height: 50px;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.linkTitle {
+    margin-top: 14pt;
+    font-size: 13pt;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 25px;
+}
+
+.linkUrl {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0;
+    opacity: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 25px;
+}
+
+.linkContainer,
+.linkUrl,
+.linkTitle {
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+}
+
+.linkLink {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
 ::-webkit-scrollbar {
     width: 8px;
     background-color: rgba(0, 0, 0, 0);

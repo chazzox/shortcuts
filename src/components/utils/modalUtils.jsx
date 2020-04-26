@@ -22,3 +22,9 @@ export default class Popup extends React.Component {
         return ReactDOM.createPortal(<div className="modalWrapper">{this.props.children}</div>, this.el);
     }
 }
+
+export class ErrorContainer extends React.Component {
+    render() {
+        return <div className="errorContainer">{this.props.errorMessage}</div>;
+    }
+}

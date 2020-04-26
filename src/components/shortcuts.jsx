@@ -2,14 +2,28 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
-import Column from './column';
 import { toggle, updateConfig } from '../redux/store';
+import Column from './column';
 
 class ShortCuts extends Component {
-    // updates state after the drag is finished
+    constructor(props) {
+        super(props);
+        this.state = {
+            allowHover: true
+        };
+        this.onDragStart = this.onDragStart.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
+    }
+
+    onDragStart = () => {
+        this.setState({ allowHover: false });
+    };
+    // updates state after the drag is finished amd allowing hover css functionality
     // sorry you have to read this
     onDragEnd = (result) => {
         const { destination, source, draggableId, type } = result;
+        // allowing again hover to happen
+        this.setState({ allowHover: true });
         // if the destination is null i.e, outside of a drop zone, return to start of drag
         if (!destination) {
             return;
@@ -18,7 +32,6 @@ class ShortCuts extends Component {
         if (destination.droppableId === source.droppableId && destination.index === source.index) {
             return;
         }
-
         // this is where it starts to get interesting
         // we use the next two constants as a way to decide which parts of the json we are writing to
         // this is done in an effort of code optimization as i realized that the function was a copy paste in
@@ -48,6 +61,7 @@ class ShortCuts extends Component {
                     }
                 }
             });
+
             return;
         }
 
@@ -88,6 +102,7 @@ class ShortCuts extends Component {
                     'margin-left': 'auto',
                     'margin-right': 'auto'
                 }}
+                onDragStart={this.onDragStart}
                 onDragEnd={this.onDragEnd}
             >
                 {/* mapping the column array to the column instances, this is where all of the rendering of the shortcuts content begins */}
@@ -95,13 +110,14 @@ class ShortCuts extends Component {
                     const column = this.props.config.columns[columnId];
                     const boxesForColumn = column.boxOrder.map((boxId) => this.props.config.boxes[boxId]);
                     return (
-                        <Column
-                            editMode={this.props.editMode}
-                            links={this.props.config.links}
-                            key={column.id}
-                            column={column}
-                            boxesForColumn={boxesForColumn}
-                        />
+                        <div key={column.id} style={this.state.allowHover ? null : { pointerEvents: 'none' }}>
+                            <Column
+                                editMode={this.props.editMode}
+                                links={this.props.config.links}
+                                column={column}
+                                boxesForColumn={boxesForColumn}
+                            />
+                        </div>
                     );
                 })}
             </DragDropContext>

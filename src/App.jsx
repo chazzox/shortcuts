@@ -7,13 +7,13 @@ import { toggle } from './redux/store';
 class App extends Component {
     render() {
         return (
-            <div className="containerOfAll">
-                <div className="nav">
+            <div className="globalWrapper">
+                <div className="navWrapper">
                     <h1 className="navTitle">SHORTCUTS {this.props.editMode ? ' - editmode' : ''}</h1>
                     <div className="navIconContainer">
-                        <h1 className="yeah">made for gamers, by gamers</h1>
+                        <h1 className="navSubTitle">made for gamers, by gamers</h1>
                         <button
-                            className="editButton"
+                            className="buttonGeneral"
                             onClick={() => {
                                 // editMode toggle, use this props to do conditional styling/rendering
                                 // in any main component, the value: this.props.editMode will be available for use,

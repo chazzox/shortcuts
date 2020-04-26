@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Popup from './popupWrapper';
+import Popup, { ErrorContainer } from './modalUtils';
 import { updateObject, addObject } from '../../redux/store';
+import validation from './validation';
 
 class LinkModal extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
             name: this.props.addMode ? '' : this.props.config.links[this.props.id].name,
             url: this.props.addMode ? '' : this.props.config.links[this.props.id].url,
-            urlIcon: this.props.addMode ? '' : this.props.config.links[this.props.id].linkIconUrl
+            urlIcon: this.props.addMode ? '' : this.props.config.links[this.props.id].linkIconUrl,
+            errors: []
         };
     }
     handleChange(index, value) {
@@ -31,6 +32,7 @@ class LinkModal extends React.Component {
         }
     }
     render() {
+        console.log(this.state.errors);
         return (
             <Popup>
                 <div className="modal">
@@ -53,10 +55,26 @@ class LinkModal extends React.Component {
                             value={this.state.urlIcon}
                             onChange={(event) => this.handleChange(2, event.target.value)}
                         />
+                        {this.state.errors.map((error, index) => (
+                            <ErrorContainer key={index} errorMessage={error} />
+                        ))}
                     </div>
                     <div
-                        className="editButton"
+                        className="buttonGeneral"
                         onClick={() => {
+                            const errorList = [];
+                            if (validation.isEmpty([this.state.name, this.state.url])) {
+                                errorList.push('error message for stuff being empty');
+                            }
+                            if (!validation.isURL([this.state.url, this.state.urlIcon])) {
+                                errorList.push('one of url not valid u boomer retard');
+                            }
+                            // rendering the errors
+                            if (errorList.length !== 0) {
+                                this.setState({ errors: errorList });
+                                return;
+                            }
+                            // running add/edit function based on the mode passed a prop
                             if (this.props.addMode)
                                 this.props.addObject({
                                     type: 'link',
@@ -67,7 +85,7 @@ class LinkModal extends React.Component {
                                         linkIconUrl: this.state.urlIcon
                                     }
                                 });
-                            if (!this.props.addMode)
+                            else
                                 this.props.updateObject({
                                     id: this.props.id,
                                     type: 'link',
@@ -82,7 +100,7 @@ class LinkModal extends React.Component {
                     >
                         Save Changes
                     </div>
-                    <div className="editButton" onClick={() => this.props.close()}>
+                    <div className="buttonGeneral" onClick={() => this.props.close()}>
                         Cancel
                     </div>
                 </div>

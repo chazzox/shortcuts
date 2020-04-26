@@ -1,8 +1,8 @@
 import React from 'react';
 
-import DeleteModal from './deleteModal';
-import LinkModal from './linkModal';
-import BoxModal from './boxModal';
+import DeleteModal from './utils/deleteModal';
+import LinkModal from './utils/linkModal';
+import BoxModal from './utils/boxModal';
 
 export default class ObjectUtils extends React.Component {
     constructor(props) {
@@ -26,8 +26,14 @@ export default class ObjectUtils extends React.Component {
     }
     render() {
         return this.props.editMode ? (
-            <div style={{ display: 'inline-block' }}>
-                <button className="editButton" onClick={() => this.handleShowDelete()}>
+            <div
+                style={
+                    this.props.type === 'box'
+                        ? { display: 'inline-block' }
+                        : { display: 'inline-block', position: 'absolute', top: '5px' }
+                }
+            >
+                <button className="buttonGeneral" onClick={() => this.handleShowDelete()}>
                     delete
                 </button>
                 <button className="editLinkButton" onClick={() => this.handleShowEdit()}></button>

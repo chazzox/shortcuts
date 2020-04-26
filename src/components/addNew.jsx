@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import LinkModal from './linkModal';
-import { updateObject } from '../../redux/store';
+import LinkModal from './utils/linkModal';
+import { updateObject } from '../redux/store';
+import BoxModal from './utils/boxModal';
 
 export const AddObject = styled.button`
     padding-top: 10px;
@@ -29,17 +30,26 @@ class AddNew extends React.Component {
     }
     render() {
         return this.props.editMode ? (
-            <div className="addButtonWrapper">
+            <div className="newObjectButtonContainer">
                 <AddObject onClick={() => this.handleShow()} className="addButton" maxWidth={80}>
                     Add New
                 </AddObject>
                 {this.state.open ? (
-                    <LinkModal
-                        addMode={true}
-                        id={this.props.id}
-                        close={() => this.handleHide()}
-                        parentId={this.props.parentId}
-                    />
+                    this.props.type === 'link' ? (
+                        <LinkModal
+                            addMode={true}
+                            id={this.props.id}
+                            close={() => this.handleHide()}
+                            parentId={this.props.parentId}
+                        />
+                    ) : (
+                        <BoxModal
+                            addMode={true}
+                            id={this.props.id}
+                            close={() => this.handleHide()}
+                            parentId={this.props.parentId}
+                        />
+                    )
                 ) : null}
             </div>
         ) : null;

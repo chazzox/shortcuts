@@ -1,23 +1,27 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import Cookies from 'js-cookie';
+import Cookies from 'universal-cookie';
 
 import example from '../example';
 import randomKey from '../components/utils/randomKey';
+
+const cookies = new Cookies();
 
 export const userSlice = createSlice({
     name: 'editMode',
     initialState: {
         value: false,
+        userConf: example,
         config: example.config
     },
     reducers: {
         toggle: (state) => {
             if (state.value === true) {
                 // updating user cookies for site
-                Cookies.set('user', JSON.stringify({ ...state.userConf, config: state.config }), {
-                    expires: 999999,
-                    path: ''
+                console.log(JSON.stringify({ ...state.userConf, config: state.config }));
+                cookies.set('user', JSON.stringify({ ...state.userConf, config: state.config }), {
+                    path: '/'
                 });
+                console.log(cookies.get('user'));
             }
             state.value = !state.value;
         },
@@ -28,30 +32,25 @@ export const userSlice = createSlice({
             const parentPointer = action.payload.type === 'link' ? 'boxes' : 'columns';
             const itemPointer = action.payload.type === 'link' ? 'links' : 'boxes';
             const orderPointer = action.payload.type === 'link' ? 'linkOrder' : 'boxOrder';
-            try {
-                const targetParentComponent = state.config[parentPointer][action.payload.parentId];
-                const targetParentObjectOrder = Array.from(targetParentComponent[orderPointer]);
-                const itemId = `${action.payload.type}-${randomKey()}`;
-                const newParentItemOrder = targetParentObjectOrder;
-                newParentItemOrder.push(itemId);
-                state.config = {
-                    ...state.config,
-                    [parentPointer]: {
-                        ...state.config[parentPointer],
-                        [action.payload.parentId]: { ...targetParentComponent, [orderPointer]: newParentItemOrder }
-                    },
-                    [itemPointer]: {
-                        ...state.config[itemPointer],
-                        [itemId]: {
-                            id: itemId,
-                            ...action.payload.content
-                        }
+            const targetParentComponent = state.config[parentPointer][action.payload.parentId];
+            const targetParentObjectOrder = Array.from(targetParentComponent[orderPointer]);
+            const itemId = `${action.payload.type}-${randomKey()}`;
+            const newParentItemOrder = targetParentObjectOrder;
+            newParentItemOrder.push(itemId);
+            state.config = {
+                ...state.config,
+                [parentPointer]: {
+                    ...state.config[parentPointer],
+                    [action.payload.parentId]: { ...targetParentComponent, [orderPointer]: newParentItemOrder }
+                },
+                [itemPointer]: {
+                    ...state.config[itemPointer],
+                    [itemId]: {
+                        id: itemId,
+                        ...action.payload.content
                     }
-                };
-            } catch (err) {
-                console.log(action.payload);
-                console.log(err);
-            }
+                }
+            };
         },
         updateObject: (state, action) => {
             const objectPointer = action.payload.type === 'link' ? 'links' : 'boxes';

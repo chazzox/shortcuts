@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
-import AddNew from './utils/addNew';
+import AddNew from './addNew';
 import Box from './box';
-import './column.scss';
 
 // we also pass addition styles to these components through the sass file
 // however the styles in here are conditional, so require props
@@ -15,10 +14,10 @@ const ColumnContainer = styled.div`
     ${(props) => (props.boxNumber === 0 ? 'height:114px;' : '')}
 `;
 
-export default class Column extends Component {
+export default class Column extends React.Component {
     render() {
         return (
-            <ColumnWrapper editMode={this.props.editMode} className="cont">
+            <ColumnWrapper editMode={this.props.editMode} className="columnWrapper">
                 <Droppable droppableId={this.props.column.id} type="BOX">
                     {/* the child of a droppable must be a function*/}
                     {(provided) => (
@@ -51,7 +50,7 @@ export default class Column extends Component {
                         </ColumnContainer>
                     )}
                 </Droppable>
-                <AddNew id={this.props.column.id} />
+                <AddNew parentId={this.props.column.id} type="box" />
             </ColumnWrapper>
         );
     }

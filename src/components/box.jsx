@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
-import ObjectUtils from './utils/objectUtils';
-import AddNew from './utils/addNew';
+import ObjectUtils from './objectUtils';
+import AddNew from './addNew';
 
 import Link from './link';
-import './box.scss';
 
-class Box extends Component {
+class Box extends React.Component {
     // a box can be one of two things, either a box of links, or a widget, as the two have very different render processes
     // they are split of into different functions
     renderBox(boxType) {
@@ -60,6 +59,7 @@ class Box extends Component {
 
                         <div className="boxContainer">
                             {/* inside the box is the link container, this is a place where we drop the links into hence the droppable element */}
+                            {/* droppableId is needed for framework to know what it is dragging, type constraints what can be dropped into a given container */}
                             <Droppable droppableId={this.props.box.id} type={this.props.box.type}>
                                 {(provided) => (
                                     <div {...provided.droppableProps} ref={provided.innerRef}>
@@ -71,7 +71,7 @@ class Box extends Component {
                                 )}
                             </Droppable>
                             {/* this only renders the addNew button if the box contains link as opposed to a widget box */}
-                            {isLink ? <AddNew parentId={this.props.box.id} /> : null}
+                            {isLink ? <AddNew parentId={this.props.box.id} type="link" /> : null}
                         </div>
                     </div>
                 )}
@@ -79,7 +79,9 @@ class Box extends Component {
         );
     }
 }
-class Weather extends Component {
+
+// example of a widget you could add
+class Weather extends React.Component {
     render() {
         return 'it do be weather';
     }

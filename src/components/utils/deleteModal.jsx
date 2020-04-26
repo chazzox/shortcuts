@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Popup from './popupWrapper';
+import Popup from './modalUtils';
 import { deleteObject } from '../../redux/store';
 
 class DeleteModal extends React.Component {
@@ -10,7 +10,7 @@ class DeleteModal extends React.Component {
             <Popup>
                 <div className="modal">
                     <div
-                        className="editButton"
+                        className="buttonGeneral"
                         onClick={() => {
                             this.props.deleteObject({
                                 type: this.props.type,
@@ -22,7 +22,7 @@ class DeleteModal extends React.Component {
                     >
                         Delete
                     </div>
-                    <div className="editButton" onClick={() => this.props.close()}>
+                    <div className="buttonGeneral" onClick={() => this.props.close()}>
                         Cancel
                     </div>
                 </div>
