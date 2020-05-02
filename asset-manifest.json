@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/shortcuts-beta/static/css/main.9502852e.chunk.css",
-    "main.js": "/shortcuts-beta/static/js/main.99cac86a.chunk.js",
-    "main.js.map": "/shortcuts-beta/static/js/main.99cac86a.chunk.js.map",
+    "main.js": "/shortcuts-beta/static/js/main.d0c45567.chunk.js",
+    "main.js.map": "/shortcuts-beta/static/js/main.d0c45567.chunk.js.map",
     "runtime-main.js": "/shortcuts-beta/static/js/runtime-main.407da86b.js",
     "runtime-main.js.map": "/shortcuts-beta/static/js/runtime-main.407da86b.js.map",
-    "static/js/2.c594faa5.chunk.js": "/shortcuts-beta/static/js/2.c594faa5.chunk.js",
-    "static/js/2.c594faa5.chunk.js.map": "/shortcuts-beta/static/js/2.c594faa5.chunk.js.map",
+    "static/js/2.beb9656c.chunk.js": "/shortcuts-beta/static/js/2.beb9656c.chunk.js",
+    "static/js/2.beb9656c.chunk.js.map": "/shortcuts-beta/static/js/2.beb9656c.chunk.js.map",
     "index.html": "/shortcuts-beta/index.html",
-    "precache-manifest.6c2b34e462054f6327b8c223f5f6c9e0.js": "/shortcuts-beta/precache-manifest.6c2b34e462054f6327b8c223f5f6c9e0.js",
+    "precache-manifest.bcf6d1b72593a5e4d6a7862d84e503c0.js": "/shortcuts-beta/precache-manifest.bcf6d1b72593a5e4d6a7862d84e503c0.js",
     "service-worker.js": "/shortcuts-beta/service-worker.js",
     "static/css/main.9502852e.chunk.css.map": "/shortcuts-beta/static/css/main.9502852e.chunk.css.map",
-    "static/js/2.c594faa5.chunk.js.LICENSE.txt": "/shortcuts-beta/static/js/2.c594faa5.chunk.js.LICENSE.txt",
+    "static/js/2.beb9656c.chunk.js.LICENSE.txt": "/shortcuts-beta/static/js/2.beb9656c.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/shortcuts-beta/static/media/error.3a143f0b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.407da86b.js",
-    "static/js/2.c594faa5.chunk.js",
+    "static/js/2.beb9656c.chunk.js",
     "static/css/main.9502852e.chunk.css",
-    "static/js/main.99cac86a.chunk.js"
+    "static/js/main.d0c45567.chunk.js"
   ]
 }
