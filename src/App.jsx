@@ -1,10 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import Shortcuts from './components/shortcuts';
-import { toggle } from './redux/store';
+import PopupWrapper from './components/utils/modalUtils';
+import { toggle, loadExample } from './redux/store';
 
-class App extends Component {
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isOpen: this.props.tutorialMode
+		};
+	}
+	close() {
+		this.setState({ isOpen: false });
+	}
 	render() {
 		return (
 			<div className="globalWrapper">
@@ -29,7 +39,33 @@ class App extends Component {
 				<div>
 					<Shortcuts editMode={this.props.editMode} />
 				</div>
+				{this.state.isOpen ? (
+					<TutorialModal
+						close={() => this.close()}
+						loadExample={() => {
+							this.props.loadExample();
+							this.close();
+						}}
+					/>
+				) : null}
 			</div>
+		);
+	}
+}
+
+class TutorialModal extends React.Component {
+	render() {
+		return (
+			<PopupWrapper>
+				<div className="modal">
+					<button className="buttonGeneral" onClick={() => this.props.loadExample()}>
+						loadExample
+					</button>
+					<button className="buttonGeneral" onClick={() => this.props.close()}>
+						close
+					</button>
+				</div>
+			</PopupWrapper>
 		);
 	}
 }
@@ -38,6 +74,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
 	return {
 		editMode: state.userSlice.value,
+		tutorialMode: state.userSlice.tutorialMode,
 		config: state.userSlice.config
 	};
 };
@@ -45,7 +82,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = () => {
 	return {
 		// function to toggle the editMode state
-		toggle
+		toggle,
+		loadExample
 	};
 };
 

@@ -1,4 +1,4 @@
-const example = {
+export const exampleConfig = {
 	extras: { name: 'chaz', 'dark-mode': true },
 	config: {
 		links: {

@@ -3,7 +3,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 import lzw_encode, { lzw_decode } from '../components/utils/compress';
 import validator from '../components/utils/validation';
 import randomKey from '../components/utils/randomKey';
-import example from '../example';
+import blank, { exampleConfig } from '../userConfigExamples';
 
 export const userSlice = createSlice({
 	name: 'editMode',
@@ -20,6 +20,10 @@ export const userSlice = createSlice({
 				localStorage.setItem('extras', lzw_encode(state.extras));
 			}
 			state.value = !state.value;
+		},
+		loadExample: (state) => {
+			state.config = exampleConfig.config;
+			return;
 		},
 		updateConfig: (state, action) => {
 			state.config = action.payload;
@@ -47,6 +51,7 @@ export const userSlice = createSlice({
 					}
 				}
 			};
+			localStorage.setItem('config', lzw_encode(state.config));
 		},
 		updateObject: (state, action) => {
 			const objectPointer = action.payload.type === 'link' ? 'links' : 'boxes';
@@ -60,6 +65,7 @@ export const userSlice = createSlice({
 					}
 				}
 			};
+			localStorage.setItem('config', lzw_encode(state.config));
 		},
 		deleteObject: (state, action) => {
 			const containerPointer = action.payload.type === 'link' ? 'boxes' : 'columns';
@@ -86,6 +92,7 @@ export const userSlice = createSlice({
 					}
 				}
 			};
+			localStorage.setItem('config', lzw_encode(state.config));
 		}
 	}
 });
@@ -94,17 +101,17 @@ function getUserItems() {
 	// maybe add logic to say one thing found but other wasn't?
 	const temporaryUserConfig = JSON.parse(lzw_decode(localStorage.getItem('config')));
 	const temporaryUserExtras = JSON.parse(lzw_decode(localStorage.getItem('extras')));
-	console.log(validator.isEmpty([temporaryUserConfig]));
+	const shouldReset = validator.isEmpty([temporaryUserConfig]);
 	return [
 		{
-			config: validator.isEmpty([temporaryUserConfig]) ? example.config : temporaryUserConfig,
-			extras: validator.isEmpty([temporaryUserExtras]) ? example.extras : temporaryUserExtras
-		},
-		{ errorMessages: '' }
+			config: shouldReset ? blank.config : temporaryUserConfig,
+			extras: shouldReset ? blank.extras : temporaryUserExtras,
+			tutorialMode: shouldReset
+		}
 	];
 }
 
-export const { toggle, updateConfig, deleteObject, updateObject, addObject } = userSlice.actions;
+export const { toggle, updateConfig, deleteObject, updateObject, addObject, loadExample } = userSlice.actions;
 
 export default configureStore({
 	reducer: {
