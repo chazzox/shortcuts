@@ -15,6 +15,12 @@ class App extends React.Component {
 	close() {
 		this.setState({ isOpen: false });
 	}
+	// every time the component receives new params we check if the theme has changes
+	componentWillReceiveProps() {
+		if (this.props.userInfo.themeInfo !== 'custom')
+			document.documentElement.setAttribute('theme', this.props.userInfo.themeInfo ? 'dark' : 'light');
+		// future logic for custom themes can go here
+	}
 	render() {
 		return (
 			<div className="globalWrapper">
@@ -39,6 +45,7 @@ class App extends React.Component {
 				<div>
 					<Shortcuts editMode={this.props.editMode} />
 				</div>
+				{/* rendering the tutorial modal if it is needed */}
 				{this.state.isOpen ? (
 					<TutorialModal
 						close={() => this.close()}
@@ -58,6 +65,7 @@ class TutorialModal extends React.Component {
 		return (
 			<PopupWrapper>
 				<div className="modal">
+					<div>a bitch ass really never been to the site before</div>
 					<button className="buttonGeneral" onClick={() => this.props.loadExample()}>
 						loadExample
 					</button>
@@ -75,7 +83,8 @@ const mapStateToProps = (state) => {
 	return {
 		editMode: state.userSlice.value,
 		tutorialMode: state.userSlice.tutorialMode,
-		config: state.userSlice.config
+		config: state.userSlice.config,
+		userInfo: state.userSlice.userInfo
 	};
 };
 

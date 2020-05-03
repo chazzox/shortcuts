@@ -1,4 +1,5 @@
-// i did not write this
+// i did not write this, functions for compressing the config
+// i do not understand any of it, although it is probable that i will comment in efforts to do so
 
 // code taken from https://gist.github.com/revolunet/843889
 export default function lzw_encode(s) {

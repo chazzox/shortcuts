@@ -1,5 +1,5 @@
-export const exampleConfig = {
-	extras: { name: 'chaz', 'dark-mode': true },
+const exampleConfig = {
+	userInfo: { name: '', themeInfo: true },
 	config: {
 		links: {
 			'link-0': {
@@ -279,7 +279,7 @@ export const exampleConfig = {
 	}
 };
 const newUser = {
-	extras: { name: 'chaz', 'dark-mode': true },
+	userInfo: { name: 'test', themeInfo: true },
 	config: {
 		links: {},
 		boxes: {},
@@ -304,4 +304,4 @@ const newUser = {
 		columnOrder: ['column-1', 'column-2', 'column-3', 'column-4']
 	}
 };
-export default newUser;
+export { newUser, exampleConfig };

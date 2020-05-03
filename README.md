@@ -13,7 +13,7 @@ shortcuts-beta
 ├── package.json
 ├── .gitignore
 ├── .vscode
-│	├──  extentions.json 
+│	├──  extensions.json 
 │	└──  settings.json
 ├── public
 └── src
