@@ -16,7 +16,8 @@ class App extends React.Component {
 		this.setState({ isOpen: false });
 	}
 	// every time the component receives new params we check if the theme has changes
-	componentWillReceiveProps() {
+	componentDidUpdate() {
+		console.log(this.props.userInfo);
 		if (this.props.userInfo.themeInfo !== 'custom')
 			document.documentElement.setAttribute('theme', this.props.userInfo.themeInfo ? 'dark' : 'light');
 		// future logic for custom themes can go here
@@ -32,8 +33,7 @@ class App extends React.Component {
 							className="buttonGeneral"
 							onClick={() => {
 								// editMode toggle, use this props to do conditional styling/rendering
-								// in any main component, the value: this.props.editMode will be available for use,
-								// in shortcuts please use this.props.editMode
+								// in any main component, the value: this.props.editMode will be available for use
 								this.props.toggle();
 							}}
 						>
