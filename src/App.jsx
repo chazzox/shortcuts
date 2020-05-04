@@ -16,13 +16,10 @@ class App extends React.Component {
 		this.setState({ isOpen: false });
 	}
 	// every time the component receives new params we check if the theme has changes
-	componentDidUpdate() {
-		console.log(this.props.userInfo);
-		if (this.props.userInfo.themeInfo !== 'custom')
-			document.documentElement.setAttribute('theme', this.props.userInfo.themeInfo);
-		// future logic for custom themes can go here
-	}
+
 	render() {
+		if (this.props.userInfo.themeType !== 'custom')
+			document.documentElement.setAttribute('theme', this.props.userInfo.themeType);
 		return (
 			<div className="globalWrapper">
 				<div className="navWrapper">
@@ -44,7 +41,7 @@ class App extends React.Component {
 							className="buttonGeneral"
 							onClick={() => {
 								this.props.changeTheme({
-									themeType: this.props.userInfo.themeInfo === 'light' ? 'dark' : 'light'
+									themeType: this.props.userInfo.themeType === 'light' ? 'dark' : 'light'
 								});
 							}}
 						>

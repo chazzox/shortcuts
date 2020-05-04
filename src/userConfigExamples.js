@@ -1,5 +1,5 @@
 const exampleConfig = {
-	userInfo: { name: '', themeInfo: true },
+	userInfo: { name: '', themeType: 'dark' },
 	config: {
 		links: {
 			'link-0': {
@@ -279,7 +279,7 @@ const exampleConfig = {
 	}
 };
 const newUser = {
-	userInfo: { name: 'test', themeInfo: true },
+	userInfo: { name: 'test', themeType: true },
 	config: {
 		links: {},
 		boxes: {},

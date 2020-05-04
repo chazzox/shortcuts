@@ -10,7 +10,8 @@
 }
 
 // this is how we address different themes
-html[theme='dark'] {
+// default values (darkMode)
+html {
 	--main-bg-color: #292c30;
 	--main-text-color: white;
 	--nav-bg-color: black;

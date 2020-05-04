@@ -17,7 +17,7 @@ export const userSlice = createSlice({
 			// updating the user cookies when saving their changes
 			if (state.value === true) {
 				localStorage.setItem('config', lzw_encode(state.config));
-				localStorage.setItem('userInfo', lzw_encode(state.userInfo));
+				localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
 			}
 			state.value = !state.value;
 		},
@@ -25,6 +25,8 @@ export const userSlice = createSlice({
 		loadExample: (state) => {
 			state.config = exampleConfig.config;
 			state.userInfo = exampleConfig.userInfo;
+			localStorage.setItem('config', lzw_encode(state.config));
+			localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
 			return;
 		},
 		// function to update the config
@@ -115,7 +117,9 @@ export const userSlice = createSlice({
 			return;
 		},
 		changeTheme: (state, action) => {
-			state.userInfo.themeInfo = action.payload.themeType;
+			state.userInfo = { ...state.userInfo, themeType: action.payload.themeType };
+			localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
+			return;
 		}
 	}
 });
@@ -123,7 +127,7 @@ export const userSlice = createSlice({
 // function to check for user storage
 function getUserItems() {
 	const temporaryUserConfig = JSON.parse(lzw_decode(localStorage.getItem('config')));
-	const temporaryUserExtras = JSON.parse(lzw_decode(localStorage.getItem('userInfo')));
+	const temporaryUserExtras = JSON.parse(localStorage.getItem('userInfo'));
 	const shouldReset = validator.isEmpty([temporaryUserConfig]);
 	return {
 		config: shouldReset ? newUser.config : temporaryUserConfig,
