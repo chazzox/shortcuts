@@ -1,5 +1,9 @@
 const exampleConfig = {
-	userInfo: { name: '', themeType: 'dark' },
+	userInfo: {
+		name: '',
+		themeType: 'custom',
+		themeInfo: { mainBg: '#5f5f5f', fontMain: 'white', navBg: '#5f5f5f', boxModalBg: 'red' }
+	},
 	config: {
 		links: {
 			'link-0': {

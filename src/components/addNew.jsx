@@ -36,7 +36,7 @@ class AddNew extends React.Component {
 				<AddObject onClick={() => this.handleShow()} className="addButton" maxWidth={80}>
 					Add New
 				</AddObject>
-				{/* condition statements to decide which type of modal to display */}
+				{/* conditional statements to decide which type of modal to display */}
 				{this.state.open ? (
 					this.props.type === 'link' ? (
 						<LinkModal

@@ -15,11 +15,20 @@ class App extends React.Component {
 	close() {
 		this.setState({ isOpen: false });
 	}
-	// every time the component receives new params we check if the theme has changes
 
 	render() {
 		if (this.props.userInfo.themeType !== 'custom')
 			document.documentElement.setAttribute('theme', this.props.userInfo.themeType);
+		else {
+			document.documentElement.setAttribute('theme', 'custom');
+			document.documentElement.style.setProperty('--main-bg-color', this.props.userInfo.themeInfo.mainBg);
+			document.documentElement.style.setProperty('--main-text-color', this.props.userInfo.themeInfo.fontMain);
+			document.documentElement.style.setProperty('--nav-bg-color', this.props.userInfo.themeInfo.navBg);
+			document.documentElement.style.setProperty(
+				'--box-modal-bg-color',
+				this.props.userInfo.themeInfo.boxModalBg
+			);
+		}
 		return (
 			<div className="globalWrapper">
 				<div className="navWrapper">
@@ -37,16 +46,29 @@ class App extends React.Component {
 							{/* this is a conditional statement to render save or edit inside the button */}
 							{this.props.editMode ? 'save' : 'edit'}
 						</button>
-						<button
-							className="buttonGeneral"
-							onClick={() => {
-								this.props.changeTheme({
-									themeType: this.props.userInfo.themeType === 'light' ? 'dark' : 'light'
-								});
-							}}
-						>
-							toggleMode
-						</button>
+						{/* color customizations, this is in no way the final implementation and i encourage change to the workflow 
+						of the changing, eg when removing a custom theme, it is just a showcase of how you could roughly do it */}
+						{this.props.editMode ? (
+							<button
+								className="buttonGeneral"
+								onClick={() => {
+									console.log(document.documentElement.getAttribute('theme'));
+									if (document.documentElement.getAttribute('theme') === 'custom') {
+										document.documentElement.style = '';
+										this.props.changeTheme({
+											themeType: 'dark'
+										});
+										return;
+									}
+									this.props.changeTheme({
+										themeType: this.props.userInfo.themeType === 'light' ? 'dark' : 'light'
+									});
+									return;
+								}}
+							>
+								toggle theme
+							</button>
+						) : null}
 					</div>
 				</div>
 				<div>
