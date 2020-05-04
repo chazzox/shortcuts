@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Shortcuts from './components/shortcuts';
 import PopupWrapper from './components/utils/modalUtils';
-import { toggle, loadExample } from './redux/store';
+import { toggle, loadExample, changeTheme } from './redux/store';
 
 class App extends React.Component {
 	constructor(props) {
@@ -19,7 +19,7 @@ class App extends React.Component {
 	componentDidUpdate() {
 		console.log(this.props.userInfo);
 		if (this.props.userInfo.themeInfo !== 'custom')
-			document.documentElement.setAttribute('theme', this.props.userInfo.themeInfo ? 'dark' : 'light');
+			document.documentElement.setAttribute('theme', this.props.userInfo.themeInfo);
 		// future logic for custom themes can go here
 	}
 	render() {
@@ -39,6 +39,16 @@ class App extends React.Component {
 						>
 							{/* this is a conditional statement to render save or edit inside the button */}
 							{this.props.editMode ? 'save' : 'edit'}
+						</button>
+						<button
+							className="buttonGeneral"
+							onClick={() => {
+								this.props.changeTheme({
+									themeType: this.props.userInfo.themeInfo === 'light' ? 'dark' : 'light'
+								});
+							}}
+						>
+							toggleMode
 						</button>
 					</div>
 				</div>
@@ -92,7 +102,8 @@ const mapDispatchToProps = () => {
 	return {
 		// function to toggle the editMode state
 		toggle,
-		loadExample
+		loadExample,
+		changeTheme
 	};
 };
 

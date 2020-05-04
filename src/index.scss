@@ -5,23 +5,31 @@
 	-khtml-user-select: none;
 	-webkit-user-select: none;
 	-o-user-select: none;
-	color: white;
+	color: var(--main-text-color);
 	font-family: 'Manrope', sans-serif;
 }
 
-* {
+// this is how we address different themes
+html[theme='dark'] {
 	--main-bg-color: #292c30;
+	--main-text-color: white;
+	--nav-bg-color: black;
+	--box-modal-bg-color: #2f3439;
 }
 
 html[theme='light'] {
-	--main-bg-color: white;
+	--main-bg-color: #f0eff5;
+	--main-text-color: black;
+	--nav-bg-color: #d8d8d8;
+	--box-modal-bg-color: white;
 }
 
 html {
-	color: white;
+	color: var(--main-text-color);
 	background-color: var(--main-bg-color);
 	margin: 0;
 }
+
 a {
 	text-decoration: none;
 }
@@ -31,7 +39,7 @@ a {
 	-webkit-filter: blur(12px);
 }
 .navWrapper {
-	background: black;
+	background: var(--nav-bg-color);
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 	align-items: center;
 	font-size: calc(10px + 2vmin);
@@ -104,7 +112,7 @@ a {
 .boxContainer,
 .modal {
 	width: 85%;
-	background: #2f3439;
+	background: var(--box-modal-bg-color);
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 	border-radius: 25px;
 	padding: 10px;

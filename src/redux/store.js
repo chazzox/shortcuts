@@ -113,6 +113,9 @@ export const userSlice = createSlice({
 				}
 			};
 			return;
+		},
+		changeTheme: (state, action) => {
+			state.userInfo.themeInfo = action.payload.themeType;
 		}
 	}
 });
@@ -130,7 +133,15 @@ function getUserItems() {
 }
 
 // exporting all of the functions that interact with the state
-export const { toggle, updateConfig, deleteObject, updateObject, addObject, loadExample } = userSlice.actions;
+export const {
+	toggle,
+	updateConfig,
+	deleteObject,
+	updateObject,
+	addObject,
+	loadExample,
+	changeTheme
+} = userSlice.actions;
 
 export default configureStore({
 	reducer: {
