@@ -1,62 +1,90 @@
 const express = require('express');
 const request = require('request');
-const app = express();
+const OAuth = require('oauth-1.0a');
+const crypto = require('crypto');
 const router = express.Router();
 
-const api_consumer = '42btAO9xT33VFtodktW3uFLvb';
-router.post('/oauth1', (req, res) => {
-	var options = {
-		method: 'POST',
-		url: 'https://api.twitter.com/oauth/request_token',
-		headers: {
-			oauth_callback: encodeURIComponent('http://81.156.117.239:3000/'),
-			Authorization:
-				'OAuth oauth_consumer_key="' +
-				api_consumer +
-				'",oauth_token="744992592803270660-TKcSDwRNoFEBIuV7CN8ue96t8rD2NFA",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1588899238",oauth_nonce="IpJ1vfdZXte",oauth_version="1.0",oauth_signature="8F2VJPqskN1%2BZBNBIGsOu6QTaco%3D"'
-		}
-	};
-	request(options, function (error, response) {
-		if (error) throw new Error(error);
-		res.send(response.toJSON());
-	});
+// API key
+const consumerKey = '42btAO9xT33VFtodktW3uFLvb';
+const consumerKeySecret = 'NhyIJM0nMj6uM54nkXmEspJZakfAyJcpN1qVceANjJBTawijRH';
+
+const oauth = OAuth({
+	consumer: {
+		key: consumerKey,
+		secret: consumerKeySecret
+	},
+	signature_method: 'HMAC-SHA1',
+	hash_function(base_string, key) {
+		return crypto.createHmac('sha1', key).update(base_string).digest('base64');
+	}
 });
+
+router.post('/oauth1', (req, res) => {
+	const request_data = {
+		url: 'https://api.twitter.com/oauth/request_token',
+		method: 'POST'
+	};
+
+	// Note: The token is optional for some requests
+	request(
+		{
+			url: request_data.url,
+			method: request_data.method,
+			headers: oauth.toHeader(oauth.authorize(request_data))
+		},
+		function (error, response) {
+			if (error) throw new Error(error);
+			res.send(response.toJSON());
+		}
+	);
+});
+
 router.post('/oauth2', (req, res) => {
-	var options = {
-		method: 'POST',
+	const request_data = {
 		url:
 			'https://api.twitter.com/oauth/access_token?oauth_token=' +
 			req.query.oauth_token +
 			'&oauth_verifier=' +
-			req.query.oauth_verifier
+			req.query.oauth_verifier,
+		method: 'POST'
 	};
-	request(options, function (error, response) {
-		if (error) throw new Error(error);
-		res.send(response.toJSON());
-	});
+	request(
+		{
+			...request_data,
+			headers: oauth.toHeader(
+				oauth.authorize(request_data, {
+					key: req.query.oauth_token
+				})
+			)
+		},
+		function (error, response) {
+			if (error) throw new Error(error);
+			res.send(response.toJSON());
+		}
+	);
 });
 
 router.post('/getTimeLine', (req, res) => {
-	console.log(req.query);
-	var options = {
-		method: 'GET',
+	const request_data = {
 		url: 'https://api.twitter.com/1.1/statuses/home_timeline.json',
-		headers: {
-			Authorization:
-				'OAuth oauth_consumer_key="' +
-				api_consumer +
-				'",oauth_token="' +
-				req.body.oauth_token +
-				'",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1588907309",oauth_nonce="6qCw1ZBABTy",oauth_version="1.0",oauth_signature="iYZ1amFw74Ua4kJAXXbQeq%2BlLQQ%3D"'
-		}
+		method: 'GET'
 	};
-	request(options, function (error, response) {
-		try {
-			res.send(response.toJSON());
-		} catch (err) {
-			console.log(err);
+	request(
+		{
+			url: request_data.url,
+			method: request_data.method,
+			headers: oauth.toHeader(
+				oauth.authorize(request_data, {
+					key: req.query.oauth_token,
+					secret: req.query.oauth_token_secret
+				})
+			)
+		},
+		function (error, response) {
+			if (error) throw new Error(error);
+			res.send({ ...JSON.parse(response.toJSON().body) });
 		}
-	});
+	);
 });
 
 module.exports = router;
