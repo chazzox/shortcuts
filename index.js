@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const routes = require('./api/route');
+const twitterAPI = require('./api/twitter');
 const port = 8000;
 
 // Body parser middleware
@@ -18,6 +18,6 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use('/api/', routes);
+app.use('/twitter', twitterAPI);
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

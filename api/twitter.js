@@ -1,12 +1,12 @@
 const express = require('express');
+const router = express.Router();
 const request = require('request');
 const OAuth = require('oauth-1.0a');
 const crypto = require('crypto');
-const router = express.Router();
 
 // API key
-const consumerKey = '42btAO9xT33VFtodktW3uFLvb';
-const consumerKeySecret = 'NhyIJM0nMj6uM54nkXmEspJZakfAyJcpN1qVceANjJBTawijRH';
+const consumerKey = 'Y6hXLlxAJMogmAnGmE8ZRCFJu';
+const consumerKeySecret = 'mtyUd8qfdzx2K5n1eM3bPhuw8B6IOZdQ2sBfP4eeKuNbjvLoV8';
 
 const oauth = OAuth({
 	consumer: {
@@ -64,7 +64,7 @@ router.post('/oauth2', (req, res) => {
 	);
 });
 
-router.post('/getTimeLine', (req, res) => {
+router.post('/getTimeline', (req, res) => {
 	const request_data = {
 		url: 'https://api.twitter.com/1.1/statuses/home_timeline.json',
 		method: 'GET'
