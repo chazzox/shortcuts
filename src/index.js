@@ -7,9 +7,11 @@ import store from './redux/store';
 import './index.scss';
 
 ReactDOM.render(
-    // provider is what allows us to connect the redux store to all of the components
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
+	// provider is what allows us to connect the redux store to all of the components
+	<React.StrictMode>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</React.StrictMode>,
+	document.getElementById('root')
 );

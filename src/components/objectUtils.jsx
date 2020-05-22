@@ -1,8 +1,8 @@
 import React from 'react';
 
-import DeleteModal from './utils/deleteModal';
-import LinkModal from './utils/linkModal';
-import BoxModal from './utils/boxModal';
+import DeleteModal from './modals/deleteModal';
+import LinkModal from './modals/linkModal';
+import BoxModal from './modals/boxModal';
 
 export default class ObjectUtils extends React.Component {
 	constructor(props) {

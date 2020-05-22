@@ -16,6 +16,7 @@ html {
 	--main-text-color: white;
 	--nav-bg-color: black;
 	--box-modal-bg-color: #2f3439;
+	--column-border-col: white;
 }
 
 html[theme='light'] {
@@ -23,6 +24,7 @@ html[theme='light'] {
 	--main-text-color: black;
 	--nav-bg-color: #d8d8d8;
 	--box-modal-bg-color: white;
+	--column-border-col: black;
 }
 
 html {
@@ -258,10 +260,7 @@ a {
 	background-repeat: no-repeat;
 	background-position-y: center;
 	background-position-x: 20px;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	padding-left: 78px;
-	padding-right: 20px;
+	padding: 3px 20px 3px 78px;
 	min-height: 50px;
 	vertical-align: middle;
 	overflow: hidden;
@@ -298,20 +297,49 @@ a {
 	}
 }
 
+#selectContainer {
+	background-color: black;
+	padding: 5px;
+	width: 40%;
+	border-radius: 15px;
+}
+
+#expand {
+	width: 15px;
+	float: right;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+.option {
+	&:hover {
+		font-size: 20px;
+		transition-duration: 0.2s;
+		transition-timing-function: ease-out;
+	}
+}
+
+.timeline {
+	height: 300px;
+	overflow-x: hidden;
+	overflow-x: auto;
+}
+
 ::-webkit-scrollbar {
-	width: 8px;
-	background-color: rgba(0, 0, 0, 0);
+	width: 9px;
+	height: 9px;
 }
-::-webkit-scrollbar:hover {
-	background-color: rgba(255, 255, 255, 0.09);
+
+::-webkit-scrollbar-track {
+	background: rgba(255, 255, 255, 0.08);
+	border-radius: 10px;
 }
-::-webkit-scrollbar-thumb:vertical {
-	background: rgba(255, 255, 255, 0.1);
-	border-radius: 100px;
-	-webkit-border-radius: 100px;
+
+::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 10px;
 }
-::-webkit-scrollbar-thumb:vertical:active {
-	background: rgba(255, 255, 255, 0.3);
-	border-radius: 100px;
-	-webkit-border-radius: 100px;
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.25);
 }

@@ -8,7 +8,7 @@ import Box from './box';
 // we also pass addition styles to these components through the sass file
 // however the styles in here are conditional, so require props
 const ColumnWrapper = styled.div`
-	${(props) => (props.editMode ? `border-color: rgba(255,255,255,1); ` : `border-color: rgba(255,255,255,0);`)}
+	${(props) => (props.editMode ? `border-color: var(--column-border-col); ` : `border-color: rgba(255,255,255,0);`)}
 `;
 
 export default class Column extends React.Component {
@@ -23,9 +23,7 @@ export default class Column extends React.Component {
 							{this.props.boxesForColumn.map((box, index) => {
 								// if the box is a widget, the map function will through an error
 								const linksForBox =
-									box.type === 'links'
-										? box.linkOrder.map((linkId) => this.props.links[linkId])
-										: null;
+									box.type === 'default' ? box.linkOrder.map((linkId) => this.props.links[linkId]) : null;
 								return (
 									// passing the props to the box instance
 									<Box

@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import LinkModal from './utils/linkModal';
+import LinkModal from './modals/linkModal';
 import { updateObject } from '../redux/store';
-import BoxModal from './utils/boxModal';
+import BoxModal from './modals/boxModal';
 
 // only did this cause the og repo had different widths of add buttons
 export const AddObject = styled.button`

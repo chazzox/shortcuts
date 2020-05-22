@@ -1,8 +1,8 @@
 const exampleConfig = {
 	userInfo: {
 		name: '',
-		themeType: 'custom',
-		themeInfo: { mainBg: '#5f5f5f', fontMain: 'white', navBg: '#5f5f5f', boxModalBg: 'red' }
+		themeType: 'dark'
+		// themeInfo: { mainBg: '#5f5f5f', fontMain: 'white', navBg: '#5f5f5f', boxModalBg: 'red' }
 	},
 	config: {
 		links: {
@@ -129,7 +129,7 @@ const exampleConfig = {
 			'link-20': {
 				id: 'link-20',
 				name: 'Speedtest',
-				url: 'https://www.Speedtest.com',
+				url: 'https://www.Speedtest.net',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/speedtest.png'
 			},
 			'link-21': {
@@ -209,49 +209,49 @@ const exampleConfig = {
 			'box-1': {
 				id: 'box-1',
 				name: 'Social',
-				type: 'links',
+				type: 'default',
 				linkOrder: ['link-0', 'link-1', 'link-2', 'link-3', 'link-4', 'link-5', 'link-6', 'link-7']
 			},
 			'box-2': {
 				id: 'box-2',
 				name: 'Updates',
-				type: 'links',
+				type: 'default',
 				linkOrder: ['link-8', 'link-9', 'link-10']
 			},
 			'box-3': {
 				id: 'box-3',
 				name: 'Videos',
-				type: 'links',
+				type: 'default',
 				linkOrder: ['link-11', 'link-12', 'link-13', 'link-14', 'link-15']
 			},
 			'box-4': {
 				id: 'box-4',
 				name: 'iOS',
-				type: 'links',
+				type: 'default',
 				linkOrder: ['link-16', 'link-17']
 			},
 			'box-5': {
 				id: 'box-5',
 				name: 'Cloud',
-				type: 'links',
+				type: 'default',
 				linkOrder: ['link-18', 'link-19']
 			},
 			'box-6': {
 				id: 'box-6',
 				name: 'Utilities',
-				type: 'links',
+				type: 'default',
 				linkOrder: ['link-20', 'link-21', 'link-22', 'link-23']
 			},
 			'box-7': {
 				id: 'box-7',
 				name: 'Shopping',
-				type: 'links',
+				type: 'default',
 				linkOrder: ['link-24', 'link-25', 'link-26', 'link-27', 'link-28', 'link-29']
 			},
 			'box-8': {
 				id: 'box-8',
 				name: 'CS:GO',
-				type: 'links',
+				type: 'default',
 				linkOrder: ['link-30', 'link-31', 'link-32']
 			},
 			'box-9': {

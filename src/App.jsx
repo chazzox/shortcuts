@@ -24,10 +24,7 @@ class App extends React.Component {
 			document.documentElement.style.setProperty('--main-bg-color', this.props.userInfo.themeInfo.mainBg);
 			document.documentElement.style.setProperty('--main-text-color', this.props.userInfo.themeInfo.fontMain);
 			document.documentElement.style.setProperty('--nav-bg-color', this.props.userInfo.themeInfo.navBg);
-			document.documentElement.style.setProperty(
-				'--box-modal-bg-color',
-				this.props.userInfo.themeInfo.boxModalBg
-			);
+			document.documentElement.style.setProperty('--box-modal-bg-color', this.props.userInfo.themeInfo.boxModalBg);
 		}
 		return (
 			<div className="globalWrapper">
@@ -35,6 +32,30 @@ class App extends React.Component {
 					<h1 className="navTitle">SHORTCUTS {this.props.editMode ? ' - editmode' : ''}</h1>
 					<div className="navIconContainer">
 						<h1 className="navSubTitle">made for gamers, by gamers</h1>
+						{this.props.editMode ? (
+							<button
+								className="buttonGeneral"
+								onClick={() => {
+									// this is where we would begin to expand the styling options, eg have a modal to add in full rgb customization or more theme options that you can make and
+									// they can pick from, up to you
+									// tbh the logic here is clapped and needs a complete overhaul, im planning on doing this in a later update
+									if (document.documentElement.getAttribute('theme') === 'custom') {
+										document.documentElement.style = '';
+										this.props.changeTheme({
+											themeType: 'dark'
+										});
+										return;
+									}
+
+									this.props.changeTheme({
+										themeType: this.props.userInfo.themeType === 'light' ? 'dark' : 'light'
+									});
+									return;
+								}}
+							>
+								toggle theme
+							</button>
+						) : null}
 						<button
 							className="buttonGeneral"
 							onClick={() => {
@@ -48,32 +69,9 @@ class App extends React.Component {
 						</button>
 						{/* color customizations, this is in no way the final implementation and i encourage change to the workflow 
 						of the changing, eg when removing a custom theme, it is just a showcase of how you could roughly do it */}
-						{this.props.editMode ? (
-							<button
-								className="buttonGeneral"
-								onClick={() => {
-									console.log(document.documentElement.getAttribute('theme'));
-									if (document.documentElement.getAttribute('theme') === 'custom') {
-										document.documentElement.style = '';
-										this.props.changeTheme({
-											themeType: 'dark'
-										});
-										return;
-									}
-									this.props.changeTheme({
-										themeType: this.props.userInfo.themeType === 'light' ? 'dark' : 'light'
-									});
-									return;
-								}}
-							>
-								toggle theme
-							</button>
-						) : null}
 					</div>
 				</div>
-				<div>
-					<Shortcuts editMode={this.props.editMode} />
-				</div>
+				<Shortcuts editMode={this.props.editMode} />
 				{/* rendering the tutorial modal if it is needed */}
 				{this.state.isOpen ? (
 					<TutorialModal

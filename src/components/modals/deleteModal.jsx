@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Popup from './modalUtils';
+import Popup from '../utils/modalUtils';
 import { deleteObject } from '../../redux/store';
 
 class DeleteModal extends React.Component {

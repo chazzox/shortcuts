@@ -2,16 +2,16 @@ import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
+import * as Widgets from './widgets/exportWidgets';
 import ObjectUtils from './objectUtils';
 import AddNew from './addNew';
-
 import Link from './link';
 
 class Box extends React.Component {
 	// a box can be one of two things, either a box of links, or a widget, as the two have very different render processes
 	// they are split of into different functions
 	renderBox(boxType) {
-		if (boxType === 'links') {
+		if (boxType === 'default') {
 			return this.renderLinks();
 		} else if (boxType === 'widget') {
 			return this.renderWidget(this.props.box.widgetType);
@@ -22,13 +22,13 @@ class Box extends React.Component {
 	renderWidget(widgetType) {
 		switch (widgetType) {
 			case 'weather':
-				return <Weather />;
-			case 'Twitter':
-				return <Twitter />;
-			case 'Reddit':
-				return <Reddit />;
+				return <Widgets.weather />;
+			case 'twitter':
+				return <Widgets.twitter />;
+			case 'reddit':
+				return <Widgets.reddit />;
 			default:
-				return <Weather />;
+				return <Widgets.weather />;
 		}
 	}
 	// this functions renders the links within the box
@@ -41,7 +41,6 @@ class Box extends React.Component {
 
 	render() {
 		// used for the render process
-		const isLink = this.props.box.type === 'links';
 		return (
 			// wraps the box inside a draggable container, this can not be styled as technically it is not an element at performs logic upon its children
 			<Draggable isDragDisabled={!this.props.editMode} draggableId={this.props.box.id} index={this.props.index}>
@@ -69,37 +68,18 @@ class Box extends React.Component {
 									<div {...provided.droppableProps} ref={provided.innerRef}>
 										{/* this is the function that renders the box */}
 										{this.renderBox(this.props.box.type)}
-										{/* needed for framework, not sure what it does */}
+										{/* needed for framework, not sure what it does, think it provides like extra space or sum shit */}
 										{provided.placeholder}
 									</div>
 								)}
 							</Droppable>
 							{/* this only renders the addNew button if the box contains link as opposed to a widget box */}
-							{isLink ? <AddNew parentId={this.props.box.id} type="link" /> : null}
+							{this.props.box.type === 'default' ? <AddNew parentId={this.props.box.id} type="link" /> : null}
 						</div>
 					</div>
 				)}
 			</Draggable>
 		);
-	}
-}
-
-// example of a widget you could add
-class Weather extends React.Component {
-	render() {
-		return 'it do be weather';
-	}
-}
-
-class Reddit extends React.Component {
-	render() {
-		return 'reddit';
-	}
-}
-
-class Twitter extends React.Component {
-	render() {
-		return 'twitter';
 	}
 }
 

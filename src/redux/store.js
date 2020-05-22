@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-
+import Cookie from 'js-cookie';
 import lzw_encode, { lzw_decode } from '../components/utils/compress';
 import validator from '../components/utils/validation';
 import randomKey from '../components/utils/randomKey';
@@ -96,10 +96,23 @@ export const userSlice = createSlice({
 				const linkOrder = Array.from(state.config.boxes[action.payload.objectId].linkOrder);
 				linkOrder.map((linkId) => delete newLinks[linkId]);
 			}
+			//if the object is a widget then we need to delete the cookies associated with the widget
+			else if (action.payload.type === 'box' && state.config.boxes[action.payload.objectId].type === 'widget') {
+				switch (state.config.boxes[action.payload.objectId].widgetType) {
+					case 'twitter':
+						Cookie.remove('userTwitterOAuth');
+						break;
+					case 'reddit':
+						Cookie.remove('redditOauth');
+						break;
+					default:
+						break;
+				}
+			}
 			// removing the object from its target container order
 			let newOrder = Array.from(state.config[containerPointer][action.payload.containerId][orderPointer]);
 			newOrder.splice(newOrder.indexOf(action.payload.objectId), 1);
-			var newObjectArray = { ...state.config[arrayType] };
+			const newObjectArray = { ...state.config[arrayType] };
 			delete newObjectArray[action.payload.objectId];
 			// updating the state with our new orders
 			state.config = {
@@ -116,7 +129,29 @@ export const userSlice = createSlice({
 			};
 			return;
 		},
+		addWidget: (state, action) => {
+			const itemId = `box-${randomKey()}`;
+			const newOrder = Array.from(state.config.columns[action.payload.parentId].boxOrder);
+			newOrder.push(itemId);
+			state.config = {
+				...state.config,
+				columns: {
+					...state.config.columns,
+					[action.payload.parentId]: {
+						...state.config.columns[action.payload.parentId],
+						boxOrder: newOrder
+					}
+				},
+				boxes: {
+					...state.config.boxes,
+					[itemId]: { id: itemId, type: 'widget', ...action.payload.content }
+				}
+			};
+			localStorage.setItem('config', lzw_encode(state.config));
+			return;
+		},
 		changeTheme: (state, action) => {
+			// this will probably need to be updated as the
 			state.userInfo = { ...state.userInfo, themeType: action.payload.themeType };
 			localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
 			return;
@@ -143,6 +178,7 @@ export const {
 	deleteObject,
 	updateObject,
 	addObject,
+	addWidget,
 	loadExample,
 	changeTheme
 } = userSlice.actions;

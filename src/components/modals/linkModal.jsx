@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Popup, { ErrorContainer } from './modalUtils';
+import Popup, { ErrorContainer } from '../utils/modalUtils';
 import { updateObject, addObject } from '../../redux/store';
-import validation from './validation';
+import validation from '../utils/validation';
 
 class LinkModal extends React.Component {
 	constructor(props) {
