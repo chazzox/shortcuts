@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
 import { toggle, updateConfig } from '../redux/store';
 import Column from './column';
 
-class ShortCuts extends Component {
+class ShortCuts extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -16,6 +16,7 @@ class ShortCuts extends Component {
 	}
 
 	onDragStart = () => {
+		// its worth saying that this could be replaced with a css class if you only want to disable hover for specific components
 		this.setState({ allowHover: false });
 	};
 	// updates state after the drag is finished and allowing hover css functionality

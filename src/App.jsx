@@ -1,15 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import ColorModal from './components/modals/colorModal';
+import TutorialModal from './components/modals/tutorialModal';
 import Shortcuts from './components/shortcuts';
-import PopupWrapper from './components/utils/modalUtils';
+
 import { toggle, loadExample, changeTheme } from './redux/store';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isOpen: this.props.tutorialMode
+			isOpen: this.props.tutorialMode,
+			colorModalOpen: false
 		};
 	}
 	close() {
@@ -36,25 +39,14 @@ class App extends React.Component {
 							<button
 								className="buttonGeneral"
 								onClick={() => {
-									// this is where we would begin to expand the styling options, eg have a modal to add in full rgb customization or more theme options that you can make and
-									// they can pick from, up to you
-									// tbh the logic here is clapped and needs a complete overhaul, im planning on doing this in a later update
-									if (document.documentElement.getAttribute('theme') === 'custom') {
-										document.documentElement.style = '';
-										this.props.changeTheme({
-											themeType: 'dark'
-										});
-										return;
-									}
-
-									this.props.changeTheme({
-										themeType: this.props.userInfo.themeType === 'light' ? 'dark' : 'light'
-									});
-									return;
+									this.setState({ colorModalOpen: true });
 								}}
 							>
-								toggle theme
+								edit colors
 							</button>
+						) : null}
+						{this.state.colorModalOpen ? (
+							<ColorModal close={() => this.setState({ colorModalOpen: false })} />
 						) : null}
 						<button
 							className="buttonGeneral"
@@ -83,24 +75,6 @@ class App extends React.Component {
 					/>
 				) : null}
 			</div>
-		);
-	}
-}
-
-class TutorialModal extends React.Component {
-	render() {
-		return (
-			<PopupWrapper>
-				<div className="modal">
-					<div>a bitch ass really never been to the site before</div>
-					<button className="buttonGeneral" onClick={() => this.props.loadExample()}>
-						loadExample
-					</button>
-					<button className="buttonGeneral" onClick={() => this.props.close()}>
-						close
-					</button>
-				</div>
-			</PopupWrapper>
 		);
 	}
 }
