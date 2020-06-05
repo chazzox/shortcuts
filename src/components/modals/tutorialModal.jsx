@@ -5,7 +5,7 @@ import Popup from '../utils/modalUtils';
 
 class TutorialModal extends React.Component {
 	render() {
-		return this.props.editMode ? (
+		return (
 			<Popup>
 				<div className="modal">
 					<div>a bitch ass really never been to the site before</div>
@@ -17,7 +17,7 @@ class TutorialModal extends React.Component {
 					</button>
 				</div>
 			</Popup>
-		) : null;
+		);
 	}
 }
 

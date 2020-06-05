@@ -1,8 +1,12 @@
 const exampleConfig = {
 	userInfo: {
-		name: '',
-		themeType: 'dark'
-		// themeInfo: { mainBg: '#5f5f5f', fontMain: 'white', navBg: '#5f5f5f', boxModalBg: 'red' }
+		themeInfo: {
+			'main-bg-color': '292c30',
+			'nav-bg-color': '000000',
+			'box-modal-bg-color': '2f3439',
+			'main-text-color': 'ffffff',
+			secondaryFontColor: '000000'
+		}
 	},
 	config: {
 		links: {
@@ -283,7 +287,16 @@ const exampleConfig = {
 	}
 };
 const newUser = {
-	userInfo: { name: 'test', themeType: true },
+	userInfo: {
+		name: 'test',
+		themeInfo: {
+			mainBg: '#292c30',
+			navBg: 'black',
+			boxModalBg: '#2f3439',
+			primaryFontColor: 'white',
+			secondaryFontColor: 'black'
+		}
+	},
 	config: {
 		links: {},
 		boxes: {},

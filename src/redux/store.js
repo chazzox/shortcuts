@@ -151,9 +151,9 @@ export const userSlice = createSlice({
 			return;
 		},
 		changeTheme: (state, action) => {
-			// this will probably need to be updated as the
-			state.userInfo = { ...state.userInfo, themeType: action.payload.themeType };
-			localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
+			// this is a out of date function, needs to be rewritten to account for the custom change
+			state.userInfo = action.payload.newInfo;
+			localStorage.setItem('userInfo', JSON.stringify(action.payload.newInfo));
 			return;
 		}
 	}
