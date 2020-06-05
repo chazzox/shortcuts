@@ -12,10 +12,10 @@ class App extends React.Component {
 		this.state = {
 			selected: 'box-modal-bg-color',
 			newColors: {
-				'main-bg-color': this.props.userInfo.themeInfo['main-bg-color'].substring(1),
-				'nav-bg-color': this.props.userInfo.themeInfo['nav-bg-color'].substring(1),
-				'box-modal-bg-color': this.props.userInfo.themeInfo['box-modal-bg-color'].substring(1),
-				'main-text-color': this.props.userInfo.themeInfo['main-text-color'].substring(1)
+				'main-bg-color': this.props.userInfo.themeInfo['main-bg-color'],
+				'nav-bg-color': this.props.userInfo.themeInfo['nav-bg-color'],
+				'box-modal-bg-color': this.props.userInfo.themeInfo['box-modal-bg-color'],
+				'main-text-color': this.props.userInfo.themeInfo['main-text-color']
 			}
 		};
 	}

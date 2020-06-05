@@ -23,7 +23,10 @@ class App extends React.Component {
 				'--main-bg-color',
 				'#' + this.props.userInfo.themeInfo['main-bg-color']
 			);
-			document.documentElement.style.setProperty('--nav-bg-color', this.props.userInfo.themeInfo['nav-bg-color']);
+			document.documentElement.style.setProperty(
+				'--nav-bg-color',
+				'#' + this.props.userInfo.themeInfo['nav-bg-color']
+			);
 			document.documentElement.style.setProperty(
 				'--box-modal-bg-color',
 				'#' + this.props.userInfo.themeInfo['box-modal-bg-color']
@@ -93,7 +96,7 @@ class App extends React.Component {
 // connecting edit mode and config values to the form from the redux state (this how we get global variables)
 const mapStateToProps = (state) => {
 	return {
-		editMode: state.userSlice.value,
+		editMode: state.userSlice.isEditMode,
 		tutorialMode: state.userSlice.tutorialMode,
 		config: state.userSlice.config,
 		userInfo: state.userSlice.userInfo

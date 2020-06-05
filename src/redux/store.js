@@ -8,18 +8,18 @@ import { newUser, exampleConfig } from '../userConfigExamples';
 export const userSlice = createSlice({
 	name: 'editMode',
 	initialState: {
-		value: false,
+		isEditMode: false,
 		// to be replaced with cookie logic, also where we trigger the tutorial component
 		...getUserItems()
 	},
 	reducers: {
 		toggle: (state) => {
 			// updating the user cookies when saving their changes
-			if (state.value === true) {
+			if (state.isEditMode === true) {
 				localStorage.setItem('config', lzw_encode(state.config));
 				localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
 			}
-			state.value = !state.value;
+			state.isEditMode = !state.isEditMode;
 		},
 		// function to load the example config
 		loadExample: (state) => {

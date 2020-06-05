@@ -24,7 +24,7 @@ class TutorialModal extends React.Component {
 // 'imports' our global variables
 const mapStateToProps = (state) => {
 	return {
-		editMode: state.userSlice.value
+		editMode: state.userSlice.isEditMode
 	};
 };
 

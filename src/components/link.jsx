@@ -74,7 +74,7 @@ class Link extends React.Component {
 // linking global values
 const mapStateToProps = (state) => {
     return {
-        editMode: state.userSlice.value,
+        editMode: state.userSlice.isEditMode,
         config: state.userSlice.config
     };
 };
