@@ -16,6 +16,20 @@ class App extends React.Component {
 		};
 	}
 
+	componentDidMount() {
+		document.documentElement.setAttribute('theme', 'custom');
+		document.documentElement.style.setProperty('--main-bg-color', '#' + this.props.userInfo.themeInfo['main-bg-color']);
+		document.documentElement.style.setProperty('--nav-bg-color', '#' + this.props.userInfo.themeInfo['nav-bg-color']);
+		document.documentElement.style.setProperty(
+			'--box-modal-bg-color',
+			'#' + this.props.userInfo.themeInfo['box-modal-bg-color']
+		);
+		document.documentElement.style.setProperty(
+			'--main-text-color',
+			'#' + this.props.userInfo.themeInfo['main-text-color']
+		);
+	}
+
 	componentDidUpdate(prevProps) {
 		if (this.props.userInfo !== prevProps.userInfo) {
 			document.documentElement.setAttribute('theme', 'custom');
