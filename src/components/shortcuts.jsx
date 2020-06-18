@@ -36,9 +36,9 @@ class ShortCuts extends React.Component {
 		// this is where it starts to get interesting
 		// we use the next two constants as a way to decide which parts of the json we are writing to
 		// this is done in an effort of code optimization as i realized that the function was a copy paste in
-		//  two if statements if i didn't do this
-		const jsonObjectListPointer = type === 'links' ? 'boxes' : 'columns';
-		const jsonOrderPointer = type === 'links' ? 'linkOrder' : 'boxOrder';
+		// two if statements if i didn't do this
+		const jsonObjectListPointer = type === 'BOX' ? 'columns' : 'boxes';
+		const jsonOrderPointer = type === 'BOX' ? 'boxOrder' : 'linkOrder';
 
 		// the objects you are dragging from and into
 		const startParentObject = this.props.config[jsonObjectListPointer][source.droppableId];

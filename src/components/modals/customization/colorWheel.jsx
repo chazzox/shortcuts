@@ -1,10 +1,8 @@
 import React from 'react';
 import logo from './colorWheel.png';
 
-const hexOpacityRegex = /^([\da-fA-F]{2}){4}$/;
-const hexStringRegex = /^([\da-fA-F]{2}){3}$/;
-const rgbStringOpacityRegex = /^(?:(?:^|,\s*)([01]?\d\d?|2[0-4]\d|25[0-5])){3},(0(\.[0-9]{1,4})?|1(\.0{1,2})?)$/;
-const rgbStringRegex = /^(?:(?:^|,\s*)([01]?\d\d?|2[0-4]\d|25[0-5])){3}/;
+const hexRegex = /^([\da-fA-F]{2}){4}$/;
+const rgbStringRegex = /^(?:(?:^|,\s*)([01]?\d\d?|2[0-4]\d|25[0-5])){3},(0(\.[0-9]{1,4})?|1(\.0{1,2})?)$/;
 
 export default class ColorWheel extends React.PureComponent {
 	constructor(props) {
@@ -13,8 +11,7 @@ export default class ColorWheel extends React.PureComponent {
 			mouseDownOnCanvas: false,
 			rbgData: [255, 255, 255, 255],
 			rgbString: '',
-			hexString: '',
-			isOpacityOn: false
+			hexString: ''
 		};
 		this.canvasRef = React.createRef();
 		this.getPixelData = this.getPixelData.bind(this);
@@ -35,11 +32,7 @@ export default class ColorWheel extends React.PureComponent {
 
 	componentDidUpdate(prevProps) {
 		if (this.props.color !== prevProps.color) {
-			if (this.props.color.slice(-2).toUpperCase() !== 'FF') {
-				this.setState({ isOpacityOn: true }, this.setNewRGBData(this.hexToRGB(this.props.color)));
-			} else {
-				this.setState({ isOpacityOn: false }, this.setNewRGBData(this.hexToRGB(this.props.color)));
-			}
+			this.setNewRGBData(this.hexToRGB(this.props.color));
 		}
 	}
 
@@ -48,13 +41,7 @@ export default class ColorWheel extends React.PureComponent {
 		this.setState(
 			{
 				rbgData: newData,
-				rgbString:
-					newData[0] +
-					',' +
-					newData[1] +
-					',' +
-					newData[2] +
-					(this.state.isOpacityOn ? ',' + Number((newData[3] / 255).toFixed(2)) : ''),
+				rgbString: newData[0] + ',' + newData[1] + ',' + newData[2] + ',' + Number((newData[3] / 255).toFixed(2)),
 				hexString: newHex
 			},
 			this.props.colorChange(newHex)
@@ -77,6 +64,7 @@ export default class ColorWheel extends React.PureComponent {
 			const pixel = imageData.data;
 
 			this.setNewRGBData(pixel);
+			return;
 		}
 	}
 
@@ -90,15 +78,11 @@ export default class ColorWheel extends React.PureComponent {
 			hexString = hexString.concat(hex);
 			return null;
 		});
-		if (!this.state.isOpacityOn) return hexString.slice(0, -2);
 		return hexString;
 	}
 
 	hexToRGB(hex) {
 		const splitHex = hex.match(/.{2}/g);
-
-		if (!this.state.isOpacityOn)
-			return [parseInt(splitHex[0], 16), parseInt(splitHex[1], 16), parseInt(splitHex[2], 16), 255];
 		return [parseInt(splitHex[0], 16), parseInt(splitHex[1], 16), parseInt(splitHex[2], 16), parseInt(splitHex[3], 16)];
 	}
 
@@ -108,7 +92,7 @@ export default class ColorWheel extends React.PureComponent {
 		for (let rgbIndex = 0; rgbIndex < 3; rgbIndex++) {
 			newRGB.push(Number(rgbStringSplit[rgbIndex]));
 		}
-		if (this.state.isOpacityOn) newRGB.push(Math.floor(Number(rgbStringSplit[3]) * 255));
+		newRGB.push(Math.floor(Number(rgbStringSplit[3]) * 255));
 		return newRGB;
 	}
 
@@ -117,6 +101,7 @@ export default class ColorWheel extends React.PureComponent {
 		let newRGBData = Array.from(this.state.rbgData);
 		newRGBData[valPointer] = Number(val);
 		this.setNewRGBData(newRGBData);
+		return;
 	}
 
 	render() {
@@ -133,19 +118,6 @@ export default class ColorWheel extends React.PureComponent {
 						onMouseMove={this.getPixelData}
 					/>
 				</div>
-				<p>
-					Opacity Toggle
-					<input
-						type={'checkbox'}
-						checked={this.state.isOpacityOn}
-						onChange={(e) => {
-							this.setState({ isOpacityOn: e.target.checked }, () => {
-								this.setNewRGBData(this.state.rbgData);
-								this.handleChangeRGB(3, 255);
-							});
-						}}
-					/>
-				</p>
 				<div className="controls">
 					<ColorInput
 						content={'R'}
@@ -165,14 +137,12 @@ export default class ColorWheel extends React.PureComponent {
 						value={this.state.rbgData[2]}
 						newData={(index, pointer) => this.handleChangeRGB(index, pointer)}
 					/>
-					{this.state.isOpacityOn ? (
-						<ColorInput
-							content={'A'}
-							index={3}
-							value={this.state.rbgData[3]}
-							newData={(index, pointer) => this.handleChangeRGB(index, pointer)}
-						/>
-					) : null}
+					<ColorInput
+						content={'A'}
+						index={3}
+						value={this.state.rbgData[3]}
+						newData={(index, pointer) => this.handleChangeRGB(index, pointer)}
+					/>
 					<div>
 						RGB{this.state.isOpacityOn ? 'A' : null}
 						<input
@@ -180,17 +150,9 @@ export default class ColorWheel extends React.PureComponent {
 							value={this.state.rgbString}
 							autoComplete="off"
 							onChange={(e) => {
-								if (
-									this.state.isOpacityOn
-										? !rgbStringOpacityRegex.test(e.target.value)
-										: !rgbStringRegex.test(e.target.value)
-								) {
+								if (!rgbStringRegex.test(e.target.value)) {
 									this.setState({ rgbString: e.target.value });
-								} else if (
-									this.state.isOpacityOn
-										? rgbStringOpacityRegex.test(e.target.value)
-										: rgbStringRegex.test(e.target.value)
-								) {
+								} else if (rgbStringRegex.test(e.target.value)) {
 									const newRGB = this.rgbStringToRGB(e.target.value);
 									this.setNewRGBData(newRGB);
 								}
@@ -207,17 +169,9 @@ export default class ColorWheel extends React.PureComponent {
 							autoComplete="off"
 							maxLength={this.state.isOpacityOn ? 8 : 6}
 							onChange={(e) => {
-								if (
-									this.state.isOpacityOn
-										? !hexOpacityRegex.test(e.target.value)
-										: !hexStringRegex.test(e.target.value)
-								) {
+								if (!hexRegex.test(e.target.value)) {
 									this.setState({ hexString: e.target.value });
-								} else if (
-									this.state.isOpacityOn
-										? hexOpacityRegex.test(e.target.value)
-										: hexStringRegex.test(e.target.value)
-								) {
+								} else if (hexRegex.test(e.target.value)) {
 									const newRGB = this.hexToRGB(e.target.value);
 									this.setNewRGBData(newRGB);
 								}

@@ -6,29 +6,35 @@ import Popup from '../../utils/modalUtils';
 import ColorWheel from './colorWheel';
 import './preview.scss';
 
+// this is a rather rudimentary color picker, we could add a theme browser and improve the general css of the modal,
+// i could also provide a complete separate settings page to bundle this is into, instead of having modals, this would be a
+// big update, but could be nicer looking
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
+		console.log(this.props.themeInfo);
 		this.state = {
 			selected: 'box-modal-bg-color',
 			newColors: {
-				'main-bg-color': this.props.userInfo.themeInfo['main-bg-color'],
-				'nav-bg-color': this.props.userInfo.themeInfo['nav-bg-color'],
-				'box-modal-bg-color': this.props.userInfo.themeInfo['box-modal-bg-color'],
-				'main-text-color': this.props.userInfo.themeInfo['main-text-color']
+				'main-bg-color': this.props.themeInfo['main-bg-color'],
+				'nav-bg-color': this.props.themeInfo['nav-bg-color'],
+				'box-modal-bg-color': this.props.themeInfo['box-modal-bg-color'],
+				'main-text-color': this.props.themeInfo['main-text-color']
 			}
 		};
 	}
 
 	componentDidMount() {
-		document.body.style.setProperty('--preview-box-modal-bg-color', '#' + this.state.newColors['box-modal-bg-color']);
-		document.body.style.setProperty('--preview-nav-bg-color', '#' + this.state.newColors['nav-bg-color']);
-		document.body.style.setProperty('--preview-main-bg-color', '#' + this.state.newColors['main-bg-color']);
+		// this sets the preview colors equal to the current themes
+		document.body.style.setProperty('--preview-box-modal-bg-color', '#' + this.props.themeInfo['box-modal-bg-color']);
+		document.body.style.setProperty('--preview-nav-bg-color', '#' + this.props.themeInfo['nav-bg-color']);
+		document.body.style.setProperty('--preview-main-bg-color', '#' + this.props.themeInfo['main-bg-color']);
 	}
 
+	// this sets the preview colors equal to the current themes when it updates
 	componentDidUpdate(__, prevState) {
-		if (prevState.newColors === this.state.newColors) return;
-		else {
+		if (prevState.newColors !== this.state.newColors) {
 			document.body.style.setProperty(
 				'--preview-box-modal-bg-color',
 				'#' + this.state.newColors['box-modal-bg-color']
@@ -51,8 +57,9 @@ class App extends React.Component {
 		return this.state.newColors['--preview-' + selected];
 	}
 
-	save() {
-		this.props.changeTheme({ newInfo: { ...this.props.userInfo, themeInfo: this.state.newColors } });
+	// this saves a 
+	save(colors) {
+		this.props.changeTheme({ themeInfo: colors });
 		this.props.close();
 	}
 
@@ -63,16 +70,38 @@ class App extends React.Component {
 					change the colors of your homepage
 				</div>
 				<div className={'container'}>
-					<ColorWheel colorChange={(hex) => this.editColors(hex)} color={this.state.newColors['main-bg-color']} />
+					<ColorWheel
+						colorChange={(hex) => this.editColors(hex)}
+						color={this.props.themeInfo['box-modal-bg-color']}
+					/>
 					<div className="colorModals boxContainer">
 						<h1>preview new colours</h1>
 						<p>click on the area of the website you would like to change the color of</p>
 						<p>currently selected: {!(this.state.selected === '') ? this.state.selected : 'nothing'}</p>
 						<PreviewChanges
 							selectedObject={(name) => this.setState({ selected: name, tempColor: this.getColor(name) })}
+							light={() =>
+								this.save({
+									'main-bg-color': 'f0eff5ff',
+									'nav-bg-color': 'd8d8d8ff',
+									'box-modal-bg-color': 'ffffffff',
+									'main-text-color': '000000ff',
+									'secondary-font-color': '000000ff'
+								})
+							}
+							dark={() =>
+								this.save({
+									'main-bg-color': '292c30ff',
+									'nav-bg-color': '000000ff',
+									'box-modal-bg-color': '2f3439ff',
+									'main-text-color': 'ffffffff',
+									'secondary-font-color': '000000ff'
+								})
+							}
 						/>
 					</div>
 				</div>
+
 				<div style={{ textAlign: 'center' }}>
 					<div
 						style={{ width: 'max-content', margin: 'auto', display: 'inline-block' }}
@@ -84,7 +113,7 @@ class App extends React.Component {
 					<div
 						style={{ width: 'max-content', margin: 'auto', display: 'inline-block' }}
 						className={'buttonGeneral'}
-						onClick={() => this.save()}
+						onClick={() => this.save(this.state.newColors)}
 					>
 						save the changes
 					</div>
@@ -159,6 +188,13 @@ class PreviewChanges extends React.Component {
 					<p>primary text</p>
 					<p>secondary text</p>
 				</div>
+				<p>pre-made themes</p>
+				<div className={'buttonGeneral'} onClick={() => this.props.light()}>
+					light mode
+				</div>
+				<div className={'buttonGeneral'} onClick={() => this.props.dark()}>
+					dark mode
+				</div>
 			</>
 		);
 	}
@@ -183,7 +219,7 @@ class Box extends React.Component {
 // linking global values
 const mapStateToProps = (state) => {
 	return {
-		userInfo: state.userSlice.userInfo
+		themeInfo: state.userSlice.themeInfo
 	};
 };
 

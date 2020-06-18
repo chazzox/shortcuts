@@ -17,16 +17,16 @@ export const userSlice = createSlice({
 			// updating the user cookies when saving their changes
 			if (state.isEditMode === true) {
 				localStorage.setItem('config', lzw_encode(state.config));
-				localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
+				localStorage.setItem('themeInfo', JSON.stringify(state.themeInfo));
 			}
 			state.isEditMode = !state.isEditMode;
 		},
 		// function to load the example config
 		loadExample: (state) => {
 			state.config = exampleConfig.config;
-			state.userInfo = exampleConfig.userInfo;
+			state.themeInfo = exampleConfig.themeInfo;
 			localStorage.setItem('config', lzw_encode(state.config));
-			localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
+			localStorage.setItem('themeInfo', JSON.stringify(state.themeInfo));
 			return;
 		},
 		// function to update the config
@@ -151,22 +151,22 @@ export const userSlice = createSlice({
 			return;
 		},
 		changeTheme: (state, action) => {
-			// this is a out of date function, needs to be rewritten to account for the custom change
-			state.userInfo = action.payload.newInfo;
-			localStorage.setItem('userInfo', JSON.stringify(action.payload.newInfo));
+			console.log(action.payload);
+			state.themeInfo = { ...action.payload.themeInfo };
+			localStorage.setItem('themeInfo', JSON.stringify({ ...action.payload.themeInfo }));
 			return;
 		}
 	}
 });
 
-// function to check for user storage
+// function to check for user storage this returns values for if no storage is found
 function getUserItems() {
 	const temporaryUserConfig = JSON.parse(lzw_decode(localStorage.getItem('config')));
-	const temporaryUserExtras = JSON.parse(localStorage.getItem('userInfo'));
+	const temporaryUserExtras = JSON.parse(localStorage.getItem('themeInfo'));
 	const shouldReset = validator.isEmpty([temporaryUserConfig]);
 	return {
 		config: shouldReset ? newUser.config : temporaryUserConfig,
-		userInfo: shouldReset ? newUser.userInfo : temporaryUserExtras,
+		themeInfo: shouldReset ? newUser.themeInfo : temporaryUserExtras,
 		tutorialMode: shouldReset
 	};
 }

@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link, Route } from 'react-router-dom';
 
+import Shortcuts from './components/shortcuts';
+import SwitchWithSlide from './Slider/SwitchWithSlide';
+import Settings from './components/settings';
 import ColorModal from './components/modals/customization/colorModal';
 import TutorialModal from './components/modals/tutorialModal';
-import Shortcuts from './components/shortcuts';
 
 import { toggle, loadExample, changeTheme } from './redux/store';
 
@@ -17,39 +20,22 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		document.documentElement.setAttribute('theme', 'custom');
-		document.documentElement.style.setProperty('--main-bg-color', '#' + this.props.userInfo.themeInfo['main-bg-color']);
-		document.documentElement.style.setProperty('--nav-bg-color', '#' + this.props.userInfo.themeInfo['nav-bg-color']);
-		document.documentElement.style.setProperty(
-			'--box-modal-bg-color',
-			'#' + this.props.userInfo.themeInfo['box-modal-bg-color']
-		);
-		document.documentElement.style.setProperty(
-			'--main-text-color',
-			'#' + this.props.userInfo.themeInfo['main-text-color']
-		);
+		this.updateColors();
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.userInfo !== prevProps.userInfo) {
-			document.documentElement.setAttribute('theme', 'custom');
-			document.documentElement.style.setProperty(
-				'--main-bg-color',
-				'#' + this.props.userInfo.themeInfo['main-bg-color']
-			);
-			document.documentElement.style.setProperty(
-				'--nav-bg-color',
-				'#' + this.props.userInfo.themeInfo['nav-bg-color']
-			);
-			document.documentElement.style.setProperty(
-				'--box-modal-bg-color',
-				'#' + this.props.userInfo.themeInfo['box-modal-bg-color']
-			);
-			document.documentElement.style.setProperty(
-				'--main-text-color',
-				'#' + this.props.userInfo.themeInfo['main-text-color']
-			);
+		if (this.props.themeInfo !== prevProps.themeInfo) {
+			console.log(this.props.themeInfo);
+			this.updateColors();
 		}
+	}
+
+	updateColors() {
+		document.documentElement.setAttribute('theme', 'custom');
+		document.documentElement.style.setProperty('--main-bg-color', '#' + this.props.themeInfo['main-bg-color']);
+		document.documentElement.style.setProperty('--nav-bg-color', '#' + this.props.themeInfo['nav-bg-color']);
+		document.documentElement.style.setProperty('--box-modal-bg-color', '#' + this.props.themeInfo['box-modal-bg-color']);
+		document.documentElement.style.setProperty('--main-text-color', '#' + this.props.themeInfo['main-text-color']);
 	}
 
 	close() {
@@ -64,14 +50,19 @@ class App extends React.Component {
 					<div className="navIconContainer">
 						<h1 className="navSubTitle">made for gamers, by gamers</h1>
 						{this.props.editMode ? (
-							<button
-								className="buttonGeneral"
-								onClick={() => {
-									this.setState({ colorModalOpen: true });
-								}}
-							>
-								edit colors
-							</button>
+							<>
+								<button
+									className="buttonGeneral"
+									onClick={() => {
+										this.setState({ colorModalOpen: true });
+									}}
+								>
+									edit colors
+								</button>
+								<Link className="link" to="/settings">
+									<span className="buttonGeneral">settings</span>
+								</Link>
+							</>
 						) : null}
 						{this.state.colorModalOpen ? (
 							<ColorModal close={() => this.setState({ colorModalOpen: false })} />
@@ -91,7 +82,10 @@ class App extends React.Component {
 						of the changing, eg when removing a custom theme, it is just a showcase of how you could roughly do it */}
 					</div>
 				</div>
-				<Shortcuts editMode={this.props.editMode} />
+				<SwitchWithSlide>
+					<Route path="/settings" render={() => <Settings />} />
+					<Route path="/" render={() => <Shortcuts editMode={this.props.editMode} />} />
+				</SwitchWithSlide>
 				{/* rendering the tutorial modal if it is needed */}
 				{this.state.isOpen ? (
 					<TutorialModal
@@ -113,7 +107,7 @@ const mapStateToProps = (state) => {
 		editMode: state.userSlice.isEditMode,
 		tutorialMode: state.userSlice.tutorialMode,
 		config: state.userSlice.config,
-		userInfo: state.userSlice.userInfo
+		themeInfo: state.userSlice.themeInfo
 	};
 };
 
