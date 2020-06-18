@@ -2,7 +2,7 @@ import React from 'react';
 import Cookies from 'js-cookie';
 
 const callbackRegexTwitter = /^oauth_token=([\w-]*)&oauth_verifier=([\w-]*)$/;
-const apiURL = 'https://ec2-52-91-0-119.compute-1.amazonaws.com';
+const apiURL = 'https://ec2-52-91-0-119.compute-1.amazonaws.com:443';
 
 export default class Twitter extends React.Component {
 	constructor(props) {
