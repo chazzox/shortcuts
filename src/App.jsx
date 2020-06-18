@@ -15,19 +15,25 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			isOpen: this.props.tutorialMode,
-			colorModalOpen: false
+			colorModalOpen: false,
+			searchString: ''
 		};
+		this.searchBar = React.createRef();
 	}
 
 	componentDidMount() {
 		this.updateColors();
+		this.searchBar.focus();
 	}
 
 	componentDidUpdate(prevProps) {
 		if (this.props.themeInfo !== prevProps.themeInfo) {
-			console.log(this.props.themeInfo);
 			this.updateColors();
 		}
+	}
+
+	search() {
+		window.location = 'https://www.google.com/search?q=' + encodeURIComponent(this.state.searchString);
 	}
 
 	updateColors() {
@@ -47,6 +53,16 @@ class App extends React.Component {
 			<div className="globalWrapper">
 				<div className="navWrapper">
 					<h1 className="navTitle">SHORTCUTS {this.props.editMode ? ' - editmode' : ''}</h1>
+					<input
+						value={this.state.searchString}
+						onChange={(event) => this.setState({ searchString: event.target.value })}
+						ref={(input) => {
+							this.searchBar = input;
+						}}
+						onKeyPress={(event) => {
+							if (event.key === 'Enter') this.search();
+						}}
+					/>
 					<div className="navIconContainer">
 						<h1 className="navSubTitle">made for gamers, by gamers</h1>
 						{this.props.editMode ? (
