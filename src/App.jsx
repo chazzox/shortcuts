@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 
 import Shortcuts from './components/shortcuts';
-import SwitchWithSlide from './Slider/SwitchWithSlide';
 import Settings from './components/settings';
 import ColorModal from './components/modals/customization/colorModal';
 import TutorialModal from './components/modals/tutorialModal';
@@ -98,10 +97,11 @@ class App extends React.Component {
 						of the changing, eg when removing a custom theme, it is just a showcase of how you could roughly do it */}
 					</div>
 				</div>
-				<SwitchWithSlide>
+				{/* <Shortcuts editMode={this.props.editMode} /> */}
+				<Switch>
 					<Route path="/settings" render={() => <Settings />} />
 					<Route path="/" render={() => <Shortcuts editMode={this.props.editMode} />} />
-				</SwitchWithSlide>
+				</Switch>
 				{/* rendering the tutorial modal if it is needed */}
 				{this.state.isOpen ? (
 					<TutorialModal

@@ -11,7 +11,7 @@ const exampleConfig = {
 			'link-0': {
 				id: 'link-0',
 				name: 'chazzox web',
-				url: 'https://www.chazzox.github.io',
+				url: 'https://chazzox.github.io',
 				linkIconUrl: 'https://chazzox.github.io/assets/global/other/logo.png'
 			},
 			'link-1': {
