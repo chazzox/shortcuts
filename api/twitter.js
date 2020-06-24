@@ -4,7 +4,6 @@ const request = require('request');
 const OAuth = require('oauth-1.0a');
 const crypto = require('crypto');
 
-// API key
 const consumerKey = 'Y6hXLlxAJMogmAnGmE8ZRCFJu';
 const consumerKeySecret = 'mtyUd8qfdzx2K5n1eM3bPhuw8B6IOZdQ2sBfP4eeKuNbjvLoV8';
 
@@ -25,7 +24,6 @@ router.post('/oauth1', (req, res) => {
 		method: 'POST'
 	};
 
-	// Note: The token is optional for some requests
 	request(
 		{
 			url: request_data.url,
