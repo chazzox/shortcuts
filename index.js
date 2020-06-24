@@ -1,4 +1,4 @@
-cosnt fs = require('fs');
+const fs = require('fs');
 const bodyParser = require('body-parser');
 const http = require('http');
 const https = require('https');
