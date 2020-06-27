@@ -1,6 +1,6 @@
 {
 	"name": "shortcuts-beta",
-	"homepage": "http://chazzox.github.io/shortcuts-beta",
+	"homepage": "http://chazzox.github.io/shortcuts",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
