@@ -1,4 +1,4 @@
 # shortcuts
-Customizable Browser Homepage using localstorage to store all user data<br/><br/>
+Customizable Browser Homepage
 **[Find the privacy Policy here](https://chazzox.github.io/shortcutspriv/)**
 
