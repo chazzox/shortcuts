@@ -1,11 +1,8 @@
 import React from 'react';
 import Cookies from 'js-cookie';
+import randomString from '../utils/randomKey';
 
-const clientId = '1v9Fim9PiWKP_w';
-const redirectUrl = 'http://localhost:3000/';
-const api_secret = 'MXY5RmltOVBpV0tQX3c6TkI0OWF1QTk4dFBIMkNmdzhhMmY1cERhRGpN';
-// const api_secret = 'UU96NE0xc1BCQTJFdFE6YWpoRzNGYUZOc2lCMm4tQmdwOTNYSnBhdGhNCg==';
-const callbackRegexReddit = /^state=([\w-]*)&code=([\w-]*)$/;
+const callbackRegexReddit = /^state=([\w-]*)&code=([\w-]*)#\/$/;
 
 export default class Reddit extends React.Component {
 	constructor(props) {
@@ -40,7 +37,7 @@ export default class Reddit extends React.Component {
 		fetch('https://www.reddit.com/api/v1/access_token', {
 			method: 'POST',
 			headers: {
-				Authorization: 'Basic UU96NE0xc1BCQTJFdFE6YWpoRzNGYUZOc2lCMm4tQmdwOTNYSnBhdGhNCg==',
+				Authorization: 'Basic ' + process.env.REACT_APP_REDDIT_SECRET,
 				'Content-Type': 'application/x-www-form-urlencoded'
 			},
 			body: urlencoded,
@@ -59,14 +56,15 @@ export default class Reddit extends React.Component {
 
 	getOAuthToken() {
 		const urlencoded = new URLSearchParams();
+		console.log(this.queryStringToJSON(document.location.href.slice(0, -2).split('?')[1]).code);
 		urlencoded.append('grant_type', 'authorization_code');
-		urlencoded.append('code', this.queryStringToJSON(document.location.href.split('?')[1]).code);
-		urlencoded.append('redirect_uri', 'http://localhost:3000/');
+		urlencoded.append('code', this.queryStringToJSON(document.location.href.slice(0, -2).split('?')[1]).code);
+		urlencoded.append('redirect_uri', process.env.REACT_APP_CALLBACK_URL);
 
 		fetch('https://www.reddit.com/api/v1/access_token', {
 			method: 'POST',
 			headers: {
-				Authorization: 'Basic ' + api_secret,
+				Authorization: 'Basic ' + process.env.REACT_APP_REDDIT_SECRET,
 				'Content-Type': 'application/x-www-form-urlencoded'
 			},
 			body: urlencoded,
@@ -113,9 +111,11 @@ export default class Reddit extends React.Component {
 					<a
 						href={
 							'https://www.reddit.com/api/v1/authorize?client_id=' +
-							clientId +
-							'&response_type=code&state=asdfasdfs&redirect_uri=' +
-							redirectUrl +
+							process.env.REACT_APP_REDDIT_ID +
+							'&response_type=code&state=' +
+							randomString() +
+							'&redirect_uri=' +
+							process.env.REACT_APP_CALLBACK_URL +
 							'&duration=permanent&scope=read'
 						}
 					>

@@ -7,6 +7,10 @@ import App from './App';
 import store from './redux/store';
 import './index.scss';
 
+require('dotenv').config();
+
+
+
 ReactDOM.render(
 	// provider is what allows us to connect the redux store to all of the components
 	<React.StrictMode>

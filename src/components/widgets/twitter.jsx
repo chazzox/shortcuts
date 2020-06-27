@@ -2,7 +2,6 @@ import React from 'react';
 import Cookies from 'js-cookie';
 
 const callbackRegexTwitter = /^oauth_token=([\w-]*)&oauth_verifier=([\w-]*)#\/$/;
-const apiURL = 'https://ec2-52-91-0-119.compute-1.amazonaws.com';
 
 export default class Twitter extends React.Component {
 	constructor(props) {
@@ -40,7 +39,7 @@ export default class Twitter extends React.Component {
 	}
 
 	getTwitterLogin() {
-		fetch(apiURL + '/twitter/oauth1', {
+		fetch(process.env.REACT_APP_API_URL + '/twitter/oauth1', {
 			method: 'post'
 		})
 			.then((res) => res.json())
@@ -48,7 +47,7 @@ export default class Twitter extends React.Component {
 	}
 
 	getTwitterToken() {
-		fetch(apiURL + '/twitter/oauth2?' + document.location.href.split('?')[1], {
+		fetch(process.env.REACT_APP_API_URL + '/twitter/oauth2?' + document.location.href.split('?')[1], {
 			method: 'POST'
 		})
 			.then((res) => res.json())
@@ -62,7 +61,7 @@ export default class Twitter extends React.Component {
 	getTwitterTimeline() {
 		console.log('fetching timeline?');
 		fetch(
-			apiURL +
+			process.env.REACT_APP_API_URL +
 				'/twitter/getTimeline?oauth_token=' +
 				this.state.oauthAccess.oauth_token +
 				'&oauth_token_secret=' +
