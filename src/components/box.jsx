@@ -27,6 +27,8 @@ class Box extends React.Component {
 				return <Widgets.twitter />;
 			case 'reddit':
 				return <Widgets.reddit />;
+			case 'google':
+				return <Widgets.google />;
 			default:
 				return <Widgets.weather />;
 		}

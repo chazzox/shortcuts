@@ -39,7 +39,8 @@ class BoxModal extends React.Component {
 								optionsArr: [
 									{ value: 'weather', name: 'weather near you' },
 									{ value: 'reddit', name: 'reddit timeline' },
-									{ value: 'twitter', name: 'twitter timeline' }
+									{ value: 'twitter', name: 'twitter timeline' },
+									{ value: 'google', name: 'google mail' }
 								],
 								defaultIndex: 0
 							}}

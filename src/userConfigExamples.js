@@ -6,6 +6,7 @@ const exampleConfig = {
 		'main-text-color': 'ffffffff',
 		'secondary-font-color': '000000ff'
 	},
+
 	config: {
 		links: {
 			'link-0': {
@@ -283,11 +284,8 @@ const exampleConfig = {
 		},
 		columnOrder: ['column-1', 'column-2', 'column-3', 'column-4']
 	},
-	searchHistory: [
-		{ searchTerm: 'foobar', frequency: 9 },
-		{ searchTerm: 'bar', frequency: 2 },
-		{ searchTerm: 'foo', frequency: 1 }
-	]
+
+	searchHistory: []
 };
 const newUser = {
 	themeInfo: {
@@ -320,6 +318,9 @@ const newUser = {
 			}
 		},
 		columnOrder: ['column-1', 'column-2', 'column-3', 'column-4']
-	}
+	},
+
+	searchHistory: []
 };
+
 export { newUser, exampleConfig };
