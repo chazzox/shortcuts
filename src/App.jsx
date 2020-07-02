@@ -49,10 +49,14 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div className="globalWrapper">
+			<>
+				<div className="errorContainer" id="betaWarning">
+					This webapp is still in beta development, breaking changes can, and mostly likely will be introduced
+				</div>
 				<div className="navWrapper">
 					<h1 className="navTitle">SHORTCUTS {this.props.editMode ? ' - editmode' : ''}</h1>
 					<input
+						id="searchBar"
 						value={this.state.searchString}
 						onChange={(event) => this.setState({ searchString: event.target.value })}
 						ref={(input) => {
@@ -112,7 +116,7 @@ class App extends React.Component {
 						}}
 					/>
 				) : null}
-			</div>
+			</>
 		);
 	}
 }

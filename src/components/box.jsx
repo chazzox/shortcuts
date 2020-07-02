@@ -29,6 +29,9 @@ class Box extends React.Component {
 				return <Widgets.reddit />;
 			case 'google':
 				return <Widgets.google />;
+			case 'notes':
+				return <Widgets.notes />;
+			// if the widget type is not recognizes it will default to being weather
 			default:
 				return <Widgets.weather />;
 		}
@@ -42,7 +45,6 @@ class Box extends React.Component {
 	}
 
 	render() {
-		// used for the render process
 		return (
 			// wraps the box inside a draggable container, this can not be styled as technically it is not an element at performs logic upon its children
 			<Draggable isDragDisabled={!this.props.editMode} draggableId={this.props.box.id} index={this.props.index}>

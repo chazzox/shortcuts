@@ -70,7 +70,7 @@ class GMAIL extends Component {
 
 	render() {
 		return this.state.gapiLoaded ? (
-			<div>
+			<>
 				{this.state.isLoggedIn ? (
 					<>
 						<h3>You are logged in</h3>
@@ -88,7 +88,7 @@ class GMAIL extends Component {
 						<button onClick={this.handleLoginClick}>Log in with Google</button>
 					</>
 				)}
-			</div>
+			</>
 		) : null;
 	}
 }
@@ -115,7 +115,10 @@ class Email extends React.Component {
 			.then((response) => {
 				this.setState({ emailBody: JSON.parse(response.body) });
 				JSON.parse(response.body).payload.headers.map((headerValue) => {
-					if (headerValue.name === 'Subject') this.setState({ subject: headerValue.value });
+					if (headerValue.name === 'Subject') {
+						this.setState({ subject: headerValue.value });
+					}
+					return null;
 				});
 			});
 	}

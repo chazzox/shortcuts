@@ -105,6 +105,9 @@ export const userSlice = createSlice({
 					case 'reddit':
 						Cookie.remove('redditOauth');
 						break;
+					case 'notes':
+						// code for deleting the notes associated with the note
+						break;
 					default:
 						break;
 				}
@@ -151,9 +154,11 @@ export const userSlice = createSlice({
 			return;
 		},
 		changeTheme: (state, action) => {
-			console.log(action.payload);
 			state.themeInfo = { ...action.payload.themeInfo };
 			localStorage.setItem('themeInfo', JSON.stringify({ ...action.payload.themeInfo }));
+			return;
+		},
+		getNote: () => {
 			return;
 		}
 	}
@@ -180,7 +185,8 @@ export const {
 	addObject,
 	addWidget,
 	loadExample,
-	changeTheme
+	changeTheme,
+	getNote
 } = userSlice.actions;
 
 export default configureStore({

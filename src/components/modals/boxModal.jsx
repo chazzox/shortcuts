@@ -40,6 +40,7 @@ class BoxModal extends React.Component {
 									{ value: 'weather', name: 'weather near you' },
 									{ value: 'reddit', name: 'reddit timeline' },
 									{ value: 'twitter', name: 'twitter timeline' },
+									{ value: 'notes', name: 'this is name for the note widget' },
 									{ value: 'google', name: 'google mail' }
 								],
 								defaultIndex: 0

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { toggle, updateConfig } from '../redux/store';
 import Column from './column';
 
-class ShortCuts extends React.Component {
+class Shortcuts extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -111,14 +111,14 @@ class ShortCuts extends React.Component {
 					const column = this.props.config.columns[columnId];
 					const boxesForColumn = column.boxOrder.map((boxId) => this.props.config.boxes[boxId]);
 					return (
-						<div key={column.id} style={this.state.allowHover ? null : { pointerEvents: 'none' }}>
-							<Column
-								editMode={this.props.editMode}
-								links={this.props.config.links}
-								column={column}
-								boxesForColumn={boxesForColumn}
-							/>
-						</div>
+						<Column
+							key={column.id}
+							style={this.state.allowHover ? null : { pointerEvents: 'none' }}
+							editMode={this.props.editMode}
+							links={this.props.config.links}
+							column={column}
+							boxesForColumn={boxesForColumn}
+						/>
 					);
 				})}
 			</DragDropContext>
@@ -142,4 +142,4 @@ const mapDispatchToProps = () => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(ShortCuts);
+export default connect(mapStateToProps, mapDispatchToProps())(Shortcuts);
