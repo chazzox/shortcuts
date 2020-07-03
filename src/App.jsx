@@ -115,7 +115,7 @@ class App extends React.Component {
 						of the changing, eg when removing a custom theme, it is just a showcase of how you could roughly do it */}
 					</div>
 				</div>
-				{/* <Shortcuts editMode={this.props.editMode} /> */}
+
 				<Switch>
 					<Route path="/settings" render={() => <Settings />} />
 					<Route path="/" render={() => <Shortcuts editMode={this.props.editMode} />} />

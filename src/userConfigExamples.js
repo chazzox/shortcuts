@@ -237,10 +237,9 @@ const exampleConfig = {
 
 	notes: {
 		'note-1': {
-			value: 'this is a fuckin test from the main'
+			value: ''
 		}
 	}
-	
 };
 const newUser = {
 	themeInfo: {
@@ -279,7 +278,7 @@ const newUser = {
 
 	notes: {
 		'note-1': {
-			value: 'this is a fuckin test'
+			value: ''
 		}
 	}
 };

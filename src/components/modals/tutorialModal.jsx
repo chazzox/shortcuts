@@ -8,7 +8,7 @@ class TutorialModal extends React.Component {
 		return (
 			<Popup>
 				<div className="modal">
-					<div>a bitch ass really never been to the site before</div>
+					<div>new user detected</div>
 					<button className="buttonGeneral" onClick={() => this.props.loadExample()}>
 						loadExample
 					</button>
