@@ -24,6 +24,7 @@ export default class Column extends React.Component {
 								// if the box is a widget, the map function will through an error
 								const linksForBox =
 									box.type === 'default' ? box.linkOrder.map((linkId) => this.props.links[linkId]) : null;
+
 								return (
 									// passing the props to the box instance
 									<Box

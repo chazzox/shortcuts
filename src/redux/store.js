@@ -1,10 +1,10 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import Cookie from 'js-cookie';
-import lzw_encode, { lzw_decode } from '../components/utils/compress';
 import validator from '../components/utils/validation';
 import randomKey from '../components/utils/randomKey';
 import { newUser, exampleConfig } from '../userConfigExamples';
 
+// the saving system foe the
 export const userSlice = createSlice({
 	name: 'editMode',
 	initialState: {
@@ -16,8 +16,9 @@ export const userSlice = createSlice({
 		toggle: (state) => {
 			// updating the user cookies when saving their changes
 			if (state.isEditMode === true) {
-				localStorage.setItem('config', lzw_encode(state.config));
+				localStorage.setItem('config', JSON.stringify(state.config));
 				localStorage.setItem('themeInfo', JSON.stringify(state.themeInfo));
+				localStorage.setItem('notes', JSON.stringify(state.notes));
 			}
 			state.isEditMode = !state.isEditMode;
 		},
@@ -25,14 +26,17 @@ export const userSlice = createSlice({
 		loadExample: (state) => {
 			state.config = exampleConfig.config;
 			state.themeInfo = exampleConfig.themeInfo;
-			localStorage.setItem('config', lzw_encode(state.config));
+			state.notes = exampleConfig.notes;
+			// this here is the main reason why i would like to change the saving system, if we add a new section, we will need to re-save it in the local storage
+			localStorage.setItem('config', JSON.stringify(state.config));
 			localStorage.setItem('themeInfo', JSON.stringify(state.themeInfo));
+			localStorage.setItem('notes', JSON.stringify(state.notes));
 			return;
 		},
 		// function to update the config
 		updateConfig: (state, action) => {
 			state.config = action.payload;
-			localStorage.setItem('config', lzw_encode(state.config));
+			localStorage.setItem('config', JSON.stringify(state.config));
 			return;
 		},
 		// adding object, compatible with bot links and boxes
@@ -63,7 +67,7 @@ export const userSlice = createSlice({
 				}
 			};
 			// updating the localStorage so that it saves before the editMode toggle, even if the user refreshes the browser
-			localStorage.setItem('config', lzw_encode(state.config));
+			localStorage.setItem('config', JSON.stringify(state.config));
 			return;
 		},
 		updateObject: (state, action) => {
@@ -81,7 +85,7 @@ export const userSlice = createSlice({
 				}
 			};
 			// updating the localStorage so that it saves before the editMode toggle, even if the user refreshes the browser
-			localStorage.setItem('config', lzw_encode(state.config));
+			localStorage.setItem('config', JSON.stringify(state.config));
 			return;
 		},
 		deleteObject: (state, action) => {
@@ -150,7 +154,7 @@ export const userSlice = createSlice({
 					[itemId]: { id: itemId, type: 'widget', ...action.payload.content }
 				}
 			};
-			localStorage.setItem('config', lzw_encode(state.config));
+			localStorage.setItem('config', JSON.stringify(state.config));
 			return;
 		},
 		changeTheme: (state, action) => {
@@ -158,20 +162,26 @@ export const userSlice = createSlice({
 			localStorage.setItem('themeInfo', JSON.stringify({ ...action.payload.themeInfo }));
 			return;
 		},
-		getNote: () => {
+		setNote: (state, action) => {
+			console.log(action);
+			state.notes[action.payload.noteId].value = action.payload.noteValue;
+			localStorage.setItem('notes', JSON.stringify(state.notes));
 			return;
 		}
 	}
 });
 
 // function to check for user storage this returns values for if no storage is found
+// soon to be changed
 function getUserItems() {
-	const temporaryUserConfig = JSON.parse(lzw_decode(localStorage.getItem('config')));
+	const temporaryUserConfig = JSON.parse(localStorage.getItem('config'));
 	const temporaryUserExtras = JSON.parse(localStorage.getItem('themeInfo'));
+	const temporaryUserNotes = JSON.parse(localStorage.getItem('notes'));
 	const shouldReset = validator.isEmpty([temporaryUserConfig]);
 	return {
 		config: shouldReset ? newUser.config : temporaryUserConfig,
 		themeInfo: shouldReset ? newUser.themeInfo : temporaryUserExtras,
+		notes: shouldReset ? newUser.notes : temporaryUserNotes,
 		tutorialMode: shouldReset
 	};
 }
@@ -186,7 +196,7 @@ export const {
 	addWidget,
 	loadExample,
 	changeTheme,
-	getNote
+	setNote
 } = userSlice.actions;
 
 export default configureStore({

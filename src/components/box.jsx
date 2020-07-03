@@ -30,7 +30,7 @@ class Box extends React.Component {
 			case 'google':
 				return <Widgets.google />;
 			case 'notes':
-				return <Widgets.notes />;
+				return <Widgets.notes noteInfo={this.props.box} />;
 			// if the widget type is not recognizes it will default to being weather
 			default:
 				return <Widgets.weather />;

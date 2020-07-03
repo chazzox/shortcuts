@@ -126,7 +126,7 @@ class Shortcuts extends React.Component {
 	}
 }
 
-// linking global values
+
 const mapStateToProps = (state) => {
 	return {
 		editMode: state.userSlice.isEditMode,

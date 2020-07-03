@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, Switch } from 'react-router-dom';
+import Cookie from 'js-cookie';
 
 import Shortcuts from './components/shortcuts';
 import Settings from './components/settings';
@@ -15,7 +16,8 @@ class App extends React.Component {
 		this.state = {
 			isOpen: this.props.tutorialMode,
 			colorModalOpen: false,
-			searchString: ''
+			searchString: '',
+			showWarning: !(Cookie.get('showWarning') === 'false')
 		};
 		this.searchBar = React.createRef();
 	}
@@ -50,9 +52,21 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<div className="errorContainer" id="betaWarning">
-					This webapp is still in beta development, breaking changes can, and mostly likely will be introduced
-				</div>
+				{this.state.showWarning ? (
+					<div className="errorContainer" id="betaWarning">
+						<div
+							id="close"
+							onClick={() => {
+								Cookie.set('showWarning', 'false');
+								this.setState({ showWarning: false });
+							}}
+						/>
+						<span>
+							This webapp is still in beta development, breaking changes can, and mostly likely will be
+							introduced
+						</span>
+					</div>
+				) : null}
 				<div className="navWrapper">
 					<h1 className="navTitle">SHORTCUTS {this.props.editMode ? ' - editmode' : ''}</h1>
 					<input

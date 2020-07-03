@@ -1,18 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getNote } from '../../redux/store';
+import { setNote } from '../../redux/store';
 
 class Notes extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			notes: 'this widget does not having saving capabilities'
+			notes: this.props.notes[this.props.noteInfo.noteId].value,
+			typing: false,
+			typingTimeout: 0
 		};
 		this.onNoteChange = this.onNoteChange.bind(this);
 	}
 
 	onNoteChange(event) {
+		if (this.state.typingTimeout) {
+			clearTimeout(this.state.typingTimeout);
+		}
+
+		this.setState({
+			notes: event.target.value,
+			typing: false,
+			// saves 3/4 of second after the user stopped typing it will save
+			typingTimeout: setTimeout(
+				() => this.props.setNote({ noteId: this.props.noteInfo.noteId, noteValue: this.state.notes }),
+				750
+			)
+		});
+
 		this.setState({ notes: event.target.value });
 	}
 
@@ -25,11 +41,18 @@ class Notes extends React.Component {
 	}
 }
 
-// linking update functions
-const mapDispatchToProps = () => {
+// linking the notes to the component
+const mapStateToProps = (state) => {
 	return {
-		getNote
+		notes: state.userSlice.notes
 	};
 };
 
-export default connect(null, mapDispatchToProps())(Notes);
+// getting the save not function from the reducer
+const mapDispatchToProps = () => {
+	return {
+		setNote
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps())(Notes);

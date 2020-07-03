@@ -70,11 +70,11 @@ class BoxModal extends React.Component {
 							if (this.props.addMode) {
 								if (!this.state.isWidget) {
 									this.props.addObject({
-										type: 'box',
+										type: 'default',
 										parentId: this.props.parentId,
 										content: {
 											name: this.state.name,
-											type: 'links',
+											type: 'default',
 											linkOrder: []
 										}
 									});
@@ -90,7 +90,7 @@ class BoxModal extends React.Component {
 							} else
 								this.props.updateObject({
 									id: this.props.id,
-									type: 'box',
+									type: 'default',
 									content: {
 										name: this.state.name
 									}
