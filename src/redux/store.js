@@ -140,6 +140,20 @@ export const userSlice = createSlice({
 			const itemId = `box-${randomKey()}`;
 			const newOrder = Array.from(state.config.columns[action.payload.parentId].boxOrder);
 			newOrder.push(itemId);
+
+			// if a widget requires extra params, add them here
+			let widgetExtras;
+			switch (action.payload.content.widgetType) {
+				case 'notes':
+					const newID = `note-${randomKey()}`;
+					widgetExtras = { noteId: newID };
+					state.notes[newID] = { value: '' };
+					break;
+				default:
+					widgetExtras = {};
+					break;
+			}
+
 			state.config = {
 				...state.config,
 				columns: {
@@ -151,10 +165,11 @@ export const userSlice = createSlice({
 				},
 				boxes: {
 					...state.config.boxes,
-					[itemId]: { id: itemId, type: 'widget', ...action.payload.content }
+					[itemId]: { id: itemId, type: 'widget', ...action.payload.content, ...widgetExtras }
 				}
 			};
 			localStorage.setItem('config', JSON.stringify(state.config));
+			localStorage.setItem('notes', JSON.stringify(state.notes));
 			return;
 		},
 		changeTheme: (state, action) => {
@@ -163,7 +178,6 @@ export const userSlice = createSlice({
 			return;
 		},
 		setNote: (state, action) => {
-			console.log(action);
 			state.notes[action.payload.noteId].value = action.payload.noteValue;
 			localStorage.setItem('notes', JSON.stringify(state.notes));
 			return;

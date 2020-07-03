@@ -28,14 +28,19 @@ class Notes extends React.Component {
 				750
 			)
 		});
-
 		this.setState({ notes: event.target.value });
 	}
 
 	render() {
 		return (
 			<div id="notes">
-				<textarea id="noteInput" type="text" value={this.state.notes} onChange={this.onNoteChange} />
+				<textarea
+					id="noteInput"
+					type="text"
+					value={this.state.notes}
+					onChange={this.onNoteChange}
+					placeholder="enter your notes here..."
+				/>
 			</div>
 		);
 	}

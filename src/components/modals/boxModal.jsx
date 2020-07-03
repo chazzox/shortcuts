@@ -18,10 +18,12 @@ class BoxModal extends React.Component {
 		// this means we don't have to write ()=>this.onchange later on
 		this.onChange = this.onChange.bind(this);
 	}
+
 	// function for changing the name state whenever the input is change, we can filter out unwanted chars in this function if we want (eg /?<>#@, etc)
 	onChange(val) {
 		this.setState({ name: val.target.value });
 	}
+
 	handleCheckbox() {
 		this.setState({ isWidget: !this.state.isWidget });
 	}
@@ -40,7 +42,7 @@ class BoxModal extends React.Component {
 									{ value: 'weather', name: 'weather near you' },
 									{ value: 'reddit', name: 'reddit timeline' },
 									{ value: 'twitter', name: 'twitter timeline' },
-									{ value: 'notes', name: 'this is name for the note widget' },
+									{ value: 'notes', name: 'note widget' },
 									{ value: 'google', name: 'google mail' }
 								],
 								defaultIndex: 0
