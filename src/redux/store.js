@@ -110,7 +110,9 @@ export const userSlice = createSlice({
 						Cookie.remove('redditOauth');
 						break;
 					case 'notes':
-						// code for deleting the notes associated with the note
+						const newNotes = { ...state.notes };
+						delete newNotes[state.config.boxes[action.payload.objectId]];
+						state.notes = { ...newNotes };
 						break;
 					default:
 						break;
