@@ -39,18 +39,21 @@ class LinkModal extends React.Component {
 						<input
 							type="text"
 							className="userInput"
+							placeholder="website name"
 							value={this.state.name}
 							onChange={(event) => this.handleChange(0, event.target.value)}
 						/>
 						<input
 							type="text"
 							className="userInput"
+							placeholder="website url"
 							value={this.state.url}
 							onChange={(event) => this.handleChange(1, event.target.value)}
 						/>
 						<input
 							type="text"
 							className="userInput"
+							placeholder="website icon url"
 							value={this.state.urlIcon}
 							onChange={(event) => this.handleChange(2, event.target.value)}
 						/>
