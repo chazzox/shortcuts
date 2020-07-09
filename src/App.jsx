@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Cookie from 'js-cookie';
 
 import Shortcuts from './components/shortcuts';
-import Settings from './components/settings';
-import Navbar from './navbar';
+import Settings from './components/settings/settings';
+import Navbar from './components/navbar';
 import TutorialModal from './components/modals/tutorialModal';
 
 import { toggle, loadExample, changeTheme } from './redux/store';
@@ -20,28 +20,6 @@ class App extends React.Component {
 			showWarning: !(Cookie.get('showWarning') === 'false')
 		};
 		this.searchBar = React.createRef();
-	}
-
-	componentDidMount() {
-		this.updateColors();
-	}
-
-	componentDidUpdate(prevProps) {
-		if (this.props.themeInfo !== prevProps.themeInfo) {
-			this.updateColors();
-		}
-	}
-
-	search() {
-		window.location = 'https://www.google.com/search?q=' + encodeURIComponent(this.state.searchString);
-	}
-
-	updateColors() {
-		document.documentElement.setAttribute('theme', 'custom');
-		document.documentElement.style.setProperty('--main-bg-color', '#' + this.props.themeInfo['main-bg-color']);
-		document.documentElement.style.setProperty('--nav-bg-color', '#' + this.props.themeInfo['nav-bg-color']);
-		document.documentElement.style.setProperty('--box-modal-bg-color', '#' + this.props.themeInfo['box-modal-bg-color']);
-		document.documentElement.style.setProperty('--main-text-color', '#' + this.props.themeInfo['main-text-color']);
 	}
 
 	close() {

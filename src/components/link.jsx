@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import { updateConfig } from '../redux/store';
-import ObjectUtils from './objectUtils';
+import ObjectUtils from './utils/objectUtils';
 
 // when in editMode, we don't want the link to appear while we move the links around
 // so we only allow the link container to have the hover css when edit mode isn't on

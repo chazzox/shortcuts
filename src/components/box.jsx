@@ -3,8 +3,8 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 
 import * as Widgets from './widgets/exportWidgets';
-import ObjectUtils from './objectUtils';
-import AddNew from './addNew';
+import ObjectUtils from './utils/objectUtils';
+import AddNew from './utils/addNew';
 import Link from './link';
 
 class Box extends React.Component {

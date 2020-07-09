@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
-import AddNew from './addNew';
+import AddNew from './utils/addNew';
 import Box from './box';
 
 // we also pass addition styles to these components through the sass file

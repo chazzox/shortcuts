@@ -2,7 +2,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 import Cookie from 'js-cookie';
 import validator from '../components/utils/validation';
 import randomKey from '../components/utils/randomKey';
-import { newUser, exampleConfig } from '../userConfigExamples';
+import { newUser, exampleConfig } from '../template/userConfigExamples';
 
 // the saving system foe the
 export const userSlice = createSlice({
@@ -13,9 +13,12 @@ export const userSlice = createSlice({
 		...getUserItems()
 	},
 	reducers: {
-		toggle: (state) => {
-			// updating the user cookies when saving their changes
+		toggle: (state, action) => {
+			if (action.payload.toggleOverride !== undefined) {
+				state.isEditMode = action.payload.toggleOverride;
+			}
 			if (state.isEditMode === true) {
+				// updating the user cookies when saving their changes
 				localStorage.setItem('config', JSON.stringify(state.config));
 				localStorage.setItem('themeInfo', JSON.stringify(state.themeInfo));
 				localStorage.setItem('notes', JSON.stringify(state.notes));

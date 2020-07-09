@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-import ColorModal from './components/modals/customization/colorModal';
-import { toggle } from './redux/store';
+import { toggle } from '../redux/store';
+import validate from './utils/validation';
 
 class Navbar extends React.Component {
 	constructor(props) {
@@ -17,6 +17,14 @@ class Navbar extends React.Component {
 
 	componentDidMount() {
 		this.searchBar.focus();
+	}
+
+	search() {
+		if (validate.isURL([this.state.searchString])) {
+			window.location = this.state.searchString;
+		} else {
+			window.location = 'https://www.google.com/search?q=' + encodeURIComponent(this.state.searchString);
+		}
 	}
 
 	render() {
@@ -36,22 +44,28 @@ class Navbar extends React.Component {
 				/>
 				<div id="navIconContainer">
 					<h1 className="navSubTitle">made for gamers, by gamers</h1>
-					<Link className="link" to="/settings">
-						<span className="buttonGeneral">settings</span>
-					</Link>
+					{this.props.location.pathname === '/settings' ? (
+						<Link className="link" to="/" onClick={() => this.props.toggle({ toggleOverride: true })}>
+							<span className="buttonGeneral">home</span>
+						</Link>
+					) : (
+						<Link className="link" to="/settings" onClick={() => this.props.toggle({ toggleOverride: true })}>
+							<span className="buttonGeneral">settings</span>
+						</Link>
+					)}
 					<button
 						className="buttonGeneral"
 						onClick={() => {
+							// if we are navigating to back from settings, we do not want to trigger the 
+							if (this.props.location.pathname === '/settings') return;
 							// editMode toggle, use this props to do conditional styling/rendering
 							// in any main component, the value: this.props.editMode will be available for use
-							this.props.toggle();
+							this.props.toggle({});
 						}}
 					>
 						{/* this is a conditional statement to render save or edit inside the button */}
 						{this.props.editMode ? 'save' : 'edit'}
 					</button>
-					{/* color customizations, this is in no way the final implementation and i encourage change to the workflow
-						of the changing, eg when removing a custom theme, it is just a showcase of how you could roughly do it */}
 				</div>
 			</div>
 		);
@@ -72,4 +86,4 @@ const mapDispatchToProps = () => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(Navbar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps())(Navbar));

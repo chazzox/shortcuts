@@ -1,7 +1,7 @@
 import React from 'react';
 
-import LinkModal from './modals/linkModal';
-import BoxModal from './modals/boxModal';
+import LinkModal from '../views/linkModal';
+import BoxModal from '../views/boxModal';
 
 export default class ObjectUtils extends React.Component {
 	constructor(props) {
