@@ -6,10 +6,6 @@ import Popup from '../../utils/modalUtils';
 import ColorWheel from './colorWheel';
 import './preview.scss';
 
-// this is a rather rudimentary color picker, we could add a theme browser and improve the general css of the modal,
-// i could also provide a complete separate settings page to bundle this is into, instead of having modals, this would be a
-// big update, but could be nicer looking
-
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -57,7 +53,7 @@ class App extends React.Component {
 		return this.state.newColors['--preview-' + selected];
 	}
 
-	// this saves a 
+	// this saves a
 	save(colors) {
 		this.props.changeTheme({ themeInfo: colors });
 		this.props.close();

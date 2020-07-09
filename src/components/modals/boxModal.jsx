@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Popup, { ErrorContainer } from '../utils/modalUtils';
-import { updateObject, addObject, addWidget } from '../../redux/store';
+import { updateObject, addObject, addWidget, deleteObject } from '../../redux/store';
 import validation from '../utils/validation';
 import expand from '../../assets/expand.svg';
 class BoxModal extends React.Component {
@@ -49,7 +49,22 @@ class BoxModal extends React.Component {
 							}}
 							updateType={(value) => this.setState({ widgetType: value })}
 						/>
-					) : null}
+					) : (
+						<div
+							className="buttonGeneral"
+							// deleting the object that is being clicked on
+							onClick={() => {
+								this.props.deleteObject({
+									type: this.props.type,
+									objectId: this.props.id,
+									containerId: this.props.containerId
+								});
+								this.props.close();
+							}}
+						>
+							Delete
+						</div>
+					)}
 					<input type="text" className="userInput" value={this.state.name} onChange={this.onChange} />
 					{/* rendering the errors if there are any post addition */}
 					{this.state.errors.map((error, index) => (
@@ -159,7 +174,8 @@ const mapDispatchToProps = () => {
 	return {
 		updateObject,
 		addObject,
-		addWidget
+		addWidget,
+		deleteObject
 	};
 };
 

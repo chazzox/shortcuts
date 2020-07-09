@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Popup, { ErrorContainer } from '../utils/modalUtils';
-import { updateObject, addObject } from '../../redux/store';
+import { updateObject, addObject, deleteObject } from '../../redux/store';
 import validation from '../utils/validation';
 
 class LinkModal extends React.Component {
@@ -104,6 +104,20 @@ class LinkModal extends React.Component {
 					<div className="buttonGeneral" onClick={() => this.props.close()}>
 						Cancel
 					</div>
+					<div
+						className="buttonGeneral"
+						// deleting the object that is being clicked on
+						onClick={() => {
+							this.props.deleteObject({
+								type: this.props.type,
+								objectId: this.props.id,
+								containerId: this.props.containerId
+							});
+							this.props.close();
+						}}
+					>
+						Delete
+					</div>
 				</div>
 			</Popup>
 		);
@@ -122,7 +136,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = () => {
 	return {
 		updateObject,
-		addObject
+		addObject,
+		deleteObject
 	};
 };
 
