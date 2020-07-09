@@ -6,7 +6,7 @@ import Cookie from 'js-cookie';
 import Shortcuts from './components/shortcuts';
 import Settings from './components/settings/settings';
 import Navbar from './components/navbar';
-import TutorialModal from './components/modals/tutorialModal';
+import TutorialModal from './components/views/tutorialModal';
 
 import { toggle, loadExample, changeTheme } from './redux/store';
 
