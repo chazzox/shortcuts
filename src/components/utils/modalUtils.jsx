@@ -15,15 +15,22 @@ export default class Modal extends React.Component {
 		};
 	}
 	componentDidMount() {
+		// adding the blur effect to the background
 		this.state.appRoute.classList.add('MODAL_OPEN_CLASS');
 		this.state.popupRoute.appendChild(this.el);
+		this.el.classList.add('modalWrapper');
 	}
+
 	componentWillUnmount() {
+		// removing the blur
 		this.state.appRoute.classList.remove('MODAL_OPEN_CLASS');
+		// removing the inner DOM content
 		this.state.popupRoute.removeChild(this.el);
 	}
+
 	render() {
-		return ReactDOM.createPortal(<div className="modalWrapper">{this.props.children}</div>, this.el);
+		// adding the modal contents into the container DOM
+		return ReactDOM.createPortal(<>{this.props.children}</>, this.el);
 	}
 }
 

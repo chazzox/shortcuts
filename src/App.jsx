@@ -22,6 +22,24 @@ class App extends React.Component {
 		this.searchBar = React.createRef();
 	}
 
+	componentDidMount() {
+		this.updateColors();
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.themeInfo !== prevProps.themeInfo) {
+			this.updateColors();
+		}
+	}
+
+	updateColors() {
+		document.documentElement.setAttribute('theme', 'custom');
+		document.documentElement.style.setProperty('--main-bg-color', '#' + this.props.themeInfo['main-bg-color']);
+		document.documentElement.style.setProperty('--nav-bg-color', '#' + this.props.themeInfo['nav-bg-color']);
+		document.documentElement.style.setProperty('--box-modal-bg-color', '#' + this.props.themeInfo['box-modal-bg-color']);
+		document.documentElement.style.setProperty('--main-text-color', '#' + this.props.themeInfo['main-text-color']);
+	}
+
 	close() {
 		this.setState({ isOpen: false });
 	}

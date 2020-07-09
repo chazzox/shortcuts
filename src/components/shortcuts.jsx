@@ -96,36 +96,37 @@ class Shortcuts extends React.Component {
 	render() {
 		return (
 			// drag drop context is the area that we can put draggables into, we use this to wrap any draggable item
-			<DragDropContext
-				style={{
-					border: '2px solid white',
-					'max-width': '1500px',
-					'margin-left': 'auto',
-					'margin-right': 'auto'
-				}}
-				onDragStart={this.onDragStart}
-				onDragEnd={this.onDragEnd}
-			>
-				{/* mapping the column array to the column instances, this is where all of the rendering of the shortcuts content begins */}
-				{this.props.config.columnOrder.map((columnId) => {
-					const column = this.props.config.columns[columnId];
-					const boxesForColumn = column.boxOrder.map((boxId) => this.props.config.boxes[boxId]);
-					return (
-						<Column
-							key={column.id}
-							style={this.state.allowHover ? null : { pointerEvents: 'none' }}
-							editMode={this.props.editMode}
-							links={this.props.config.links}
-							column={column}
-							boxesForColumn={boxesForColumn}
-						/>
-					);
-				})}
-			</DragDropContext>
+			<span id="shortcutsContainer">
+				<DragDropContext
+					style={{
+						border: '2px solid white',
+						'max-width': '1500px',
+						'margin-left': 'auto',
+						'margin-right': 'auto'
+					}}
+					onDragStart={this.onDragStart}
+					onDragEnd={this.onDragEnd}
+				>
+					{/* mapping the column array to the column instances, this is where all of the rendering of the shortcuts content begins */}
+					{this.props.config.columnOrder.map((columnId) => {
+						const column = this.props.config.columns[columnId];
+						const boxesForColumn = column.boxOrder.map((boxId) => this.props.config.boxes[boxId]);
+						return (
+							<Column
+								key={column.id}
+								style={this.state.allowHover ? null : { pointerEvents: 'none' }}
+								editMode={this.props.editMode}
+								links={this.props.config.links}
+								column={column}
+								boxesForColumn={boxesForColumn}
+							/>
+						);
+					})}
+				</DragDropContext>
+			</span>
 		);
 	}
 }
-
 
 const mapStateToProps = (state) => {
 	return {

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { changeTheme } from '../../../redux/store';
 
-import Popup from '../../utils/modalUtils';
 import ColorWheel from './colorWheel';
 import './preview.scss';
 
@@ -26,6 +25,9 @@ class App extends React.Component {
 		document.body.style.setProperty('--preview-box-modal-bg-color', '#' + this.props.themeInfo['box-modal-bg-color']);
 		document.body.style.setProperty('--preview-nav-bg-color', '#' + this.props.themeInfo['nav-bg-color']);
 		document.body.style.setProperty('--preview-main-bg-color', '#' + this.props.themeInfo['main-bg-color']);
+	}
+	componentWillUnmount() {
+		document.body.style = '';
 	}
 
 	// this sets the preview colors equal to the current themes when it updates
@@ -56,12 +58,11 @@ class App extends React.Component {
 	// this saves a
 	save(colors) {
 		this.props.changeTheme({ themeInfo: colors });
-		this.props.close();
 	}
 
 	render() {
 		return (
-			<Popup>
+			<>
 				<div id="title" className="boxContainer">
 					change the colors of your homepage
 				</div>
@@ -102,19 +103,12 @@ class App extends React.Component {
 					<div
 						style={{ width: 'max-content', margin: 'auto', display: 'inline-block' }}
 						className={'buttonGeneral'}
-						onClick={() => this.props.close()}
-					>
-						close
-					</div>
-					<div
-						style={{ width: 'max-content', margin: 'auto', display: 'inline-block' }}
-						className={'buttonGeneral'}
 						onClick={() => this.save(this.state.newColors)}
 					>
 						save the changes
 					</div>
 				</div>
-			</Popup>
+			</>
 		);
 	}
 }

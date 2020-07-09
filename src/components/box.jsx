@@ -46,43 +46,48 @@ class Box extends React.Component {
 
 	render() {
 		return (
-			// wraps the box inside a draggable container, this can not be styled as technically it is not an element at performs logic upon its children
-			<Draggable isDragDisabled={!this.props.editMode} draggableId={this.props.box.id} index={this.props.index}>
-				{(provided) => (
-					// draggable props tells the framework what its actually dragging
-					// inner ref is just needed, idk what it does
-					<div {...provided.draggableProps} ref={provided.innerRef}>
-						{/* dragHandleProps tells the framework what we are dragging the item around with, 
+			<div className="boxContainer">
+				{/* wraps the box inside a draggable container, this can not be styled as technically it is not an element at
+				performs logic upon its children */}
+				<Draggable isDragDisabled={!this.props.editMode} draggableId={this.props.box.id} index={this.props.index}>
+					{(provided) => (
+						// draggable props tells the framework what its actually dragging
+						// inner ref is just needed, idk what it does
+						<div {...provided.draggableProps} ref={provided.innerRef}>
+							{/* dragHandleProps tells the framework what we are dragging the item around with, 
                             in this case we use the box title but this can be changed pretty easily */}
-						<div className="boxName" style={{ paddingTop: '10px' }} {...provided.dragHandleProps}>
-							{this.props.box.name}
-							<ObjectUtils
-								id={this.props.box.id}
-								editMode={this.props.editMode}
-								type="box"
-								containerId={this.props.columnContainerId}
-							/>
-						</div>
+							<div className="boxName" style={{ paddingTop: '10px' }} {...provided.dragHandleProps}>
+								{this.props.box.name}
+								<ObjectUtils
+									id={this.props.box.id}
+									editMode={this.props.editMode}
+									type="box"
+									containerId={this.props.columnContainerId}
+								/>
+							</div>
 
-						<div className="boxContainer">
-							{/* inside the box is the link container, this is a place where we drop the links into hence the droppable element */}
-							{/* droppableId is needed for framework to know what it is dragging, type constraints what can be dropped into a given container */}
-							<Droppable droppableId={this.props.box.id} type={this.props.box.type}>
-								{(provided) => (
-									<div {...provided.droppableProps} ref={provided.innerRef}>
-										{/* this is the function that renders the box */}
-										{this.renderBox(this.props.box.type)}
-										{/* needed for framework, not sure what it does, think it provides like extra space or sum shit */}
-										{provided.placeholder}
-									</div>
-								)}
-							</Droppable>
-							{/* this only renders the addNew button if the box contains link as opposed to a widget box */}
-							{this.props.box.type === 'default' ? <AddNew parentId={this.props.box.id} type="link" /> : null}
+							<div className="boxContent">
+								{/* inside the box is the link container, this is a place where we drop the links into hence the droppable element */}
+								{/* droppableId is needed for framework to know what it is dragging, type constraints what can be dropped into a given container */}
+								<Droppable droppableId={this.props.box.id} type={this.props.box.type}>
+									{(provided) => (
+										<div {...provided.droppableProps} ref={provided.innerRef}>
+											{/* this is the function that renders the box */}
+											{this.renderBox(this.props.box.type)}
+											{/* needed for framework, not sure what it does, think it provides like extra space or sum shit */}
+											{provided.placeholder}
+										</div>
+									)}
+								</Droppable>
+								{/* this only renders the addNew button if the box contains link as opposed to a widget box */}
+								{this.props.box.type === 'default' ? (
+									<AddNew parentId={this.props.box.id} type="link" />
+								) : null}
+							</div>
 						</div>
-					</div>
-				)}
-			</Draggable>
+					)}
+				</Draggable>
+			</div>
 		);
 	}
 }
