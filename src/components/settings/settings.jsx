@@ -7,7 +7,7 @@ export default class Settings extends React.Component {
 		return (
 			<span id="settingsContainer">
 				<div className="setting">
-					<div className="settingTitle">test</div>
+					<div className="settingTitle">colors</div>
 					<Color />
 				</div>
 			</span>

@@ -2,7 +2,8 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 import Cookie from 'js-cookie';
 import validator from '../components/utils/validation';
 import randomKey from '../components/utils/randomKey';
-import { newUser, exampleConfig } from '../template/userConfigExamples';
+import { exampleConfig } from '../template/example';
+import { newUser } from '../template/newUser';
 
 // the saving system foe the
 export const userSlice = createSlice({

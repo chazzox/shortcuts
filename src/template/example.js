@@ -17,45 +17,45 @@ const exampleConfig = {
 			},
 			'link-1': {
 				id: 'link-1',
+				name: 'github repo',
+				url: 'https://github.com/chazzox/shortcuts',
+				linkIconUrl: 'https://imgur.com/a/kjgkQ7u'
+			},
+			'link-2': {
+				id: 'link-2',
 				name: 'Reddit',
 				url: 'https://www.reddit.com',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/reddit.png'
 			},
-			'link-2': {
-				id: 'link-2',
+			'link-3': {
+				id: 'link-3',
 				name: 'Steam',
 				url: 'https://store.steampowered.com/',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/steam.png'
 			},
-			'link-3': {
-				id: 'link-3',
+			'link-4': {
+				id: 'link-4',
 				name: 'Instagram',
 				url: 'https://www.Instagram.com',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/instagram.png'
 			},
-			'link-4': {
-				id: 'link-4',
+			'link-5': {
+				id: 'link-5',
 				name: 'Inbox',
 				url: 'https://www.mail.google.com',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/inbox.png'
 			},
-			'link-5': {
-				id: 'link-5',
+			'link-6': {
+				id: 'link-6',
 				name: 'Discord',
 				url: 'https://www.discord.com',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/discord.png'
 			},
-			'link-6': {
-				id: 'link-6',
+			'link-7': {
+				id: 'link-7',
 				name: 'Imgur',
 				url: 'https://www.imgur.com',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/imgur.png'
-			},
-			'link-7': {
-				id: 'link-7',
-				name: 'Twitter',
-				url: 'https://www.twitter.com',
-				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/twitter.png'
 			},
 			'link-8': {
 				id: 'link-8',
@@ -105,11 +105,23 @@ const exampleConfig = {
 				url: 'https://www.bbc.co.uk/iplayer',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/iplayer.png'
 			},
-			'link-18': {
-				id: 'link-18',
+			'link-16': {
+				id: 'link-16',
+				name: 'Twitter',
+				url: 'https://www.twitter.com',
+				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/twitter.png'
+			},
+			'link-17': {
+				id: 'link-17',
 				name: 'Icloud',
 				url: 'https://www.icloud.com',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/icloud.png'
+			},
+			'link-18': {
+				id: 'link-18',
+				name: 'PCPartPicker',
+				url: 'https://www.PCPartPicker.com',
+				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/partpicker.png'
 			},
 			'link-19': {
 				id: 'link-19',
@@ -141,7 +153,12 @@ const exampleConfig = {
 				url: 'https://www.TempMail.com',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/tempmail.png'
 			},
-
+			'link-24': {
+				id: 'link-24',
+				name: 'nationwide',
+				url: 'https://www.LLoydsBank.com',
+				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/llyods.png'
+			},
 			'link-25': {
 				id: 'link-25',
 				name: 'Amazon',
@@ -153,18 +170,6 @@ const exampleConfig = {
 				name: 'PayPal',
 				url: 'https://www.PayPal.com',
 				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/paypal.png'
-			},
-			'link-27': {
-				id: 'link-27',
-				name: 'nationwide',
-				url: 'https://www.LLoydsBank.com',
-				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/llyods.png'
-			},
-			'link-28': {
-				id: 'link-28',
-				name: 'PCPartPicker',
-				url: 'https://www.PCPartPicker.com',
-				linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/partpicker.png'
 			}
 		},
 		boxes: {
@@ -172,37 +177,37 @@ const exampleConfig = {
 				id: 'box-1',
 				name: 'Social',
 				type: 'default',
-				linkOrder: ['link-0', 'link-1', 'link-2', 'link-3', 'link-4', 'link-5', 'link-6', 'link-7']
+				linkOrder: ['link-0', 'link-1', 'link-2', 'link-3', 'link-4', 'link-5', 'link-6', 'link-7', 'link-8']
 			},
 			'box-2': {
 				id: 'box-2',
 				name: 'Updates',
 				type: 'default',
-				linkOrder: ['link-8', 'link-9', 'link-10']
+				linkOrder: ['link-9', 'link-10', 'link-11']
 			},
 			'box-3': {
 				id: 'box-3',
 				name: 'Videos',
 				type: 'default',
-				linkOrder: ['link-11', 'link-12', 'link-13', 'link-14', 'link-15']
+				linkOrder: ['link-12', 'link-13', 'link-14', 'link-15', 'link-16']
 			},
 			'box-5': {
 				id: 'box-5',
 				name: 'Cloud',
 				type: 'default',
-				linkOrder: ['link-18', 'link-19']
+				linkOrder: ['link-17', 'link-18']
 			},
 			'box-6': {
 				id: 'box-6',
 				name: 'Utilities',
 				type: 'default',
-				linkOrder: ['link-20', 'link-21', 'link-22', 'link-23']
+				linkOrder: ['link-19', 'link-20', 'link-21', 'link-22']
 			},
 			'box-7': {
 				id: 'box-7',
 				name: 'Shopping',
 				type: 'default',
-				linkOrder: ['link-25', 'link-26', 'link-27', 'link-28']
+				linkOrder: ['link-23', 'link-24', 'link-25', 'link-26']
 			},
 			'box-8': {
 				id: 'box-8',
@@ -241,46 +246,5 @@ const exampleConfig = {
 		}
 	}
 };
-const newUser = {
-	themeInfo: {
-		'main-bg-color': '292c30ff',
-		'nav-bg-color': '000000ff',
-		'box-modal-bg-color': '2f3439ff',
-		'main-text-color': 'ffffffff',
-		'secondary-font-color': '000000ff'
-	},
 
-	config: {
-		links: {},
-		boxes: {},
-		columns: {
-			'column-1': {
-				id: 'column-1',
-				boxOrder: []
-			},
-			'column-2': {
-				id: 'column-2',
-				boxOrder: []
-			},
-			'column-3': {
-				id: 'column-3',
-				boxOrder: []
-			},
-			'column-4': {
-				id: 'column-4',
-				boxOrder: []
-			}
-		},
-		columnOrder: ['column-1', 'column-2', 'column-3', 'column-4']
-	},
-
-	searchHistory: [],
-
-	notes: {
-		'note-1': {
-			value: ''
-		}
-	}
-};
-
-export { newUser, exampleConfig };
+export { exampleConfig };
