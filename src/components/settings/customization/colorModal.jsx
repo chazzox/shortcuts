@@ -8,7 +8,6 @@ import './preview.scss';
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log(this.props.themeInfo);
 		this.state = {
 			selected: 'box-modal-bg-color',
 			newColors: {

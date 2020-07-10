@@ -1,17 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 
 import LinkModal from '../views/linkModal';
 import { updateObject } from '../../redux/store';
 import BoxModal from '../views/boxModal';
-
-// only did this cause the og repo had different widths of add buttons
-export const AddObject = styled.button`
-	&:hover {
-		${(props) => `max-width:${props.maxWidth}%;`}
-	}
-`;
 
 class AddNew extends React.Component {
 	constructor(props) {
@@ -33,9 +25,9 @@ class AddNew extends React.Component {
 		// if edit mode is on, than this is viewable
 		return this.props.editMode ? (
 			<div className="newObjectButtonContainer">
-				<AddObject onClick={() => this.handleShow()} className="addButton" maxWidth={80}>
-					Add New
-				</AddObject>
+				<div onClick={() => this.handleShow()} className="addButton moreWidth">
+					Add
+				</div>
 				{/* conditional statements to decide which type of modal to display */}
 				{this.state.open ? (
 					this.props.type === 'link' ? (

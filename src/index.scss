@@ -183,6 +183,19 @@ a {
 							max-height: 25px;
 						}
 					}
+					.editHover {
+						&:hover {
+							padding-top: 20px;
+							padding-bottom: 20px;
+							min-height: 65px;
+							background-size: 55px;
+							padding-left: 90px;
+							.linkUrl {
+								font-size: 13pt;
+								opacity: 1;
+							}
+						}
+					}
 					&:hover {
 						text-decoration: none;
 					}

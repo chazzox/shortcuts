@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 
 import AddNew from './utils/addNew';
@@ -7,14 +6,18 @@ import Box from './box';
 
 // we also pass addition styles to these components through the sass file
 // however the styles in here are conditional, so require props
-const ColumnWrapper = styled.div`
-	${(props) => (props.editMode ? `border-color: var(--column-border-col); ` : `border-color: rgba(255,255,255,0);`)}
-`;
 
 export default class Column extends React.Component {
 	render() {
 		return (
-			<ColumnWrapper editMode={this.props.editMode} className="columnWrapper">
+			<div
+				style={
+					this.props.editMode
+						? { borderColor: 'var(--column-border-col)' }
+						: { borderColor: 'rgba(255,255,255,0)' }
+				}
+				className="columnWrapper"
+			>
 				<Droppable droppableId={this.props.column.id} type="BOX">
 					{/* the child of a droppable must be a function*/}
 					{(provided) => (
@@ -42,7 +45,7 @@ export default class Column extends React.Component {
 					)}
 				</Droppable>
 				<AddNew parentId={this.props.column.id} type="box" />
-			</ColumnWrapper>
+			</div>
 		);
 	}
 }
