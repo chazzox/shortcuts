@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
 * {
 	user-select: none;
 	-moz-user-select: none;
@@ -10,18 +11,12 @@
 	box-sizing: border-box;
 }
 
-// this is how we address different themes
-// default values (darkMode)
 html {
-	--main-bg-color: #292c30;
-	--nav-bg-color: #000000;
+	--main-bg-color: #2c2c2c;
+	--nav-bg-color: #2f3439;
 	--box-modal-bg-color: #2f3439;
 	--main-text-color: #ffffff;
 	--column-border-col: #ffffff;
-}
-
-// setting up the custom vars
-html {
 	color: var(--main-text-color);
 	background-color: var(--main-bg-color);
 	margin: 0;
@@ -47,7 +42,6 @@ a {
 	}
 }
 
-// this class is used to blur the main content when a modal is visible
 .MODAL_OPEN_CLASS {
 	filter: blur(2px);
 	-webkit-filter: blur(12px);
@@ -86,7 +80,7 @@ a {
 	font-size: calc(10px + 2vmin);
 	width: calc(90% - 20px);
 	margin: 20px auto;
-	padding: 20px;
+	padding: 0px 20px;
 	border-radius: 15px;
 	position: relative;
 	top: 0;
@@ -110,10 +104,11 @@ a {
 		border-radius: 15px;
 		font-size: 25px;
 		background-color: #121212;
-		border: 1px solid #2f2f2f;
 		color: #dddddd;
 		min-width: 30%;
 		padding-left: 15px;
+		outline: none;
+		border: none;
 		&:focus {
 			outline: none;
 			-webkit-user-select: none;
@@ -152,9 +147,6 @@ a {
 				border-radius: 25px;
 				padding: 10px;
 				margin: 0 auto;
-				border-style: solid;
-				border-color: rgba(255, 255, 255, 0.05);
-				border-width: 2px;
 				.linkLink {
 					.linkContainer {
 						position: relative;
@@ -323,6 +315,7 @@ a {
 		padding: 24px;
 	}
 }
+
 .errorContainer {
 	background-image: url('./assets/error.png');
 	background-size: 20px;
