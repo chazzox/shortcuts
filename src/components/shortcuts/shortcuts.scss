@@ -1,0 +1,12 @@
+.columnWrapper {
+	float: left;
+	width: 23%;
+	margin-left: 5px;
+	height: 70%;
+	background-color: darken($color: rgb(46, 45, 45), $amount: 5);
+}
+
+#root {
+	height: 100vh;
+	width: 100%;
+}

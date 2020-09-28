@@ -3,12 +3,12 @@ html {
     MAIN COLOR PROPERTIES
     ======================================================== */
 	// text colors
-	--primary-text-color: #ffffff;
-	--secondary-text-color: #8d8d93;
-	--tertiary-text-color: #47474a;
+	--primary-text-color: rgb(255, 255, 255);
+	--secondary-text-color: rgb(139, 139, 146);
+	--tertiary-text-color: rgb(71, 71, 74);
 
 	// page background color
-	--background-color: #2e2d2d;
+	--background-color: rgb(46, 45, 45);
 
 	/*========================================================
     BOXES
@@ -16,7 +16,7 @@ html {
 	// box background color
 	--primary-color: rgb(50, 50, 50);
 	// box title font color
-	--box-title-color: #cfcfce;
+	--box-title-color: rgb(207, 207, 206);
 	// box shadow/glow/outline related properties
 	--box-title-background: linear-gradient(
 		0deg,
@@ -40,6 +40,6 @@ html {
 		inset 0px 1px 0px 0px rgba(255, 255, 255, 0.16),
 		inset 0px 2px 0px 0px rgba(255, 255, 255, 0.04);
 	// button highlight colors (affirmative buttons)
-	--accent-color-primary: #145ccc;
-	--accent-color-secondary: #1768e5;
+	--accent-color-primary: rgb(20, 92, 204);
+	--accent-color-secondary: rgb(23, 104, 229);
 }

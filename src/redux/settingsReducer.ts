@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const settingsReducer = createSlice({
 	name: 'settingsReducer',
-	initialState: { isNewUser: true, isDarkMode: false },
+	initialState: { isNewUser: false, isDarkMode: true, isisEditMode: false },
 	reducers: {}
 });
 

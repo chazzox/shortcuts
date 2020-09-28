@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import './tutorial.scss';
-
 const Tutorial = () => {
 	const [slideCounter, setSlideCounter] = useState(0);
 
@@ -9,16 +7,16 @@ const Tutorial = () => {
 
 	return (
 		<>
-			<div id="welcomeContainer" className="box">
-				<div className="boxTitle">Shortcuts</div>
+			<div className="box center">
 				<div className="boxInner">
+					<h1>Shortcuts</h1>
 					{slides[slideCounter]}
 
 					<div className="buttonContainer">
 						<span
 							className="button"
 							onClick={() => {
-								setSlideCounter((slideCounter - 1) % slides.length);
+								setSlideCounter(Math.abs((slideCounter - 1) % slides.length));
 							}}
 						>
 							Previous
@@ -26,7 +24,7 @@ const Tutorial = () => {
 						<span
 							className="button affirmative"
 							onClick={() => {
-								setSlideCounter((slideCounter + 1) % slides.length);
+								setSlideCounter(Math.abs((slideCounter + 1) % slides.length));
 							}}
 						>
 							Next

@@ -30,6 +30,13 @@ h2 {
 	color: var(--primary-text-color);
 }
 
+.center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .buttonContainer {
 	margin-top: 40px;
 	text-align: right;
@@ -55,11 +62,7 @@ h2 {
 
 		&.affirmative {
 			box-shadow: var(--button-accent-drop-shadow);
-			background: linear-gradient(
-				to top,
-				var(--accent-color-primary),
-				var(--accent-color-secondary)
-			);
+			background: linear-gradient(to top, var(--accent-color-primary), var(--accent-color-secondary));
 			color: white;
 		}
 	}
@@ -73,10 +76,6 @@ h2 {
 	max-width: 750px;
 	padding-bottom: 20px;
 	border-radius: 11px;
-	margin: auto;
-	position: absolute;
-	top: 40%;
-	left: 50%;
 	transform: translate(-50%, -50%);
 	overflow: hidden;
 
@@ -94,5 +93,6 @@ h2 {
 		width: 100%;
 		padding: 5px;
 		color: var(--box-title-color);
+		font-size: 14pt;
 	}
 }
