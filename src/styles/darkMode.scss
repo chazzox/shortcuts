@@ -1,0 +1,45 @@
+html {
+	/*========================================================
+    MAIN COLOR PROPERTIES
+    ======================================================== */
+	// text colors
+	--primary-text-color: #ffffff;
+	--secondary-text-color: #8d8d93;
+	--tertiary-text-color: #47474a;
+
+	// page background color
+	--background-color: #2e2d2d;
+
+	/*========================================================
+    BOXES
+	======================================================== */
+	// box background color
+	--primary-color: rgb(50, 50, 50);
+	// box title font color
+	--box-title-color: #cfcfce;
+	// box shadow/glow/outline related properties
+	--box-title-background: linear-gradient(
+		0deg,
+		rgb(61, 61, 61) 0%,
+		rgb(68, 68, 68) 40%,
+		rgb(75, 75, 75) 100%
+	);
+	--box-title-drop-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1),
+		inset 0px 1px 0px 0px rgba(255, 255, 255, 0.1), inset 0px -1px 0px 0px rgba(0, 0, 0, 0.65);
+
+	/*========================================================
+    BUTTONS
+    ======================================================== */
+	// main button color
+	--button-color: #656565;
+	// button shadow/glow/outline related properties
+	--button-accent-drop-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4),
+		0px 1px 3px 0px rgba(0, 0, 0, 0.2), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.25),
+		inset 0px 2px 0px 0px rgba(206, 183, 183, 0.06);
+	--button-drop-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.35), 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+		inset 0px 1px 0px 0px rgba(255, 255, 255, 0.16),
+		inset 0px 2px 0px 0px rgba(255, 255, 255, 0.04);
+	// button highlight colors (affirmative buttons)
+	--accent-color-primary: #145ccc;
+	--accent-color-secondary: #1768e5;
+}
