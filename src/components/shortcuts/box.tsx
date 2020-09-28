@@ -10,13 +10,10 @@ const Box = ({ box, linkChildren, index }: { box: BoxType; linkChildren: LinkTyp
 
 	const renderBox = (boxType: string) => {
 		if (boxType === 'default') {
-			return renderLinks();
+			return linkChildren.map((link, index) => <Link key={link.id} index={index} link={link} />);
 		} else if (boxType === 'widget') {
 			return <h3>widget</h3>;
 		}
-	};
-	const renderLinks = () => {
-		return linkChildren.map((link, index) => <Link key={link.id} index={index} link={link} />);
 	};
 
 	return (

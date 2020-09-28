@@ -10,3 +10,17 @@
 	height: 100vh;
 	width: 100%;
 }
+
+.widget {
+	.large {
+		width: 100%;
+	}
+	.small {
+		width: 25%;
+	}
+	.medium {
+		width: 50%;
+	}
+	height: 40px;
+	background-color: red;
+}
