@@ -7,6 +7,7 @@ import Tutorial from './components/tutorial/tutorial';
 import { RootState } from './redux/store';
 
 import './styles/app.scss';
+import './styles/globalVariables.scss';
 import './styles/darkMode.scss';
 import './styles/lightMode.scss';
 

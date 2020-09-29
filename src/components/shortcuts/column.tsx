@@ -5,6 +5,8 @@ import { RootState } from '../../redux/store';
 
 import Box from './box';
 
+import './styles/column.scss'; // stylesheet for columns
+
 const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxType[] }) => {
 	const config = useSelector((state: RootState) => state.config.config);
 	return (

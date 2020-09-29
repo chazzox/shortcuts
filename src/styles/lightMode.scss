@@ -8,39 +8,11 @@ html.lightMode {
 	--tertiary-text-color: rgb(196, 196, 198);
 
 	// page background color
-	--background-color: rgb(210, 210, 210);
+	--background-color: rgb(230, 230, 230);
 
 	/*========================================================
-    BOXES
+    UI ELEMENT COLOURS
     ======================================================== */
-	// box background color
-	--primary-color: rgb(236, 236, 236);
-	// box title font color
-	--box-title-color: rgb(62, 62, 62);
-	// box shadow/glow/outline related properties
-	--box-title-background: linear-gradient(
-		0deg,
-		rgb(207, 207, 207) 0%,
-		rgb(207, 207, 207) 40%,
-		rgb(229, 229, 229) 100%
-	);
-	--box-title-drop-shadow: 0px 1px 0px 0px rgba(171, 171, 171, 0.004),
-		inset 0px 2px 1px 0px rgba(255, 255, 255, 0.55), inset 0px -1px 0px 0px rgba(0, 0, 0, 0.06);
-
-	/*========================================================
-    BUTTONS
-    ======================================================== */
-	// main button color
-	--button-color: #ffffff;
-	// button shadow/glow/outline related properties
-	--button-accent-drop-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4),
-		0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 1px rgb(53, 141, 250);
-	--button-drop-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4), 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-		inset 0px 1px 0px 0px rgba(255, 255, 255, 0.25),
-		inset 0px 2px 0px 0px rgba(255, 255, 255, 0.06);
-	--box-title-drop-shadow: 0px 1px 0px 0px rgba(171, 171, 171, 100),
-		inset 0px 2px 1px 0px rgba(255, 255, 255, 0.55), inset 0px -1px 0px 0px rgba(0, 0, 0, 0.1);
-	// button highlight colors (affirmative buttons)
-	--accent-color-primary: rgb(5, 126, 253);
-	--accent-color-secondary: rgb(108, 179, 250);
+	// box colours
+	--box-color: rgb(255, 255, 255);
 }

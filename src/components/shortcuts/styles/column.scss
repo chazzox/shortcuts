@@ -1,0 +1,15 @@
+.columnWrapper {
+	width: 25%;
+	height: calc(100% - var(--searchbar-whitespace-height));
+	float: left;
+	padding-left: var(--primary-padding);
+	padding-right: var(--primary-padding);
+
+	* {
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+}

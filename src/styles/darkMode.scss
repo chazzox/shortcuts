@@ -1,6 +1,6 @@
 html {
 	/*========================================================
-    MAIN COLOR PROPERTIES
+    MAIN COLOR COLOURS
     ======================================================== */
 	// text colors
 	--primary-text-color: rgb(255, 255, 255);
@@ -8,38 +8,11 @@ html {
 	--tertiary-text-color: rgb(71, 71, 74);
 
 	// page background color
-	--background-color: rgb(46, 45, 45);
+	--background-color: rgb(37, 41, 46);
 
 	/*========================================================
-    BOXES
-	======================================================== */
-	// box background color
-	--primary-color: rgb(50, 50, 50);
-	// box title font color
-	--box-title-color: rgb(207, 207, 206);
-	// box shadow/glow/outline related properties
-	--box-title-background: linear-gradient(
-		0deg,
-		rgb(61, 61, 61) 0%,
-		rgb(68, 68, 68) 40%,
-		rgb(75, 75, 75) 100%
-	);
-	--box-title-drop-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1),
-		inset 0px 1px 0px 0px rgba(255, 255, 255, 0.1), inset 0px -1px 0px 0px rgba(0, 0, 0, 0.65);
-
-	/*========================================================
-    BUTTONS
+    UI ELEMENT COLOURS
     ======================================================== */
-	// main button color
-	--button-color: #656565;
-	// button shadow/glow/outline related properties
-	--button-accent-drop-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4),
-		0px 1px 3px 0px rgba(0, 0, 0, 0.2), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.25),
-		inset 0px 2px 0px 0px rgba(206, 183, 183, 0.06);
-	--button-drop-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.35), 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-		inset 0px 1px 0px 0px rgba(255, 255, 255, 0.16),
-		inset 0px 2px 0px 0px rgba(255, 255, 255, 0.04);
-	// button highlight colors (affirmative buttons)
-	--accent-color-primary: rgb(20, 92, 204);
-	--accent-color-secondary: rgb(23, 104, 229);
+	// box colours
+	--box-color: rgb(47, 52, 56);
 }
