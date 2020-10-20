@@ -32,7 +32,7 @@ const Shortcuts = () => {
 				add new
 			</button>
 			<div id="dndContainer">
-				<GridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={document.body.clientWidth}>
+				<GridLayout className="layout" layout={layout} cols={12} rowHeight={15} width={document.body.clientWidth}>
 					{layout.map(({ i }) => (
 						<div className="box" key={i}>
 							{i}
