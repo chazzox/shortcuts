@@ -1,4 +1,4 @@
-# shortcuts
+# Shortcuts
 
-Customizable Browser Homepage <br/>
-**[Find the privacy Policy here](https://chazzox.github.io/privacy)**
+This repo is currently being completely rewritten<br>
+Because of this the code on the main branch is not the currently on the live build

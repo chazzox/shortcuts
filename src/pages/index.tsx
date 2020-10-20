@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Shortcuts from '../components/shortcuts';
+import Root from '../routes/root';
+import Tutorial from '../routes/tutorial/tutorial';
 
-export default function Home() {
-	return (
-		<>
-			<Shortcuts />
-		</>
-	);
-}
+const IndexPage = () => {
+	const isNewUser = false;
+	return <>{isNewUser ? <Tutorial /> : <Root />}</>;
+};
+
+export default IndexPage;
