@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { stateType } from '../reduxStore/store';
 
 import Root from 'routes/root';
-import Tutorial from 'routes/tutorial/tutorial';
+import Tutorial from 'routes/tutorial';
 
 const IndexPage = () => {
 	const isNewUser = useSelector((state: stateType) => state.preferences.isNew);

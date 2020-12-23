@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import GridLayout from 'react-grid-layout';
 
-import './strml_styles/styles.scss';
+import 'stylesheets/componentStyles/grid.scss';
+import GoodButton from './GoodButton';
 
 const Shortcuts = () => {
 	let layout = [
@@ -12,9 +13,10 @@ const Shortcuts = () => {
 
 	return (
 		<div className="appContainer">
-			<p>Shortcuts</p>
-			<button
-				onClick={() =>
+			<GoodButton
+				text="Add New"
+				type="small"
+				onPress={() =>
 					(layout = [
 						...layout,
 						...[
@@ -28,9 +30,7 @@ const Shortcuts = () => {
 						]
 					])
 				}
-			>
-				add new
-			</button>
+			/>
 			<div id="dndContainer">
 				<GridLayout className="layout" layout={layout} cols={12} rowHeight={15} width={document.body.clientWidth}>
 					{layout.map(({ i }) => (

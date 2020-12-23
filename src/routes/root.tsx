@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Shortcuts from './shortcuts/';
-import Settings from './settings/';
+import Shortcuts from 'routes/shortcuts';
+import Settings from 'routes/settings';
 
 import 'stylesheets/root.scss';
 
