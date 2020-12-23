@@ -1,0 +1,14 @@
+html {
+	--dark-font-color: black;
+	--light-font-color: white;
+	--background-major: black;
+	--background-minor: grey;
+	--page-background: #131516;
+	&.light {
+		--dark-font-color: black;
+		--light-font-color: white;
+		--background-major: black;
+		--background-minor: grey;
+		--page-background: #131516;
+	}
+}
