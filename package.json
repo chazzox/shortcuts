@@ -3,14 +3,16 @@
 	"private": true,
 	"description": "A replacement to the default new tab page in chrome",
 	"version": "0.0.1",
-	"author": "chazzox <31caylo13@gmail.com>",
+	"author": "chazzox <2206116+chazzox@users.noreply.github.com>",
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.4.0",
+		"@types/js-cookie": "^2.2.6",
 		"gatsby": "^2.24.50",
 		"gatsby-plugin-manifest": "^2.4.34",
 		"gatsby-plugin-react-helmet": "^3.3.14",
 		"gatsby-plugin-sass": "^2.3.19",
 		"gatsby-plugin-typescript": "^2.4.22",
+		"js-cookie": "^2.2.1",
 		"node-sass": "^4.14.1",
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0",
@@ -21,7 +23,10 @@
 	},
 	"devDependencies": {
 		"@types/react-grid-layout": "^1.1.1",
+		"@types/react-redux": "^7.1.12",
 		"@types/react-router-dom": "^5.1.6",
+		"gatsby-plugin-react-svg": "^3.0.0",
+		"gatsby-plugin-root-import": "^2.0.5",
 		"prettier": "2.1.2",
 		"typescript": "^4.0.2"
 	},
