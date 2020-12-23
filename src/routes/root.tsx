@@ -4,8 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Shortcuts from 'routes/shortcuts';
 import Settings from 'routes/settings';
 
-import 'stylesheets/root.scss';
-
 const Root: React.FC = () => {
 	return (
 		<>
