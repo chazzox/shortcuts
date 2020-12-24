@@ -18,6 +18,7 @@ module.exports = {
 				stylesheets: path.join(__dirname, 'src/stylesheets'),
 				routes: path.join(__dirname, 'src/routes'),
 				assets: path.join(__dirname, 'src/assets'),
+				utils: path.join(__dirname, 'src/utils'),
 				pages: path.join(__dirname, 'src/pages')
 			}
 		},

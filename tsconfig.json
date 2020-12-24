@@ -12,6 +12,7 @@
 				"src/assets/*",
 				"src/reduxStore/*",
 				"/src/routes/*",
+				"/src/utils/*",
 				"/src/pages/*"
 			]
 		},

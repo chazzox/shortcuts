@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link } from '@reach/router';
 
 import Settings from 'assets/svgs/controls.svg';
+import validate from 'utils/validation';
 
 import 'stylesheets/componentStyles/navbar.scss';
 
@@ -12,7 +13,13 @@ interface navBarProps {
 const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 	const [searchString, setSearchString] = useState('');
 	const searchRefFinal = searchRef || useRef(null);
-	const search = () => {};
+	const search = () => {
+		if (validate.isURL([searchString])) {
+			window.location.href = searchString;
+		} else {
+			window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(searchString);
+		}
+	};
 	return (
 		<span id="navbarContainer">
 			<div id="navbar">
@@ -26,10 +33,9 @@ const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 					value={searchString}
 					onChange={(event) => setSearchString(event.target.value)}
 					onKeyPress={(event) => {
-						if ((event.key = 'enter')) search();
+						if (event.key === 'Enter') search();
 					}}
 				/>
-				{/* <div style={{ backgroundImage: settings }} className="nav-item icon" /> */}
 				<Link to="/settings/" className="nav-item icon">
 					<Settings height="30px" width="30px" />
 				</Link>
