@@ -5,7 +5,7 @@ import Navbar from 'components/navbar';
 const Settings = () => {
 	return (
 		<>
-			{/* <Navbar /> */}
+			<Navbar />
 			<p>settings</p>
 		</>
 	);

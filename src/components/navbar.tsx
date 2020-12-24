@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from '@reach/router';
 
 import Settings from 'assets/svgs/controls.svg';
@@ -9,8 +9,9 @@ interface navBarProps {
 	searchRef?: React.MutableRefObject<undefined> | string;
 }
 
-const Navbar: React.FC<navBarProps> = ({ searchRef = '' }: navBarProps) => {
+const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 	const [searchString, setSearchString] = useState('');
+	const searchRefFinal = searchRef || useRef(null);
 	return (
 		<span id="navbarContainer">
 			<div id="navbar">
@@ -18,7 +19,7 @@ const Navbar: React.FC<navBarProps> = ({ searchRef = '' }: navBarProps) => {
 					Shortcuts
 				</Link>
 				<input
-					ref={searchRef}
+					ref={searchRefFinal}
 					className="nav-item searchBar"
 					type="text"
 					value={searchString}
