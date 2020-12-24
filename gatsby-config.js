@@ -17,7 +17,8 @@ module.exports = {
 				reduxStore: path.join(__dirname, 'src/reduxStore'),
 				stylesheets: path.join(__dirname, 'src/stylesheets'),
 				routes: path.join(__dirname, 'src/routes'),
-				assets: path.join(__dirname, 'src/assets')
+				assets: path.join(__dirname, 'src/assets'),
+				pages: path.join(__dirname, 'src/pages')
 			}
 		},
 		// means we can import svg's as component

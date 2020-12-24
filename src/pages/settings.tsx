@@ -1,6 +1,14 @@
 import React from 'react';
-import Settings from '../routes/settings';
 
-const PageComp = () => {
-	<Settings />;
+import Navbar from 'components/navbar';
+
+const Settings = () => {
+	return (
+		<>
+			{/* <Navbar /> */}
+			<p>settings</p>
+		</>
+	);
 };
+
+export default Settings;
