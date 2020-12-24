@@ -4,7 +4,11 @@ import Settings from 'assets/svgs/controls.svg';
 
 import 'stylesheets/componentStyles/navbar.scss';
 
-const Navbar: React.FC = () => {
+interface navBarProps {
+	searchRef: React.MutableRefObject<undefined>;
+}
+
+const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 	const [searchString, setSearchString] = useState('');
 	return (
 		<span id="navbarContainer">
@@ -13,6 +17,7 @@ const Navbar: React.FC = () => {
 					Shortcuts
 				</Link>
 				<input
+					ref={searchRef}
 					className="nav-item searchBar"
 					type="text"
 					value={searchString}
