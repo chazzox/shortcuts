@@ -5,6 +5,7 @@ import { navigate } from '@reach/router';
 
 import Grid from 'components/grid';
 import Navbar from 'components/navbar';
+import Tutorial from 'components/tutorial';
 
 import 'stylesheets/root.scss';
 import 'stylesheets/variables.scss';
@@ -13,13 +14,18 @@ const Shortcuts: React.FC = () => {
 	const searchBarRef = useRef(null);
 	const isNewUser = useSelector((state: stateType) => state.preferences.isNew);
 	useEffect(() => {
-		if (isNewUser) navigate('/tutorial');
-		searchBarRef?.current.focus();
+		if (!isNewUser) searchBarRef?.current.focus();
 	}, []);
 	return (
 		<>
-			<Navbar searchRef={searchBarRef} />
-			<Grid />
+			{isNewUser ? (
+				<Tutorial />
+			) : (
+				<>
+					<Navbar searchRef={searchBarRef} />
+					<Grid />
+				</>
+			)}
 		</>
 	);
 };
