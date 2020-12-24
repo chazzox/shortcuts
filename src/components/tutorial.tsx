@@ -5,8 +5,8 @@ import Cookies from 'js-cookie';
 import { dispatchType } from 'reduxStore/store';
 import { setIsNew } from 'reduxStore/preference';
 
-import PresetButton from 'components/presetButton';
-import GoodButton from 'components/goodButton';
+import PresetButton from './presetButton';
+import GoodButton from './goodButton';
 
 import defaultPreset from 'assets/default.png';
 import blankPreset from 'assets/blank.png';
