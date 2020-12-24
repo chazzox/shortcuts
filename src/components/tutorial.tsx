@@ -7,7 +7,6 @@ import { setIsNew } from 'reduxStore/preference';
 
 import PresetButton from 'components/presetButton';
 import GoodButton from 'components/goodButton';
-import Center from 'components/center';
 
 import defaultPreset from 'assets/default.png';
 import blankPreset from 'assets/blank.png';
@@ -19,7 +18,7 @@ const Tutorial: React.FC = () => {
 	const dispatch: dispatchType = useDispatch();
 	return (
 		<>
-			<Center>
+			<span className="center">
 				<span id="tutorialBox">
 					<h1>Shortcuts - A New Page Replacement</h1>
 					<h3>What is this site for?</h3>
@@ -54,7 +53,7 @@ const Tutorial: React.FC = () => {
 						}}
 					/>
 				</span>
-			</Center>
+			</span>
 		</>
 	);
 };

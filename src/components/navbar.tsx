@@ -12,6 +12,7 @@ interface navBarProps {
 const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 	const [searchString, setSearchString] = useState('');
 	const searchRefFinal = searchRef || useRef(null);
+	const search = () => {};
 	return (
 		<span id="navbarContainer">
 			<div id="navbar">
@@ -24,6 +25,9 @@ const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 					type="text"
 					value={searchString}
 					onChange={(event) => setSearchString(event.target.value)}
+					onKeyPress={(event) => {
+						if ((event.key = 'enter')) search();
+					}}
 				/>
 				{/* <div style={{ backgroundImage: settings }} className="nav-item icon" /> */}
 				<Link to="/settings/" className="nav-item icon">
