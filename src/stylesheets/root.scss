@@ -7,7 +7,7 @@ body,
 	overflow-y: hidden;
 }
 body {
-	background-color: #131516;
+	background-color: var(--page-background);
 	overflow-x: hidden;
 	padding: 0;
 	margin: 0;
@@ -23,12 +23,4 @@ body {
 #dndContainer {
 	height: 100%;
 	overflow-y: hidden;
-}
-
-.dark {
-	--dark-font-color: black;
-	--light-font-color: white;
-	--background-major: black;
-	--background-minor: grey;
-	--page-background: #131516;
 }

@@ -6,7 +6,8 @@
 	cursor: pointer;
 	transition: all 0.5s;
 	font-size: 15px;
+	color: var(--light-font-color);
 	&:hover {
-		border: solid rgba(94, 91, 91, 1) 1px;
+		border: solid rgb(124, 124, 124) 1px;
 	}
 }

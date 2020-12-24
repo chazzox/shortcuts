@@ -4,7 +4,7 @@ import 'stylesheets/componentStyles/goodButton.scss';
 
 interface propTypes {
 	text: string;
-	type: 'small' | 'medium' | 'big';
+	type: 'small' | 'medium' | 'big' | 'icon';
 	onPress: () => void;
 }
 const GoodButton: React.FC<propTypes> = ({ text, type, onPress }: propTypes) => {

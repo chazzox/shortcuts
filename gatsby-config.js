@@ -2,8 +2,11 @@ const path = require('path');
 
 module.exports = {
 	plugins: [
+		// typescript compatibility
 		`gatsby-plugin-typescript`,
+		// gives us theming ability
 		`gatsby-plugin-react-helmet`,
+		// sass compatibility
 		`gatsby-plugin-sass`,
 		// this plugin means that we don't have to use ../../../ and so on
 		{
@@ -15,6 +18,15 @@ module.exports = {
 				stylesheets: path.join(__dirname, 'src/stylesheets'),
 				routes: path.join(__dirname, 'src/routes'),
 				assets: path.join(__dirname, 'src/assets')
+			}
+		},
+		// means we can import svg's as component
+		{
+			resolve: 'gatsby-plugin-react-svg',
+			options: {
+				rule: {
+					include: /svgs/
+				}
 			}
 		}
 	]

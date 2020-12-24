@@ -1,9 +1,12 @@
 html {
 	--dark-font-color: black;
 	--light-font-color: white;
-	--background-major: black;
-	--background-minor: grey;
-	--page-background: #131516;
+	--background-major: #1a1c1d;
+	--background-major-inv: white;
+	--svg-col-prim: white;
+	--svg-col-secon: black;
+	--background-minor: #ffe5b2;
+	--page-background: #26262c;
 	--pretty-box-shadow-dark: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
 		rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 	--pretty-box-shadow-light: rgba(255, 255, 255, 0.2) 0px 12px 28px 0px, rgba(255, 255, 255, 0.1) 0px 2px 4px 0px,
@@ -11,8 +14,10 @@ html {
 	&.light {
 		--dark-font-color: black;
 		--light-font-color: white;
-		--background-major: black;
+		--background-major: #ffe5b2;
 		--background-minor: grey;
-		--page-background: #131516;
+		--page-background: #c9baba;
+		--svg-col-prim: black;
+		--svg-col-secon: white;
 	}
 }

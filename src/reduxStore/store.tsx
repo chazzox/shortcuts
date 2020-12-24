@@ -1,10 +1,11 @@
 import React from 'react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider, useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
 
 import preferences from './preference';
 import widgets from './widget';
-console.log(Object.fromEntries(document.cookie.split(';').map((cookie) => cookie.split('='))).isNew == false);
+console.log(Cookies.get('isNew'));
 
 const store = configureStore({
 	reducer: {
@@ -13,7 +14,7 @@ const store = configureStore({
 	},
 	preloadedState: {
 		preferences: {
-			isNew: Object.fromEntries(document.cookie.split(';').map((cookie) => cookie.split('='))).isNew == undefined
+			isNew: !(Cookies.get('isNew') == 'false')
 		}
 	}
 });
