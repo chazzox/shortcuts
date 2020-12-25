@@ -18,8 +18,8 @@ const Tutorial: React.FC = () => {
 	const dispatch: dispatchType = useDispatch();
 	return (
 		<>
-			<span className="center">
-				<span id="tutorialBox">
+			<div className="center">
+				<div id="tutorialBox">
 					<h1>Shortcuts - A New Page Replacement</h1>
 					<h3>What is this site for?</h3>
 					<span>
@@ -52,8 +52,8 @@ const Tutorial: React.FC = () => {
 							dispatch(setIsNew(false));
 						}}
 					/>
-				</span>
-			</span>
+				</div>
+			</div>
 		</>
 	);
 };
