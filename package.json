@@ -4,6 +4,7 @@
 	"description": "A replacement to the default new tab page in chrome",
 	"version": "0.0.1",
 	"author": "chazzox <2206116+chazzox@users.noreply.github.com>",
+	"homepage": "https://chazzox.github.io/shortcuts/",
 	"dependencies": {
 		"@reach/router": "^1.3.4",
 		"@reduxjs/toolkit": "^1.4.0",
@@ -29,7 +30,7 @@
 		"typescript": "^4.0.2"
 	},
 	"scripts": {
-		"build": "gatsby build",
+		"build": "gatsby build  --prefix-paths",
 		"develop": "gatsby develop",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
 		"start": "npm run develop",
