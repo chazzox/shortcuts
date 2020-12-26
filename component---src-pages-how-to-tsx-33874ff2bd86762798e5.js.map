@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/pages/how-to.tsx"],"names":["HowTo"],"mappings":"2FAAA,gCAMeA,UAJS,WACvB,OAAO","file":"component---src-pages-how-to-tsx-33874ff2bd86762798e5.js","sourcesContent":["import React from 'react';\n\nconst HowTo: React.FC = () => {\n\treturn <h1>yo</h1>;\n};\n\nexport default HowTo;\n"],"sourceRoot":""}

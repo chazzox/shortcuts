@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{"At+a":function(n,e,t){"use strict";t.r(e);var a=t("q1tI"),u=t.n(a);e.default=function(){return u.a.createElement("h1",null,"new features")}}}]);
+//# sourceMappingURL=component---src-pages-future-features-tsx-63b49989bc78c8c953c0.js.map
