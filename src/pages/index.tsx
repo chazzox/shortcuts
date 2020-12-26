@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { stateType } from 'reduxStore/store';
-import { navigate } from '@reach/router';
 
 import Grid from 'components/grid';
 import Navbar from 'components/navbar';
