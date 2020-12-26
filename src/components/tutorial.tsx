@@ -48,7 +48,7 @@ const Tutorial: React.FC = () => {
 						text="Continue"
 						type="small"
 						onPress={() => {
-							Cookies.set('isNew', 'false');
+							Cookies.set('isNew', 'false', { sameSite: 'strict', expires: 365 });
 							dispatch(setIsNew(false));
 						}}
 					/>

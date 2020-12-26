@@ -18,7 +18,9 @@ const Shortcuts: React.FC = () => {
 	return (
 		<>
 			{isNewUser ? (
-				<Tutorial />
+				<>
+					<Tutorial />
+				</>
 			) : (
 				<>
 					<Navbar searchRef={searchBarRef} />
