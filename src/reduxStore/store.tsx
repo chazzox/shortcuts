@@ -14,7 +14,8 @@ const store = configureStore({
 	},
 	preloadedState: {
 		preferences: {
-			doesConfigExist: Cookies.get('doesConfigExist') == 'true'
+			doesConfigExist: Cookies.get('doesConfigExist') == 'true',
+			hasLoaded: true
 		}
 	}
 });

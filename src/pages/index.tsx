@@ -12,21 +12,23 @@ import 'stylesheets/variables.scss';
 const Shortcuts: React.FC = () => {
 	const searchBarRef = useRef(null);
 	const doesConfigExist = useSelector((state: stateType) => state.preferences.doesConfigExist);
+	const hasLoaded = useSelector((state: stateType) => state.preferences.hasLoaded);
+
 	useEffect(() => {
 		if (doesConfigExist) searchBarRef?.current.focus();
 	}, [doesConfigExist]);
+
 	return (
 		<>
-			{!doesConfigExist ? (
-				<>
+			{hasLoaded &&
+				(doesConfigExist ? (
+					<>
+						<Navbar searchRef={searchBarRef} />
+						<Grid />
+					</>
+				) : (
 					<Tutorial />
-				</>
-			) : (
-				<>
-					<Navbar searchRef={searchBarRef} />
-					<Grid />
-				</>
-			)}
+				))}
 		</>
 	);
 };
