@@ -21,8 +21,8 @@ const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 		}
 	};
 	return (
-		<div id="navbarContainer">
-			<div id="navbar">
+		<main id="navbarContainer">
+			<main id="navbar">
 				<Link to="" className="nav-item title left">
 					Shortcuts
 				</Link>
@@ -39,8 +39,8 @@ const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 				<Link to="settings/" className="nav-item icon">
 					<Settings height="30px" width="30px" />
 				</Link>
-			</div>
-		</div>
+			</main>
+		</main>
 	);
 };
 
