@@ -14,7 +14,7 @@ const Shortcuts: React.FC = () => {
 	const doesConfigExist = useSelector((state: stateType) => state.preferences.doesConfigExist);
 	useEffect(() => {
 		if (doesConfigExist) searchBarRef?.current.focus();
-	}, []);
+	}, [doesConfigExist]);
 	return (
 		<>
 			{!doesConfigExist ? (

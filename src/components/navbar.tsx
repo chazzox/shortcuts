@@ -23,7 +23,7 @@ const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 	return (
 		<div id="navbarContainer">
 			<div id="navbar">
-				<Link to="/" className="nav-item title left">
+				<Link to="" className="nav-item title left">
 					Shortcuts
 				</Link>
 				<input
@@ -36,7 +36,7 @@ const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 						if (event.key === 'Enter') search();
 					}}
 				/>
-				<Link to="/settings/" className="nav-item icon">
+				<Link to="settings/" className="nav-item icon">
 					<Settings height="30px" width="30px" />
 				</Link>
 			</div>
