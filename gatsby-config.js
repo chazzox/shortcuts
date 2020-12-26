@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+	pathPrefix: `/shortcuts`,
 	plugins: [
 		// typescript compatibility
 		`gatsby-plugin-typescript`,
