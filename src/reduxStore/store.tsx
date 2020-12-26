@@ -14,7 +14,7 @@ const store = configureStore({
 	},
 	preloadedState: {
 		preferences: {
-			isNew: !(Cookies.get('isNew') == 'false')
+			isNew: Cookies.get('isNew') == 'false'
 		}
 	}
 });
