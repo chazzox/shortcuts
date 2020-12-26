@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'gatsby';
 
 import Settings from 'assets/svgs/controls.svg';
 import validate from 'utils/validation';
