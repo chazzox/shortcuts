@@ -27,7 +27,8 @@ const Settings = () => {
 				<div className="setting">
 					<span className="settingBoxTitle">Cookies/Local storage</span>
 					<div className="settingBoxContent">
-						Vew/Deleted your stored cookies/Local storage (delting your local storage will remove your config)
+						Vew/Delete your stored cookies/Local storage (delting your local storage will remove your config),
+						Deleting cookies will mean you will have to login to your connected accounts again (probably)
 					</div>
 				</div>
 			</div>
