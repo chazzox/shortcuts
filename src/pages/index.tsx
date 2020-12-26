@@ -11,13 +11,13 @@ import 'stylesheets/variables.scss';
 
 const Shortcuts: React.FC = () => {
 	const searchBarRef = useRef(null);
-	const isNewUser = useSelector((state: stateType) => state.preferences.isNew);
+	const doesConfigExist = useSelector((state: stateType) => state.preferences.doesConfigExist);
 	useEffect(() => {
-		if (!isNewUser) searchBarRef?.current.focus();
+		if (doesConfigExist) searchBarRef?.current.focus();
 	}, []);
 	return (
 		<>
-			{isNewUser ? (
+			{!doesConfigExist ? (
 				<>
 					<Tutorial />
 				</>

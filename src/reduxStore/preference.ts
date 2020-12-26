@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const preferences = createSlice({
 	name: 'preferenceSlice',
-	initialState: { isNew: true, isDark: true },
+	initialState: { doesConfigExist: true, isDark: true },
 	reducers: {
-		setIsNew: (state, action: PayloadAction<boolean>) => {
-			state.isNew = action.payload;
+		setdoesConfigExist: (state, action: PayloadAction<boolean>) => {
+			state.doesConfigExist = action.payload;
 		},
 		setIsDark: (state, action: PayloadAction<boolean>) => {
 			state.isDark = action.payload;
@@ -13,6 +13,6 @@ const preferences = createSlice({
 	}
 });
 
-export const { setIsNew } = preferences.actions;
+export const { setdoesConfigExist } = preferences.actions;
 
 export default preferences;

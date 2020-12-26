@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 
 import preferences from './preference';
 import widgets from './widget';
-console.log(Cookies.get('isNew'));
+console.log(Cookies.get('doesConfigExist'));
 
 const store = configureStore({
 	reducer: {
@@ -14,7 +14,7 @@ const store = configureStore({
 	},
 	preloadedState: {
 		preferences: {
-			isNew: Cookies.get('isNew') == 'false'
+			doesConfigExist: Cookies.get('doesConfigExist') == 'true'
 		}
 	}
 });
