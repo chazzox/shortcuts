@@ -20,6 +20,7 @@ const Shortcuts: React.FC = () => {
 
 	return (
 		<>
+			{!hasLoaded && <Navbar searchRef={searchBarRef} />}
 			{hasLoaded &&
 				(doesConfigExist ? (
 					<>
