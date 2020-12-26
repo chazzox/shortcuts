@@ -23,7 +23,7 @@ const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 	return (
 		<main id="navbarContainer">
 			<main id="navbar">
-				<Link to="" className="nav-item title left">
+				<Link to="/" className="nav-item title left">
 					Shortcuts
 				</Link>
 				<input
