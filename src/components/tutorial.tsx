@@ -6,7 +6,7 @@ import { dispatchType } from 'reduxStore/store';
 import { setIsNew } from 'reduxStore/preference';
 
 import PresetButton from './presetButton';
-// import GoodButton from 'components/goodButton';
+import GoodButton from 'components/goodButton';
 
 import defaultPreset from 'assets/default.png';
 import blankPreset from 'assets/blank.png';
@@ -44,14 +44,14 @@ const Tutorial: React.FC = () => {
 							onPress={() => setPresetType(true)}
 						/>
 					</div>
-					{/* <GoodButton
+					<GoodButton
 						text="Continue"
 						type="small"
 						onPress={() => {
 							Cookies.set('isNew', 'false');
 							dispatch(setIsNew(false));
 						}}
-					/> */}
+					/>
 				</div>
 			</div>
 		</>
