@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
 
 import { dispatchType } from 'reduxStore/store';
-import { setdoesConfigExist } from 'reduxStore/preference';
+import { setDoesConfigExist } from 'reduxStore/preference';
 
 import PresetButton from './presetButton';
 import GoodButton from 'components/goodButton';
@@ -48,8 +48,8 @@ const Tutorial: React.FC = () => {
 						text="Continue"
 						type="small"
 						onPress={() => {
-							Cookies.set('doesConfigExist', 'false', { sameSite: 'strict', expires: 365 });
-							dispatch(setdoesConfigExist(false));
+							Cookies.set('doesConfigExist', 'true', { sameSite: 'strict', expires: 365 });
+							dispatch(setDoesConfigExist(true));
 						}}
 					/>
 				</div>

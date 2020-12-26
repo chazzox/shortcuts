@@ -4,7 +4,7 @@ const preferences = createSlice({
 	name: 'preferenceSlice',
 	initialState: { doesConfigExist: true, isDark: true },
 	reducers: {
-		setdoesConfigExist: (state, action: PayloadAction<boolean>) => {
+		setDoesConfigExist: (state, action: PayloadAction<boolean>) => {
 			state.doesConfigExist = action.payload;
 		},
 		setIsDark: (state, action: PayloadAction<boolean>) => {
@@ -13,6 +13,6 @@ const preferences = createSlice({
 	}
 });
 
-export const { setdoesConfigExist } = preferences.actions;
+export const { setDoesConfigExist } = preferences.actions;
 
 export default preferences;
