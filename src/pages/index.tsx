@@ -21,15 +21,14 @@ const Shortcuts: React.FC = () => {
 	return (
 		<>
 			{!hasLoaded && <Navbar searchRef={searchBarRef} />}
-			{hasLoaded &&
-				(doesConfigExist ? (
-					<>
-						<Navbar searchRef={searchBarRef} />
-						<Grid />
-					</>
-				) : (
-					<Tutorial />
-				))}
+			{hasLoaded && doesConfigExist ? (
+				<>
+					<Navbar searchRef={searchBarRef} />
+					<Grid />
+				</>
+			) : (
+				<Tutorial />
+			)}
 		</>
 	);
 };
