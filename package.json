@@ -31,10 +31,10 @@
 	},
 	"scripts": {
 		"build": "gatsby build  --prefix-paths",
-		"develop": "gatsby develop --prefix-paths",
+		"develop": "gatsby develop",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
 		"start": "npm run develop",
 		"serve": "gatsby serve --prefix-paths",
-		"clean": "gatsby clean --prefix-paths"
+		"clean": "gatsby clean"
 	}
 }

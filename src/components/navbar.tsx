@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'gatsby';
+import Cookies from 'js-cookie';
 
+import GoodButton from 'components/goodButton';
 import Settings from 'assets/svgs/controls.svg';
 import validate from 'utils/validation';
 
@@ -35,6 +37,16 @@ const Navbar: React.FC<navBarProps> = ({ searchRef }: navBarProps) => {
 					onKeyPress={(event) => {
 						if (event.key === 'Enter') search();
 					}}
+				/>
+				<GoodButton
+					text="clear"
+					type="medium"
+					additionalClasses={['nav-item']}
+					onPress={() =>
+						Object.keys(Cookies.get()).forEach(function (cookieName) {
+							Cookies.remove(cookieName);
+						})
+					}
 				/>
 				<Link to="settings/" className="nav-item icon">
 					<Settings height="30px" width="30px" />
