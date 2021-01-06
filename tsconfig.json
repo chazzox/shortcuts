@@ -1,28 +1,6 @@
 {
-	"compilerOptions": {
-		"target": "es6",
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"baseUrl": "src",
-		// allows for root import
-		"paths": {
-			"*": [
-				"*",
-				"src/components/*",
-				"src/stylesheets/*",
-				"src/assets/*",
-				"src/reduxStore/*",
-				"/src/routes/*",
-				"/src/utils/*",
-				"/src/pages/*"
-			]
-		},
+  "extends": "@tsconfig/svelte/tsconfig.json",
 
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"module": "esnext",
-		"moduleResolution": "node",
-		"noEmit": true,
-		"jsx": "preserve"
-	},
-	"include": ["./src/custom.d.ts", "./src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
 }
