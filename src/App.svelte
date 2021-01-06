@@ -41,6 +41,7 @@
 		height: 100%;
 		width: 100%;
 	}
+
 	:global(body) {
 		background-color: var(--page-background);
 		overflow-x: hidden;
