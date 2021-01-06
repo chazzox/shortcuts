@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{LUne:function(n,e,t){"use strict";t.r(e);var o=t("q1tI"),u=t.n(o);e.default=function(){return u.a.createElement("h1",null,"How to guide")}}}]);
-//# sourceMappingURL=component---src-pages-how-to-tsx-804d345e93c4168704e6.js.map

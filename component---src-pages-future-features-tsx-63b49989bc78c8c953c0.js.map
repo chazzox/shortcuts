@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/pages/future-features.tsx"],"names":["HowTo"],"mappings":"6FAAA,gCAMeA,UAJS,WACvB,OAAO","file":"component---src-pages-future-features-tsx-63b49989bc78c8c953c0.js","sourcesContent":["import React from 'react';\n\nconst HowTo: React.FC = () => {\n\treturn <h1>new features</h1>;\n};\n\nexport default HowTo;\n"],"sourceRoot":""}
