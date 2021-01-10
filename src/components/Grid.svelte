@@ -8,14 +8,14 @@
 			name: 'TODO',
 			items: [
 				{ id: 11, name: 'item1' },
-				{ id: 12, name: 'item2' }
+				{ id: 12, name: 'item2' },
+				{ id: 13, name: 'item3' }
 			]
 		},
 		{
 			id: 2,
 			name: 'DOING',
 			items: [
-				{ id: 13, name: 'item3' },
 				{ id: 14, name: 'item4' },
 				{ id: 15, name: 'item5' },
 				{ id: 16, name: 'item6' }
@@ -28,6 +28,15 @@
 				{ id: 17, name: 'item7' },
 				{ id: 18, name: 'item8' },
 				{ id: 19, name: 'item9' }
+			]
+		},
+		{
+			id: 4,
+			name: 'TEST',
+			items: [
+				{ id: 20, name: 'item10' },
+				{ id: 21, name: 'item11' },
+				{ id: 22, name: 'item12' }
 			]
 		}
 	];
@@ -51,43 +60,54 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.board {
 		height: 90vh;
 		width: 100%;
 		padding: 0.5em;
-		margin-bottom: 40px;
+		display: flex;
+		justify-content: space-around;
+		&:focus {
+			outline: none;
+		}
 	}
 	.column {
-		height: 100%;
-		width: 250px;
+		&:focus {
+			outline: none;
+		}
+		height: calc(100% - 50px);
+		flex: 1;
 		padding: 0.5em;
 		margin: 1em;
 		float: left;
-		border: 1px solid #333333;
+
 		/*Notice we make sure this container doesn't scroll so that the title stays on top and the dndzone inside is scrollable*/
 		overflow-y: hidden;
-	}
-	.column-content {
-		height: 100%;
-		/* Notice that the scroll container needs to be the dndzone if you want dragging near the edge to trigger scrolling */
-		overflow-y: scroll;
-	}
-	.column-title {
-		margin-bottom: 1em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	.card {
-		height: 15%;
-		width: 100%;
-		margin: 0.4em 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #dddddd;
-		border: 1px solid #333333;
+		> .column-title {
+			margin-bottom: 1em;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
+		}
+		.column-content {
+			background-color: #282a2c;
+			border-radius: 25px;
+			/* Notice that the scroll container needs to be the dndzone if you want dragging near the edge to trigger scrolling */
+			overflow-y: scroll;
+			> .card {
+				&:focus {
+					outline: none !important;
+				}
+				height: 15%;
+				width: 100%;
+				margin: 0.4em 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: white;
+			}
+		}
 	}
 </style>
 
