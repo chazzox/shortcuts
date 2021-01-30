@@ -5,7 +5,7 @@ import Settings from './routes/Settings.svelte';
 
 routes.set({
 	'/': Home,
-	'/settings': Settings
+	'/settings/': Settings
 });
 
 export default new App({ target: document.body });

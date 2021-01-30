@@ -67,6 +67,7 @@
 		padding: 0.5em;
 		display: flex;
 		justify-content: space-around;
+		outline:none!important;
 		&:focus {
 			outline: none;
 		}
@@ -93,8 +94,7 @@
 		.column-content {
 			background-color: #282a2c;
 			border-radius: 25px;
-			/* Notice that the scroll container needs to be the dndzone if you want dragging near the edge to trigger scrolling */
-			overflow-y: scroll;
+	
 			> .card {
 				&:focus {
 					outline: none !important;
@@ -113,6 +113,7 @@
 
 <div
 	class="board"
+	style="outline:none!important;"
 	use:dndzone={{ items: columnItems, flipDurationMs, type: 'columns' }}
 	on:consider={handleDndConsiderColumns}
 	on:finalize={handleDndFinalizeColumns}>
