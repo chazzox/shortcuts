@@ -1,64 +1,272 @@
-<script>
+<script lang="typescript">
 	import { flip } from 'svelte/animate';
 	import { dndzone } from 'svelte-dnd-action';
 
-	let columnItems = [
+	let links: { [key: string]: { id: string; name: string; url: string; linkIconUrl: string } } = {
+		'link-0': {
+			id: 'link-0',
+			name: 'personal website',
+			url: 'https://chazzox.github.io',
+			linkIconUrl: 'https://chazzox.github.io/chazzox.github.io/static/media/logo.6a2b7fd3.png'
+		},
+		'link-1': {
+			id: 'link-1',
+			name: 'github repo',
+			url: 'https://github.com/chazzox/shortcuts',
+			linkIconUrl: 'https://imgur.com/a/kjgkQ7u'
+		},
+		'link-2': {
+			id: 'link-2',
+			name: 'Reddit',
+			url: 'https://www.reddit.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/reddit.png'
+		},
+		'link-3': {
+			id: 'link-3',
+			name: 'Steam',
+			url: 'https://store.steampowered.com/',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/steam.png'
+		},
+		'link-4': {
+			id: 'link-4',
+			name: 'Instagram',
+			url: 'https://www.Instagram.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/instagram.png'
+		},
+		'link-5': {
+			id: 'link-5',
+			name: 'Inbox',
+			url: 'https://www.mail.google.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/inbox.png'
+		},
+		'link-6': {
+			id: 'link-6',
+			name: 'Discord',
+			url: 'https://www.discord.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/discord.png'
+		},
+		'link-7': {
+			id: 'link-7',
+			name: 'Imgur',
+			url: 'https://www.imgur.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/imgur.png'
+		},
+		'link-8': {
+			id: 'link-8',
+			name: 'Rust Dev Log',
+			url: 'https://www.facepunch.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/rust.png'
+		},
+		'link-9': {
+			id: 'link-9',
+			name: 'PUBG News',
+			url: 'https://www.playbattlegrounds.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/pubg.png'
+		},
+		'link-10': {
+			id: 'link-10',
+			name: 'CS:GO Path Notes',
+			url: 'https://www.blog.counter-strike.net/index.php/category/updates/',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/csgo.png'
+		},
+		'link-11': {
+			id: 'link-11',
+			name: 'Youtube',
+			url: 'https://www.youtube.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/youtube.png'
+		},
+		'link-12': {
+			id: 'link-12',
+			name: 'Twitch',
+			url: 'https://www.twitch.tv',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/twitch.png'
+		},
+		'link-13': {
+			id: 'link-13',
+			name: 'Netflix',
+			url: 'https://www.netflix.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/netflix.png'
+		},
+		'link-14': {
+			id: 'link-14',
+			name: 'Channel4',
+			url: 'https://www.channel4.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/channel4.png'
+		},
+		'link-15': {
+			id: 'link-15',
+			name: 'BBC iPlayer',
+			url: 'https://www.bbc.co.uk/iplayer',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/iplayer.png'
+		},
+		'link-16': {
+			id: 'link-16',
+			name: 'Twitter',
+			url: 'https://www.twitter.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/twitter.png'
+		},
+		'link-17': {
+			id: 'link-17',
+			name: 'Icloud',
+			url: 'https://www.icloud.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/icloud.png'
+		},
+		'link-18': {
+			id: 'link-18',
+			name: 'PCPartPicker',
+			url: 'https://www.PCPartPicker.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/partpicker.png'
+		},
+		'link-19': {
+			id: 'link-19',
+			name: 'MediaFire',
+			url: 'https://www.mediafire.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/mediafire.png'
+		},
+		'link-20': {
+			id: 'link-20',
+			name: 'Speedtest',
+			url: 'https://www.Speedtest.net',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/speedtest.png'
+		},
+		'link-21': {
+			id: 'link-21',
+			name: 'FileMail',
+			url: 'https://www.FileMail.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/filemail.png'
+		},
+		'link-22': {
+			id: 'link-22',
+			name: 'Goo.gl',
+			url: 'https://www.Goo.gl',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/googleshort.png'
+		},
+		'link-23': {
+			id: 'link-23',
+			name: 'TempMail',
+			url: 'https://www.TempMail.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/tempmail.png'
+		},
+		'link-24': {
+			id: 'link-24',
+			name: 'nationwide',
+			url: 'https://www.LLoydsBank.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/llyods.png'
+		},
+		'link-25': {
+			id: 'link-25',
+			name: 'Amazon',
+			url: 'https://www.Amazon.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/amazon.png'
+		},
+		'link-26': {
+			id: 'link-26',
+			name: 'PayPal',
+			url: 'https://www.PayPal.com',
+			linkIconUrl: 'https://pinpal.github.io/shortcuts/icons/paypal.png'
+		}
+	};
+
+	let boxes: { [key: string]: { id: string; name: string; type: string; linkOrder: string[] } } = {
+		'box-1': {
+			id: 'box-1',
+			name: 'Social',
+			type: 'default',
+			linkOrder: ['link-0', 'link-1', 'link-2', 'link-3', 'link-4', 'link-5', 'link-6', 'link-7', 'link-8']
+		},
+		'box-2': {
+			id: 'box-2',
+			name: 'Updates',
+			type: 'default',
+			linkOrder: ['link-9', 'link-10', 'link-11']
+		},
+		'box-3': {
+			id: 'box-3',
+			name: 'Videos',
+			type: 'default',
+			linkOrder: ['link-12', 'link-13', 'link-14', 'link-15', 'link-16']
+		},
+		'box-5': {
+			id: 'box-5',
+			name: 'Cloud',
+			type: 'default',
+			linkOrder: ['link-17', 'link-18']
+		},
+		'box-6': {
+			id: 'box-6',
+			name: 'Utilities',
+			type: 'default',
+			linkOrder: ['link-19', 'link-20', 'link-21', 'link-22']
+		},
+		'box-7': {
+			id: 'box-7',
+			name: 'Shopping',
+			type: 'default',
+			linkOrder: ['link-23', 'link-24', 'link-25', 'link-26']
+		}
+	};
+
+	let columns = [
 		{
-			id: 1,
-			name: 'TODO',
-			items: [
-				{ id: 11, name: 'item1' },
-				{ id: 12, name: 'item2' },
-				{ id: 13, name: 'item3' }
-			]
+			id: 'column-1',
+			boxOrder: ['box-1']
 		},
 		{
-			id: 2,
-			name: 'DOING',
-			items: [
-				{ id: 14, name: 'item4' },
-				{ id: 15, name: 'item5' },
-				{ id: 16, name: 'item6' }
-			]
+			id: 'column-2',
+			boxOrder: ['box-3', 'box-5']
 		},
 		{
-			id: 3,
-			name: 'DONE',
-			items: [
-				{ id: 17, name: 'item7' },
-				{ id: 18, name: 'item8' },
-				{ id: 19, name: 'item9' }
-			]
+			id: 'column-3',
+			boxOrder: ['box-6', 'box-2']
 		},
 		{
-			id: 4,
-			name: 'TEST',
-			items: [
-				{ id: 20, name: 'item10' },
-				{ id: 21, name: 'item11' },
-				{ id: 22, name: 'item12' }
-			]
+			id: 'column-4',
+			boxOrder: ['box-7']
 		}
 	];
 
 	const flipDurationMs = 300;
 	function handleDndConsiderColumns(e) {
-		columnItems = e.detail.items;
+		columns = e.detail.items;
 	}
 	function handleDndFinalizeColumns(e) {
-		columnItems = e.detail.items;
+		columns = e.detail.items;
 	}
 	function handleDndConsiderCards(cid, e) {
-		const colIdx = columnItems.findIndex((c) => c.id === cid);
-		columnItems[colIdx].items = e.detail.items;
-		columnItems = [...columnItems];
+		const colIdx = columns.findIndex((c) => c.id === cid);
+		columns[colIdx].boxOrder = e.detail.items;
+		columns = [...columns];
 	}
 	function handleDndFinalizeCards(cid, e) {
-		const colIdx = columnItems.findIndex((c) => c.id === cid);
-		columnItems[colIdx].items = e.detail.items;
-		columnItems = [...columnItems];
+		const colIdx = columns.findIndex((c) => c.id === cid);
+		columns[colIdx].boxOrder = e.detail.items;
+		columns = [...columns];
 	}
 </script>
+
+<div class="board">
+	{#each columns as column (column.id)}
+		<div
+			class="column"
+			use:dndzone={{ items: column.boxOrder.map((boxId) => boxes[boxId]), flipDurationMs }}
+			on:consider={(e) => handleDndConsiderCards(column.id, e)}
+			on:finalize={(e) => handleDndFinalizeCards(column.id, e)}
+		>
+			{#each column.boxOrder.map((boxId) => boxes[boxId]) as box (box.id)}
+				<div class="box" animate:flip={{ duration: flipDurationMs }} on:click={(e) => console.log(e)}>
+					<span class="boxTitle">{box.name}</span>
+					<div class="boxContent">
+						{#each box.linkOrder.map((linkId) => links[linkId]) as link (link.id)}
+							<div class="link">
+								{link.name}
+							</div>
+						{/each}
+					</div>
+				</div>
+			{/each}
+		</div>
+	{/each}
+</div>
 
 <style lang="scss">
 	.board {
@@ -67,70 +275,28 @@
 		padding: 0.5em;
 		display: flex;
 		justify-content: space-around;
-		outline:none!important;
+		outline: none !important;
 		&:focus {
 			outline: none;
+		}
+		> .column {
+			flex: 1;
+			padding: 0.5em;
 		}
 	}
-	.column {
-		&:focus {
-			outline: none;
-		}
-		height: calc(100% - 50px);
-		flex: 1;
-		padding: 0.5em;
-		margin: 1em;
-		float: left;
-
-		/*Notice we make sure this container doesn't scroll so that the title stays on top and the dndzone inside is scrollable*/
-		overflow-y: hidden;
-		> .column-title {
+	.box {
+		margin-top: 25px;
+		.boxTitle {
 			margin-bottom: 1em;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			color: white;
 		}
-		.column-content {
+		.boxContent {
 			background-color: #282a2c;
 			border-radius: 25px;
-	
-			> .card {
-				&:focus {
-					outline: none !important;
-				}
-				height: 15%;
-				width: 100%;
-				margin: 0.4em 0;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				color: white;
-			}
+			padding: 25px;
 		}
 	}
 </style>
-
-<div
-	class="board"
-	style="outline:none!important;"
-	use:dndzone={{ items: columnItems, flipDurationMs, type: 'columns' }}
-	on:consider={handleDndConsiderColumns}
-	on:finalize={handleDndFinalizeColumns}>
-	{#each columnItems as column (column.id)}
-		<div class="column" animate:flip={{ duration: flipDurationMs }}>
-			<div class="column-title">{column.name}</div>
-			<div
-				class="column-content"
-				use:dndzone={{ items: column.items, flipDurationMs }}
-				on:consider={(e) => handleDndConsiderCards(column.id, e)}
-				on:finalize={(e) => handleDndFinalizeCards(column.id, e)}>
-				{#each column.items as item (item.id)}
-					<div class="card" animate:flip={{ duration: flipDurationMs }} on:click={(e) => console.log(e)}>
-						{item.name}
-					</div>
-				{/each}
-			</div>
-		</div>
-	{/each}
-</div>
