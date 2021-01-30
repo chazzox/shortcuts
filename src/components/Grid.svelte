@@ -2,12 +2,16 @@
 	import { flip } from 'svelte/animate';
 	import { dndzone } from 'svelte-dnd-action';
 
+	function prettierLink(url: string) {
+		return url.replace(/(.*?:\/\/)|(www\.)/g, '').replace(/\/.*/, '');
+	}
+
 	let links: { [key: string]: { id: string; name: string; url: string; linkIconUrl: string } } = {
 		'link-0': {
 			id: 'link-0',
 			name: 'personal website',
 			url: 'https://chazzox.github.io',
-			linkIconUrl: 'https://chazzox.github.io/chazzox.github.io/static/media/logo.6a2b7fd3.png'
+			linkIconUrl: 'https://chazzox.github.io/favicon.ico'
 		},
 		'link-1': {
 			id: 'link-1',
@@ -250,16 +254,23 @@
 			class="column"
 			use:dndzone={{ items: column.boxOrder.map((boxId) => boxes[boxId]), flipDurationMs }}
 			on:consider={(e) => handleDndConsiderCards(column.id, e)}
-			on:finalize={(e) => handleDndFinalizeCards(column.id, e)}
-		>
+			on:finalize={(e) => handleDndFinalizeCards(column.id, e)}>
 			{#each column.boxOrder.map((boxId) => boxes[boxId]) as box (box.id)}
 				<div class="box" animate:flip={{ duration: flipDurationMs }} on:click={(e) => console.log(e)}>
 					<span class="boxTitle">{box.name}</span>
 					<div class="boxContent">
 						{#each box.linkOrder.map((linkId) => links[linkId]) as link (link.id)}
-							<div class="link">
-								{link.name}
-							</div>
+							<a href={link.url}>
+								<div class="rowitem">
+									<div class="columnbox lefticons">
+										<img class="appicon" src={link.linkIconUrl} alt="" />
+									</div>
+									<div class="columnbox rightwords">
+										<div class="linkName">{link.name}</div>
+										<div class="appurl">{prettierLink(link.url)}</div>
+									</div>
+								</div>
+							</a>
 						{/each}
 					</div>
 				</div>
@@ -269,6 +280,20 @@
 </div>
 
 <style lang="scss">
+	/*Links*/
+	.columnbox {
+		float: left;
+	}
+	.rowitem:after {
+		padding: 4%;
+		content: '';
+		display: table;
+		clear: both;
+	}
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
 	.board {
 		height: 90vh;
 		width: 100%;
@@ -298,5 +323,80 @@
 			border-radius: 25px;
 			padding: 25px;
 		}
+	}
+	/*Fancy Animation for rows of apps*/
+	.rowitem {
+		transition: all 0.3s ease;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+	}
+	/* Clear floats after the columns */
+	.rowitem:after {
+		padding: 4%;
+		content: '';
+		display: table;
+		clear: both;
+	}
+
+	/*App Icons*/
+	.appicon {
+		display: inline-block;
+		vertical-align: top;
+		width: 75%;
+		height: 75%;
+		transition: all 0.3s ease;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+	}
+	/*App Names*/
+	.appname {
+		font-size: 18px;
+		margin-top: 10px;
+		transition: all 0.3s ease;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+	}
+	/*App URL*/
+	.appurl {
+		color: rgba(255, 255, 255, 0.4);
+		font-size: 0px;
+		opacity: 0;
+		transition: all 0.3s ease;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+	}
+	/*Fancy Animation for rows of apps*/
+	.rowitem:hover {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.rowitem:hover .appicon {
+		width: 100%;
+		height: 100%;
+	}
+	.rowitem:hover .appname {
+		font-size: 25px;
+		margin-left: 14px;
+		margin-top: 0px;
+	}
+	.rowitem:hover .appurl {
+		font-size: 18px;
+		margin-left: 14px;
+		opacity: 1;
+	}
+
+	.lefticons {
+		width: 20%;
+	}
+	.rightwords {
+		width: 80%;
 	}
 </style>

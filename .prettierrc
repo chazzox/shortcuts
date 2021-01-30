@@ -5,5 +5,6 @@
 	"singleQuote": true,
 	"jsxBracketSameLine": true,
 	"printWidth": 125,
-	"useTabs": true
+	"useTabs": true,
+	"svelteBracketNewLine": false
 }
