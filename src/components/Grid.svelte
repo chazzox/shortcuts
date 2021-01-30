@@ -353,7 +353,8 @@
 		-ms-transition: all 0.3s ease;
 	}
 	/*App Names*/
-	.appname {
+	.linkName {
+		color: white;
 		font-size: 18px;
 		margin-top: 10px;
 		transition: all 0.3s ease;
@@ -382,7 +383,7 @@
 		width: 100%;
 		height: 100%;
 	}
-	.rowitem:hover .appname {
+	.rowitem:hover .linkName {
 		font-size: 25px;
 		margin-left: 14px;
 		margin-top: 0px;
