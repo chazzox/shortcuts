@@ -7,18 +7,6 @@
 	}
 
 	let links: { [key: string]: { id: string; name: string; url: string; linkIconUrl: string } } = {
-		'link-0': {
-			id: 'link-0',
-			name: 'personal website',
-			url: 'https://chazzox.github.io',
-			linkIconUrl: 'https://chazzox.github.io/favicon.ico'
-		},
-		'link-1': {
-			id: 'link-1',
-			name: 'github repo',
-			url: 'https://github.com/chazzox/shortcuts',
-			linkIconUrl: 'https://imgur.com/a/kjgkQ7u'
-		},
 		'link-2': {
 			id: 'link-2',
 			name: 'Reddit',
@@ -176,7 +164,7 @@
 			id: 'box-1',
 			name: 'Social',
 			type: 'default',
-			linkOrder: ['link-0', 'link-1', 'link-2', 'link-3', 'link-4', 'link-5', 'link-6', 'link-7', 'link-8']
+			linkOrder: ['link-2', 'link-3', 'link-4', 'link-5', 'link-6', 'link-7', 'link-8']
 		},
 		'box-2': {
 			id: 'box-2',
@@ -230,21 +218,21 @@
 	];
 
 	const flipDurationMs = 300;
-	function handleDndConsiderColumns(e) {
-		columns = e.detail.items;
+
+	function finaliseDrag(
+		event: CustomEvent<DndEvent> & {
+			target: EventTarget & HTMLDivElement;
+		}
+	) {
+		console.log(event.detail.items);
 	}
-	function handleDndFinalizeColumns(e) {
-		columns = e.detail.items;
-	}
-	function handleDndConsiderCards(cid, e) {
-		const colIdx = columns.findIndex((c) => c.id === cid);
-		columns[colIdx].boxOrder = e.detail.items;
-		columns = [...columns];
-	}
-	function handleDndFinalizeCards(cid, e) {
-		const colIdx = columns.findIndex((c) => c.id === cid);
-		columns[colIdx].boxOrder = e.detail.items;
-		columns = [...columns];
+
+	function considerDrag(
+		event: CustomEvent<DndEvent> & {
+			target: EventTarget & HTMLDivElement;
+		}
+	) {
+		console.log(event.detail.items);
 	}
 </script>
 
@@ -252,23 +240,29 @@
 	{#each columns as column (column.id)}
 		<div
 			class="column"
-			use:dndzone={{ items: column.boxOrder.map((boxId) => boxes[boxId]), flipDurationMs }}
-			on:consider={(e) => handleDndConsiderCards(column.id, e)}
-			on:finalize={(e) => handleDndFinalizeCards(column.id, e)}>
+			use:dndzone={{ items: column.boxOrder.map((boxId) => boxes[boxId]), flipDurationMs, dragDisabled: true }}
+			on:consider={(e) => considerDrag(e)}
+			on:finalize={(e) => finaliseDrag(e)}>
 			{#each column.boxOrder.map((boxId) => boxes[boxId]) as box (box.id)}
-				<div class="box" animate:flip={{ duration: flipDurationMs }} on:click={(e) => console.log(e)}>
+				<div class="box" animate:flip={{ duration: flipDurationMs }}>
 					<span class="boxTitle">{box.name}</span>
-					<div class="boxContent">
+					<div
+						class="boxContent"
+						use:dndzone={{
+							items: boxes[box.id].linkOrder.map((linkId) => links[linkId]),
+							flipDurationMs,
+							dragDisabled: true
+						}}
+						on:consider={(e) => considerDrag(e)}
+						on:finalize={(e) => finaliseDrag(e)}>
 						{#each box.linkOrder.map((linkId) => links[linkId]) as link (link.id)}
-							<a href={link.url}>
-								<div class="rowitem">
-									<div class="columnbox lefticons">
-										<img class="appicon" src={link.linkIconUrl} alt="" />
-									</div>
-									<div class="columnbox rightwords">
-										<div class="linkName">{link.name}</div>
-										<div class="appurl">{prettierLink(link.url)}</div>
-									</div>
+							<a href={link.url} animate:flip={{ duration: flipDurationMs }} class="rowitem">
+								<div class="columnbox lefticons">
+									<img class="appicon" src={link.linkIconUrl} alt="" />
+								</div>
+								<div class="columnbox rightwords">
+									<div class="linkName">{link.name}</div>
+									<div class="appurl">{prettierLink(link.url)}</div>
 								</div>
 							</a>
 						{/each}
@@ -280,27 +274,12 @@
 </div>
 
 <style lang="scss">
-	/*Links*/
-	.columnbox {
-		float: left;
-	}
-	.rowitem:after {
-		padding: 4%;
-		content: '';
-		display: table;
-		clear: both;
-	}
-	a {
-		color: inherit;
-		text-decoration: none;
-	}
 	.board {
 		height: 90vh;
 		width: 100%;
 		padding: 0.5em;
 		display: flex;
 		justify-content: space-around;
-		outline: none !important;
 		&:focus {
 			outline: none;
 		}
@@ -309,6 +288,14 @@
 			padding: 0.5em;
 		}
 	}
+
+	.box,
+	.boxContent,
+	.column,
+	.rowitem {
+		outline: none !important;
+	}
+
 	.box {
 		margin-top: 25px;
 		.boxTitle {
@@ -319,25 +306,13 @@
 			color: white;
 		}
 		.boxContent {
-			background-color: #282a2c;
-			border-radius: 25px;
-			padding: 25px;
+			margin: 10px;
+			color: var(--light-font-color);
+			background-color: var(--background-major);
+			padding: 10px;
+			border-radius: 15px;
+			box-shadow: var(--pretty-box-shadow-dark);
 		}
-	}
-	/*Fancy Animation for rows of apps*/
-	.rowitem {
-		transition: all 0.3s ease;
-		-webkit-transition: all 0.3s ease;
-		-moz-transition: all 0.3s ease;
-		-o-transition: all 0.3s ease;
-		-ms-transition: all 0.3s ease;
-	}
-	/* Clear floats after the columns */
-	.rowitem:after {
-		padding: 4%;
-		content: '';
-		display: table;
-		clear: both;
 	}
 
 	/*App Icons*/
@@ -374,30 +349,56 @@
 		-o-transition: all 0.3s ease;
 		-ms-transition: all 0.3s ease;
 	}
+
 	/*Fancy Animation for rows of apps*/
-	.rowitem:hover {
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
-	.rowitem:hover .appicon {
-		width: 100%;
-		height: 100%;
-	}
-	.rowitem:hover .linkName {
-		font-size: 25px;
-		margin-left: 14px;
-		margin-top: 0px;
-	}
-	.rowitem:hover .appurl {
-		font-size: 18px;
-		margin-left: 14px;
-		opacity: 1;
+	.rowitem {
+		transition: all 0.3s ease;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+		&:after {
+			padding: 4%;
+			content: '';
+			display: table;
+			clear: both;
+		}
+
+		&:hover {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			.appicon {
+				width: 100%;
+				height: 100%;
+			}
+
+			.linkName {
+				font-size: 25px;
+				margin-left: 14px;
+				margin-top: 0px;
+			}
+
+			.appurl {
+				font-size: 18px;
+				margin-left: 14px;
+				opacity: 1;
+			}
+			.lefticons {
+				width: 20%;
+			}
+			.rightwords {
+				width: 80%;
+			}
+		}
 	}
 
-	.lefticons {
-		width: 20%;
+	/*Links*/
+	.columnbox {
+		float: left;
 	}
-	.rightwords {
-		width: 80%;
+
+	a {
+		color: inherit;
+		text-decoration: none;
 	}
 </style>
