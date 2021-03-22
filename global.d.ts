@@ -5,3 +5,7 @@ declare namespace svelte.JSX {
 		onfinalize?: (event: CustomEvent<DndEvent> & { target: EventTarget & T }) => void;
 	}
 }
+
+type drag = CustomEvent<DndEvent> & {
+	target: EventTarget & HTMLDivElement;
+};

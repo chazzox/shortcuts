@@ -218,22 +218,14 @@
 		}
 	];
 
-	const flipDurationMs = 300;
+	const flipDurationMs = 50;
 
-	function finaliseDrag(
-		event: CustomEvent<DndEvent> & {
-			target: EventTarget & HTMLDivElement;
-		}
-	) {
-		console.log(event.detail.items);
+	function finaliseDrag(event: drag) {
+		console.log(event);
 	}
 
-	function considerDrag(
-		event: CustomEvent<DndEvent> & {
-			target: EventTarget & HTMLDivElement;
-		}
-	) {
-		console.log(event.detail.items);
+	function considerDrag(event: drag) {
+		// console.log(event);
 	}
 </script>
 
