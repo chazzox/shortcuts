@@ -2,7 +2,7 @@
 	import Cookies from 'js-cookie';
 	import Auth from '../store/gridMode';
 
-	import { validation } from './utils/validation.svelte';
+	import { validation } from '../utils/validation.svelte';
 
 	let searchString = '';
 
