@@ -18,7 +18,7 @@
 			return isEmpty;
 		},
 		// checking that a string is within a specified range
-		withinRange: (lowerRng, upperRng, param) => {
+		withinRange: (lowerRng: number, upperRng: number, param: number) => {
 			// checking that the input is within the input
 			return param >= lowerRng && param <= upperRng;
 		},

@@ -1,8 +1,48 @@
 <script>
 	import Cookies from 'js-cookie';
-	import Auth from '../store/auth';
+	import Auth from '../store/gridMode';
 	let blankSelected = true;
 </script>
+
+<div class="center">
+	<div id="tutorialBox">
+		<h1>Shortcuts - A New Page Replacement</h1>
+		<h3>What is this site for?</h3>
+		<span>
+			Basically just a place for you to chuck a bunch of links you use frequently so that you have an easy place to
+			access them. This might eventually become a chome extention, but until then i recomend just setting it as the new
+			tab site in your browsers settings</span>
+		<h3>Select preset:</h3>
+		<div id="presetContainer">
+			<div class={blankSelected ? 'presetButton selected' : 'presetButton'}>
+				<img
+					src="images/blank.png"
+					alt=""
+					on:click={() => {
+						blankSelected = true;
+					}} />
+				<span>Blank</span>
+			</div>
+			<div class={!blankSelected ? 'presetButton selected' : 'presetButton'}>
+				<img
+					src="images/default.png"
+					alt=""
+					on:click={() => {
+						blankSelected = false;
+					}} />
+				<span>Default</span>
+			</div>
+		</div>
+		<button
+			class="genButton small"
+			on:click={() => {
+				Cookies.set('hasConfig', true, { expires: 365, sameSit: 'strict' });
+				Auth.setIsNew(true);
+			}}>
+			Continue
+		</button>
+	</div>
+</div>
 
 <style lang="scss">
 	#tutorialBox {
@@ -57,38 +97,3 @@
 		}
 	}
 </style>
-
-<div class="center">
-	<div id="tutorialBox">
-		<h1>Shortcuts - A New Page Replacement</h1>
-		<h3>What is this site for?</h3><span>Well, when you open a new tab, there is often quite a bit of wasted screen
-			space. When you set this set as your homepage you have the option to add different widgets and books marks, if
-			you want you can take a look at the widget guide here (to be created). If you're a dev it is also possible to
-			create your won widget and submit a pull request to the repo (link to be added) to have it added</span>
-		<h3>Select preset:</h3>
-		<div id="presetContainer">
-			<div class={blankSelected ? 'presetButton selected' : 'presetButton'}>
-				<img
-					src="images/blank.png"
-					alt=""
-					on:click={(e) => {
-						blankSelected = true;
-					}} /><span>Blank</span>
-			</div>
-			<div class={!blankSelected ? 'presetButton selected' : 'presetButton'}>
-				<img
-					src="images/default.png"
-					alt=""
-					on:click={(e) => {
-						blankSelected = false;
-					}} /><span>Default</span>
-			</div>
-		</div>
-		<button
-			class="genButton small"
-			on:click={() => {
-				Cookies.set('hasConfig', true, { expires: 365, sameSit: 'strict' });
-				Auth.setIsNew(true);
-			}}>Continue</button>
-	</div>
-</div>

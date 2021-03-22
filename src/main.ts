@@ -1,4 +1,5 @@
 import { routes } from 'svelte-hash-router';
+
 import App from './App.svelte';
 import Home from './routes/Home.svelte';
 import Settings from './routes/Settings.svelte';

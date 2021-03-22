@@ -1,11 +1,18 @@
 <script lang="ts">
 	import Router from 'svelte-hash-router';
 
-	import Auth from './store/auth';
+	import Auth from './store/gridMode';
 
 	import Nav from './components/Nav.svelte';
 	import Tutorial from './components/Tutorial.svelte';
 </script>
+
+{#if !$Auth.isNew}
+	<Tutorial />
+{:else}
+	<Nav />
+	<Router />
+{/if}
 
 <style>
 	:global(:root) {
@@ -47,10 +54,3 @@
 		overflow-x: hidden;
 	}
 </style>
-
-{#if !$Auth.isNew}
-	<Tutorial />
-{:else}
-	<Nav />
-	<Router />
-{/if}
