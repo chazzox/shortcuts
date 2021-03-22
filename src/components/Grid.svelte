@@ -244,7 +244,7 @@
 			use:dndzone={{
 				items: column.boxOrder.map((boxId) => boxes[boxId]),
 				flipDurationMs,
-				dragDisabled: $gridMode.isEdit
+				dragDisabled: $gridMode.dragDisabled
 			}}
 			on:consider={(e) => considerDrag(e)}
 			on:finalize={(e) => finaliseDrag(e)}>
