@@ -1,6 +1,7 @@
 <script lang="typescript">
 	import { flip } from 'svelte/animate';
 	import { dndzone } from 'svelte-dnd-action';
+	import gridMode from '../store/gridMode';
 
 	function prettierLink(url: string) {
 		return url.replace(/(.*?:\/\/)|(www\.)/g, '').replace(/\/.*/, '');
@@ -240,7 +241,11 @@
 	{#each columns as column (column.id)}
 		<div
 			class="column"
-			use:dndzone={{ items: column.boxOrder.map((boxId) => boxes[boxId]), flipDurationMs, dragDisabled: true }}
+			use:dndzone={{
+				items: column.boxOrder.map((boxId) => boxes[boxId]),
+				flipDurationMs,
+				dragDisabled: $gridMode.isEdit
+			}}
 			on:consider={(e) => considerDrag(e)}
 			on:finalize={(e) => finaliseDrag(e)}>
 			{#each column.boxOrder.map((boxId) => boxes[boxId]) as box (box.id)}
