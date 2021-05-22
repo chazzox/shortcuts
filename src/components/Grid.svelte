@@ -2,10 +2,7 @@
 	import { flip } from 'svelte/animate';
 	import { dndzone } from 'svelte-dnd-action';
 	import gridMode from '../store/gridMode';
-
-	function prettierLink(url: string) {
-		return url.replace(/(.*?:\/\/)|(www\.)/g, '').replace(/\/.*/, '');
-	}
+	import Plus from './Add.svelte';
 
 	let links: { [key: string]: { id: string; name: string; url: string; linkIconUrl: string } } = {
 		'link-2': {
@@ -225,7 +222,7 @@
 	}
 
 	function considerDrag(event: drag) {
-		// console.log(event);
+		console.log(event);
 	}
 </script>
 
@@ -254,13 +251,7 @@
 						on:finalize={(e) => finaliseDrag(e)}>
 						{#each box.linkOrder.map((linkId) => links[linkId]) as link (link.id)}
 							<a href={link.url} animate:flip={{ duration: flipDurationMs }} class="rowitem">
-								<div class="columnbox lefticons">
-									<img class="appicon" src={link.linkIconUrl} alt="" />
-								</div>
-								<div class="columnbox rightwords">
-									<div class="linkName">{link.name}</div>
-									<div class="appurl">{prettierLink(link.url)}</div>
-								</div>
+								<img class="appIcon" src={link.linkIconUrl} alt="icon for {link.name}" />{link.name}
 							</a>
 						{/each}
 					</div>
@@ -312,86 +303,15 @@
 		}
 	}
 
-	/*App Icons*/
-	.appicon {
-		display: inline-block;
-		vertical-align: top;
-		width: 50%;
-		height: 50%;
-		transition: all 0.3s ease;
-		-webkit-transition: all 0.3s ease;
-		-moz-transition: all 0.3s ease;
-		-o-transition: all 0.3s ease;
-		-ms-transition: all 0.3s ease;
-	}
-	/*App Names*/
-	.linkName {
-		color: white;
-		font-size: 18px;
-		margin-top: 10px;
-		transition: all 0.3s ease;
-		-webkit-transition: all 0.3s ease;
-		-moz-transition: all 0.3s ease;
-		-o-transition: all 0.3s ease;
-		-ms-transition: all 0.3s ease;
-	}
-	/*App URL*/
-	.appurl {
-		color: rgba(255, 255, 255, 0.4);
-		font-size: 0px;
-		opacity: 0;
-		transition: all 0.3s ease;
-		-webkit-transition: all 0.3s ease;
-		-moz-transition: all 0.3s ease;
-		-o-transition: all 0.3s ease;
-		-ms-transition: all 0.3s ease;
+	.appIcon {
+		vertical-align: middle;
+		width: 50px;
+		margin-right: 15px;
 	}
 
-	/*Fancy Animation for rows of apps*/
 	.rowitem {
-		transition: all 0.3s ease;
-		-webkit-transition: all 0.3s ease;
-		-moz-transition: all 0.3s ease;
-		-o-transition: all 0.3s ease;
-		-ms-transition: all 0.3s ease;
-		&:after {
-			padding: 4%;
-			content: '';
-			display: table;
-			clear: both;
-		}
-
-		&:hover {
-			margin-top: 10px;
-			margin-bottom: 10px;
-			.appicon {
-				width: 100%;
-				height: 100%;
-			}
-
-			.linkName {
-				font-size: 25px;
-				margin-left: 14px;
-				margin-top: 0px;
-			}
-
-			.appurl {
-				font-size: 18px;
-				margin-left: 14px;
-				opacity: 1;
-			}
-			.lefticons {
-				width: 20%;
-			}
-			.rightwords {
-				width: 80%;
-			}
-		}
-	}
-
-	/*Links*/
-	.columnbox {
-		float: left;
+		display: block;
+		padding: 15px;
 	}
 
 	a {
