@@ -7,11 +7,14 @@
 	let searchString = '';
 
 	const search = () => {
+		let url;
 		if (validation.isURL([searchString])) {
-			window.location.href = searchString;
+			url = new URL(searchString);
 		} else {
-			window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(searchString);
+			url = new URL('https://www.google.com/search');
+			url.searchParams.append('q', searchString);
 		}
+		window.location.href = url.toString();
 	};
 </script>
 
