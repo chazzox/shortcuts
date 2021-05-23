@@ -38,14 +38,14 @@
 					gridMode.setIsNew(false);
 				});
 			}}>
-			clear
+			Clear
 		</button>
 		<button
 			class="nav-item"
 			on:click={() => {
 				gridMode.update((state) => ({ ...state, ...{ dragDisabled: !state.dragDisabled } }));
 			}}>
-			{$gridMode.dragDisabled ? 'Enable' : 'Disable'} edit mode
+			{$gridMode.dragDisabled ? 'Enable' : 'Disable'} Edit mode
 		</button>
 		<a href="#/settings/" class="nav-item icon">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -93,6 +93,18 @@
 				font-size: 25px;
 			}
 			.nav-item {
+				& + button {
+					background-color: var(--background-major);
+					border: none;
+					color: white;
+					font-size: 15px;
+					padding: 5px;
+					border-radius: 8px;
+					&:hover {
+						background-color: var(--background-major-inv);
+						color: black;
+					}
+				}
 				&.icon {
 					margin: 10px;
 					width: 30px;
