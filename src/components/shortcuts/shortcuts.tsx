@@ -7,13 +7,12 @@ import store, { AppDispatch, RootState } from '../../redux/store';
 import { onDragEnd } from '../../redux/configReducer';
 
 import './styles/searchbar.scss';
-import { setDrag } from '../../redux/settingsReducer';
+import { toggleDrag } from '../../redux/settingsReducer';
 
 const Shortcuts = () => {
 	const dispatch: AppDispatch = store.dispatch;
 	const grid = useSelector((state: RootState) => state.config.grid);
 	const isEditMode = useSelector((state: RootState) => state.settings.isEditMode);
-	// this function does logic for reordering the the order arrays on the end of a reorder
 
 	const [searchBarString, updateSearchText] = useState('');
 
@@ -27,12 +26,11 @@ const Shortcuts = () => {
 					placeholder="Search.."
 				/>
 				<input
-					type="range"
-					step={10}
-					min={0}
-					max={10}
+					type="checkbox"
+					className="toggle"
+					checked={isEditMode}
 					onChange={() => {
-						dispatch(setDrag(!isEditMode));
+						dispatch(toggleDrag());
 					}}
 				/>
 			</div>
