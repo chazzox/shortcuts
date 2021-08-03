@@ -1,9 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const settingsReducer = createSlice({
 	name: 'settingsReducer',
 	initialState: { isNewUser: false, isDarkMode: true, isEditMode: true },
-	reducers: {}
+	reducers: {
+		setDrag(state, { payload: newDragState }: PayloadAction<boolean>) {
+			state.isEditMode = newDragState;
+		}
+	}
 });
+
+export const { setDrag } = settingsReducer.actions;
 
 export default settingsReducer;

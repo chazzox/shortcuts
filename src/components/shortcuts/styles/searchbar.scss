@@ -4,7 +4,7 @@
 	padding: calc(3 * var(--primary-padding)) 0;
 	input {
 		margin: auto;
-		display: block;
+		display: inline-block;
 		width: 100%;
 		max-width: 700px;
 		font-size: 13pt;
@@ -14,5 +14,9 @@
 		border-radius: 1000px;
 		background-color: var(--box-color);
 		height: calc(var(--searchbar-whitespace-height) - (6 * var(--primary-padding)));
+	}
+	input[type='range'] {
+		padding: 0;
+		width: fit-content;
 	}
 }
