@@ -8,7 +8,7 @@ import Box from './box';
 import './styles/column.scss'; // stylesheet for columns
 
 const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxType[] }) => {
-	const config = useSelector((state: RootState) => state.config.config);
+	const grid = useSelector((state: RootState) => state.config.grid);
 	return (
 		<Droppable droppableId={column.id} type="BOX">
 			{(provided) => (
@@ -18,7 +18,7 @@ const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxT
 							key={box.id}
 							box={box}
 							index={index}
-							linkChildren={box.order.map((linkId) => config.links[linkId])}
+							linkChildren={box.order.map((linkId) => grid.links[linkId])}
 						/>
 					))}
 					{provided.placeholder}
