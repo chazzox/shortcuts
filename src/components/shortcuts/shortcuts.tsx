@@ -8,6 +8,7 @@ import { onDragEnd } from '../../redux/configReducer';
 
 import './styles/searchbar.scss';
 import { toggleDrag } from '../../redux/settingsReducer';
+import JiggleContainer from '../jiggle';
 
 const Shortcuts = () => {
 	const dispatch: AppDispatch = store.dispatch;
@@ -41,11 +42,23 @@ const Shortcuts = () => {
 			>
 				{/* mapping through the columns and sending them as args to the column components as well as the box children for it */}
 				{grid.columnOrder.map((columnId: string, index) => (
-					<Column
-						key={index}
-						column={grid.columns[columnId]}
-						boxChildren={grid.columns[columnId].order.map((boxId: string) => grid.boxes[boxId])}
-					/>
+					<>
+						{isEditMode ? (
+							<JiggleContainer>
+								<Column
+									key={index}
+									column={grid.columns[columnId]}
+									boxChildren={grid.columns[columnId].order.map((boxId: string) => grid.boxes[boxId])}
+								/>
+							</JiggleContainer>
+						) : (
+							<Column
+								key={index}
+								column={grid.columns[columnId]}
+								boxChildren={grid.columns[columnId].order.map((boxId: string) => grid.boxes[boxId])}
+							/>
+						)}
+					</>
 				))}
 			</DragDropContext>
 		</>
