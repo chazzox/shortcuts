@@ -1,5 +1,6 @@
-# shortcuts
-Customizable Browser Homepage <br/>
-**[Find the privacy Policy here](https://chazzox.github.io/#/privacy)**
+<div align="center">
+  <h1>shortcuts</h1>
+  <h2>Customizable Browser Homepage</h2>
+</div>
 
-until i figure out how to web design things then i probably wont touch this for a while, sorry
+# BEING REWRITTEN... AGAIN
