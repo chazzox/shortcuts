@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import config from './configReducer';
-import settings from './settingsReducer';
+import gridSlice from './gridReducer';
+import settingsSlice from './settingsReducer';
 
 const store = configureStore({
 	reducer: {
-		config: config.reducer,
-		settings: settings.reducer
+		grid: gridSlice.reducer,
+		settings: settingsSlice.reducer
 	}
 });
 

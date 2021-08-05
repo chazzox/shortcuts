@@ -1,14 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DropResult } from 'react-beautiful-dnd';
-
-import test from './templates/example';
+import { empty } from './templates';
 
 const configReducer = createSlice({
 	name: 'configReducer',
-	initialState: {
-		isNewUser: true,
-		grid: test as Config
-	},
+	initialState: empty,
 	reducers: {
 		onDragEnd(state, action: PayloadAction<DropResult>) {
 			// extracting variables from the param
@@ -25,9 +21,9 @@ const configReducer = createSlice({
 			// selecting the type of parent element that needs to be changes
 			const jsonObjectListPointer = type === 'BOX' ? 'columns' : 'boxes';
 			// selecting the the parent object of the place of drag item origin
-			const startParentObject = state.grid[jsonObjectListPointer][source.droppableId];
+			const startParentObject = state[jsonObjectListPointer][source.droppableId];
 			// selecting the parent of the destination of the item (only needed if the drag is between boxes)
-			const finishParentObject: ColumnType | BoxType = state.grid[jsonObjectListPointer][destination.droppableId];
+			const finishParentObject: ColumnType | BoxType = state[jsonObjectListPointer][destination.droppableId];
 
 			// the first if statement is for if the moving is only vertically
 			if (startParentObject === finishParentObject) {
@@ -38,10 +34,10 @@ const configReducer = createSlice({
 				// inserts the object into the place where it was dragged to
 				newChildObjectOrder.splice(destination.index, 0, draggableId);
 				// updating the config with the new order
-				state.grid = {
-					...state.grid,
+				state = {
+					...state,
 					[jsonObjectListPointer]: {
-						...state.grid[jsonObjectListPointer],
+						...state[jsonObjectListPointer],
 						[startParentObject.id]: {
 							...startParentObject,
 							order: newChildObjectOrder
@@ -60,10 +56,10 @@ const configReducer = createSlice({
 			// inserting the object id into the new place in its order
 			finishParentObjectOrder.splice(destination.index, 0, draggableId);
 			// updating the config state
-			state.grid = {
-				...state.grid,
+			state = {
+				...state,
 				[jsonObjectListPointer]: {
-					...state.grid[jsonObjectListPointer],
+					...state[jsonObjectListPointer],
 					[startParentObject.id]: {
 						...startParentObject,
 						order: startParentObjectOrder
@@ -76,9 +72,12 @@ const configReducer = createSlice({
 			};
 
 			return;
+		},
+		setGrid(_state, action: PayloadAction<Config>) {
+			return action.payload;
 		}
 	}
 });
 
-export const { onDragEnd } = configReducer.actions;
+export const { onDragEnd, setGrid } = configReducer.actions;
 export default configReducer;

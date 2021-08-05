@@ -1,4 +1,4 @@
-const test = {
+export const defaults: Config = {
 	links: {
 		'link-0': {
 			id: 'link-0',
@@ -138,4 +138,4 @@ const test = {
 	columnOrder: ['column-1', 'column-2', 'column-3', 'column-4']
 };
 
-export default test;
+export const empty: Config = { links: [''], boxes: [], columns: [], columnOrder: [] };

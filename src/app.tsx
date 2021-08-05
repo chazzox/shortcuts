@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Shortcuts from './components/shortcuts/shortcuts';
-import Tutorial from './components/tutorial/tutorial';
+import Tutorial from './components/tutorial';
 
 import { RootState } from './redux/store';
 
@@ -17,7 +17,7 @@ const App = () => {
 
 	useEffect(() => {
 		if (!isDarkMode) document.getElementById('html')?.classList.add('lightMode');
-	}, [isDarkMode]);
+	}, [isDarkMode, isNewUser]);
 	return <>{isNewUser ? <Tutorial /> : <Shortcuts />}</>;
 };
 

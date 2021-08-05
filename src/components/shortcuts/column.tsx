@@ -1,18 +1,32 @@
 import React from 'react';
-import { Droppable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { Droppable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
 
+import { RootState } from '../../redux/store';
 import Box from './box';
 
-import './styles/column.scss'; // stylesheet for columns
+const ColumnWrapper = styled.div`
+	width: 25%;
+	height: calc(100% - var(--searchbar-whitespace-height));
+	float: left;
+	padding-left: var(--primary-padding);
+	padding-right: var(--primary-padding);
+	* {
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+`;
 
 const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxType[] }) => {
-	const grid = useSelector((state: RootState) => state.config.grid);
+	const grid = useSelector((state: RootState) => state.grid);
 	return (
 		<Droppable droppableId={column.id} type="BOX">
 			{(provided) => (
-				<div className="columnWrapper" {...provided.droppableProps} ref={provided.innerRef}>
+				<ColumnWrapper {...provided.droppableProps} ref={provided.innerRef}>
 					{boxChildren.map((box, index) => (
 						<Box
 							key={box.id}
@@ -22,7 +36,7 @@ const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxT
 						/>
 					))}
 					{provided.placeholder}
-				</div>
+				</ColumnWrapper>
 			)}
 		</Droppable>
 	);
