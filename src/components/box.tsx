@@ -8,7 +8,7 @@ import AddButton from './addNewItem';
 import Link from './link';
 
 const BoxContainer = styled.div`
-	background-color: var(--box-color);
+	background-color: ${(props) => props.theme.color.boxColor};
 	padding: 10px;
 	border-radius: var(--primary-border-radius);
 	margin-bottom: calc(var(--primary-padding) * 2);
