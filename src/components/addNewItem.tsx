@@ -12,6 +12,7 @@ const AddButton = styled.button`
 	border: none;
 	cursor: pointer;
 	padding: 0;
+	overflow: hidden;
 	&:hover {
 		width: 100%;
 		& > svg {
