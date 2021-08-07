@@ -16,6 +16,7 @@ const SearchBar = styled.div`
 	padding: calc(3 * var(--primary-padding)) 0;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	input[type='text'] {
 		width: 100%;
 		max-width: 700px;

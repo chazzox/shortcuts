@@ -4,6 +4,7 @@ import { Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
 import { RootState } from '../redux/store';
+import AddButton from './addNewItem';
 import Box from './box';
 
 const ColumnWrapper = styled.div`
@@ -36,7 +37,7 @@ const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxT
 							linkChildren={box.order.map((linkId) => grid.links[linkId])}
 						/>
 					))}
-					{isEditMode && <>x</>}
+					{isEditMode && <AddButton />}
 					{provided.placeholder}
 				</ColumnWrapper>
 			)}

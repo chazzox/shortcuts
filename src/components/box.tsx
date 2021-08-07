@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { RootState } from '../redux/store';
-
+import AddButton from './addNewItem';
 import Link from './link';
 
 const BoxContainer = styled.div`
@@ -41,7 +41,7 @@ const Box = ({ box, linkChildren, index }: { box: BoxType; linkChildren: LinkTyp
 								</div>
 							)}
 						</Droppable>
-						{isEditMode && <button>X</button>}
+						{isEditMode && <AddButton />}
 					</BoxContent>
 				</BoxContainer>
 			)}

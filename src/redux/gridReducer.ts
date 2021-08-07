@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DropResult } from 'react-beautiful-dnd';
-import { empty } from './templates';
+// eslint-disable-next-line
+import { defaults, empty } from './templates';
 
 const configReducer = createSlice({
 	name: 'configReducer',
-	initialState: empty,
+	// initialState: empty,
+	initialState: defaults,
 	reducers: {
 		onDragEnd(state, action: PayloadAction<DropResult>) {
 			// extracting variables from the param
