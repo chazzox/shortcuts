@@ -21,7 +21,7 @@ ReactDOM.render(
 						tertiaryTextColor: '#47474a',
 						boxColor: '#2f3438'
 					},
-					basic: { primaryPadding: 8, secondaryPadding: 6, borderRadius: 14 }
+					basic: { primaryPadding: 8, secondaryPadding: 6, borderRadius: 14, searchbarWhitespaecHeight: 100 }
 				}}
 			>
 				<Global />

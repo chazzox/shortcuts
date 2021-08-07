@@ -12,6 +12,11 @@ declare module 'styled-components' {
 			tertiaryTextColor: string;
 			boxColor: string;
 		};
-		basic: { borderRadius: number; primaryPadding: number; secondaryPadding: number };
+		basic: {
+			borderRadius: number;
+			primaryPadding: number;
+			secondaryPadding: number;
+			searchbarWhitespaecHeight: number;
+		};
 	}
 }

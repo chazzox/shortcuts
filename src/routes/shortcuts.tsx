@@ -12,8 +12,8 @@ import Column from '../components/column';
 
 const SearchBar = styled.div`
 	width: 100%;
-	height: var(--searchbar-whitespace-height);
-	padding: calc(3 * var(--primary-padding)) 0;
+	height: ${(props) => props.theme.basic.searchbarWhitespaecHeight}px;
+	padding: calc(3 * ${(props) => props.theme.basic.primaryPadding}px) 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -22,12 +22,16 @@ const SearchBar = styled.div`
 		width: 100%;
 		max-width: 700px;
 		font-size: 13pt;
-		padding: var(--primary-padding) calc(var(--primary-padding) + 1%);
+		padding: ${(props) => props.theme.basic.primaryPadding}px
+			calc(${(props) => props.theme.basic.primaryPadding}px + 1%);
 		outline: none !important;
 		border: none !important;
 		border-radius: 1000px;
-		background-color: var(--box-color);
-		height: calc(var(--searchbar-whitespace-height) - (6 * var(--primary-padding)));
+		background-color: ${(props) => props.theme.color.boxColor};
+		height: calc(
+			${(props) => props.theme.basic.searchbarWhitespaecHeight}px -
+				(6 * ${(props) => props.theme.basic.primaryPadding}px)
+		);
 	}
 `;
 

@@ -9,10 +9,10 @@ import Box from './box';
 
 const ColumnWrapper = styled.div`
 	width: 25%;
-	height: calc(100% - var(--searchbar-whitespace-height));
+	height: calc(100% - ${(props) => props.theme.basic.searchbarWhitespaecHeight}px);
 	float: left;
-	padding-left: var(--primary-padding);
-	padding-right: var(--primary-padding);
+	padding: ${(props) => props.theme.basic.primaryPadding}px 0px;
+
 	display: flex;
 	flex-direction: column;
 	* {

@@ -10,8 +10,8 @@ import Link from './link';
 const BoxContainer = styled.div`
 	background-color: ${(props) => props.theme.color.boxColor};
 	padding: 10px;
-	border-radius: var(--primary-border-radius);
-	margin-bottom: calc(var(--primary-padding) * 2);
+	border-radius: ${(props) => props.theme.basic.borderRadius}px;
+	margin-bottom: calc(${(props) => props.theme.basic.primaryPadding}px * 2);
 	display: flex;
 	flex-direction: column;
 `;
