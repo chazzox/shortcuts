@@ -1,11 +1,19 @@
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { RootState } from '../../redux/store';
 
 import Link from './link';
 
-import './styles/box.scss'; // stylesheet for boxes
+const BoxContainer = styled.div`
+	background-color: var(--box-color);
+	padding: 10px;
+	border-radius: var(--primary-border-radius);
+	margin-bottom: calc(var(--primary-padding) * 2);
+`;
+
+const BoxContent = styled.div``;
 
 const Box = ({ box, linkChildren, index }: { box: BoxType; linkChildren: LinkType[]; index: number }) => {
 	const isEditMode = useSelector((state: RootState) => state.settings.isEditMode);
@@ -21,9 +29,9 @@ const Box = ({ box, linkChildren, index }: { box: BoxType; linkChildren: LinkTyp
 	return (
 		<Draggable isDragDisabled={!isEditMode} draggableId={box.id} index={index}>
 			{(provided) => (
-				<div className="boxContainer" {...provided.draggableProps} ref={provided.innerRef}>
+				<BoxContainer {...provided.draggableProps} ref={provided.innerRef}>
 					<h1 {...provided.dragHandleProps}>{box.name}</h1>
-					<div className="boxContent">
+					<BoxContent>
 						<Droppable droppableId={box.id} type="link">
 							{(provided) => (
 								<div {...provided.droppableProps} ref={provided.innerRef}>
@@ -32,8 +40,8 @@ const Box = ({ box, linkChildren, index }: { box: BoxType; linkChildren: LinkTyp
 								</div>
 							)}
 						</Droppable>
-					</div>
-				</div>
+					</BoxContent>
+				</BoxContainer>
 			)}
 		</Draggable>
 	);
