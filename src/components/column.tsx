@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
-import { RootState } from '../../redux/store';
+import { RootState } from '../redux/store';
 import Box from './box';
 
 const ColumnWrapper = styled.div`
@@ -23,6 +23,7 @@ const ColumnWrapper = styled.div`
 
 const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxType[] }) => {
 	const grid = useSelector((state: RootState) => state.grid);
+	const isEditMode = useSelector((root: RootState) => root.settings.isEditMode);
 	return (
 		<Droppable droppableId={column.id} type="BOX">
 			{(provided) => (
@@ -35,6 +36,7 @@ const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxT
 							linkChildren={box.order.map((linkId) => grid.links[linkId])}
 						/>
 					))}
+					{isEditMode && <>x</>}
 					{provided.placeholder}
 				</ColumnWrapper>
 			)}

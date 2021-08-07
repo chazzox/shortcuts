@@ -2,7 +2,8 @@ import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { RootState } from '../../redux/store';
+
+import { RootState } from '../redux/store';
 
 import Link from './link';
 
@@ -40,6 +41,7 @@ const Box = ({ box, linkChildren, index }: { box: BoxType; linkChildren: LinkTyp
 								</div>
 							)}
 						</Droppable>
+						{isEditMode && <button>X</button>}
 					</BoxContent>
 				</BoxContainer>
 			)}

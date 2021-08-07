@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import Shortcuts from './components/shortcuts/shortcuts';
+import Shortcuts from './routes/shortcuts';
 import Tutorial from './components/tutorial';
 
 import { RootState } from './redux/store';

@@ -1,42 +1,31 @@
 import React, { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
-
-import Column from './column';
-import store, { AppDispatch, RootState } from '../../redux/store';
-import { onDragEnd } from '../../redux/gridReducer';
-
-import './styles/searchbar.scss';
-import { toggleDrag } from '../../redux/settingsReducer';
 import styled from 'styled-components';
 
-const Toggle = styled.input`
-	display: inline-block;
-	height: 32px;
-	width: 52px;
-	border-radius: 15px;
-	position: relative;
-	margin: 0;
-	border: 2px solid #474755;
-	transition: all 0.2s ease;
-	&:after {
-		content: '';
-		position: absolute;
-		top: 2px;
-		left: 2px;
-		width: 24px;
-		height: 24px;
-		border-radius: 50%;
-		background: white;
-		box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
-		/* TBD: change transition times so that background color and transform take different periods of time */
-		transition: all 0.05s cubic-bezier(0.5, 0.1, 0.75, 1.35);
-	}
-	&:checked {
-		border-color: white;
-	}
-	&:checked:after {
-		transform: translatex(20px);
+import store, { AppDispatch, RootState } from '../redux/store';
+import { toggleDrag } from '../redux/settingsReducer';
+import { onDragEnd } from '../redux/gridReducer';
+
+import { Toggle } from '../components/styled';
+import Column from '../components/column';
+
+const SearchBar = styled.div`
+	width: 100%;
+	height: var(--searchbar-whitespace-height);
+	padding: calc(3 * var(--primary-padding)) 0;
+	display: flex;
+	justify-content: space-between;
+	input[type='text'] {
+		width: 100%;
+		max-width: 700px;
+		font-size: 13pt;
+		padding: var(--primary-padding) calc(var(--primary-padding) + 1%);
+		outline: none !important;
+		border: none !important;
+		border-radius: 1000px;
+		background-color: var(--box-color);
+		height: calc(var(--searchbar-whitespace-height) - (6 * var(--primary-padding)));
 	}
 `;
 
@@ -47,13 +36,9 @@ const Shortcuts = () => {
 
 	const [searchBarString, updateSearchText] = useState('');
 
-	React.useEffect(() => {
-		console.log(grid);
-	}, [grid]);
-
 	return (
 		<>
-			<div id="searchBar">
+			<SearchBar>
 				<input
 					type="text"
 					value={searchBarString}
@@ -67,7 +52,7 @@ const Shortcuts = () => {
 						dispatch(toggleDrag());
 					}}
 				/>
-			</div>
+			</SearchBar>
 			<DragDropContext
 				onDragEnd={(result) => {
 					dispatch(onDragEnd(result));
