@@ -13,6 +13,8 @@ const ColumnWrapper = styled.div`
 	float: left;
 	padding-left: var(--primary-padding);
 	padding-right: var(--primary-padding);
+	display: flex;
+	flex-direction: column;
 	* {
 		-webkit-user-select: none;
 		-khtml-user-select: none;

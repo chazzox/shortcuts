@@ -17,6 +17,7 @@ const SearchBar = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	border: none;
 	input[type='text'] {
 		width: 100%;
 		max-width: 700px;

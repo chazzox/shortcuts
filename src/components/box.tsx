@@ -12,6 +12,8 @@ const BoxContainer = styled.div`
 	padding: 10px;
 	border-radius: var(--primary-border-radius);
 	margin-bottom: calc(var(--primary-padding) * 2);
+	display: flex;
+	flex-direction: column;
 `;
 
 const BoxContent = styled.div``;
@@ -41,8 +43,8 @@ const Box = ({ box, linkChildren, index }: { box: BoxType; linkChildren: LinkTyp
 								</div>
 							)}
 						</Droppable>
-						{isEditMode && <AddButton />}
 					</BoxContent>
+					{isEditMode && <AddButton />}
 				</BoxContainer>
 			)}
 		</Draggable>
