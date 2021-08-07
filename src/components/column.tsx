@@ -39,8 +39,8 @@ const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxT
 							linkChildren={box.order.map((linkId) => grid.links[linkId])}
 						/>
 					))}
-					{isEditMode && <AddButton />}
 					{provided.placeholder}
+					{isEditMode && <AddButton />}
 				</ColumnWrapper>
 			)}
 		</Droppable>
