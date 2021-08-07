@@ -11,11 +11,11 @@ const configReducer = createSlice({
 			const { destination, source, draggableId, type } = action.payload;
 			// if the destination is null i.e, outside of a drop zone, return to start of drag
 			if (!destination) {
-				return;
+				return state;
 			}
 			// if the destination is null then the droppable has not been moved anywhere, no reordering is needed
 			if (destination.droppableId === source.droppableId && destination.index === source.index) {
-				return;
+				return state;
 			}
 
 			// selecting the type of parent element that needs to be changes
@@ -34,7 +34,7 @@ const configReducer = createSlice({
 				// inserts the object into the place where it was dragged to
 				newChildObjectOrder.splice(destination.index, 0, draggableId);
 				// updating the config with the new order
-				state = {
+				return {
 					...state,
 					[jsonObjectListPointer]: {
 						...state[jsonObjectListPointer],
@@ -44,8 +44,6 @@ const configReducer = createSlice({
 						}
 					}
 				};
-
-				return;
 			}
 			// creates a new array for original container order
 			const startParentObjectOrder: string[] = Array.from(startParentObject.order);
@@ -56,7 +54,7 @@ const configReducer = createSlice({
 			// inserting the object id into the new place in its order
 			finishParentObjectOrder.splice(destination.index, 0, draggableId);
 			// updating the config state
-			state = {
+			return {
 				...state,
 				[jsonObjectListPointer]: {
 					...state[jsonObjectListPointer],
@@ -70,8 +68,6 @@ const configReducer = createSlice({
 					}
 				}
 			};
-
-			return;
 		},
 		setGrid(_state, action: PayloadAction<Config>) {
 			return action.payload;

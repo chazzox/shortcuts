@@ -98,6 +98,7 @@ const Slide1 = () => (
 			you should now see plus symbols at each stage of things that are available to add, If you want a new widget,
 			follow the same instructions for adding a new box
 		</p>
+		<p>ps: you can use the arrow keys to navigate the slides</p>
 	</>
 );
 
