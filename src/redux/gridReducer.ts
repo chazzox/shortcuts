@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DropResult } from 'react-beautiful-dnd';
 import { env } from '../env';
-import { defaults, empty } from './templates';
+import { defaults, empty } from '../utils';
 
 const configReducer = createSlice({
 	name: 'configReducer',
