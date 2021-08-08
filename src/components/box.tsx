@@ -44,7 +44,7 @@ const Box = ({ box, linkChildren, index }: { box: BoxType; linkChildren: LinkTyp
 							)}
 						</Droppable>
 					</BoxContent>
-					{isEditMode && <AddButton />}
+					{isEditMode && <AddButton type="LINK" />}
 				</BoxContainer>
 			)}
 		</Draggable>
