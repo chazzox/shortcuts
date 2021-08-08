@@ -82,7 +82,6 @@ const Shortcuts = () => {
 				onDragEnd={(result) => {
 					dispatch(onDragEnd(result));
 				}}>
-				{/* mapping through the columns and sending them as args to the column components as well as the box children for it */}
 				<ColumnContainer>
 					{grid.columnOrder.map((columnId: string, index: number) => (
 						<Column

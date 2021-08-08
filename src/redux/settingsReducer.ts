@@ -4,7 +4,7 @@ import { env } from '../env';
 const settingsReducer = createSlice({
 	name: 'settingsReducer',
 	initialState: {
-		isNewUser: false,
+		isNewUser: env !== 'development' ? true : false,
 		isDarkMode: true,
 		isEditMode: env === 'development' ? true : false
 	},
