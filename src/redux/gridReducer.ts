@@ -78,7 +78,7 @@ const configReducer = createSlice({
 				type: action.payload.type,
 				order: []
 			};
-			state.columns[action.payload.columnId].order.push(`box-${'23'}`);
+			state.columns[action.payload.columnId].order.push(`box-${id}`);
 		},
 		addLink(state, action: PayloadAction<{ name: string; url: string; linkIconUrl: string; boxId: string }>) {
 			const id = Math.random() * 1000;
@@ -88,7 +88,7 @@ const configReducer = createSlice({
 				url: action.payload.url,
 				linkIconUrl: action.payload.linkIconUrl
 			};
-			state.boxes[action.payload.boxId].order.push(`link-${23}`);
+			state.boxes[action.payload.boxId].order.push(`link-${id}`);
 		},
 		setGrid(_state, action: PayloadAction<Config>) {
 			return action.payload;
