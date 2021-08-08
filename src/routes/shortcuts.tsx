@@ -22,8 +22,7 @@ const SearchBar = styled.div`
 		width: 100%;
 		max-width: 700px;
 		font-size: 13pt;
-		padding: ${(props) => props.theme.basic.primaryPadding}px
-			calc(${(props) => props.theme.basic.primaryPadding}px + 1%);
+		padding: ${(props) => props.theme.basic.primaryPadding}px calc(${(props) => props.theme.basic.primaryPadding}px + 1%);
 		outline: none !important;
 		border: none !important;
 		border-radius: 1000px;
@@ -82,8 +81,7 @@ const Shortcuts = () => {
 			<DragDropContext
 				onDragEnd={(result) => {
 					dispatch(onDragEnd(result));
-				}}
-			>
+				}}>
 				{/* mapping through the columns and sending them as args to the column components as well as the box children for it */}
 				<ColumnContainer>
 					{grid.columnOrder.map((columnId: string, index: number) => (
