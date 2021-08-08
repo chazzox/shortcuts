@@ -40,16 +40,32 @@ const Shortcuts = () => {
 	const grid = useSelector((state: RootState) => state.grid);
 	const isEditMode = useSelector((state: RootState) => state.settings.isEditMode);
 
-	const [searchBarString, updateSearchText] = useState('');
+	const [searchString, updateSearchString] = useState('');
 
 	return (
 		<>
 			<SearchBar>
 				<input
 					type="text"
-					value={searchBarString}
-					onChange={(event) => updateSearchText(event.target.value)}
+					value={searchString}
+					onChange={(event) => updateSearchString(event.target.value)}
 					placeholder="Search..."
+					onKeyPress={({ key }) => {
+						if (key === 'Enter') {
+							let url;
+							if (
+								/[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g.test(
+									searchString
+								)
+							) {
+								url = new URL(searchString);
+							} else {
+								url = new URL('https://www.google.com/search');
+								url.searchParams.append('q', searchString);
+							}
+							window.location.href = url.toString();
+						}
+					}}
 				/>
 				<Toggle
 					type="checkbox"
