@@ -35,6 +35,10 @@ const SearchBar = styled.div`
 	}
 `;
 
+const ColumnContainer = styled.div`
+	display: flex;
+`;
+
 const Shortcuts = () => {
 	const dispatch: AppDispatch = store.dispatch;
 	const grid = useSelector((state: RootState) => state.grid);
@@ -81,13 +85,15 @@ const Shortcuts = () => {
 				}}
 			>
 				{/* mapping through the columns and sending them as args to the column components as well as the box children for it */}
-				{grid.columnOrder.map((columnId: string, index: number) => (
-					<Column
-						key={index}
-						column={grid.columns[columnId]}
-						boxChildren={grid.columns[columnId].order.map((boxId: string) => grid.boxes[boxId])}
-					/>
-				))}
+				<ColumnContainer>
+					{grid.columnOrder.map((columnId: string, index: number) => (
+						<Column
+							key={index}
+							column={grid.columns[columnId]}
+							boxChildren={grid.columns[columnId].order.map((boxId: string) => grid.boxes[boxId])}
+						/>
+					))}
+				</ColumnContainer>
 			</DragDropContext>
 		</>
 	);

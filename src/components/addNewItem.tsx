@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+
 import ReactModal from 'react-modal';
+import styled from 'styled-components';
 
 import Plus from '../assets/plus.png';
 
@@ -45,6 +46,7 @@ const AddNewItem = () => {
 			<ReactModal
 				isOpen={isOpen}
 				shouldCloseOnEsc={true}
+				style={{ overlay: { backgroundColor: 'white' }, content: { background: 'black' } }}
 				onRequestClose={() => {
 					setIsOpen(false);
 				}}

@@ -1,19 +1,32 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Shortcuts from './routes/shortcuts';
 import Tutorial from './components/tutorial';
 
 import { RootState } from './redux/store';
+import { Route, Switch } from 'react-router-dom';
+import Settings from './routes/settings';
 
 const App = () => {
-	const isDarkMode = useSelector((state: RootState) => state.settings.isDarkMode);
 	const isNewUser = useSelector((state: RootState) => state.settings.isNewUser);
 
-	useEffect(() => {
-		if (!isDarkMode) document.getElementById('html')?.classList.add('lightMode');
-	}, [isDarkMode, isNewUser]);
-	return <>{isNewUser ? <Tutorial /> : <Shortcuts />}</>;
+	return (
+		<>
+			{isNewUser ? (
+				<Tutorial />
+			) : (
+				<Switch>
+					<Route exact path="/">
+						<Shortcuts />
+					</Route>
+					<Route path="/settings">
+						<Settings />
+					</Route>
+				</Switch>
+			)}
+		</>
+	);
 };
 
 export default App;
