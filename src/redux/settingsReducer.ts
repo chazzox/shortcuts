@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { env } from '../env';
 
 const settingsReducer = createSlice({
 	name: 'settingsReducer',
 	initialState: {
 		isNewUser: false,
 		isDarkMode: true,
-		isEditMode: process.env.NODE_ENV === 'development' ? true : false
+		isEditMode: env === 'development' ? true : false
 	},
 	reducers: {
 		toggleDrag(state) {

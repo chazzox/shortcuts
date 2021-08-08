@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DropResult } from 'react-beautiful-dnd';
+import { env } from '../env';
 import { defaults, empty } from './templates';
 
 const configReducer = createSlice({
 	name: 'configReducer',
-	// initialState: empty,
-	initialState: process.env.NODE_ENV === 'development' ? defaults : empty,
+	initialState: env === 'development' ? defaults : empty,
 	reducers: {
 		onDragEnd(state, action: PayloadAction<DropResult>) {
 			// extracting variables from the param
