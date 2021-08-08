@@ -22,6 +22,7 @@ ReactDOM.render(
 							primaryTextColor: '#ffffff',
 							secondaryTextColor: '#8b8b92',
 							tertiaryTextColor: '#47474a',
+							darkText: '#000000',
 							boxColor: '#2f3438'
 						},
 						basic: {

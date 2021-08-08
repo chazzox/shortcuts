@@ -3,7 +3,7 @@ import { createGlobalStyle, css } from 'styled-components';
 
 const Global = createGlobalStyle`
 	* {
-		font-family: 'Open Sans', sans-serif;
+		font-family: 'Nunito', sans-serif;
 		box-sizing: border-box;
 		color: ${(props) => props.theme.color.primaryTextColor};
 	}

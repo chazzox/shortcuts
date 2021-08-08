@@ -11,6 +11,7 @@ declare module 'styled-components' {
 			secondaryTextColor: string;
 			tertiaryTextColor: string;
 			boxColor: string;
+			darkText: string;
 		};
 		basic: {
 			borderRadius: number;
