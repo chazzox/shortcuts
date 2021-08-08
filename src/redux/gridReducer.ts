@@ -5,7 +5,7 @@ import { defaults, empty } from './templates';
 
 const configReducer = createSlice({
 	name: 'configReducer',
-	initialState: env === 'development' ? defaults : empty,
+	initialState: env === 'development' ? defaults : (empty as Config),
 	reducers: {
 		onDragEnd(state, action: PayloadAction<DropResult>) {
 			// extracting variables from the param
@@ -70,11 +70,29 @@ const configReducer = createSlice({
 				}
 			};
 		},
+		addBox(state, action: PayloadAction<{ name: string; type: string; columnId: string }>) {
+			state.boxes[`box-${'23'}`] = {
+				id: `box-${'23'}`,
+				name: action.payload.name,
+				type: action.payload.type,
+				order: []
+			};
+			state.columns[action.payload.columnId].order.push(`box-${'23'}`);
+		},
+		addLink(state, action: PayloadAction<{ name: string; url: string; linkIconUrl: string; boxId: string }>) {
+			state.links[`link-${23}`] = {
+				id: `link-${23}`,
+				name: action.payload.name,
+				url: action.payload.url,
+				linkIconUrl: action.payload.linkIconUrl
+			};
+			state.boxes[action.payload.boxId].order.push(`link-${23}`);
+		},
 		setGrid(_state, action: PayloadAction<Config>) {
 			return action.payload;
 		}
 	}
 });
 
-export const { onDragEnd, setGrid } = configReducer.actions;
+export const { onDragEnd, setGrid, addBox, addLink } = configReducer.actions;
 export default configReducer;

@@ -1,7 +1,7 @@
 interface Config {
-	links: { [key: string]: Link };
-	boxes: { [key: string]: Box };
-	columns: { [key: string]: Column };
+	links: { [key: string]: LinkType };
+	boxes: { [key: string]: BoxType };
+	columns: { [key: string]: ColumnType };
 	columnOrder: string[];
 }
 

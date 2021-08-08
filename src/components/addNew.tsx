@@ -4,6 +4,8 @@ import ReactModal from 'react-modal';
 import styled from 'styled-components';
 
 import Plus from '../assets/plus.png';
+import { addBox, addLink } from '../redux/gridReducer';
+import store, { AppDispatch } from '../redux/store';
 
 const AddButton = styled.button`
 	height: 50px;
@@ -78,23 +80,41 @@ const Input: React.FC<{
 	);
 };
 
-const BoxModal = () => {
+type ModalProps = React.FC<{
+	containerId: string;
+	closeModal: () => void;
+}>;
+
+const BoxModal: ModalProps = ({ closeModal, containerId }) => {
 	const [boxName, setBoxName] = React.useState('');
+	const dispatch: AppDispatch = store.dispatch;
 	return (
-		<Input
-			name="Title"
-			description="This is the large name above that will be displayed."
-			placeholder="Box Title..."
-			value={boxName}
-			update={setBoxName}
-		/>
+		<>
+			<Input
+				name="Title"
+				description="This is the large name above that will be displayed."
+				placeholder="Box Title..."
+				value={boxName}
+				update={setBoxName}
+			/>
+			<Complete
+				onClick={() => {
+					dispatch(addBox({ name: boxName, type: 'defauls', columnId: containerId }));
+					closeModal();
+				}}>
+				Apply Changes
+			</Complete>
+		</>
 	);
 };
 
-const LinkModal = () => {
+const LinkModal: ModalProps = ({ closeModal, containerId }) => {
 	const [linkTitle, setLinkTitle] = React.useState('');
 	const [linkURL, setLinkURL] = React.useState('');
 	const [iconURL, setIconURL] = React.useState('');
+
+	const dispatch: AppDispatch = store.dispatch;
+
 	return (
 		<>
 			<Input
@@ -118,6 +138,13 @@ const LinkModal = () => {
 				value={iconURL}
 				update={setIconURL}
 			/>
+			<Complete
+				onClick={() => {
+					dispatch(addLink({ name: linkTitle, linkIconUrl: iconURL, url: linkURL, boxId: containerId }));
+					closeModal();
+				}}>
+				Apply Changes
+			</Complete>
 		</>
 	);
 };
@@ -136,9 +163,11 @@ const Complete = styled.button`
 	}
 `;
 
-const AddNewItem: React.FC<{ type: 'BOX' | 'LINK' }> = ({ type }) => {
+const AddNewItem: React.FC<{ type: 'BOX' | 'LINK'; containerId: string }> = ({ type, containerId }) => {
 	const [isOpen, setIsOpen] = React.useState(false);
-
+	const closeModal = () => {
+		setIsOpen(false);
+	};
 	return (
 		<>
 			<AddButton
@@ -167,12 +196,13 @@ const AddNewItem: React.FC<{ type: 'BOX' | 'LINK' }> = ({ type }) => {
 						height: 'fit-content'
 					}
 				}}
-				onRequestClose={() => {
-					setIsOpen(false);
-				}}>
+				onRequestClose={closeModal}>
 				<h1>Add {type.toLowerCase()}!</h1>
-				{type === 'BOX' ? <BoxModal /> : <LinkModal />}
-				<Complete>Apply Changes</Complete>
+				{type === 'BOX' ? (
+					<BoxModal closeModal={closeModal} containerId={containerId} />
+				) : (
+					<LinkModal closeModal={closeModal} containerId={containerId} />
+				)}
 			</ReactModal>
 		</>
 	);

@@ -138,4 +138,4 @@ export const defaults: Config = {
 	columnOrder: ['column-1', 'column-2', 'column-3', 'column-4']
 };
 
-export const empty: Config = { links: [''], boxes: [], columns: [], columnOrder: [] };
+export const empty: Config = { links: {}, boxes: {}, columns: {}, columnOrder: [] };

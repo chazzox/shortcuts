@@ -38,7 +38,7 @@ const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxT
 						/>
 					))}
 					{provided.placeholder}
-					{isEditMode && <AddButton type="BOX" />}
+					{isEditMode && <AddButton type="BOX" containerId={column.id} />}
 				</ColumnWrapper>
 			)}
 		</Droppable>
