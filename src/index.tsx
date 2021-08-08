@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
+import Modal from 'react-modal';
 
 import Global from './components/global';
 import App from './app';
@@ -31,5 +32,7 @@ ReactDOM.render(
 	</React.StrictMode>,
 	document.getElementById('root')
 );
+
+Modal.setAppElement('#modal');
 
 serviceWorker.register();

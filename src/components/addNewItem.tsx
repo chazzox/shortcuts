@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ReactModal from 'react-modal';
 
 import Plus from '../assets/plus.png';
 
@@ -30,10 +31,27 @@ const PlusPng = styled.img`
 `;
 
 const AddNewItem = () => {
+	const [isOpen, setIsOpen] = React.useState(false);
+
 	return (
-		<AddButton>
-			<PlusPng src={Plus} />
-		</AddButton>
+		<>
+			<AddButton
+				onClick={() => {
+					setIsOpen(!isOpen);
+				}}
+			>
+				<PlusPng src={Plus} />
+			</AddButton>
+			<ReactModal
+				isOpen={isOpen}
+				shouldCloseOnEsc={true}
+				onRequestClose={() => {
+					setIsOpen(false);
+				}}
+			>
+				<h1>PRO</h1>
+			</ReactModal>
+		</>
 	);
 };
 
