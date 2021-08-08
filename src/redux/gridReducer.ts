@@ -71,7 +71,7 @@ const configReducer = createSlice({
 			};
 		},
 		addBox(state, action: PayloadAction<{ name: string; type: string; columnId: string }>) {
-			const id = Math.random() * 1000;
+			const id = Math.floor(Math.random() * 1000);
 			state.boxes[`box-${id}`] = {
 				id: `box-${id}`,
 				name: action.payload.name,
@@ -81,7 +81,7 @@ const configReducer = createSlice({
 			state.columns[action.payload.columnId].order.push(`box-${id}`);
 		},
 		addLink(state, action: PayloadAction<{ name: string; url: string; linkIconUrl: string; boxId: string }>) {
-			const id = Math.random() * 1000;
+			const id = Math.floor(Math.random() * 1000);
 			state.links[`link-${id}`] = {
 				id: `link-${id}`,
 				name: action.payload.name,
