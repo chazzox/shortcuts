@@ -9,6 +9,8 @@ import { onDragEnd } from '../redux/gridReducer';
 
 import { Toggle } from '../components/styled';
 import Column from '../components/column';
+import { URLregex } from '../utils';
+import { Link } from 'react-router-dom';
 
 const SearchBar = styled.div`
 	width: 100%;
@@ -56,11 +58,7 @@ const Shortcuts = () => {
 					onKeyPress={({ key }) => {
 						if (key === 'Enter') {
 							let url;
-							if (
-								/[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g.test(
-									searchString
-								)
-							) {
+							if (URLregex.test(searchString)) {
 								url = new URL(searchString);
 							} else {
 								url = new URL('https://www.google.com/search');
@@ -77,6 +75,7 @@ const Shortcuts = () => {
 						dispatch(toggleDrag());
 					}}
 				/>
+				<Link to="/settings">Settings</Link>
 			</SearchBar>
 			<DragDropContext
 				onDragEnd={(result) => {
