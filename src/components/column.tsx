@@ -4,7 +4,7 @@ import { Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
 import { RootState } from '../redux/store';
-import AddButton from './addNewItem';
+import AddButton from './addNew';
 import Box from './box';
 
 const ColumnWrapper = styled.div`

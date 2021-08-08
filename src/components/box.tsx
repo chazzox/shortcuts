@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { RootState } from '../redux/store';
-import AddButton from './addNewItem';
+import AddButton from './addNew';
 import Link from './link';
 
 const BoxContainer = styled.div`
