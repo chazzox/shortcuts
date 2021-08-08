@@ -13,7 +13,7 @@ import { HashRouter } from 'react-router-dom';
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<HashRouter>
+			<HashRouter basename="shortcuts">
 				<ThemeProvider
 					theme={{
 						color: {
@@ -30,8 +30,7 @@ ReactDOM.render(
 							borderRadius: 14,
 							searchbarWhitespaecHeight: 100
 						}
-					}}
-				>
+					}}>
 					<Global />
 					<App />
 				</ThemeProvider>
