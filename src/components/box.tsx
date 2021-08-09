@@ -29,8 +29,6 @@ const Box = ({ box, linkChildren, index }: { box: BoxType; linkChildren: LinkTyp
 		}
 	};
 
-	console.log(box.id);
-
 	return (
 		<Draggable isDragDisabled={!isEditMode} draggableId={box.id} index={index}>
 			{(provided) => (
