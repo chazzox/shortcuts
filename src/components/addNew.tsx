@@ -183,6 +183,7 @@ const AddNewItem: React.FC<{ type: 'BOX' | 'LINK'; containerId: string }> = ({ t
 					overlay: {
 						backgroundColor: 'none',
 						WebkitBackdropFilter: 'blur(8px)',
+						backdropFilter: 'blur(8px)',
 						display: 'flex',
 						justifyContent: 'center',
 						alignItems: 'center'
