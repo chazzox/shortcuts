@@ -3,9 +3,9 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
 
-import Plus from '../assets/plus.png';
-import { addBox, addLink } from '../redux/gridReducer';
-import store, { AppDispatch } from '../redux/store';
+import Plus from 'assets/plus.png';
+import { addBox, addLink } from 'redux/gridReducer';
+import store, { AppDispatch } from 'redux/store';
 
 const AddButton = styled.button`
 	height: 50px;

@@ -3,7 +3,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { RootState } from '../redux/store';
+import { RootState } from 'redux/store';
 import AddButton from './addNew';
 import Link from './link';
 

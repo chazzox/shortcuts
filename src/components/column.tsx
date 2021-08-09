@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
-import { RootState } from '../redux/store';
+import { RootState } from 'redux/store';
 import AddButton from './addNew';
 import Box from './box';
 

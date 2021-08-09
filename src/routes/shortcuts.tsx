@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import store, { AppDispatch, RootState } from '../redux/store';
-import { toggleDrag } from '../redux/settingsReducer';
-import { onDragEnd } from '../redux/gridReducer';
+import store, { AppDispatch, RootState } from 'redux/store';
+import { toggleDrag } from 'redux/settingsReducer';
+import { onDragEnd } from 'redux/gridReducer';
 
-import { Toggle } from '../components/styled';
-import Column from '../components/column';
-import { URLregex } from '../utils';
-import { Link } from 'react-router-dom';
+import { Toggle } from 'components/styled';
+import Column from 'components/column';
+import { URLregex } from 'utils';
 
 const SearchBar = styled.div`
 	width: 100%;
