@@ -75,7 +75,7 @@ const configReducer = createSlice({
 			state.boxes[`box-${id}`] = {
 				id: `box-${id}`,
 				name: action.payload.name,
-				type: action.payload.type,
+				type: 'default',
 				order: []
 			};
 			state.columns[action.payload.columnId].order.push(`box-${id}`);
