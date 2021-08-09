@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DropResult } from 'react-beautiful-dnd';
 import { env } from 'env';
 import { defaults, empty } from 'utils';
+import { PassThrough } from 'stream';
 
 const configReducer = createSlice({
 	name: 'configReducer',
@@ -70,25 +71,19 @@ const configReducer = createSlice({
 				}
 			};
 		},
-		addBox(state, action: PayloadAction<{ name: string; type: string; columnId: string }>) {
-			const id = Math.floor(Math.random() * 1000);
-			state.boxes[`box-${id}`] = {
-				id: `box-${id}`,
-				name: action.payload.name,
-				type: 'default',
-				order: []
-			};
-			state.columns[action.payload.columnId].order.push(`box-${id}`);
-		},
-		addLink(state, action: PayloadAction<{ name: string; url: string; linkIconUrl: string; boxId: string }>) {
-			const id = Math.floor(Math.random() * 1000);
-			state.links[`link-${id}`] = {
-				id: `link-${id}`,
-				name: action.payload.name,
-				url: action.payload.url,
-				linkIconUrl: action.payload.linkIconUrl
-			};
-			state.boxes[action.payload.boxId].order.push(`link-${id}`);
+		addNew(
+			state,
+			action: PayloadAction<{
+				type: 'BOX' | 'LINK';
+				typeContent: Omit<LinkType, 'id'> | Omit<BoxType, 'id'>;
+				containerId: string;
+			}>
+		) {
+			const id = `${action.payload.type === 'BOX' ? 'box' : 'link'}-${Math.floor(Math.random() * 1000)}`;
+			const itemPointer = action.payload.type === 'BOX' ? 'boxes' : 'links';
+			const orderPointer = action.payload.type === 'BOX' ? 'columns' : 'boxes';
+			Object.assign(state[itemPointer], { [id]: { id: `${id}`, ...action.payload.typeContent } });
+			state[orderPointer][action.payload.containerId].order.push(id);
 		},
 		setGrid(_state, action: PayloadAction<Config>) {
 			return action.payload;
@@ -96,5 +91,5 @@ const configReducer = createSlice({
 	}
 });
 
-export const { onDragEnd, setGrid, addBox, addLink } = configReducer.actions;
+export const { onDragEnd, setGrid, addNew } = configReducer.actions;
 export default configReducer;

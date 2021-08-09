@@ -10,7 +10,6 @@ interface BoxType {
 	name: string;
 	type: string;
 	order: string[];
-	widgetType?: string;
 	noteId?: string;
 }
 

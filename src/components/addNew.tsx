@@ -4,8 +4,9 @@ import ReactModal from 'react-modal';
 import styled from 'styled-components';
 
 import Plus from 'assets/plus.png';
-import { addBox, addLink } from 'redux/gridReducer';
+import { addNew } from 'redux/gridReducer';
 import store, { AppDispatch } from 'redux/store';
+import { validation } from 'utils';
 
 const AddButton = styled.button`
 	height: 50px;
@@ -80,75 +81,6 @@ const Input: React.FC<{
 	);
 };
 
-type ModalProps = React.FC<{
-	containerId: string;
-	closeModal: () => void;
-}>;
-
-const BoxModal: ModalProps = ({ closeModal, containerId }) => {
-	const [boxName, setBoxName] = React.useState('');
-	const dispatch: AppDispatch = store.dispatch;
-	return (
-		<>
-			<Input
-				name="Title"
-				description="This is the large name above that will be displayed."
-				placeholder="Box Title..."
-				value={boxName}
-				update={setBoxName}
-			/>
-			<Complete
-				onClick={() => {
-					dispatch(addBox({ name: boxName, type: 'defauls', columnId: containerId }));
-					closeModal();
-				}}>
-				Apply Changes
-			</Complete>
-		</>
-	);
-};
-
-const LinkModal: ModalProps = ({ closeModal, containerId }) => {
-	const [linkTitle, setLinkTitle] = React.useState('');
-	const [linkURL, setLinkURL] = React.useState('');
-	const [iconURL, setIconURL] = React.useState('');
-
-	const dispatch: AppDispatch = store.dispatch;
-
-	return (
-		<>
-			<Input
-				name="Enter the Title of the Link"
-				description="This is the name that will be displayed."
-				placeholder="Link Title..."
-				value={linkTitle}
-				update={setLinkTitle}
-			/>
-			<Input
-				name="Enter the URL of the Link"
-				description="This is the URL where link will go to."
-				placeholder="Link URL..."
-				value={linkURL}
-				update={setLinkURL}
-			/>
-			<Input
-				name="Enter the URL of the Icon"
-				description="This will make your shortcut pretty."
-				placeholder="Icon URL (OPTIONAL)..."
-				value={iconURL}
-				update={setIconURL}
-			/>
-			<Complete
-				onClick={() => {
-					dispatch(addLink({ name: linkTitle, linkIconUrl: iconURL, url: linkURL, boxId: containerId }));
-					closeModal();
-				}}>
-				Apply Changes
-			</Complete>
-		</>
-	);
-};
-
 const Complete = styled.button`
 	background-color: ${(props) => props.theme.color.primaryColor};
 	border: none;
@@ -164,10 +96,19 @@ const Complete = styled.button`
 `;
 
 const AddNewItem: React.FC<{ type: 'BOX' | 'LINK'; containerId: string }> = ({ type, containerId }) => {
+	const dispatch: AppDispatch = store.dispatch;
+
+	const [title, setTitle] = React.useState('');
+	const [linkURL, setLinkURL] = React.useState('');
+	const [iconURL, setIconURL] = React.useState('');
+
+	const [errorMSG, setErrorMessage] = React.useState('');
 	const [isOpen, setIsOpen] = React.useState(false);
+
 	const closeModal = () => {
 		setIsOpen(false);
 	};
+
 	return (
 		<>
 			<AddButton
@@ -200,10 +141,61 @@ const AddNewItem: React.FC<{ type: 'BOX' | 'LINK'; containerId: string }> = ({ t
 				onRequestClose={closeModal}>
 				<h1>Add {type.toLowerCase()}!</h1>
 				{type === 'BOX' ? (
-					<BoxModal closeModal={closeModal} containerId={containerId} />
+					<Input
+						name="Title"
+						description="This is the large name above that will be displayed."
+						placeholder="Box Title..."
+						value={title}
+						update={setTitle}
+					/>
 				) : (
-					<LinkModal closeModal={closeModal} containerId={containerId} />
+					<>
+						<Input
+							name="Enter the Title of the Link"
+							description="This is the name that will be displayed."
+							placeholder="Link Title..."
+							value={title}
+							update={setTitle}
+						/>
+						<Input
+							name="Enter the URL of the Link"
+							description="This is the URL where link will go to."
+							placeholder="Link URL..."
+							value={linkURL}
+							update={setLinkURL}
+						/>
+						<Input
+							name="Enter the URL of the Icon"
+							description="This will make your shortcut pretty."
+							placeholder="Icon URL (OPTIONAL)..."
+							value={iconURL}
+							update={setIconURL}
+						/>
+					</>
 				)}
+				{errorMSG}
+				<Complete
+					onClick={() => {
+						if (true) {
+							dispatch(
+								addNew({
+									type: type,
+									typeContent:
+										type === 'BOX'
+											? { name: title, type: 'default', order: [] }
+											: { name: title, linkIconUrl: iconURL, url: linkURL },
+									containerId: containerId
+								})
+							);
+							closeModal();
+						} else {
+							setErrorMessage(
+								'Validation failed, please make sure that all nessassaery forms are complete and match their purpose'
+							);
+						}
+					}}>
+					Apply Changes
+				</Complete>
 			</ReactModal>
 		</>
 	);
