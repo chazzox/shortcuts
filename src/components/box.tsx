@@ -8,10 +8,10 @@ import AddButton from './addNew';
 import Link from './link';
 
 const BoxContainer = styled.div`
-	background-color: ${(props) => props.theme.color.boxColor};
+	background-color: ${(props) => props.theme.colors.secondaryBackground};
 	padding: 10px;
-	border-radius: ${(props) => props.theme.basic.borderRadius}px;
-	margin-bottom: calc(${(props) => props.theme.basic.primaryPadding}px * 2);
+	border-radius: ${(props) => props.theme.basic.borderRadiusPrimary}px;
+	margin-bottom: calc(${(props) => props.theme.basic.borderRadiusPrimary}px * 2);
 	display: flex;
 	flex-direction: column;
 `;

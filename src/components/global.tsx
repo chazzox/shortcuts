@@ -5,12 +5,12 @@ const Global = createGlobalStyle`
 	* {
 		font-family: 'Nunito', sans-serif;
 		box-sizing: border-box;
-		color: ${(props) => props.theme.color.primaryTextColor};
+		color: ${(props) => props.theme.colors.primaryText};
 	}
 	body {
 		margin: 0;
 		padding: 0;
-		background-color: #25292e;
+		background-color: ${(props) => props.theme.colors.primaryBackground};;
 	}
 `;
 

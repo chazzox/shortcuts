@@ -6,14 +6,14 @@ import styled from 'styled-components';
 import Plus from 'assets/plus.png';
 import { addNew } from 'redux/gridReducer';
 import store, { AppDispatch } from 'redux/store';
-import { validation } from 'utils';
+// import { validation } from 'utils';
 
 const AddButton = styled.button`
-	height: 50px;
-	width: 50px;
+	height: 40px;
+	width: 40px;
 	border-radius: 25px;
 	background: white;
-	transition: width 0.1s ease-in;
+	transition: width 0.3s ease;
 	border: none;
 	cursor: pointer;
 	padding: 0;
@@ -29,7 +29,7 @@ const AddButton = styled.button`
 `;
 
 const PlusPng = styled.img`
-	transition: transform 0.1s ease-in;
+	transition: transform 0.3s ease;
 	height: 80%;
 	align-self: center;
 `;
@@ -49,7 +49,7 @@ const InputWrapper = styled.div`
 const TextInput = styled.input`
 	display: block;
 	padding: 8px;
-	color: ${(props) => props.theme.color.tertiaryTextColor};
+	color: ${(props) => props.theme.colors.tertiaryText};
 	padding: 4px;
 	color: #47474a;
 	font-size: 20px;
@@ -82,7 +82,7 @@ const Input: React.FC<{
 };
 
 const Complete = styled.button`
-	background-color: ${(props) => props.theme.color.primaryColor};
+	background-color: ${(props) => props.theme.colors.secondaryBackground};
 	border: none;
 	padding: 8px;
 	font-size: 15px;
@@ -90,8 +90,8 @@ const Complete = styled.button`
 	border-radius: 8px;
 	transition: background-color 0.1s ease-in;
 	&:hover {
-		background-color: ${(props) => props.theme.color.primaryColorInv};
-		color: ${(props) => props.theme.color.darkText};
+		background-color: ${(props) => props.theme.colors.secondaryAccentBackground};
+		color: ${(props) => props.theme.colors.primaryText};
 	}
 `;
 

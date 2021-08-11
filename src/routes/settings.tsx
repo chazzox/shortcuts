@@ -5,7 +5,7 @@ const PageTitle = styled.div`
 	display: flex;
 	justify-content: center;
 	& > h1 {
-		color: ${(props) => props.theme.color.primaryColorInv};
+		color: ${(props) => props.theme.colors.secondaryBackground};
 	}
 `;
 
@@ -19,7 +19,7 @@ const SettingsBoxContainer = styled.div`
 const Setting = styled.div`
 	margin: 10px;
 	flex: 0 1 560px;
-	background-color: ${(props) => props.theme.color.primaryColor};
+	background-color: ${(props) => props.theme.colors.secondaryBackground};
 	padding: 10px;
 	height: calc(100vh * 0.25);
 	border-radius: 15px;
@@ -59,9 +59,8 @@ const Settings = () => {
 				<Setting>
 					<SettingBoxTitle>Cookies/Local storage</SettingBoxTitle>
 					<SettingBoxContent>
-						Vew/Delete your stored cookies/Local storage (delting your local storage will remove your
-						config), Deleting cookies will mean you will have to login to your connected accounts again
-						(probably)
+						Vew/Delete your stored cookies/Local storage (delting your local storage will remove your config),
+						Deleting cookies will mean you will have to login to your connected accounts again (probably)
 					</SettingBoxContent>
 				</Setting>
 			</SettingsBoxContainer>

@@ -16,20 +16,29 @@ ReactDOM.render(
 			<HashRouter>
 				<ThemeProvider
 					theme={{
-						color: {
-							primaryColor: '#1a1c1d',
-							primaryColorInv: '#ffffff',
-							primaryTextColor: '#ffffff',
-							secondaryTextColor: '#8b8b92',
-							tertiaryTextColor: '#47474a',
-							darkText: '#000000',
-							boxColor: '#2f3438'
+						colors: {
+							primaryBackground: 'rgb(30, 32, 44)',
+							secondaryBackground: 'rgb(46, 51, 65)',
+							tertiaryBackground: 'rgb(40, 42, 54)',
+
+							primaryAccentBackground: 'rgb(179, 137, 239)',
+							secondaryAccentBackground: 'rgb(56, 58, 89)',
+							tertiaryAccentBackground: 'rgb(104, 67, 155)',
+
+							primaryText: 'rgb(255, 255, 255)',
+							secondaryText: 'rgba(255, 255, 255, 0.66)',
+							tertiaryText: 'rgb(100, 107, 132)',
+
+							buttonTextColor: 'rgb(255, 255, 255)',
+							borderColor: 'rgb(52, 54, 84)'
 						},
 						basic: {
-							primaryPadding: 8,
-							secondaryPadding: 6,
-							borderRadius: 14,
-							searchbarWhitespaecHeight: 100
+							borderRadiusPrimary: 8,
+							borderRadiusSecondary: 11,
+							paddingPrimary: 8,
+							paddingSecondary: 11,
+							paddingTertiary: 24,
+							whitespaceHeight: 100
 						}
 					}}>
 					<Global />

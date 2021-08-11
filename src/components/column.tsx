@@ -8,8 +8,8 @@ import AddButton from './addNew';
 import Box from './box';
 
 const ColumnWrapper = styled.div`
-	height: calc(100% - ${(props) => props.theme.basic.searchbarWhitespaecHeight}px);
-	padding: ${(props) => props.theme.basic.primaryPadding}px 0px;
+	height: calc(100% - ${(props) => props.theme.basic.whitespaceHeight}px);
+	padding: ${(props) => props.theme.basic.paddingPrimary}px 0px;
 	display: flex;
 	flex-direction: column;
 	flex: 1;

@@ -14,8 +14,8 @@ import { URLregex } from 'utils';
 
 const SearchBar = styled.div`
 	width: 100%;
-	height: ${(props) => props.theme.basic.searchbarWhitespaecHeight}px;
-	padding: calc(3 * ${(props) => props.theme.basic.primaryPadding}px) 0;
+	height: ${(props) => props.theme.basic.whitespaceHeight}px;
+	padding: calc(3 * ${(props) => props.theme.basic.paddingPrimary}px) 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -24,14 +24,13 @@ const SearchBar = styled.div`
 		width: 100%;
 		max-width: 700px;
 		font-size: 13pt;
-		padding: ${(props) => props.theme.basic.primaryPadding}px calc(${(props) => props.theme.basic.primaryPadding}px + 1%);
+		padding: ${(props) => props.theme.basic.paddingPrimary}px calc(${(props) => props.theme.basic.paddingPrimary}px + 1%);
 		outline: none !important;
 		border: none !important;
-		border-radius: 1000px;
-		background-color: ${(props) => props.theme.color.boxColor};
+		border-radius: 100em;
+		background-color: ${(props) => props.theme.colors.secondaryAccentBackground};
 		height: calc(
-			${(props) => props.theme.basic.searchbarWhitespaecHeight}px -
-				(6 * ${(props) => props.theme.basic.primaryPadding}px)
+			${(props) => props.theme.basic.whitespaceHeight}px - (6 * ${(props) => props.theme.basic.paddingPrimary}px)
 		);
 	}
 `;
