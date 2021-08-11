@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DropResult } from 'react-beautiful-dnd';
+
 import { env } from 'env';
 import { defaults, empty } from 'utils';
-import { PassThrough } from 'stream';
-
 const configReducer = createSlice({
 	name: 'configReducer',
 	initialState: env === 'development' ? defaults : (empty as Config),
@@ -82,6 +81,8 @@ const configReducer = createSlice({
 			const id = `${action.payload.type === 'BOX' ? 'box' : 'link'}-${Math.floor(Math.random() * 1000)}`;
 			const itemPointer = action.payload.type === 'BOX' ? 'boxes' : 'links';
 			const orderPointer = action.payload.type === 'BOX' ? 'columns' : 'boxes';
+			// throws error for some reason, literally no clue why
+			// const pointers = action.payload.type === 'BOX' ? ['boxes', 'columns'] : ['links', 'boxes'];
 			Object.assign(state[itemPointer], { [id]: { id: `${id}`, ...action.payload.typeContent } });
 			state[orderPointer][action.payload.containerId].order.push(id);
 		},
