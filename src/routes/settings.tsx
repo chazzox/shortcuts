@@ -5,7 +5,7 @@ const PageTitle = styled.div`
 	display: flex;
 	justify-content: center;
 	& > h1 {
-		color: ${(props) => props.theme.colors.secondaryBackground};
+		color: ${(props) => props.theme.colors.primaryText};
 	}
 `;
 

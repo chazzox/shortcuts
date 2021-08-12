@@ -36,6 +36,7 @@ const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxT
 							box={box}
 							index={index}
 							linkChildren={box.order.map((linkId) => grid.links[linkId])}
+							containerId={column.id}
 						/>
 					))}
 					{provided.placeholder}

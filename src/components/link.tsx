@@ -1,18 +1,35 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
+import { deleteItem } from 'redux/gridReducer';
 
-import { RootState } from 'redux/store';
+import store, { AppDispatch, RootState } from 'redux/store';
+import styled from 'styled-components';
+import { Button, ItemTitleWrapper } from './styled';
 
-const Link = ({ link, index }: { link: LinkType; index: number }) => {
+const LinkWrapper = styled.div``;
+
+const Link = ({ link, index, containerId }: { link: LinkType; index: number; containerId: string }) => {
+	const dispatch: AppDispatch = store.dispatch;
+
 	const isEditMode = useSelector((state: RootState) => state.settings.isEditMode);
 
 	return (
 		<Draggable isDragDisabled={!isEditMode} draggableId={link.id} index={index}>
 			{(provided) => (
-				<div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-					<div>{link.name}</div>
-				</div>
+				<LinkWrapper {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+					<ItemTitleWrapper>
+						<div>{link.name}</div>
+						{isEditMode && (
+							<Button
+								onClick={() => {
+									dispatch(deleteItem({ type: 'LINK', itemId: link.id, containerId: containerId }));
+								}}>
+								Delete
+							</Button>
+						)}
+					</ItemTitleWrapper>
+				</LinkWrapper>
 			)}
 		</Draggable>
 	);

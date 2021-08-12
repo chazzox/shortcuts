@@ -7,7 +7,19 @@ import store, { AppDispatch } from 'redux/store';
 import { defaults, empty } from 'utils';
 import { Button } from './styled';
 
-const BoxInner = styled.div``;
+const BoxInner = styled.div`
+	width: 60%;
+	background-color: ${(props) => props.theme.colors.secondaryBackground};
+	padding: ${(props) => props.theme.basic.paddingSecondary}px;
+	border-radius: ${(props) => props.theme.basic.borderRadiusPrimary}px;
+`;
+
+const BoxContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+`;
 
 const Option = styled(Button)`
 	height: 150px;
@@ -47,7 +59,7 @@ const Tutorial = () => {
 	}, [handleKeyDown]);
 
 	return (
-		<div className="box center">
+		<BoxContainer>
 			<BoxInner>
 				<h1>Shortcuts</h1>
 				{slides[Math.abs(slideCounter) % 3]}
@@ -65,7 +77,7 @@ const Tutorial = () => {
 					Next
 				</Button>
 			</BoxInner>
-		</div>
+		</BoxContainer>
 	);
 };
 

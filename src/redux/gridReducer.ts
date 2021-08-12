@@ -88,9 +88,18 @@ const configReducer = createSlice({
 		},
 		setGrid(_state, action: PayloadAction<Config>) {
 			return action.payload;
+		},
+		deleteItem(state, action: PayloadAction<{ type: 'BOX' | 'LINK'; containerId: string; itemId: string }>) {
+			const itemPointer = action.payload.type === 'BOX' ? 'boxes' : 'links';
+			const parentPointer = action.payload.type === 'BOX' ? 'columns' : 'boxes';
+			// typically this could be considered inefficient, however array sizes should never reach a size where that would be felt
+			state[parentPointer][action.payload.containerId].order = state[parentPointer][
+				action.payload.containerId
+			].order.filter((el) => el !== action.payload.itemId);
+			delete state[itemPointer][action.payload.itemId];
 		}
 	}
 });
 
-export const { onDragEnd, setGrid, addNew } = configReducer.actions;
+export const { onDragEnd, setGrid, addNew, deleteItem } = configReducer.actions;
 export default configReducer;

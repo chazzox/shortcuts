@@ -1,7 +1,7 @@
 // eslint-disable-next-line
-import { createGlobalStyle, css } from 'styled-components';
+import * as styled from 'styled-components';
 
-const Global = createGlobalStyle`
+const Global = styled.createGlobalStyle`
 	* {
 		font-family: 'Nunito', sans-serif;
 		box-sizing: border-box;
@@ -10,7 +10,12 @@ const Global = createGlobalStyle`
 	body {
 		margin: 0;
 		padding: 0;
-		background-color: ${(props) => props.theme.colors.primaryBackground};;
+		background-color: ${(props) => props.theme.colors.primaryBackground};
+	}
+	html,
+	body,
+	#root {
+		height: 100%;
 	}
 `;
 

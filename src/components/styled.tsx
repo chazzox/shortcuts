@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-	background-color: ${(props) => props.theme.colors.secondaryBackground};
+	background-color: ${(props) => props.theme.colors.primaryAccentBackground};
 	border: none;
-	color: white;
+	color: ${(props) => props.theme.colors.buttonTextColor};
 	font-size: 15px;
 	padding: 5px;
 	border-radius: 8px;
+	transition: background-color, color 0.2s ease;
+	cursor: pointer;
+	margin: 5px;
 	&:hover {
-		background-color: ${(props) => props.theme.colors.secondaryText};
+		background-color: ${(props) => props.theme.colors.buttonTextColor};
 		color: black;
 	}
 `;
@@ -32,8 +35,7 @@ export const Toggle = styled.input`
 		border-radius: 50%;
 		background: white;
 		box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
-		/* TBD: change transition times so that background color and transform take different periods of time */
-		transition: all 0.05s cubic-bezier(0.5, 0.1, 0.75, 1.35);
+		transition: all 0.3s ease;
 	}
 	&:checked {
 		border-color: white;
@@ -49,5 +51,13 @@ export const Toggle = styled.input`
 	cursor: pointer;
 	&:focus {
 		outline: 0;
+	}
+`;
+
+export const ItemTitleWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	& > * {
+		margin: 5px;
 	}
 `;

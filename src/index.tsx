@@ -33,8 +33,8 @@ ReactDOM.render(
 							borderColor: 'rgb(52, 54, 84)'
 						},
 						basic: {
-							borderRadiusPrimary: 8,
-							borderRadiusSecondary: 11,
+							borderRadiusPrimary: 14,
+							borderRadiusSecondary: 8,
 							paddingPrimary: 8,
 							paddingSecondary: 11,
 							paddingTertiary: 24,
@@ -50,6 +50,6 @@ ReactDOM.render(
 	document.getElementById('root')
 );
 
-Modal.setAppElement('#modal');
+Modal.setAppElement('#root');
 
 serviceWorker.register();
