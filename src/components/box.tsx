@@ -8,6 +8,7 @@ import AddButton from './addNew';
 import Link from './link';
 import { Button, ItemTitleWrapper, SimpleBox } from './styled';
 import { deleteItem } from 'redux/gridReducer';
+import { openModal } from 'redux/modalReducer';
 
 const BoxContainer = styled(SimpleBox)`
 	margin-bottom: calc(${(props) => props.theme.basic.borderRadiusPrimary}px * 2);
@@ -46,7 +47,14 @@ const Box = ({ box, linkChildren, index, containerId }: BoxPropTypes) => {
 						<h1 {...provided.dragHandleProps}>{box.name}</h1>
 						{isEditMode && (
 							<>
-								<Button>Edit</Button>
+								<Button
+									onClick={() => {
+										dispatch(
+											openModal({ type: 'BOX', containerId: containerId, values: [box.name, '', ''] })
+										);
+									}}>
+									Edit
+								</Button>
 								<Button
 									onClick={() => {
 										dispatch(deleteItem({ type: 'BOX', itemId: box.id, containerId: containerId }));

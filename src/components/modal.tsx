@@ -6,6 +6,7 @@ import { addNewItem } from 'redux/gridReducer';
 import { AppDispatch, RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/modalReducer';
+import { Button } from './styled';
 
 const InputWrapper = styled.div`
 	& > h2 {
@@ -54,18 +55,8 @@ const Input: React.FC<{
 	);
 };
 
-const Complete = styled.button`
-	background-color: ${(props) => props.theme.colors.secondaryBackground};
-	border: none;
-	padding: 8px;
-	font-size: 15px;
+const Complete = styled(Button)`
 	margin: 15px 0px;
-	border-radius: 8px;
-	transition: background-color 0.1s ease-in;
-	&:hover {
-		background-color: ${(props) => props.theme.colors.secondaryAccentBackground};
-		color: ${(props) => props.theme.colors.primaryText};
-	}
 `;
 
 const Modal = () => {
@@ -74,12 +65,21 @@ const Modal = () => {
 	const type = useSelector((state: RootState) => state.modal.type);
 	const containerId = useSelector((state: RootState) => state.modal.containerId);
 	const isOpen = useSelector((state: RootState) => state.modal.isOpen);
+	const values = useSelector((state: RootState) => state.modal.values);
 
-	const [title, setTitle] = React.useState('');
-	const [linkURL, setLinkURL] = React.useState('');
-	const [iconURL, setIconURL] = React.useState('');
+	const [title, setTitle] = React.useState(values[0]);
+	const [linkURL, setLinkURL] = React.useState(values[1]);
+	const [iconURL, setIconURL] = React.useState(values[2]);
 
 	const [errorMSG, setErrorMessage] = React.useState('');
+
+	React.useEffect(() => {
+		if (isOpen) {
+			setTitle(values[0]);
+			setLinkURL(values[1]);
+			setIconURL(values[2]);
+		}
+	}, [values, isOpen]);
 
 	return (
 		<ReactModal
