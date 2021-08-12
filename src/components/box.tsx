@@ -33,8 +33,6 @@ const Box = ({ box, linkChildren, index, containerId }: BoxPropTypes) => {
 	const dispatch = useDispatch<AppDispatch>();
 	const isEditMode = useSelector((state: RootState) => state.settings.isEditMode);
 
-	const [isBoxModalOpen, setBoxModalOpen] = React.useState(false);
-
 	const renderBox = (boxType: string) => {
 		if (boxType === 'default') {
 			return linkChildren.map((link, index) => <Link key={link.id} index={index} link={link} containerId={box.id} />);
