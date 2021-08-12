@@ -5,13 +5,10 @@ import { setGrid } from 'redux/gridReducer';
 import { oldUser } from 'redux/settingsReducer';
 import store, { AppDispatch } from 'redux/store';
 import { defaults, empty } from 'utils';
-import { Button } from './styled';
+import { Button, SimpleBox } from './styled';
 
-const BoxInner = styled.div`
+const BoxInner = styled(SimpleBox)`
 	width: 60%;
-	background-color: ${(props) => props.theme.colors.secondaryBackground};
-	padding: ${(props) => props.theme.basic.paddingSecondary}px;
-	border-radius: ${(props) => props.theme.basic.borderRadiusPrimary}px;
 `;
 
 const BoxContainer = styled.div`

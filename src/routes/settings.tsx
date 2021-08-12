@@ -1,4 +1,5 @@
 import React from 'react';
+import { SimpleBox } from 'components/styled';
 import styled from 'styled-components';
 
 const PageTitle = styled.div`
@@ -16,15 +17,13 @@ const SettingsBoxContainer = styled.div`
 	justify-content: space-evenly;
 `;
 
-const Setting = styled.div`
+const Setting = styled(SimpleBox)`
 	margin: 10px;
 	flex: 0 1 560px;
-	background-color: ${(props) => props.theme.colors.secondaryBackground};
-	padding: 10px;
 	height: calc(100vh * 0.25);
-	border-radius: 15px;
 	display: flex;
 	flex-direction: column;
+	margin: 25px;
 `;
 
 const SettingBoxTitle = styled.span`

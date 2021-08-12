@@ -61,3 +61,11 @@ export const ItemTitleWrapper = styled.div`
 		margin: 5px;
 	}
 `;
+
+export const SimpleBox = styled.div`
+	background-color: ${(props) => props.theme.colors.secondaryBackground};
+	padding: ${(props) => props.theme.basic.paddingSecondary}px;
+	border-radius: ${(props) => props.theme.basic.borderRadiusPrimary}px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+`;
