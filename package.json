@@ -5,13 +5,12 @@
 	"private": true,
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.4.0",
-		"node-sass": "^4.14.1",
-		"react": "^16.13.1",
-		"react-beautiful-dnd": "^13.0.0",
-		"react-dom": "^16.13.1",
+		"react": "^17.0.2",
+		"react-beautiful-dnd": "^13.1.0",
+		"react-dom": "^17.0.2",
 		"react-modal": "^3.14.3",
 		"react-router-dom": "^5.2.0",
-		"react-scripts": "3.4.3",
+		"react-scripts": "4.0.3",
 		"styled-components": "^5.3.0",
 		"typescript": "^4.3.5"
 	},
@@ -20,9 +19,6 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
-	},
-	"eslintConfig": {
-		"extends": "react-app"
 	},
 	"browserslist": {
 		"production": [
@@ -34,6 +30,11 @@
 			"last 1 chrome version",
 			"last 1 firefox version",
 			"last 1 safari version"
+		]
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app"
 		]
 	},
 	"devDependencies": {
