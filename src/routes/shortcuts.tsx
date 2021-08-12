@@ -33,6 +33,9 @@ const SearchBar = styled.div`
 			${(props) => props.theme.basic.whitespaceHeight}px - (6 * ${(props) => props.theme.basic.paddingPrimary}px)
 		);
 	}
+	input[type='text']:focus {
+		background-color: ${(props) => props.theme.colors.primaryAccentBackground};
+	}
 `;
 
 const ColumnContainer = styled.div`
