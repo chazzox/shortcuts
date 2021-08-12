@@ -10,6 +10,7 @@ import { onDragEnd } from 'redux/gridReducer';
 
 import { Toggle } from 'components/styled';
 import Column from 'components/column';
+import Modal from 'components/modal';
 import { URLregex } from 'utils';
 
 const SearchBar = styled.div`
@@ -93,6 +94,7 @@ const Shortcuts = () => {
 					))}
 				</ColumnContainer>
 			</DragDropContext>
+			<Modal />
 		</>
 	);
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import store, { AppDispatch, RootState } from 'redux/store';
+import { AppDispatch, RootState } from 'redux/store';
 import AddButton from './addNew';
 import Link from './link';
 import { Button, ItemTitleWrapper } from './styled';
@@ -16,6 +16,8 @@ const BoxContainer = styled.div`
 	margin-bottom: calc(${(props) => props.theme.basic.borderRadiusPrimary}px * 2);
 	display: flex;
 	flex-direction: column;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `;
 
 const BoxContent = styled.div``;
@@ -28,8 +30,10 @@ interface BoxPropTypes {
 }
 
 const Box = ({ box, linkChildren, index, containerId }: BoxPropTypes) => {
-	const dispatch: AppDispatch = store.dispatch;
+	const dispatch = useDispatch<AppDispatch>();
 	const isEditMode = useSelector((state: RootState) => state.settings.isEditMode);
+
+	const [isBoxModalOpen, setBoxModalOpen] = React.useState(false);
 
 	const renderBox = (boxType: string) => {
 		if (boxType === 'default') {

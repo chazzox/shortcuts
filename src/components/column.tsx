@@ -26,6 +26,7 @@ const ColumnWrapper = styled.div`
 const Column = ({ column, boxChildren }: { column: ColumnType; boxChildren: BoxType[] }) => {
 	const grid = useSelector((state: RootState) => state.grid);
 	const isEditMode = useSelector((root: RootState) => root.settings.isEditMode);
+
 	return (
 		<Droppable droppableId={column.id} type="BOX">
 			{(provided) => (

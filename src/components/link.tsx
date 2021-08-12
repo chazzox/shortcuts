@@ -1,16 +1,16 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteItem } from 'redux/gridReducer';
 
-import store, { AppDispatch, RootState } from 'redux/store';
+import { AppDispatch, RootState } from 'redux/store';
 import styled from 'styled-components';
 import { Button, ItemTitleWrapper } from './styled';
 
 const LinkWrapper = styled.div``;
 
 const Link = ({ link, index, containerId }: { link: LinkType; index: number; containerId: string }) => {
-	const dispatch: AppDispatch = store.dispatch;
+	const dispatch = useDispatch<AppDispatch>();
 
 	const isEditMode = useSelector((state: RootState) => state.settings.isEditMode);
 

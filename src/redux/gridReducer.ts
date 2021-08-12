@@ -3,9 +3,10 @@ import { DropResult } from 'react-beautiful-dnd';
 
 import { env } from 'env';
 import { defaults, empty } from 'utils';
+
 const configReducer = createSlice({
 	name: 'configReducer',
-	initialState: env === 'development' ? defaults : (empty as Config),
+	initialState: env === 'development' ? defaults : empty,
 	reducers: {
 		onDragEnd(state, action: PayloadAction<DropResult>) {
 			// extracting variables from the param
@@ -70,7 +71,7 @@ const configReducer = createSlice({
 				}
 			};
 		},
-		addNew(
+		addNewItem(
 			state,
 			action: PayloadAction<{
 				type: 'BOX' | 'LINK';
@@ -101,5 +102,5 @@ const configReducer = createSlice({
 	}
 });
 
-export const { onDragEnd, setGrid, addNew, deleteItem } = configReducer.actions;
+export const { onDragEnd, setGrid, addNewItem, deleteItem } = configReducer.actions;
 export default configReducer;
