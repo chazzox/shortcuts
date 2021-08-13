@@ -7,7 +7,6 @@ import Modal from 'react-modal';
 import Global from './components/global';
 import App from './app';
 import store from './redux/store';
-import * as serviceWorker from './serviceWorker';
 import { HashRouter } from 'react-router-dom';
 
 ReactDOM.render(
@@ -51,5 +50,3 @@ ReactDOM.render(
 );
 
 Modal.setAppElement('#root');
-
-serviceWorker.register();
