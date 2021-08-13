@@ -50,7 +50,12 @@ const Box = ({ box, linkChildren, index, containerId }: BoxPropTypes) => {
 								<Button
 									onClick={() => {
 										dispatch(
-											openModal({ type: 'BOX', containerId: containerId, values: [box.name, '', ''] })
+											openModal({
+												type: 'BOX',
+												id: box.id,
+												values: [box.name, '', ''],
+												action: 'EDIT'
+											})
 										);
 									}}>
 									Edit
@@ -76,7 +81,7 @@ const Box = ({ box, linkChildren, index, containerId }: BoxPropTypes) => {
 						</Droppable>
 					</BoxContent>
 
-					{isEditMode && <AddButton type="LINK" containerId={box.id} />}
+					{isEditMode && <AddButton type="LINK" id={box.id} />}
 				</BoxContainer>
 			)}
 		</Draggable>

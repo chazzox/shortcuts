@@ -2,6 +2,7 @@ import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteItem } from 'redux/gridReducer';
+import { openModal } from 'redux/modalReducer';
 
 import { AppDispatch, RootState } from 'redux/store';
 import styled from 'styled-components';
@@ -21,12 +22,27 @@ const Link = ({ link, index, containerId }: { link: LinkType; index: number; con
 					<ItemTitleWrapper>
 						<div>{link.name}</div>
 						{isEditMode && (
-							<Button
-								onClick={() => {
-									dispatch(deleteItem({ type: 'LINK', itemId: link.id, containerId: containerId }));
-								}}>
-								Delete
-							</Button>
+							<>
+								<Button
+									onClick={() => {
+										dispatch(
+											openModal({
+												type: 'LINK',
+												id: link.id,
+												values: [link.name, link.url, link.linkIconUrl],
+												action: 'EDIT'
+											})
+										);
+									}}>
+									Edit
+								</Button>
+								<Button
+									onClick={() => {
+										dispatch(deleteItem({ type: 'LINK', itemId: link.id, containerId: containerId }));
+									}}>
+									Delete
+								</Button>
+							</>
 						)}
 					</ItemTitleWrapper>
 				</LinkWrapper>

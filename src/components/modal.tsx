@@ -2,7 +2,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
 
-import { addNewItem } from 'redux/gridReducer';
+import { addNewItem, editItem } from 'redux/gridReducer';
 import { AppDispatch, RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/modalReducer';
@@ -63,9 +63,11 @@ const Modal = () => {
 	const dispatch = useDispatch<AppDispatch>();
 
 	const type = useSelector((state: RootState) => state.modal.type);
-	const containerId = useSelector((state: RootState) => state.modal.containerId);
+	const id = useSelector((state: RootState) => state.modal.id);
 	const isOpen = useSelector((state: RootState) => state.modal.isOpen);
-	const values = useSelector((state: RootState) => state.modal.values);
+	// eslint-disable-next-line
+	const values = useSelector((state: RootState) => state.modal.values) || ['', '', ''];
+	const action = useSelector((state: RootState) => state.modal.action);
 
 	const [title, setTitle] = React.useState(values[0]);
 	const [linkURL, setLinkURL] = React.useState(values[1]);
@@ -144,17 +146,28 @@ const Modal = () => {
 			<Complete
 				onClick={() => {
 					if (true) {
-						dispatch(
-							addNewItem({
-								type: type,
-								typeContent:
-									type === 'BOX'
-										? { name: title, type: 'default', order: [] }
-										: { name: title, linkIconUrl: iconURL, url: linkURL },
-								containerId: containerId
-							})
-						);
-						dispatch(closeModal());
+						if (action === 'NEW') {
+							dispatch(
+								addNewItem({
+									type: type,
+									typeContent:
+										type === 'BOX'
+											? { name: title, type: 'default', order: [] }
+											: { name: title, linkIconUrl: iconURL, url: linkURL },
+									containerId: id
+								})
+							);
+							// dispatch(closeModal());
+						} else if (action === 'EDIT') {
+							dispatch(
+								editItem({
+									type: type,
+									itemId: id,
+									content: { name: title }
+								})
+							);
+							dispatch(closeModal());
+						}
 					} else {
 						setErrorMessage(
 							'Validation failed, please make sure that all nessassaery forms are complete and match their purpose'

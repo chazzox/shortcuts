@@ -34,12 +34,12 @@ const PlusPng = styled.img`
 	align-self: center;
 `;
 
-const AddNewItem: React.FC<{ type: 'BOX' | 'LINK'; containerId: string }> = (props) => {
+const AddNewItem: React.FC<{ type: 'BOX' | 'LINK'; id: string }> = (props) => {
 	const dispatch = useDispatch<AppDispatch>();
 	return (
 		<AddButton
 			onClick={() => {
-				dispatch(openModal(props));
+				dispatch(openModal({ ...props, action: 'NEW' }));
 			}}>
 			<PlusPng src={Plus} />
 		</AddButton>
