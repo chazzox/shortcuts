@@ -157,7 +157,7 @@ const Modal = () => {
 									containerId: id
 								})
 							);
-							// dispatch(closeModal());
+							dispatch(closeModal());
 						} else if (action === 'EDIT') {
 							dispatch(
 								editItem({
