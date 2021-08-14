@@ -1,10 +1,10 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteItem } from 'redux/gridReducer';
-import { openModal } from 'redux/modalReducer';
+import { deleteItem } from '@app/redux/gridReducer';
+import { openModal } from '@app/redux/modalReducer';
 
-import { AppDispatch, RootState } from 'redux/store';
+import type { AppDispatch, RootState } from '@app/redux/store';
 import styled from 'styled-components';
 import { Button, ItemTitleWrapper } from './styled';
 

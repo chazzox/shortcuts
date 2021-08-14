@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DropResult } from 'react-beautiful-dnd';
+import type { DropResult } from 'react-beautiful-dnd';
 
-import { env } from 'env';
-import { defaults, empty } from 'utils';
+import { env } from '@app/env';
+import { defaults, empty } from '@app/utils';
 
 const configReducer = createSlice({
 	name: 'configReducer',

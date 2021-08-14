@@ -1,4 +1,3 @@
-/// <reference types="react-scripts" />
 import 'styled-components';
 
 // extending styled components default theme

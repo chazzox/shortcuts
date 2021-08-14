@@ -1,5 +1,5 @@
 import React from 'react';
-import { SimpleBox } from 'components/styled';
+import { SimpleBox } from '@app/components/styled';
 import styled from 'styled-components';
 
 const PageTitle = styled.div`

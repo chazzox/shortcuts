@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
-import { setGrid } from 'redux/gridReducer';
-import { oldUser } from 'redux/settingsReducer';
-import store, { AppDispatch } from 'redux/store';
-import { defaults, empty } from 'utils';
+import { setGrid } from '@app/redux/gridReducer';
+import { oldUser } from '@app/redux/settingsReducer';
+import store, { AppDispatch } from '@app/redux/store';
+import { defaults, empty } from '@app/utils';
 import { Button, SimpleBox } from './styled';
 
 const BoxInner = styled(SimpleBox)`

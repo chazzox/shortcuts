@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 
 import Shortcuts from './routes/shortcuts';
 import Tutorial from './components/tutorial';
 
-import { RootState } from './redux/store';
-import { Route, Switch } from 'react-router-dom';
+import type { RootState } from './redux/store';
 import Settings from './routes/settings';
 
 const App = () => {

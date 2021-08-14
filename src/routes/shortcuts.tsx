@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import store, { AppDispatch, RootState } from 'redux/store';
-import { toggleDrag } from 'redux/settingsReducer';
-import { onDragEnd } from 'redux/gridReducer';
+import store, { AppDispatch, RootState } from '@app/redux/store';
+import { toggleDrag } from '@app/redux/settingsReducer';
+import { onDragEnd } from '@app/redux/gridReducer';
 
-import { Toggle } from 'components/styled';
-import Column from 'components/column';
-import Modal from 'components/modal';
-import { URLregex } from 'utils';
+import { Toggle } from '@app/components/styled';
+import Column from '@app/components/column';
+import Modal from '@app/components/modal';
+import { URLregex } from '@app/utils';
 
 const SearchBar = styled.div`
 	width: 100%;

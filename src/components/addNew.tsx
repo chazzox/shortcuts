@@ -2,11 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
-import { AppDispatch } from 'redux/store';
-import { openModal } from 'redux/modalReducer';
-import Plus from 'assets/plus.png';
-
-// import { validation } from 'utils';
+import type { AppDispatch } from '@app/redux/store';
+import { openModal } from '@app/redux/modalReducer';
+import Plus from '../assets/plus.png';
 
 const AddButton = styled.button`
 	height: 40px;

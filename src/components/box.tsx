@@ -3,12 +3,12 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { AppDispatch, RootState } from 'redux/store';
+import type { AppDispatch, RootState } from '@app/redux/store';
 import AddButton from './addNew';
 import Link from './link';
 import { Button, ItemTitleWrapper, SimpleBox } from './styled';
-import { deleteItem } from 'redux/gridReducer';
-import { openModal } from 'redux/modalReducer';
+import { deleteItem } from '@app/redux/gridReducer';
+import { openModal } from '@app/redux/modalReducer';
 
 const BoxContainer = styled(SimpleBox)`
 	margin-bottom: calc(${(props) => props.theme.basic.borderRadiusPrimary}px * 2);

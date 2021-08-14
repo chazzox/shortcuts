@@ -2,10 +2,10 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
 
-import { addNewItem, editItem } from 'redux/gridReducer';
-import { AppDispatch, RootState } from 'redux/store';
+import { addNewItem, editItem } from '@app/redux/gridReducer';
+import type { AppDispatch, RootState } from '@app/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal } from 'redux/modalReducer';
+import { closeModal } from '@app/redux/modalReducer';
 import { Button } from './styled';
 
 const InputWrapper = styled.div`
