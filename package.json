@@ -1,4 +1,8 @@
 {
+	"name": "shortcuts",
+	"homepage": "http://chazzox.github.io/shortcuts",
+	"version": "2.0.0",
+	"private": true,
 	"scripts": {
 		"start": "snowpack dev",
 		"build": "snowpack build",
