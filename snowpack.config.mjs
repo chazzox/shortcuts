@@ -30,7 +30,7 @@ export default {
 		/* ... */
 	},
 	buildOptions: {
-		baseUrl: 'shortcuts'
+		baseUrl: '/shortcuts'
 	},
 	alias: { '@app': './src' }
 };
