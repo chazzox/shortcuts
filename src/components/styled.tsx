@@ -1,4 +1,32 @@
-import styled from 'styled-components';
+import { getImage } from '@app/utils';
+import styled, { createGlobalStyle, css } from 'styled-components';
+
+export const Global = createGlobalStyle<{ isRandomBackground: boolean }>`
+	* {
+		font-family: 'Nunito', sans-serif;
+		box-sizing: border-box;
+		color: ${(props) => props.theme.colors.primaryText};
+	}
+	body {
+		margin: 0;
+		padding: 0;
+		${(props) => (props.isRandomBackground ? randomBackground : defaultBackground)}
+	}
+	html,
+	body,
+	#root {
+		height: 100%;
+	}
+`;
+
+const defaultBackground = css`
+	background-color: ${(props) => props.theme.colors.primaryBackground};
+`;
+
+const randomBackground = css`
+	background-image: url('${await getImage()}');
+	background-size: cover;
+`;
 
 export const Button = styled.button`
 	background-color: ${(props) => props.theme.colors.primaryAccentBackground};

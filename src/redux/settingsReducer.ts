@@ -4,9 +4,10 @@ import { env } from '@app/env';
 const settingsReducer = createSlice({
 	name: 'settingsReducer',
 	initialState: {
-		isNewUser: env !== 'development' ? true : false,
+		isNewUser: true,
 		isDarkMode: true,
-		isEditMode: env === 'development' ? true : false
+		isEditMode: false,
+		isRandBackgroundEnabled: false
 	},
 	reducers: {
 		toggleDrag(state) {
@@ -14,10 +15,13 @@ const settingsReducer = createSlice({
 		},
 		oldUser(state) {
 			state.isNewUser = false;
+		},
+		toggleRandBackground(state) {
+			state.isRandBackgroundEnabled = !state.isRandBackgroundEnabled;
 		}
 	}
 });
 
-export const { toggleDrag, oldUser } = settingsReducer.actions;
+export const { toggleDrag, oldUser, toggleRandBackground } = settingsReducer.actions;
 
 export default settingsReducer;

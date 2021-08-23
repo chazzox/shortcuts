@@ -1,6 +1,9 @@
 import React from 'react';
-import { SimpleBox } from '@app/components/styled';
+import { SimpleBox, Toggle } from '@app/components/styled';
 import styled from 'styled-components';
+import type { AppDispatch, RootState } from '@app/redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleRandBackground } from '@app/redux/settingsReducer';
 
 const PageTitle = styled.div`
 	display: flex;
@@ -37,6 +40,8 @@ const SettingBoxContent = styled.div`
 `;
 
 const Settings = () => {
+	const isRandBackgroundEnabled = useSelector((state: RootState) => state.settings.isRandBackgroundEnabled);
+	const dispatch = useDispatch<AppDispatch>();
 	return (
 		<>
 			<PageTitle>
@@ -46,6 +51,19 @@ const Settings = () => {
 				<Setting>
 					<SettingBoxTitle>Colors</SettingBoxTitle>
 					<SettingBoxContent>Customisation to be written</SettingBoxContent>
+				</Setting>
+				<Setting>
+					<SettingBoxTitle>Background</SettingBoxTitle>
+					<SettingBoxContent>
+						<p>Enable/Disable the option to pull a random wallpaper from unsplash</p>
+						<Toggle
+							type="checkbox"
+							checked={isRandBackgroundEnabled}
+							onChange={() => {
+								dispatch(toggleRandBackground());
+							}}
+						/>
+					</SettingBoxContent>
 				</Setting>
 				<Setting>
 					<SettingBoxTitle>Linked Accounts</SettingBoxTitle>
