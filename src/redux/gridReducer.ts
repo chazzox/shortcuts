@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { DropResult } from 'react-beautiful-dnd';
 
-import { env } from '@app/env';
-import { defaults, empty } from '@app/utils';
+import { defaults } from '@app/utils';
 
 const configReducer = createSlice({
 	name: 'configReducer',
-	initialState: env === 'development' ? defaults : empty,
+	initialState: defaults,
 	reducers: {
 		onDragEnd(state, action: PayloadAction<DropResult>) {
 			const { destination, source, draggableId, type } = action.payload;

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { env } from '@app/env';
 
 const settingsReducer = createSlice({
 	name: 'settingsReducer',
