@@ -55,6 +55,9 @@ const Settings = () => {
 				<Setting>
 					<SettingBoxTitle>Background</SettingBoxTitle>
 					<SettingBoxContent>
+						<Error>
+							This Feature breaks the safari build for some reason, i have disabled it until i figure out why
+						</Error>
 						<p>Enable/Disable the option to pull a random wallpaper from unsplash</p>
 						<Toggle
 							type="checkbox"
@@ -84,5 +87,12 @@ const Settings = () => {
 		</>
 	);
 };
+
+// Temporary Component
+const Error = styled.div`
+	background-color: #c02c2c;
+	border-radius: 8px;
+	padding: 8px;
+`;
 
 export default Settings;

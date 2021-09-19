@@ -1,5 +1,9 @@
-import { getImage } from '@app/utils';
+// import { getImage } from '@app/utils';
 import styled, { createGlobalStyle, css } from 'styled-components';
+
+const defaultBackground = css`
+	background-color: ${(props) => props.theme.colors.primaryBackground};
+`;
 
 export const Global = createGlobalStyle<{ isRandomBackground: boolean }>`
 	* {
@@ -10,7 +14,8 @@ export const Global = createGlobalStyle<{ isRandomBackground: boolean }>`
 	body {
 		margin: 0;
 		padding: 0;
-		${(props) => (props.isRandomBackground ? randomBackground : defaultBackground)}
+		/* ${(props) => (props.isRandomBackground ? randomBackground : defaultBackground)} */
+		${defaultBackground}
 	}
 	html,
 	body,
@@ -19,12 +24,7 @@ export const Global = createGlobalStyle<{ isRandomBackground: boolean }>`
 	}
 `;
 
-const defaultBackground = css`
-	background-color: ${(props) => props.theme.colors.primaryBackground};
-`;
-
 const randomBackground = css`
-	background-image: url('${await getImage()}');
 	background-size: cover;
 `;
 
