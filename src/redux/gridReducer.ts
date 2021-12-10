@@ -18,6 +18,7 @@ const configReducer = createSlice({
 			const jsonObjectListPointer = type === 'BOX' ? 'columns' : 'boxes';
 			const startParentObject = state[jsonObjectListPointer][source.droppableId];
 			const finishParentObject: ColumnType | BoxType = state[jsonObjectListPointer][destination.droppableId];
+
 			// if item is only moving vertically
 			if (startParentObject === finishParentObject) {
 				// removing reference to order object
@@ -27,6 +28,7 @@ const configReducer = createSlice({
 				state[jsonObjectListPointer][startParentObject.id].order = newChildObjectOrder;
 				return;
 			}
+
 			// If item is moving across parent containers
 			const startParentObjectOrder: string[] = Array.from(startParentObject.order);
 			startParentObjectOrder.splice(source.index, 1);

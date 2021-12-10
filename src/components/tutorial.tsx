@@ -1,31 +1,9 @@
 import React, { useCallback, useState } from 'react';
-import styled from 'styled-components';
 
 import { setGrid } from '@app/redux/gridReducer';
 import { oldUser } from '@app/redux/settingsReducer';
 import store, { AppDispatch } from '@app/redux/store';
 import { defaults, empty } from '@app/utils';
-import { Button, SimpleBox } from './styled';
-
-const BoxInner = styled(SimpleBox)`
-	width: 60%;
-`;
-
-const BoxContainer = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-`;
-
-const Option = styled(Button)`
-	height: 150px;
-	width: 200px;
-	margin: 5px;
-	cursor: pointer;
-`;
-
-const OptionContainer = styled.div``;
 
 const Tutorial = () => {
 	const [slideCounter, setSlideCounter] = useState(0);
@@ -56,25 +34,25 @@ const Tutorial = () => {
 	}, [handleKeyDown]);
 
 	return (
-		<BoxContainer>
-			<BoxInner>
+		<div>
+			<div>
 				<h1>Shortcuts</h1>
 				{slides[Math.abs(slideCounter) % 3]}
 
-				<Button
+				<button
 					onClick={() => {
 						setSlideCounter(slideCounter - 1);
 					}}>
 					Previous
-				</Button>
-				<Button
+				</button>
+				<button
 					onClick={() => {
 						setSlideCounter(slideCounter + 1);
 					}}>
 					Next
-				</Button>
-			</BoxInner>
-		</BoxContainer>
+				</button>
+			</div>
+		</div>
 	);
 };
 
@@ -120,22 +98,22 @@ const FinalSlide = () => {
 				Pick the blank slate or the default option to start, you can also go back and read more of the tutorial and
 				come back later if you want
 			</p>
-			<OptionContainer>
-				<Option
+			<div>
+				<option
 					onClick={() => {
 						dispatch(setGrid(empty));
 						dispatch(oldUser());
 					}}>
 					Blank
-				</Option>
-				<Option
+				</option>
+				<option
 					onClick={() => {
 						dispatch(setGrid(defaults));
 						dispatch(oldUser());
 					}}>
 					Default
-				</Option>
-			</OptionContainer>
+				</option>
+			</div>
 		</>
 	);
 };

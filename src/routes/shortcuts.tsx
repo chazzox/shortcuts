@@ -2,46 +2,14 @@ import React, { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 
 import store, { AppDispatch, RootState } from '@app/redux/store';
 import { toggleDrag } from '@app/redux/settingsReducer';
 import { onDragEnd } from '@app/redux/gridReducer';
 
-import { Toggle } from '@app/components/styled';
 import Column from '@app/components/column';
 import Modal from '@app/components/modal';
 import { URLregex } from '@app/utils';
-
-const SearchBar = styled.div`
-	width: 100%;
-	height: ${(props) => props.theme.basic.whitespaceHeight}px;
-	padding: calc(3 * ${(props) => props.theme.basic.paddingPrimary}px) 0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border: none;
-	input[type='text'] {
-		width: 100%;
-		max-width: 700px;
-		font-size: 13pt;
-		padding: ${(props) => props.theme.basic.paddingPrimary}px calc(${(props) => props.theme.basic.paddingPrimary}px + 1%);
-		outline: none !important;
-		border: none !important;
-		border-radius: 100em;
-		background-color: ${(props) => props.theme.colors.secondaryAccentBackground};
-		height: calc(
-			${(props) => props.theme.basic.whitespaceHeight}px - (6 * ${(props) => props.theme.basic.paddingPrimary}px)
-		);
-	}
-	input[type='text']:focus {
-		background-color: ${(props) => props.theme.colors.primaryAccentBackground};
-	}
-`;
-
-const ColumnContainer = styled.div`
-	display: flex;
-`;
 
 const Shortcuts = () => {
 	const dispatch: AppDispatch = store.dispatch;
@@ -52,7 +20,7 @@ const Shortcuts = () => {
 
 	return (
 		<>
-			<SearchBar>
+			<div>
 				<input
 					type="text"
 					value={searchString}
@@ -71,7 +39,7 @@ const Shortcuts = () => {
 						}
 					}}
 				/>
-				<Toggle
+				<input
 					type="checkbox"
 					checked={isEditMode}
 					onChange={() => {
@@ -79,12 +47,12 @@ const Shortcuts = () => {
 					}}
 				/>
 				<Link to="/settings">Settings</Link>
-			</SearchBar>
+			</div>
 			<DragDropContext
 				onDragEnd={(result) => {
 					dispatch(onDragEnd(result));
 				}}>
-				<ColumnContainer>
+				<div>
 					{grid.columnOrder.map((columnId: string, index: number) => (
 						<Column
 							key={index}
@@ -92,7 +60,7 @@ const Shortcuts = () => {
 							boxChildren={grid.columns[columnId].order.map((boxId: string) => grid.boxes[boxId])}
 						/>
 					))}
-				</ColumnContainer>
+				</div>
 			</DragDropContext>
 			<Modal />
 		</>

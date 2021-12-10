@@ -6,7 +6,6 @@ import { openModal } from '@app/redux/modalReducer';
 
 import type { AppDispatch, RootState } from '@app/redux/store';
 import styled from 'styled-components';
-import { Button, ItemTitleWrapper } from './styled';
 
 const LinkWrapper = styled.div``;
 
@@ -19,11 +18,11 @@ const Link = ({ link, index, containerId }: { link: LinkType; index: number; con
 		<Draggable isDragDisabled={!isEditMode} draggableId={link.id} index={index}>
 			{(provided) => (
 				<LinkWrapper {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-					<ItemTitleWrapper>
+					<div>
 						<div>{link.name}</div>
 						{isEditMode && (
 							<>
-								<Button
+								<button
 									onClick={() => {
 										dispatch(
 											openModal({
@@ -35,16 +34,16 @@ const Link = ({ link, index, containerId }: { link: LinkType; index: number; con
 										);
 									}}>
 									Edit
-								</Button>
-								<Button
+								</button>
+								<button
 									onClick={() => {
 										dispatch(deleteItem({ type: 'LINK', itemId: link.id, containerId: containerId }));
 									}}>
 									Delete
-								</Button>
+								</button>
 							</>
 						)}
-					</ItemTitleWrapper>
+					</div>
 				</LinkWrapper>
 			)}
 		</Draggable>

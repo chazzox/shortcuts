@@ -1,38 +1,10 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import styled from 'styled-components';
 
 import { addNewItem, editItem } from '@app/redux/gridReducer';
 import type { AppDispatch, RootState } from '@app/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '@app/redux/modalReducer';
-import { Button } from './styled';
-
-const InputWrapper = styled.div`
-	& > h2 {
-		font-size: 1.5em;
-		margin-block-start: 0.83em;
-		margin-block-end: 0.83em;
-		font-weight: bold;
-	}
-	& > p {
-		color: rgba(255, 255, 255, 0.6);
-	}
-`;
-
-const TextInput = styled.input`
-	display: block;
-	padding: 8px;
-	color: ${(props) => props.theme.colors.tertiaryText};
-	padding: 4px;
-	color: #47474a;
-	font-size: 20px;
-	border-radius: 8px;
-	border: none;
-	&:focus {
-		outline: none;
-	}
-`;
 
 const Input: React.FC<{
 	name: string;
@@ -42,22 +14,13 @@ const Input: React.FC<{
 	update: (arg0: string) => void;
 }> = ({ name, description, value, update, placeholder }) => {
 	return (
-		<InputWrapper>
+		<div>
 			<h2>{name}</h2>
 			<p>{description}</p>
-			<TextInput
-				type="text"
-				value={value}
-				onChange={(event) => update(event.target.value)}
-				placeholder={placeholder}
-			/>
-		</InputWrapper>
+			<input type="text" value={value} onChange={(event) => update(event.target.value)} placeholder={placeholder} />
+		</div>
 	);
 };
-
-const Complete = styled(Button)`
-	margin: 15px 0px;
-`;
 
 const Modal = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -143,7 +106,7 @@ const Modal = () => {
 				</>
 			)}
 			{errorMSG}
-			<Complete
+			<button
 				onClick={() => {
 					if (true) {
 						if (action === 'NEW') {
@@ -175,7 +138,7 @@ const Modal = () => {
 					}
 				}}>
 				Apply Changes
-			</Complete>
+			</button>
 		</ReactModal>
 	);
 };
