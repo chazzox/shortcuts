@@ -5,9 +5,6 @@ import { deleteItem } from '@app/redux/gridReducer';
 import { openModal } from '@app/redux/modalReducer';
 
 import type { AppDispatch, RootState } from '@app/redux/store';
-import styled from 'styled-components';
-
-const LinkWrapper = styled.div``;
 
 const Link = ({ link, index, containerId }: { link: LinkType; index: number; containerId: string }) => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -17,7 +14,7 @@ const Link = ({ link, index, containerId }: { link: LinkType; index: number; con
 	return (
 		<Draggable isDragDisabled={!isEditMode} draggableId={link.id} index={index}>
 			{(provided) => (
-				<LinkWrapper {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+				<div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 					<div>
 						<div>{link.name}</div>
 						{isEditMode && (
@@ -44,7 +41,7 @@ const Link = ({ link, index, containerId }: { link: LinkType; index: number; con
 							</>
 						)}
 					</div>
-				</LinkWrapper>
+				</div>
 			)}
 		</Draggable>
 	);

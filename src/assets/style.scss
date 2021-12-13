@@ -1,3 +1,74 @@
 html {
-	background: black;
+	--primaryBackground: rgb(29, 32, 33);
+	--secondaryBackground: rgb(45, 43, 42);
+	--tertiaryBackground: rgb(40, 40, 40);
+
+	--primaryAccentBackground: rgb(254, 128, 25);
+	--secondaryAccentBackground: rgb(80, 73, 69);
+	--tertiaryAccentBackground: rgb(158, 70, 12);
+
+	--primaryText: rgb(235, 219, 178);
+	--secondaryText: rgb(168, 153, 132);
+	--tertiaryText: rgb(125, 106, 94);
+
+	--buttonTextColor: rgb(235, 219, 178);
+	--borderColor: rgb(60, 56, 54);
+
+	--shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+	background: var(--primaryBackground);
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+	color: var(--primaryText);
+	font-family: 'Roboto', sans-serif;
+}
+
+#navbar {
+	background: var(--tertiaryBackground);
+	width: 80%;
+	margin: 15px auto;
+	padding: 8px;
+	border-radius: 8px;
+	box-shadow: var(--shadow);
+
+	& > a {
+		font-size: 20px;
+	}
+}
+
+#grid {
+	display: flex;
+}
+
+.column {
+	flex: 1;
+	background: var(--secondaryBackground);
+	margin: 10px;
+	padding: 10px;
+	border-radius: 8px;
+	box-shadow: var(--shadow);
+}
+
+.add {
+	height: 40px;
+	width: 40px;
+	border-radius: 25px;
+	background: white none repeat scroll 0% 0%;
+	transition: width 0.3s ease 0s;
+	border: none;
+	cursor: pointer;
+	padding: 0px;
+	align-self: center;
+	display: flex;
+	-moz-box-pack: center;
+	justify-content: center;
 }
