@@ -7,6 +7,7 @@ import Tutorial from './components/tutorial';
 
 import type { RootState } from './redux/store';
 import Settings from './routes/settings';
+import { Global } from './components/styled';
 
 const App = () => {
 	const isNewUser = useSelector((state: RootState) => state.settings.isNewUser);
@@ -14,6 +15,7 @@ const App = () => {
 
 	return (
 		<>
+			<Global isRandomBackground={isRandBackgroundEnabled} />
 			{isNewUser ? (
 				<Tutorial />
 			) : (

@@ -191,17 +191,17 @@ export const validation = {
 	}
 };
 
-export async function getImage() {
-	const collectionId = 317099;
-	const request = await window.fetch(
-		`https://api.unsplash.com/collections/${collectionId}/photos?page=2&per_page=20&orientation=landscape`,
-		{
-			method: 'GET',
-			headers: {
-				Authorization: 'Client-ID 9657b2982a53f8bf4b567fe7899da7354456296f0d91a2f918a1bbcfec8a021e'
-			}
-		}
-	);
-	const results = await request.json();
-	return results[Math.floor(Math.random() * results.length)].urls.regular;
-}
+// export async function getImage() {
+// 	const collectionId = 317099;
+// 	const request = await window.fetch(
+// 		`https://api.unsplash.com/collections/${collectionId}/photos?page=2&per_page=20&orientation=landscape`,
+// 		{
+// 			method: 'GET',
+// 			headers: {
+// 				Authorization: 'Client-ID 9657b2982a53f8bf4b567fe7899da7354456296f0d91a2f918a1bbcfec8a021e'
+// 			}
+// 		}
+// 	);
+// 	const results = await request.json();
+// 	return results[Math.floor(Math.random() * results.length)].urls.regular;
+// }
