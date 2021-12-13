@@ -7,7 +7,6 @@ import Tutorial from './components/tutorial';
 
 import type { RootState } from './redux/store';
 import Settings from './routes/settings';
-import Navbar from './components/navbar';
 
 const App = () => {
 	const isNewUser = useSelector((state: RootState) => state.settings.isNewUser);
@@ -18,17 +17,14 @@ const App = () => {
 			{isNewUser ? (
 				<Tutorial />
 			) : (
-				<>
-					<Navbar />
-					<Switch>
-						<Route exact path="/">
-							<Shortcuts />
-						</Route>
-						<Route path="/settings">
-							<Settings />
-						</Route>
-					</Switch>
-				</>
+				<Switch>
+					<Route exact path="/">
+						<Shortcuts />
+					</Route>
+					<Route path="/settings">
+						<Settings />
+					</Route>
+				</Switch>
 			)}
 		</>
 	);

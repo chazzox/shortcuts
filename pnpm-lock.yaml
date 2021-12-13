@@ -12,6 +12,7 @@ specifiers:
   '@types/react-modal': ^3.12.1
   '@types/react-router-dom': ^5.1.8
   '@types/snowpack-env': ^2.3.4
+  '@types/styled-components': ^5.1.12
   prettier: ^2.2.1
   react: ^17.0.2
   react-beautiful-dnd: ^13.1.0
@@ -45,6 +46,7 @@ devDependencies:
   '@types/react-modal': 3.12.1
   '@types/react-router-dom': 5.1.9
   '@types/snowpack-env': 2.3.4
+  '@types/styled-components': 5.1.14
   prettier: 2.4.1
   sass: 1.45.0
   snowpack: 3.8.8
@@ -592,7 +594,6 @@ packages:
     dependencies:
       '@types/react': 17.0.21
       hoist-non-react-statics: 3.3.2
-    dev: false
 
   /@types/http-cache-semantics/4.0.1:
     resolution: {integrity: sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==}
@@ -681,6 +682,14 @@ packages:
 
   /@types/snowpack-env/2.3.4:
     resolution: {integrity: sha512-zYzMb2aMyzXW5VgOQHy+FgI8N5tLFb+tIsUqk35CIgSr9pT4pji2GR8BCOTMdniusVuRHIp/DaYQNQGYGLVZHQ==}
+    dev: true
+
+  /@types/styled-components/5.1.14:
+    resolution: {integrity: sha512-d6P1/tyNytqKwam3cQXq7a9uPtovc/mdAs7dBiz1YbDdNIT3X4WmuFU78YdSYh84TXVuhOwezZ3EeKuNBhwsHQ==}
+    dependencies:
+      '@types/hoist-non-react-statics': 3.3.1
+      '@types/react': 17.0.21
+      csstype: 3.0.9
     dev: true
 
   /abbrev/1.1.1:
@@ -1628,7 +1637,6 @@ packages:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
     dependencies:
       react-is: 16.13.1
-    dev: false
 
   /hosted-git-info/4.0.2:
     resolution: {integrity: sha512-c9OGXbZ3guC/xOlCg1Ci/VgWlwsqDv1yMQL1CWqXDL0hDjXuNcq0zuR4xqPSuasI3kqFDhqSyTjREz5gzq0fXg==}
@@ -2766,7 +2774,6 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: false
 
   /react-lifecycles-compat/3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}

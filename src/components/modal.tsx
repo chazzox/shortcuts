@@ -60,7 +60,7 @@ const Modal = () => {
 					alignItems: 'center'
 				},
 				content: {
-					background: 'var(--tertiaryBackground)',
+					background: 'black',
 					width: '600px',
 					position: 'initial',
 					borderRadius: '8px',

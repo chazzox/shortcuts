@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import type { AppDispatch, RootState } from '@app/redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleRandBackground } from '@app/redux/settingsReducer';
@@ -51,5 +52,12 @@ const Settings = () => {
 		</>
 	);
 };
+
+// Temporary Component
+const Error = styled.div`
+	background-color: #c02c2c;
+	border-radius: 8px;
+	padding: 8px;
+`;
 
 export default Settings;
