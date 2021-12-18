@@ -29,19 +29,22 @@ const OptionContainer = styled.div``;
 
 const Tutorial = () => {
 	const [slideCounter, setSlideCounter] = useState(0);
-
 	const slides = [<Slide0 />, <Slide1 />, <FinalSlide />];
+	const setCount = (change: number) =>
+		setSlideCounter((prev) => {
+			const newVal = prev + change;
+			if (newVal <= slides.length - 1 && newVal >= 0) return newVal;
+			return prev;
+		});
 
 	const handleKeyDown = useCallback(
 		({ key }: KeyboardEvent) => {
 			switch (key) {
 				case 'ArrowLeft':
-					setSlideCounter(slideCounter - 1);
+					setCount(-1);
 					break;
 				case 'ArrowRight':
-					setSlideCounter(slideCounter + 1);
-					break;
-				default:
+					setCount(1);
 					break;
 			}
 		},
@@ -59,20 +62,25 @@ const Tutorial = () => {
 		<BoxContainer>
 			<BoxInner>
 				<h1>Shortcuts</h1>
-				{slides[Math.abs(slideCounter) % 3]}
+				{slides[slideCounter]}
 
-				<Button
-					onClick={() => {
-						setSlideCounter(slideCounter - 1);
-					}}>
-					Previous
-				</Button>
-				<Button
-					onClick={() => {
-						setSlideCounter(slideCounter + 1);
-					}}>
-					Next
-				</Button>
+				{slideCounter > 0 && (
+					<Button
+						onClick={() => {
+							setCount(-1);
+						}}>
+						Previous
+					</Button>
+				)}
+				{slideCounter < slides.length - 1 && (
+					<Button
+						style={{ float: 'right' }}
+						onClick={() => {
+							setCount(1);
+						}}>
+						Next
+					</Button>
+				)}
 			</BoxInner>
 		</BoxContainer>
 	);

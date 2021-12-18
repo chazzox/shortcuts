@@ -6,13 +6,13 @@ export const defaults: Config = {
 			id: 'link-0',
 			name: 'personal website',
 			url: 'https://chazzox.github.io',
-			linkIconUrl: 'https://chazzox.github.io/chazzox.github.io/static/media/logo.6a2b7fd3.png'
+			linkIconUrl: 'https://chazzox.github.io/favicon.ico'
 		},
 		'link-1': {
 			id: 'link-1',
 			name: 'github repo',
 			url: 'https://github.com/chazzox/shortcuts',
-			linkIconUrl: 'https://imgur.com/a/kjgkQ7u'
+			linkIconUrl: 'https://i.imgur.com/qmi1Nb7.png'
 		},
 		'link-2': {
 			id: 'link-2',
@@ -191,17 +191,22 @@ export const validation = {
 	}
 };
 
-// export async function getImage() {
-// 	const collectionId = 317099;
-// 	const request = await window.fetch(
-// 		`https://api.unsplash.com/collections/${collectionId}/photos?page=2&per_page=20&orientation=landscape`,
-// 		{
-// 			method: 'GET',
-// 			headers: {
-// 				Authorization: 'Client-ID 9657b2982a53f8bf4b567fe7899da7354456296f0d91a2f918a1bbcfec8a021e'
-// 			}
-// 		}
-// 	);
-// 	const results = await request.json();
-// 	return results[Math.floor(Math.random() * results.length)].urls.regular;
-// }
+export async function getImage() {
+	const collectionId = 317099;
+	const request = await window.fetch(
+		`https://api.unsplash.com/collections/${collectionId}/photos?page=2&per_page=20&orientation=landscape`,
+		{
+			method: 'GET',
+			headers: {
+				Authorization: 'Client-ID 9657b2982a53f8bf4b567fe7899da7354456296f0d91a2f918a1bbcfec8a021e'
+			}
+		}
+	);
+	const results = await request.json();
+	return results[Math.floor(Math.random() * results.length)].urls.regular;
+}
+
+export function cleanupURL(url: string) {
+	url = url.replace(/(.*?:\/\/)|(www\.)/g, '').replace(/\/.*/, '');
+	return url;
+}

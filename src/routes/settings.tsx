@@ -1,8 +1,9 @@
 import React from 'react';
-import { SimpleBox, Toggle } from '@app/components/styled';
 import styled from 'styled-components';
-import type { AppDispatch, RootState } from '@app/redux/store';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { SimpleBox, Toggle } from '@app/components/styled';
+import type { AppDispatch, RootState } from '@app/redux/store';
 import { toggleRandBackground } from '@app/redux/settingsReducer';
 
 const PageTitle = styled.div`
@@ -40,8 +41,9 @@ const SettingBoxContent = styled.div`
 `;
 
 const Settings = () => {
-	const isRandBackgroundEnabled = useSelector((state: RootState) => state.settings.isRandBackgroundEnabled);
 	const dispatch = useDispatch<AppDispatch>();
+	const isRandBackgroundEnabled = useSelector((state: RootState) => state.settings.isRandBackgroundEnabled);
+
 	return (
 		<>
 			<PageTitle>

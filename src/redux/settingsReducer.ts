@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const settingsReducer = createSlice({
 	name: 'settingsReducer',
@@ -9,9 +9,13 @@ const settingsReducer = createSlice({
 		isRandBackgroundEnabled: false
 	},
 	reducers: {
+		setDrag(state, newValue: PayloadAction<boolean>) {
+			state.isEditMode = newValue.payload;
+		},
 		toggleDrag(state) {
 			state.isEditMode = !state.isEditMode;
 		},
+
 		oldUser(state) {
 			state.isNewUser = false;
 		},
@@ -21,6 +25,6 @@ const settingsReducer = createSlice({
 	}
 });
 
-export const { toggleDrag, oldUser, toggleRandBackground } = settingsReducer.actions;
+export const { toggleDrag, oldUser, toggleRandBackground, setDrag } = settingsReducer.actions;
 
 export default settingsReducer;

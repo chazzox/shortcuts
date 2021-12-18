@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import type { AppDispatch, RootState } from '@app/redux/store';
 import AddButton from './addNew';
 import Link from './link';
-import { Button, ItemTitleWrapper, SimpleBox } from './styled';
+import { Button, SimpleBox } from './styled';
 import { deleteItem } from '@app/redux/gridReducer';
 import { openModal } from '@app/redux/modalReducer';
 
@@ -43,7 +43,7 @@ const Box = ({ box, linkChildren, index, containerId }: BoxPropTypes) => {
 		<Draggable isDragDisabled={!isEditMode} draggableId={box.id} index={index}>
 			{(provided) => (
 				<BoxContainer {...provided.draggableProps} ref={provided.innerRef}>
-					<ItemTitleWrapper>
+					<div style={{ display: 'flex', alignItems: 'center' }}>
 						<h1 {...provided.dragHandleProps}>{box.name}</h1>
 						{isEditMode && (
 							<>
@@ -68,7 +68,7 @@ const Box = ({ box, linkChildren, index, containerId }: BoxPropTypes) => {
 								</Button>
 							</>
 						)}
-					</ItemTitleWrapper>
+					</div>
 
 					<BoxContent>
 						<Droppable droppableId={box.id} type="link">

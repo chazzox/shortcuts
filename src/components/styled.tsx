@@ -1,4 +1,4 @@
-// import { getImage } from '@app/utils';
+import { getImage } from '@app/utils';
 import styled, { createGlobalStyle, css } from 'styled-components';
 
 const defaultBackground = css`
@@ -14,8 +14,7 @@ export const Global = createGlobalStyle<{ isRandomBackground: boolean }>`
 	body {
 		margin: 0;
 		padding: 0;
-		/* ${(props) => (props.isRandomBackground ? randomBackground : defaultBackground)} */
-		${defaultBackground}
+		${(props) => (props.isRandomBackground ? randomBackground : defaultBackground)}
 	}
 	html,
 	body,
@@ -26,6 +25,7 @@ export const Global = createGlobalStyle<{ isRandomBackground: boolean }>`
 
 const randomBackground = css`
 	background-size: cover;
+	background: url('${await getImage()}');
 `;
 
 export const Button = styled.button`
@@ -79,14 +79,6 @@ export const Toggle = styled.input`
 	cursor: pointer;
 	&:focus {
 		outline: 0;
-	}
-`;
-
-export const ItemTitleWrapper = styled.div`
-	display: flex;
-	align-items: center;
-	& > * {
-		margin: 5px;
 	}
 `;
 
