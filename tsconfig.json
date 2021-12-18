@@ -6,7 +6,6 @@
 		"moduleResolution": "node",
 		"jsx": "react",
 		"baseUrl": "./",
-
 		"paths": {
 			"@app/*": ["src/*"]
 		},
