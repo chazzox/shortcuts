@@ -13,6 +13,7 @@ specifiers:
   '@types/react-router-dom': ^5.1.8
   '@types/snowpack-env': ^2.3.4
   '@types/styled-components': ^5.1.12
+  pnpm: ^7.1.5
   prettier: ^2.2.1
   react: ^17.0.2
   react-beautiful-dnd: ^13.1.0
@@ -48,6 +49,7 @@ devDependencies:
   '@types/react-router-dom': 5.1.9
   '@types/snowpack-env': 2.3.4
   '@types/styled-components': 5.1.14
+  pnpm: 7.1.5
   prettier: 2.4.1
   snowpack: 3.8.8
   typescript: 4.4.3
@@ -2648,6 +2650,12 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       find-up: 4.1.0
+    dev: true
+
+  /pnpm/7.1.5:
+    resolution: {integrity: sha512-Mkdb7mHUPbzsPjvKbhvNgHPPIX5NZlLcm7S6uFJWPJrkiiWnrq7tbqWHC09Spzwvao92R64mo6a6gGbrERNbrA==}
+    engines: {node: '>=14.19'}
+    hasBin: true
     dev: true
 
   /postcss-modules-extract-imports/3.0.0_postcss@8.3.6:
