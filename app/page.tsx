@@ -18,13 +18,19 @@ export default function Home() {
                 onChange={(e) => setRows(e.currentTarget.value)}
             />
 
-            {[...new Array(Number(cols)).keys()].map((col) => (
-                <div className="col">
-                    {[...new Array(Number(rows)).keys()].map((row) => (
-                        <div className="col">a</div>
-                    ))}
-                </div>
-            ))}
+            {[...new Array(Number(cols) > 100 ? 100 : Number(cols)).keys()].map(
+                (col) => (
+                    <div className="col">
+                        {[
+                            ...new Array(
+                                Number(rows) > 100 ? 100 : Number(rows)
+                            ).keys()
+                        ].map((row) => (
+                            <div className="col">a</div>
+                        ))}
+                    </div>
+                )
+            )}
         </main>
     );
 }
