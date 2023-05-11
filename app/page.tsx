@@ -38,13 +38,16 @@ interface TileProps {
 }
 
 const SingleCellTile: React.FC<TileProps> = ({ x, y }) => {
+    // @ts-expect-error
     return <div className="tile single" style={{ "--x": x, "--y": y }}></div>;
 };
 
 const DoubleCellTile: React.FC<TileProps> = ({ x, y }) => {
+    // @ts-expect-error
     return <div className="tile double" style={{ "--x": x, "--y": y }}></div>;
 };
 
 const QuadCellTile: React.FC<TileProps> = ({ x, y }) => {
+    // @ts-expect-error
     return <div className="tile quad" style={{ "--x": x, "--y": y }}></div>;
 };
