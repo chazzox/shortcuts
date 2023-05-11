@@ -20,7 +20,7 @@ export default function Home() {
 
             {[...new Array(Number(cols) > 100 ? 100 : Number(cols)).keys()].map(
                 (col) => (
-                    <div className="col">
+                    <div className="row">
                         {[
                             ...new Array(
                                 Number(rows) > 100 ? 100 : Number(rows)
