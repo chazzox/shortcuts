@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    --cell-size: 80px;
 }
 
 body {
@@ -10,13 +12,10 @@ body {
     height: 100vh;
 }
 
-.row {
-    display: flex;
+.grid {
+    position: relative;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+    height: calc(var(--row-count) * var(--cell-size));
+    width: calc(var(--col-count) * var(--cell-size));
     border: 1px solid black;
-    height: 80px;
-    width: fit-content;
-}
-.col {
-    border: 1px solid black;
-    width: 80px;
 }

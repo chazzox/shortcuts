@@ -1,0 +1,19 @@
+.tile {
+    position: absolute;
+
+    border: 1px solid black;
+    top: calc(var(--cell-size) * var(--y));
+    left: calc(var(--cell-size) * var(--x));
+    &.single {
+        width: var(--cell-size);
+        height: var(--cell-size);
+    }
+    &.double {
+        width: calc(var(--cell-size) * 2);
+        height: var(--cell-size);
+    }
+    &.tile.quad {
+        width: calc(var(--cell-size) * 2);
+        height: calc(var(--cell-size) * 2);
+    }
+}

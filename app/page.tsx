@@ -1,9 +1,10 @@
 "use client";
+import "./test.scss";
 import { useState } from "react";
 
 export default function Home() {
-    const [cols, setCols] = useState("0");
-    const [rows, setRows] = useState("0");
+    const [cols, setCols] = useState("10");
+    const [rows, setRows] = useState("10");
 
     return (
         <main>
@@ -18,19 +19,32 @@ export default function Home() {
                 onChange={(e) => setRows(e.currentTarget.value)}
             />
 
-            {[...new Array(Number(cols) > 100 ? 100 : Number(cols)).keys()].map(
-                (col) => (
-                    <div className="row">
-                        {[
-                            ...new Array(
-                                Number(rows) > 100 ? 100 : Number(rows)
-                            ).keys()
-                        ].map((row) => (
-                            <div className="col">a</div>
-                        ))}
-                    </div>
-                )
-            )}
+            <div
+                className="grid"
+                // @ts-expect-error
+                style={{ "--col-count": cols, "--row-count": rows }}
+            >
+                <SingleCellTile x={0} y={0} />
+                <DoubleCellTile x={3} y={4} />
+                <QuadCellTile x={5} y={5} />
+            </div>
         </main>
     );
 }
+
+interface TileProps {
+    x: number;
+    y: number;
+}
+
+const SingleCellTile: React.FC<TileProps> = ({ x, y }) => {
+    return <div className="tile single" style={{ "--x": x, "--y": y }}></div>;
+};
+
+const DoubleCellTile: React.FC<TileProps> = ({ x, y }) => {
+    return <div className="tile double" style={{ "--x": x, "--y": y }}></div>;
+};
+
+const QuadCellTile: React.FC<TileProps> = ({ x, y }) => {
+    return <div className="tile quad" style={{ "--x": x, "--y": y }}></div>;
+};
